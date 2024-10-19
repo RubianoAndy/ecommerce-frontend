@@ -1,9 +1,9 @@
 import { NgFor } from '@angular/common';
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 
 interface CarouselItem {
   image: string;
-  title: string;
+  label: string;
   description: string;
 }
 
@@ -16,62 +16,38 @@ interface CarouselItem {
   templateUrl: './carousel.component.html',
   styleUrl: './carousel.component.scss'
 })
-export class CarouselComponent implements OnInit {
-  items: CarouselItem[] = [
-    { image: 'assets/images/carousel/carousel-1.png', title: 'Design Slider', description: 'Lorem ipsum dolor sit amet.' },
-    { image: 'assets/images/carousel/carousel-2.png', title: 'Design Slider', description: 'Lorem ipsum dolor sit amet.' },
-    { image: 'assets/images/carousel/carousel-3.PNG', title: 'Design Slider', description: 'Lorem ipsum dolor sit amet.' },
-    { image: 'assets/images/carousel/carousel-4.PNG', title: 'Design Slider', description: 'Lorem ipsum dolor sit amet.' },
+export class CarouselComponent {
+  currentIndex = 0;  // Índice del slide actual
+  slides: CarouselItem[] = [
+    {
+      image: 'https://tecdn.b-cdn.net/img/Photos/Slides/img%20(15).jpg',
+      label: 'First slide label',
+      description: 'Some representative placeholder content for the first slide.'
+    },
+    {
+      image: 'https://tecdn.b-cdn.net/img/Photos/Slides/img%20(22).jpg',
+      label: 'Second slide label',
+      description: 'Some representative placeholder content for the second slide.'
+    },
+    {
+      image: 'https://tecdn.b-cdn.net/img/Photos/Slides/img%20(23).jpg',
+      label: 'Third slide label',
+      description: 'Some representative placeholder content for the third slide.'
+    }
   ];
 
-  currentIndex = 0;
-  transform = 'translateX(0%)';
-  timeWidth = '100%';
-
-  private intervalId!: ReturnType<typeof setInterval>;
-
-  ngOnInit() {
-    this.startAutoSlide();
+  // Cambia al siguiente slide
+  nextSlide() {
+    this.currentIndex = (this.currentIndex + 1) % this.slides.length;
   }
 
-  next() {
-    this.currentIndex = (this.currentIndex + 1) % this.items.length;
-    this.updateTransform();
-    this.resetTimer();
+  // Cambia al slide anterior
+  prevSlide() {
+    this.currentIndex = (this.currentIndex - 1 + this.slides.length) % this.slides.length;
   }
 
-  prev() {
-    this.currentIndex = (this.currentIndex - 1 + this.items.length) % this.items.length;
-    this.updateTransform();
-    this.resetTimer();
-  }
-
-  updateTransform() {
-    this.transform = `translateX(-${this.currentIndex * 100}%)`;
-    this.timeWidth = '100%';
-    
-    setTimeout(() => {
-      this.timeWidth = '0%';
-    }, 0);
-    
-    setTimeout(() => {
-      this.startAutoSlide();
-    }, 3000);
-  }
-
-  startAutoSlide() {
-    this.intervalId = setInterval(() => this.next(), 7000);
-    this.timeWidth = '100%';
-    
-    setTimeout(() => {
-      this.timeWidth = '0%';
-    }, 0);
-    
-    clearInterval(this.intervalId);
-  }
-
-  resetTimer() {
-    clearInterval(this.intervalId);
-    this.startAutoSlide();
+  // Ir a un slide específico
+  goToSlide(index: number) {
+    this.currentIndex = index;
   }
 }
