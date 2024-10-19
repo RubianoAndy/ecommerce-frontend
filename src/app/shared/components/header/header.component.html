@@ -101,7 +101,7 @@
     <div [ngClass]="{'translate-x-0': isMenuOpen, '-translate-x-full': !isMenuOpen}" class="fixed left-0 top-0 bottom-0 z-20 bg-white w-1/2 min-w-[300px] shadow-md p-6 h-full transition-transform duration-500">
         <ul class='space-y-3 fixed bg-white w-full top-0 left-0 p-6 h-full shadow-md overflow-auto z-10'>
             <li class='mb-6 block'>
-                <a href="javascript:void(0)">
+                <a routerLink='/' (click)="toggleMenu()">
                     <img src="https://readymadeui.com/readymadeui.svg" alt="logo" class='w-36' />
                 </a>
             </li>
