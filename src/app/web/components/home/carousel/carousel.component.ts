@@ -17,7 +17,10 @@ interface CarouselItem {
   styleUrl: './carousel.component.scss'
 })
 export class CarouselComponent {
-  currentIndex = 0;  // Índice del slide actual
+  currentIndex = 0;
+
+  // Tamaño de cada slide debe ser ser de 1320 x 583 px
+
   slides: CarouselItem[] = [
     {
       image: 'https://tecdn.b-cdn.net/img/Photos/Slides/img%20(15).jpg',
@@ -36,17 +39,14 @@ export class CarouselComponent {
     }
   ];
 
-  // Cambia al siguiente slide
   nextSlide() {
     this.currentIndex = (this.currentIndex + 1) % this.slides.length;
   }
 
-  // Cambia al slide anterior
   prevSlide() {
     this.currentIndex = (this.currentIndex - 1 + this.slides.length) % this.slides.length;
   }
 
-  // Ir a un slide específico
   goToSlide(index: number) {
     this.currentIndex = index;
   }

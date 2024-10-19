@@ -1,44 +1,30 @@
-<div id="carouselExampleCaptions" class="relative">
-    <button
-      *ngFor="let slide of slides; let i = index"
-      type="button"
-      (click)="goToSlide(i)"
-      [class.opacity-100]="i === currentIndex"
-      [class.opacity-50]="i !== currentIndex"
-      class="mx-[3px] box-content h-[3px] w-[30px] flex-initial cursor-pointer border-0 border-y-[10px] border-solid border-transparent bg-white bg-clip-padding p-0 -indent-[999px] transition-opacity duration-[600ms]"
-      [attr.aria-label]="'Slide ' + (i + 1)">
-    </button>
-  
+<div id="carouselExampleCaptions" class="relative"> 
     <div class="relative w-full overflow-hidden">
-      <div
-        class="flex transition-transform duration-[600ms] ease-in-out"
+        <div class="flex transition-transform duration-[600ms] ease-in-out"
         [style.transform]="'translateX(' + (-currentIndex * 100) + '%)'">
-        <div
-          *ngFor="let slide of slides; let i = index"
-          class="w-full flex-shrink-0 relative">
-          <img [src]="slide.image" class="block w-full" alt="Slide image" />
-          <div class="absolute inset-0 flex flex-col items-center justify-center bg-black bg-opacity-50 text-white text-center p-5">
-            <h5 class="text-xl">{{ slide.label }}</h5>
-            <p>{{ slide.description }}</p>
-          </div>
+            <div *ngFor="let slide of slides; let i = index" class="w-full flex-shrink-0 relative">
+                <img [src]="slide.image" class="block w-full max-h-[583px] object-cover" alt="Slide image" />
+                <!-- <div class="absolute inset-0 flex flex-col items-center justify-center bg-black bg-opacity-50 text-white text-center p-5">
+                    <h5 class="text-xl">{{ slide.label }}</h5>
+                    <p>{{ slide.description }}</p>
+                </div> -->
+            </div>
         </div>
-      </div>
     </div>
   
-    <button class="absolute bottom-0 left-0 top-0 z-[1] flex w-[15%] items-center justify-center" (click)="prevSlide()">
-      <span class="inline-block h-8 w-8">
-        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="h-6 w-6">
-          <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 19.5L8.25 12l7.5-7.5" />
-        </svg>
-      </span>
+    <button class="flex absolute bottom-0 left-0 top-0 z-[1] w-[15%] items-center justify-center text-white hover:text-black hover:bg-white hover:bg-opacity-20 transition-all duration-300" (click)="prevSlide()">
+        <span class="material-icons inline-block h-8 w-8">arrow_back_ios</span>
     </button>
     
-    <button class="absolute bottom-0 right-0 top-0 z-[1] flex w-[15%] items-center justify-center" (click)="nextSlide()">
-      <span class="inline-block h-8 w-8">
-        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="h-6 w-6">
-          <path stroke-linecap="round" stroke-linejoin="round" d="M8.25 4.5l7.5 7.5-7.5 7.5" />
-        </svg>
-      </span>
+    <button class="flex absolute bottom-0 right-0 top-0 z-[1] w-[15%] items-center justify-center text-white hover:text-black hover:bg-white hover:bg-opacity-20 transition-all duration-300" (click)="nextSlide()">
+        <span class="material-icons inline-block h-8 w-8">arrow_forward_ios</span>
     </button>
+
+    <div class="absolute bottom-4 left-1/2 transform -translate-x-1/2 z-[2] flex space-x-2">
+        <button *ngFor="let slide of slides; let i = index" type="button" (click)="goToSlide(i)"
+            [class.bg-white]="i === currentIndex"
+            [class.bg-gray-500]="i !== currentIndex"
+            class="h-1 w-6 transition-all duration-[300ms]">
+        </button>
+    </div>
 </div>
-  
