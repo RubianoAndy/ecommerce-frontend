@@ -1,0 +1,164 @@
+<header class='flex border-b bg-white font-sans min-h-[70px] tracking-wide relative'>
+    <div class='flex flex-wrap items-center justify-between px-10 py-3 gap-4 w-full'>
+        <a routerLink="/">
+            <img src="https://readymadeui.com/readymadeui.svg" alt="logo" class='w-36' />
+        </a>
+  
+        <div id="collapseMenu" class='hidden lg:!block'>
+            <ul class='flex gap-x-10'>
+                <!-- <li class='mb-6 hidden max-lg:block'>
+                    <a routerLink="/"><img src="https://readymadeui.com/readymadeui.svg" alt="logo" class='w-36' />
+                    </a>
+                </li> -->
+                <li>
+                    <a routerLink='/' routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }" class='hover:text-blue-600 font-bold text-blue-600 block'>
+                        Home
+                    </a>
+                </li>
+
+                <li class='group relative flex flex-row text-gray-600 hover:text-blue-500 font-bold cursor-pointer'>
+                    <a href='javascript:void(0)'>
+                        Pages
+                    </a>
+                    <span class="material-icons">keyboard_arrow_down</span>
+
+                    <ul class='absolute shadow-lg bg-white space-y-3 lg:top-5 -left-6 min-w-[250px] z-10 max-h-0 overflow-hidden group-hover:opacity-100 group-hover:max-h-[700px] px-6 group-hover:pb-4 group-hover:pt-6 transition-all duration-500'>
+                        <li class='border-b py-2 '>
+                            <a href='javascript:void(0)' class='hover:text-[#007bff] text-gray-600 font-bold block'>
+                                About
+                            </a>
+                        </li>
+                        
+                        <li class='border-b py-2 '>
+                            <a href='javascript:void(0)' class='hover:text-[#007bff] text-gray-600 font-bold block'>
+                                Contact
+                            </a>
+                        </li>
+                        
+                        <li class='border-b py-2 '>
+                            <a href='javascript:void(0)' class='hover:text-[#007bff] text-gray-600 font-bold block'>
+                                Login
+                            </a>
+                        </li>
+
+                        <li class='border-b py-2 '>
+                            <a href='javascript:void(0)' class='hover:text-[#007bff] text-gray-600 font-bold block'>
+                                Sign up
+                            </a>
+                        </li>
+
+                        <li class='border-b py-2 '>
+                            <a href='javascript:void(0)' class='hover:text-[#007bff] text-gray-600 font-bold block'>
+                                Blog
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+                
+                <li>
+                    <a routerLink='/about' routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }" class='hover:text-blue-600 font-bold text-blue-600 block'>
+                        About
+                    </a>
+                </li>
+
+                <li>
+                    <a routerLink='/contact' routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }" class='hover:text-blue-600 font-bold text-blue-600 block'>
+                        Contact
+                    </a>
+                </li>
+            </ul>
+        </div>
+  
+        <div class='flex items-center justify-center space-x-8 max-lg:ml-auto'>
+            <span class="relative">
+                <span class="material-icons inline cursor-pointer text-gray-500 hover:text-red-500">favorite</span>
+                <span class="absolute left-auto -ml-1 top-0 rounded-full bg-black px-1 py-0 text-xs text-white">0</span>
+            </span>
+    
+            <span class="relative">
+                <span class="material-icons inline cursor-pointer text-gray-500 hover:text-blue-500">shopping_cart</span>
+                <span class="absolute left-auto -ml-1 top-0 rounded-full bg-black px-1 py-0 text-xs text-white">0</span>
+            </span>
+
+            <!-- <span class="relative">
+                <span class="material-icons inline cursor-pointer text-gray-500 hover:text-blue-500">search</span>
+            </span> -->
+    
+            <button id="toggleOpen" (click)="toggleMenu()" class="lg:hidden">
+                <span class="material-icons text-3xl">menu</span>
+            </button>
+        </div>
+    </div>
+
+    <div [ngClass]="{'hidden': !isMenuOpen, 'block': isMenuOpen}" class="hidden before:fixed before:bg-black before:opacity-50 before:inset-0 before:z-10">
+        <button id="toggleClose" (click)="toggleMenu()" class='fixed top-2 right-4 z-[100] rounded-full bg-white cursor-pointer w-10 h-10 flex items-center justify-center'>
+            <span class="material-icons">close</span>
+        </button>
+
+
+        <ul class='space-y-3 fixed bg-white w-1/2 min-w-[300px] top-0 left-0 p-6 h-full shadow-md overflow-auto z-10'>
+            <li class='mb-6 block'>
+                <a href="javascript:void(0)">
+                    <img src="https://readymadeui.com/readymadeui.svg" alt="logo" class='w-36' />
+                </a>
+            </li>
+
+            <li class='border-b py-3'>
+                <a routerLink='/' routerLinkActive="active" (click)="toggleMenu()" class='text-black font-bold'>
+                    Home
+                </a>
+            </li>
+
+            <li class='group relative border-b py-3 flex flex-row text-gray-600 font-bold cursor-pointer'>
+                <a href='javascript:void(0)'>
+                    Pages
+                </a>
+                <span class="material-icons">keyboard_arrow_down</span>
+
+                <ul class='absolute shadow-lg bg-white space-y-3 lg:top-5 -left-6 min-w-[250px] z-10 max-h-0 overflow-hidden group-hover:opacity-100 group-hover:max-h-[700px] px-6 group-hover:pb-4 group-hover:pt-6 transition-all duration-500'>
+                    <li class='border-b py-2 '>
+                        <a href='javascript:void(0)' class='hover:text-[#007bff] text-gray-600 font-bold block'>
+                            About
+                        </a>
+                    </li>
+                    
+                    <li class='border-b py-2 '>
+                        <a href='javascript:void(0)' class='hover:text-[#007bff] text-gray-600 font-bold block'>
+                            Contact
+                        </a>
+                    </li>
+                    
+                    <li class='border-b py-2 '>
+                        <a href='javascript:void(0)' class='hover:text-[#007bff] text-gray-600 font-bold block'>
+                            Login
+                        </a>
+                    </li>
+
+                    <li class='border-b py-2 '>
+                        <a href='javascript:void(0)' class='hover:text-[#007bff] text-gray-600 font-bold block'>
+                            Sign up
+                        </a>
+                    </li>
+
+                    <li class='border-b py-2 '>
+                        <a href='javascript:void(0)' class='hover:text-[#007bff] text-gray-600 font-bold block'>
+                            Blog
+                        </a>
+                    </li>
+                </ul>
+            </li>
+
+            <li class='border-b py-3'>
+                <a routerLink='/about' routerLinkActive="active" (click)="toggleMenu()" class='text-black font-bold'>
+                    About
+                </a>
+            </li>
+
+            <li class='border-b py-3'>
+                <a routerLink='/contact' routerLinkActive="active" (click)="toggleMenu()" class='text-black font-bold'>
+                    Contact
+                </a>
+            </li>
+        </ul>
+    </div>
+</header>
