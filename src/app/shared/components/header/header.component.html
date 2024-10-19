@@ -90,11 +90,10 @@
         </div>
     </div>
 
-    <div [ngClass]="{'hidden': !isMenuOpen, 'block': isMenuOpen}" class="hidden before:fixed before:bg-black before:opacity-50 before:inset-0 before:z-10">
+    <div [ngClass]="{'opacity-0 max-h-0': !isMenuOpen, 'opacity-100 max-h-full': isMenuOpen}" class="fixed inset-0 z-10 bg-black bg-opacity-50 transition-all duration-500 ease-in-out">
         <button id="toggleClose" (click)="toggleMenu()" class='fixed top-2 right-4 z-[100] rounded-full bg-white cursor-pointer w-10 h-10 flex items-center justify-center'>
             <span class="material-icons">close</span>
         </button>
-
 
         <ul class='space-y-3 fixed bg-white w-1/2 min-w-[300px] top-0 left-0 p-6 h-full shadow-md overflow-auto z-10'>
             <li class='mb-6 block'>
@@ -121,13 +120,13 @@
                             About
                         </a>
                     </li>
-                    
+
                     <li class='border-b py-2 '>
                         <a href='javascript:void(0)' class='hover:text-[#007bff] text-gray-600 font-bold block'>
                             Contact
                         </a>
                     </li>
-                    
+
                     <li class='border-b py-2 '>
                         <a href='javascript:void(0)' class='hover:text-[#007bff] text-gray-600 font-bold block'>
                             Login
@@ -139,7 +138,7 @@
                             Sign up
                         </a>
                     </li>
-
+                    
                     <li class='border-b py-2 '>
                         <a href='javascript:void(0)' class='hover:text-[#007bff] text-gray-600 font-bold block'>
                             Blog
