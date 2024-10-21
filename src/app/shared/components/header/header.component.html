@@ -1,8 +1,49 @@
-<header class='flex border-b bg-white font-sans min-h-[70px] tracking-wide relative'>
-    <div class='flex flex-wrap items-center justify-between px-10 py-3 gap-4 w-full'>
-        <a routerLink="/">
-            <img src="https://readymadeui.com/readymadeui.svg" alt="logo" class='w-36' />
+<header class='flex flex-col border-b bg-white font-sans min-h-[70px] tracking-wide relative'>
+    <div class='flex items-center lg:justify-center flex-wrap gap-5 relative py-3 px-10 border-gray-200 border-b lg:min-h-[80px] max-lg:min-h-[60px]'>
+        <a routerLink="/"><img src="https://readymadeui.com/readymadeui.svg" alt="logo"
+            class='w-36' />
         </a>
+
+        <!-- <div class="space-x-6 md:absolute md:right-10 flex items-center max-md:ml-auto">
+            <div class="inline-block border-gray-300 border-l-2 pl-6 cursor-pointer">
+                <span class="material-icons text-3xl hover:text-green-700">person</span>
+            </div>
+        </div> -->
+        
+        <div class="space-x-6 md:absolute md:right-10 flex items-center max-md:ml-auto group relative">
+            <div class="inline-block border-gray-300 border-l-2 pl-6 cursor-pointer">
+                <button type="button" class="flex" aria-expanded="false" (click)="toggleMenuDropdown()">
+                    <!-- <span class="sr-only">Open user menu</span> -->
+                    <img class="w-10 h-10 rounded-lg" src="https://flowbite.com/docs/images/people/profile-picture-5.jpg" alt="user photo">
+                </button>
+
+                <div #dropdownMenu id="dropdown-user" class="z-10 hidden absolute right-0 mt-2 text-lg list-none bg-white shadow-lg border border-gray-100">
+                    <div class="px-4 py-3 border-b border-gray-200" role="none">
+                        <p class="text-sm font-bold text-green-700" role="none">Andy Rubiano</p>
+                        <p class="text-sm text-gray-900 truncate" role="none">ar.andy.rubiano gmail.com</p>
+                    </div>
+                    <ul class="py-1 text-sm text-black" role="none">
+                        <li>
+                            <button class="flex items-center px-4 py-2 hover:bg-gray-100 w-full text-left" role="menuitem">
+                                <span class="material-icons me-2 text-green-700">settings</span> Configuración
+                            </button>
+                        </li>
+
+                        <li>
+                            <button class="flex items-center px-4 py-2 hover:bg-gray-100 w-full text-left" role="menuitem">
+                                <span class="material-icons me-2 text-green-700">logout</span> Cerrar sesión
+                            </button>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class='flex flex-wrap items-center justify-between px-10 py-3 gap-4 w-full'>
+        <!-- <a routerLink="/">
+            <img src="https://readymadeui.com/readymadeui.svg" alt="logo" class='w-36' />
+        </a> -->
   
         <div id="collapseMenu" class='hidden lg:!block'>
             <ul class='flex gap-x-10'>
@@ -11,58 +52,48 @@
                     </a>
                 </li> -->
                 <li>
-                    <a routerLink='/' routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }" class='hover:text-blue-600 font-bold text-blue-600 block'>
+                    <a routerLink='/' routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }" class='block font-bold text-black hover:text-blue-600'>
                         Home
                     </a>
                 </li>
 
-                <li class='group relative flex flex-row text-gray-600 hover:text-blue-500 font-bold cursor-pointer'>
-                    <a href='javascript:void(0)'>
-                        Pages
-                    </a>
-                    <span class="material-icons">keyboard_arrow_down</span>
+                <li class='group relative flex flex-row cursor-pointer'>
+                    <div class='flex items-center font-bold text-black hover:text-blue-700'>
+                        Categorías <span class="material-icons ml-2">keyboard_arrow_down</span>
+                    </div>
 
-                    <ul class='absolute shadow-lg bg-white space-y-3 lg:top-5 -left-6 min-w-[250px] z-10 max-h-0 overflow-hidden group-hover:opacity-100 group-hover:max-h-[700px] px-6 group-hover:pb-4 group-hover:pt-6 transition-all duration-500'>
-                        <li class='border-b py-2 '>
-                            <a href='javascript:void(0)' class='hover:text-[#007bff] text-gray-600 font-bold block'>
-                                About
+                    <ul class='absolute z-10 shadow-lg bg-white text-black lg:top-5 -left-6 min-w-[250px] max-h-0 overflow-hidden group-hover:opacity-100 group-hover:max-h-[700px] group-hover:pb-4 group-hover:pt-6 transition-all duration-500'>
+                        <li>
+                            <a routerLink="/#" class="flex items-center w-full text-left px-4 py-2 hover:bg-gray-100 hover:text-blue-700 hover:font-bold" role="menuitem">
+                                Dionaea Muscipula
                             </a>
                         </li>
-                        
-                        <li class='border-b py-2 '>
-                            <a href='javascript:void(0)' class='hover:text-[#007bff] text-gray-600 font-bold block'>
-                                Contact
+                        <li>
+                            <a routerLink="/#" class="flex items-center w-full text-left px-4 py-2 hover:bg-gray-100 hover:text-blue-700 hover:font-bold" role="menuitem">
+                                Drosera
                             </a>
                         </li>
-                        
-                        <li class='border-b py-2 '>
-                            <a href='javascript:void(0)' class='hover:text-[#007bff] text-gray-600 font-bold block'>
-                                Login
+                        <li>
+                            <a routerLink="/#" class="flex items-center w-full text-left px-4 py-2 hover:bg-gray-100 hover:text-blue-700 hover:font-bold" role="menuitem">
+                                Nepenthes
                             </a>
                         </li>
-
-                        <li class='border-b py-2 '>
-                            <a href='javascript:void(0)' class='hover:text-[#007bff] text-gray-600 font-bold block'>
-                                Sign up
-                            </a>
-                        </li>
-
-                        <li class='border-b py-2 '>
-                            <a href='javascript:void(0)' class='hover:text-[#007bff] text-gray-600 font-bold block'>
-                                Blog
+                        <li>
+                            <a routerLink="/#" class="flex items-center w-full text-left px-4 py-2 hover:bg-gray-100 hover:text-blue-700 hover:font-bold" role="menuitem">
+                                Cephalotus follicularis
                             </a>
                         </li>
                     </ul>
                 </li>
                 
                 <li>
-                    <a routerLink='/about' routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }" class='hover:text-blue-600 font-bold text-blue-600 block'>
+                    <a routerLink='/about' routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }" class='block font-bold text-black hover:text-blue-700'>
                         About
                     </a>
                 </li>
 
                 <li>
-                    <a routerLink='/contact' routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }" class='hover:text-blue-600 font-bold text-blue-600 block'>
+                    <a routerLink='/contact' routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }" class='block font-bold text-black hover:text-blue-700'>
                         Contact
                     </a>
                 </li>
@@ -76,12 +107,12 @@
             </span>
     
             <span class="relative">
-                <span class="material-icons inline cursor-pointer text-gray-500 hover:text-blue-500">shopping_cart</span>
+                <span class="material-icons inline cursor-pointer text-gray-500 hover:text-blue-700">shopping_cart</span>
                 <span class="absolute left-auto -ml-1 top-0 rounded-full bg-black px-1 py-0 text-xs text-white">0</span>
             </span>
 
             <!-- <span class="relative">
-                <span class="material-icons inline cursor-pointer text-gray-500 hover:text-blue-500">search</span>
+                <span class="material-icons inline cursor-pointer text-gray-500 hover:text-blue-700">search</span>
             </span> -->
     
             <button id="toggleOpen" (click)="toggleMenu()" class="lg:hidden">
