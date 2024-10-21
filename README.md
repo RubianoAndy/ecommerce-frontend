@@ -40,28 +40,62 @@
 
 # EcommerceFrontend
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 18.2.7.
+This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 18.2.7, [NodeJS](https://nodejs.org/en) version 20.17.0 
+and [Tailwind CSS](https://tailwindcss.com/) version 3.4.13.
 
-## Development server
+## Initial install
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
+Once the repository is cloned, go in it and install the initial packages with the following commands:
 
-## Code scaffolding
+| Command                              | What it does?                         |
+| ------------------------------------ | :------------------------------------ |
+| `npm install -g @angular/cli@latest` | Install Angular in its latest version |
+| `npm install`                        | Install node modules dependencies     |
+| `npm install -D tailwindcss`         | Install Tailwindcss dependencies      |
+| `npx tailwindcss init`               | Init Tailwindcss                      |
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+## Angular project commands
 
-## Build
+| Command                 | What it does?           |
+| ----------------------- | :---------------------- |
+| `ng new project-name`   | Create the project      |
+| `ng g c component-name` | Create a component      |
+| `ng g s service-name`   | Create a service        |
+| `ng g cl class-name`    | Create a class          |
+| `ng g m module-name`    | Create a module         |
+| `ng g p pipe-name`      | Create a pipe           |
+| `ng g d directive-name` | Create a directive      |
+| `ng g g guard-name`     | Create a guard          |
+| `ng g i interface-name` | Create a interface      |
+| `ng g e enum-name`      | Create a enum           |
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
+## Server commands
 
-## Running unit tests
+| Command    | What it does?                                              | Additional information                                 |
+| -----------| :--------------------------------------------------------- | :----------------------------------------------------- |
+| `ng help`  | Get more help on the Angular CLI                           | More information in `https://angular.dev/tools/cli`    |
+| `ng e2e`   | Execute the end-to-end tests via a platform of your choice |                                                        |
+| `ng test`  | Execute the unit tests                                     | Test via via Karma in `https://karma-runner.github.io` |
+| `ng build` | Build the project                                          |                                                        |
+| `ng serve` | Run the server                                             | Navigate to `http://localhost:4200/`                   |
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+## How to create a project in Angular?
 
-## Running end-to-end tests
+For documentation purposes, this repository was created as follows:
 
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
+|  #  | Step                                          | Command or information                        |
+| --- | :-------------------------------------------- | :-------------------------------------------- |
+| 1-  | Install Node.js without Chocolatey            | https://nodejs.org                            |
+| 2-  | Open CMD with a specific path                 | Type CMD in the path and press enter          |
+| 3-  | Install Angular CLI                           | `npm install -g @angular/cli@latest`          |
+| 4-  | Create the project                            | `ng new ecommerce-frontend`                   |
+| 5-  | Select SCSS in stylesheet format              |                                               |
+| 6-  | Select yes to enable SSR and SSG/Prerendering |                                               |
+| 7-  | Install Tailwind (only steps 1, 2 y 3)        | https://tailwindcss.com/docs/installation     |
+| 8-  | Replace in tailwind.config.js                 | Put `content: ["./src/**/*.{html,ts,scss}"],` |
 
-## Further help
+<hr>
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+<p align="center">
+    &copy; 2024 <a href="https://YouTube.com/@RubianoAndy" target="_blank" class="hover:underline">Andy Rubiano™ - International company</a>. All rights reserved.
+</p>
