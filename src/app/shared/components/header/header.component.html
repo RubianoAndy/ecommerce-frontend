@@ -12,23 +12,29 @@
         
         <div class="space-x-6 md:absolute md:right-10 flex items-center max-md:ml-auto group relative">
             <div class="inline-block border-gray-300 border-l-2 pl-6 cursor-pointer">
-                <button type="button" class="flex" aria-expanded="false" (click)="toggleMenuDropdown()">
-                    <!-- <span class="sr-only">Open user menu</span> -->
+                <button type="button" class="flex" aria-expanded="false" (click)="toggleAccountMenu()">
                     <img class="w-10 h-10 rounded-lg" src="https://flowbite.com/docs/images/people/profile-picture-5.jpg" alt="user photo">
                 </button>
-
-                <div #dropdownMenu id="dropdown-user" class="z-10 hidden absolute right-0 mt-2 text-lg list-none bg-white shadow-lg border border-gray-100">
+        
+                <div class="fixed inset-0 z-10 h-full transition-opacity duration-500" [ngClass]="{'opacity-100 visible': isAccountMenuOpen, 'opacity-0 invisible': !isAccountMenuOpen}">
+                    <div class="fixed inset-0 bg-black bg-opacity-50 border-b border-gray-200" (click)="toggleAccountMenu()">
+                    </div>
+                </div>
+        
+                <div id="dropdown-user" [ngClass]="{'max-h-[500px] opacity-100': isAccountMenuOpen, 'max-h-0 opacity-0': !isAccountMenuOpen}" 
+                     class="z-10 overflow-hidden transition-all duration-500 absolute right-0 mt-2 text-lg list-none bg-white shadow-lg border border-gray-100">
                     <div class="px-4 py-3 border-b border-gray-200" role="none">
                         <p class="text-sm font-bold text-green-700" role="none">Andy Rubiano</p>
                         <p class="text-sm text-gray-900 truncate" role="none">ar.andy.rubiano gmail.com</p>
                     </div>
+        
                     <ul class="py-1 text-sm text-black" role="none">
                         <li>
                             <button class="flex items-center px-4 py-2 hover:bg-gray-100 w-full text-left" role="menuitem">
                                 <span class="material-icons me-2 text-green-700">settings</span> Configuración
                             </button>
                         </li>
-
+        
                         <li>
                             <button class="flex items-center px-4 py-2 hover:bg-gray-100 w-full text-left" role="menuitem">
                                 <span class="material-icons me-2 text-green-700">logout</span> Cerrar sesión
@@ -46,23 +52,23 @@
         </a> -->
   
         <div id="collapseMenu" class='hidden lg:!block'>
-            <ul class='flex gap-x-10'>
+            <ul class='flex gap-x-10 text-black'>
                 <!-- <li class='mb-6 hidden max-lg:block'>
                     <a routerLink="/"><img src="https://readymadeui.com/readymadeui.svg" alt="logo" class='w-36' />
                     </a>
                 </li> -->
                 <li>
-                    <a routerLink='/' routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }" class='block font-bold text-black hover:text-blue-600'>
+                    <a routerLink='/' routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }" class='block font-bold hover:text-blue-600'>
                         Home
                     </a>
                 </li>
 
                 <li class='group relative flex flex-row cursor-pointer'>
-                    <div class='flex items-center font-bold text-black hover:text-blue-700'>
+                    <div class='flex items-center font-bold hover:text-blue-700'>
                         Categorías <span class="material-icons ml-2">keyboard_arrow_down</span>
                     </div>
 
-                    <ul class='absolute z-10 shadow-lg bg-white text-black lg:top-5 -left-6 min-w-[250px] max-h-0 overflow-hidden group-hover:opacity-100 group-hover:max-h-[700px] group-hover:pb-4 group-hover:pt-6 transition-all duration-500'>
+                    <ul class='absolute z-10 shadow-lg bg-white lg:top-5 -left-6 min-w-[250px] max-h-0 overflow-hidden group-hover:opacity-100 group-hover:max-h-[700px] group-hover:pb-4 group-hover:pt-6 transition-all duration-500'>
                         <li>
                             <a routerLink="/#" class="flex items-center w-full text-left px-4 py-2 hover:bg-gray-100 hover:text-blue-700 hover:font-bold" role="menuitem">
                                 Dionaea Muscipula
@@ -122,28 +128,46 @@
     </div>
 
     <div class="fixed inset-0 z-10 transition-opacity duration-500" [ngClass]="{'opacity-100 visible': isMenuOpen, 'opacity-0 invisible': !isMenuOpen}">
-        <div class="fixed inset-0 bg-black bg-opacity-50">
-            <button id="toggleClose" (click)="toggleMenu()" class='fixed top-2 right-4 z-[100] rounded-full bg-white cursor-pointer w-10 h-10 flex items-center justify-center'>
-                <span class="material-icons">close</span>
-            </button>
+        <div class="fixed inset-0 bg-black bg-opacity-50 border-b border-gray-200" (click)="toggleMenu()">
         </div>
     </div>
 
-    <div [ngClass]="{'translate-x-0': isMenuOpen, '-translate-x-full': !isMenuOpen}" class="fixed left-0 top-0 bottom-0 z-20 bg-white w-1/2 min-w-[300px] shadow-md p-6 h-full transition-transform duration-500">
-        <ul class='space-y-3 fixed bg-white w-full top-0 left-0 p-6 h-full shadow-md overflow-auto z-10'>
-            <li class='mb-6 block'>
+    <div [ngClass]="{'translate-x-0': isMenuOpen, '-translate-x-full': !isMenuOpen}" class="fixed left-0 top-0 bottom-0 z-10 bg-white w-1/2 min-w-[300px] shadow-md p-6 h-full transition-transform duration-500">
+        <ul class='fixed bg-white w-full top-0 left-0 p-6 h-full shadow-md overflow-auto'>
+            <li>
                 <a routerLink='/' (click)="toggleMenu()">
                     <img src="https://readymadeui.com/readymadeui.svg" alt="logo" class='w-36' />
                 </a>
             </li>
 
-            <li class='border-b py-3'>
-                <a routerLink='/' routerLinkActive="active" (click)="toggleMenu()" class='text-black font-bold'>
+            <hr class="mt-6 w-full text-gray-200">
+
+            <li>
+                <a routerLink='/' routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }" (click)="toggleMenu()" class="flex items-center w-full text-left px-4 py-2 hover:bg-gray-100 hover:text-blue-700 hover:font-bold" role="menuitem">
                     Home
                 </a>
             </li>
 
-            <li class='group relative border-b py-3 flex flex-row text-gray-600 font-bold cursor-pointer'>
+            <li>
+                <button (click)="toggleSubMenu()" class="flex items-center w-full text-left px-4 py-2 hover:bg-gray-100 hover:text-blue-700 hover:font-bold">
+                    Opciones <span class="material-icons ml-auto">{{ isSubMenuOpen ? 'keyboard_arrow_up' : 'keyboard_arrow_down' }}</span>
+                </button>
+                
+                <ul [ngClass]="{'max-h-[500px] opacity-100': isSubMenuOpen, 'max-h-0 opacity-0': !isSubMenuOpen}" class="transition-all duration-500 overflow-hidden pl-4 space-y-2">
+                    <li>
+                        <a routerLink='/opcion1' (click)="toggleMenu()" class="flex items-center w-full text-left px-4 py-2 hover:bg-gray-100 hover:text-blue-700" role="menuitem">
+                            Opción 1
+                        </a>
+                    </li>
+                    <li>
+                        <a routerLink='/opcion2' (click)="toggleMenu()" class="flex items-center w-full text-left px-4 py-2 hover:bg-gray-100 hover:text-blue-700" role="menuitem">
+                            Opción 2
+                        </a>
+                    </li>
+                </ul>
+            </li>
+
+            <!-- <li class='group relative border-b py-3 flex flex-row text-gray-600 font-bold cursor-pointer'>
                 <a href='javascript:void(0)'>
                     Pages
                 </a>
@@ -180,16 +204,16 @@
                         </a>
                     </li>
                 </ul>
-            </li>
+            </li> -->
 
-            <li class='border-b py-3'>
-                <a routerLink='/about' routerLinkActive="active" (click)="toggleMenu()" class='text-black font-bold'>
+            <li>
+                <a routerLink='/about' routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }" (click)="toggleMenu()" class="flex items-center w-full text-left px-4 py-2 hover:bg-gray-100 hover:text-blue-700 hover:font-bold" role="menuitem">
                     About
                 </a>
             </li>
 
-            <li class='border-b py-3'>
-                <a routerLink='/contact' routerLinkActive="active" (click)="toggleMenu()" class='text-black font-bold'>
+            <li>
+                <a routerLink='/contact' routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }" (click)="toggleMenu()" class="flex items-center w-full text-left px-4 py-2 hover:bg-gray-100 hover:text-blue-700 hover:font-bold" role="menuitem">
                     Contact
                 </a>
             </li>
