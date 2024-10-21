@@ -1,6 +1,7 @@
 import { NgClass, NgIf } from '@angular/common';
 import { Component } from '@angular/core';
 import { RouterLink, RouterLinkActive } from '@angular/router';
+import { environment } from '../../../../environments/environment.development';
 
 @Component({
   selector: 'app-header',
@@ -15,9 +16,9 @@ import { RouterLink, RouterLinkActive } from '@angular/router';
   styleUrl: './header.component.scss'
 })
 export class HeaderComponent {
+  logo = environment.dark_logo;
   isMenuOpen = false;
   isSubMenuOpen = false;
-
   isAccountMenuOpen = false;
 
   toggleMenu() {

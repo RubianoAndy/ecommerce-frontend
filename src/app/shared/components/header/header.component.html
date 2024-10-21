@@ -1,7 +1,7 @@
 <header class='flex flex-col border-b bg-white font-sans min-h-[70px] tracking-wide relative'>
     <div class='flex items-center lg:justify-center flex-wrap gap-5 relative py-3 px-10 border-gray-200 border-b lg:min-h-[80px] max-lg:min-h-[60px]'>
-        <a routerLink="/"><img src="https://readymadeui.com/readymadeui.svg" alt="logo"
-            class='w-36' />
+        <a routerLink="/">
+            <img [src]="logo" alt="logo" class='w-36' />
         </a>
 
         <!-- <div class="space-x-6 md:absolute md:right-10 flex items-center max-md:ml-auto">
@@ -136,7 +136,7 @@
         <ul class='fixed bg-white w-full top-0 left-0 p-6 h-full shadow-md overflow-auto'>
             <li>
                 <a routerLink='/' (click)="toggleMenu()">
-                    <img src="https://readymadeui.com/readymadeui.svg" alt="logo" class='w-36' />
+                    <img [src]="logo" alt="logo" class='w-36' />
                 </a>
             </li>
 
@@ -166,45 +166,6 @@
                     </li>
                 </ul>
             </li>
-
-            <!-- <li class='group relative border-b py-3 flex flex-row text-gray-600 font-bold cursor-pointer'>
-                <a href='javascript:void(0)'>
-                    Pages
-                </a>
-                <span class="material-icons">keyboard_arrow_down</span>
-
-                <ul class='absolute shadow-lg bg-white space-y-3 lg:top-5 -left-6 min-w-[250px] z-10 max-h-0 overflow-hidden group-hover:opacity-100 group-hover:max-h-[700px] px-6 group-hover:pb-4 group-hover:pt-6 transition-all duration-500'>
-                    <li class='border-b py-2 '>
-                        <a href='javascript:void(0)' class='hover:text-[#007bff] text-gray-600 font-bold block'>
-                            About
-                        </a>
-                    </li>
-
-                    <li class='border-b py-2 '>
-                        <a href='javascript:void(0)' class='hover:text-[#007bff] text-gray-600 font-bold block'>
-                            Contact
-                        </a>
-                    </li>
-
-                    <li class='border-b py-2 '>
-                        <a href='javascript:void(0)' class='hover:text-[#007bff] text-gray-600 font-bold block'>
-                            Login
-                        </a>
-                    </li>
-
-                    <li class='border-b py-2 '>
-                        <a href='javascript:void(0)' class='hover:text-[#007bff] text-gray-600 font-bold block'>
-                            Sign up
-                        </a>
-                    </li>
-
-                    <li class='border-b py-2 '>
-                        <a href='javascript:void(0)' class='hover:text-[#007bff] text-gray-600 font-bold block'>
-                            Blog
-                        </a>
-                    </li>
-                </ul>
-            </li> -->
 
             <li>
                 <a routerLink='/about' routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }" (click)="toggleMenu()" class="flex items-center w-full text-left px-4 py-2 hover:bg-gray-100 hover:text-blue-700 hover:font-bold" role="menuitem">
