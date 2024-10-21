@@ -43,7 +43,7 @@
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 18.2.7, [NodeJS](https://nodejs.org/en) version 20.17.0 
 and [Tailwind CSS](https://tailwindcss.com/) version 3.4.13.
 
-## Initial install
+### Initial install
 
 Once the repository is cloned, go in it and install the initial packages with the following commands:
 
@@ -54,7 +54,7 @@ Once the repository is cloned, go in it and install the initial packages with th
 | `npm install -D tailwindcss`         | Install Tailwindcss dependencies      |
 | `npx tailwindcss init`               | Init Tailwindcss                      |
 
-## Angular project commands
+### Angular project commands
 
 | Command                 | What it does?           |
 | ----------------------- | :---------------------- |
@@ -69,7 +69,7 @@ Once the repository is cloned, go in it and install the initial packages with th
 | `ng g i interface-name` | Create a interface      |
 | `ng g e enum-name`      | Create a enum           |
 
-## Server commands
+### Server commands
 
 | Command    | What it does?                                              | Additional information                                 |
 | -----------| :--------------------------------------------------------- | :----------------------------------------------------- |
@@ -79,7 +79,7 @@ Once the repository is cloned, go in it and install the initial packages with th
 | `ng build` | Build the project                                          |                                                        |
 | `ng serve` | Run the server                                             | Navigate to `http://localhost:4200/`                   |
 
-## How to create a project in Angular?
+### How to create a project in Angular?
 
 For documentation purposes, this repository was created as follows:
 
@@ -88,7 +88,7 @@ For documentation purposes, this repository was created as follows:
 | 1-  | Install Node.js without Chocolatey            | https://nodejs.org                            |
 | 2-  | Open CMD with a specific path                 | Type CMD in the path and press enter          |
 | 3-  | Install Angular CLI                           | `npm install -g @angular/cli@latest`          |
-| 4-  | Create the project                            | `ng new ecommerce-frontend`                   |
+| 4-  | Create the project                            | `ng new project-name`                         |
 | 5-  | Select SCSS in stylesheet format              |                                               |
 | 6-  | Select yes to enable SSR and SSG/Prerendering |                                               |
 | 7-  | Install Tailwind (only steps 1, 2 y 3)        | https://tailwindcss.com/docs/installation     |
