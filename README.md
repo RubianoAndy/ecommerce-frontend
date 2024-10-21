@@ -68,6 +68,7 @@ Once the repository is cloned, go in it and install the initial packages with th
 | `ng g g guard-name`     | Create a guard          |
 | `ng g i interface-name` | Create a interface      |
 | `ng g e enum-name`      | Create a enum           |
+| `ng g environments`     | Create the environments |
 
 ### Server commands
 
