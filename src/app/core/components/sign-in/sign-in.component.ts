@@ -5,26 +5,26 @@ import { Router, RouterLink } from '@angular/router';
 import { LoadingService } from '../../../shared/services/loading/loading.service';
 
 @Component({
-  selector: 'app-login',
+  selector: 'app-sign-in',
   standalone: true,
   imports: [
     FormsModule,
     ReactiveFormsModule,
     RouterLink,
     NgClass,
-    NgIf,
+    NgIf
   ],
-  templateUrl: './login.component.html',
-  styleUrl: './login.component.scss'
+  templateUrl: './sign-in.component.html',
+  styleUrl: './sign-in.component.scss'
 })
-export default class LoginComponent implements OnInit {
+export default class SignInComponent implements OnInit {
   form!: FormGroup;
 
   isPasswordVisible: boolean = false;
 
   constructor(
     private formBuilder: FormBuilder,
-    private router: Router,
+    // private router: Router,
 
     // private authService: AuthService,
     // private alertService: AlertService,
