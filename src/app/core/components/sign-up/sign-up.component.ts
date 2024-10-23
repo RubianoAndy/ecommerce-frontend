@@ -2,6 +2,7 @@ import { NgClass, NgIf } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 import { RouterLink } from '@angular/router';
+import { environment } from '../../../../environments/environment.development';
 
 @Component({
   selector: 'app-sign-up',
@@ -17,6 +18,7 @@ import { RouterLink } from '@angular/router';
   styleUrl: './sign-up.component.scss'
 })
 export default class SignUpComponent implements OnInit {
+  logo = environment.dark_logo;
   form!: FormGroup;
 
   isPasswordVisible: boolean = false;

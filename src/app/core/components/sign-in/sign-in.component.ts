@@ -3,6 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 import { Router, RouterLink } from '@angular/router';
 import { LoadingService } from '../../../shared/services/loading/loading.service';
+import { environment } from '../../../../environments/environment.development';
 
 @Component({
   selector: 'app-sign-in',
@@ -18,6 +19,7 @@ import { LoadingService } from '../../../shared/services/loading/loading.service
   styleUrl: './sign-in.component.scss'
 })
 export default class SignInComponent implements OnInit {
+  logo = environment.dark_logo;
   form!: FormGroup;
 
   isPasswordVisible: boolean = false;
