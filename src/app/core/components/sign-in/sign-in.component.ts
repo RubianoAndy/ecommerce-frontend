@@ -40,7 +40,7 @@ export default class SignInComponent implements OnInit {
   createForm(data: any = null) {
     this.form = this.formBuilder.group({
       email: [data?.email || '', [ Validators.required, Validators.minLength(6), Validators.maxLength(50), Validators.email ]],
-      password: [data?.password || '', [ Validators.required, Validators.minLength(6), Validators.maxLength(30) ]],
+      password: [data?.password || '', [ Validators.required, Validators.minLength(6), Validators.maxLength(20) ]],
     });
   }
 

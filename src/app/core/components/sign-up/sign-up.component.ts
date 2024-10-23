@@ -41,7 +41,7 @@ export default class SignUpComponent implements OnInit {
       name_1: [data?.name_1 || '', [ Validators.required, Validators.minLength(2), Validators.maxLength(20) ]],
       lastname_1: [data?.lastname_1 || '', [ Validators.required, Validators.minLength(2), Validators.maxLength(20) ]],
       email: [data?.email || '', [ Validators.required, Validators.minLength(6), Validators.maxLength(50), Validators.email ]],
-      password: [data?.password || '', [ Validators.required, Validators.minLength(6), Validators.maxLength(30) ]],
+      password: [data?.password || '', [ Validators.required, Validators.minLength(6), Validators.maxLength(20) ]],
     });
   }
 
