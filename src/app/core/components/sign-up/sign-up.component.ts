@@ -1,23 +1,22 @@
 import { NgClass, NgIf } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
-import { Router, RouterLink } from '@angular/router';
-import { LoadingService } from '../../../shared/services/loading/loading.service';
+import { RouterLink } from '@angular/router';
 
 @Component({
-  selector: 'app-sign-in',
+  selector: 'app-sign-up',
   standalone: true,
   imports: [
     FormsModule,
     ReactiveFormsModule,
     RouterLink,
     NgClass,
-    NgIf
+    NgIf,
   ],
-  templateUrl: './sign-in.component.html',
-  styleUrl: './sign-in.component.scss'
+  templateUrl: './sign-up.component.html',
+  styleUrl: './sign-up.component.scss'
 })
-export default class SignInComponent implements OnInit {
+export default class SignUpComponent implements OnInit {
   form!: FormGroup;
 
   isPasswordVisible: boolean = false;
@@ -28,7 +27,7 @@ export default class SignInComponent implements OnInit {
 
     // private authService: AuthService,
     // private alertService: AlertService,
-    private loadingService: LoadingService,
+    // private loadingService: LoadingService,
   ) { }
 
   ngOnInit(): void {
@@ -37,6 +36,8 @@ export default class SignInComponent implements OnInit {
 
   createForm(data: any = null) {
     this.form = this.formBuilder.group({
+      name_1: [data?.name_1 || '', [ Validators.required, Validators.minLength(2), Validators.maxLength(20) ]],
+      lastname_1: [data?.lastname_1 || '', [ Validators.required, Validators.minLength(2), Validators.maxLength(20) ]],
       email: [data?.email || '', [ Validators.required, Validators.minLength(6), Validators.maxLength(50), Validators.email ]],
       password: [data?.password || '', [ Validators.required, Validators.minLength(6), Validators.maxLength(30) ]],
     });
