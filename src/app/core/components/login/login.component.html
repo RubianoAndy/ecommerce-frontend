@@ -10,7 +10,7 @@
                         formControlName="email" 
                         placeholder="name@email.com"
                         [ngClass]="{
-                            'bg-red-300': !form.controls['email'].valid && form.controls['email'].touched
+                            'border-red-500': !form.controls['email'].valid && form.controls['email'].touched
                         }" class="border w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
                     />
                 </div>
@@ -22,7 +22,7 @@
                         formControlName="password" 
                         placeholder="Contraseña"
                         [ngClass]="{
-                            'bg-red-300': !form.controls['password'].valid && form.controls['password'].touched
+                            'border-red-500': !form.controls['password'].valid && form.controls['password'].touched
                         }" class="border w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
                     />
                     
