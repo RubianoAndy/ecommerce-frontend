@@ -1,0 +1,6 @@
+<div *ngIf="isLoading" class="fixed top-0 right-0 h-screen w-screen z-50 flex justify-center items-center bg-gray-100 bg-opacity-30">
+    <div class="relative flex justify-center items-center">
+        <div class="animate-spin rounded-full w-32 h-32 border-t-4 border-b-4 border-gray-900"></div>
+        <img [src]="logo" class="absolute w-28 h-auto object-contain"/>
+    </div>
+</div>
