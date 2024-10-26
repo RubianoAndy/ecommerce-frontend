@@ -12,50 +12,50 @@
             <form class="space-y-4" [formGroup]="form" (ngSubmit)="onSubmit()">
                 <div class="flex flex-col md:flex-row space-x-0 md:space-x-4 space-y-4 md:space-y-0">
                     <div class="w-full">
-                        <label for="name_1" class="block font-semibold text-gray-700 mb-2"> Primer nombre <span class="text-red-500">*</span></label>
+                        <label for="name_1" class="block font-semibold text-black mb-2"> Primer nombre <span class="text-red-500">*</span></label>
                         <input id="name_1" 
                             type="name_1" 
                             formControlName="name_1" 
                             placeholder="Primer nombre"
                             [ngClass]="{
                                 'border-red-500': !form.controls['name_1'].valid && form.controls['name_1'].touched
-                            }" class="border w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                            }" class="border w-full py-2 px-3 text-black leading-tight focus:outline-none focus:shadow-outline"
                         />
                     </div>
 
                     <div class="w-full">
-                        <label for="lastname_1" class="block font-semibold text-gray-700 mb-2"> Primer apellido <span class="text-red-500">*</span></label>
+                        <label for="lastname_1" class="block font-semibold text-black mb-2"> Primer apellido <span class="text-red-500">*</span></label>
                         <input id="lastname_1" 
                             type="lastname_1" 
                             formControlName="lastname_1" 
                             placeholder="Primer apellido"
                             [ngClass]="{
                                 'border-red-500': !form.controls['lastname_1'].valid && form.controls['lastname_1'].touched
-                            }" class="border w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                            }" class="border w-full py-2 px-3 text-black leading-tight focus:outline-none focus:shadow-outline"
                         />
                     </div>
                 </div>
                 <div>
-                    <label for="email" class="block font-semibold text-gray-700 mb-2"> Email <span class="text-red-500">*</span></label>
+                    <label for="email" class="block font-semibold text-black mb-2"> Email <span class="text-red-500">*</span></label>
                     <input id="email" 
                         type="email" 
                         formControlName="email" 
                         placeholder="name@email.com"
                         [ngClass]="{
                             'border-red-500': !form.controls['email'].valid && form.controls['email'].touched
-                        }" class="border w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                        }" class="border w-full py-2 px-3 text-black leading-tight focus:outline-none focus:shadow-outline"
                     />
                 </div>
 
                 <div class="relative">
-                    <label class="block font-semibold text-gray-700 mb-2" for="password"> Contraseña <span class="text-red-500">*</span></label>
+                    <label class="block font-semibold text-black mb-2" for="password"> Contraseña <span class="text-red-500">*</span></label>
                     <input id="password" 
                         [type]="isPasswordVisible ? 'text' : 'password'" 
                         formControlName="password" 
                         placeholder="Contraseña"
                         [ngClass]="{
                             'border-red-500': !form.controls['password'].valid && form.controls['password'].touched
-                        }" class="border w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                        }" class="border w-full py-2 px-3 text-black leading-tight focus:outline-none focus:shadow-outline"
                     />
                     
                     <button type="button" (click)="togglePasswordVisibility()" class="absolute flex items-center inset-y-0 right-0 px-3 mt-8">

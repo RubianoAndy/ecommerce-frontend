@@ -2,8 +2,11 @@ import { NgClass, NgIf } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 import { Router, RouterLink } from '@angular/router';
-import { LoadingService } from '../../../shared/services/loading/loading.service';
+
 import { environment } from '../../../../environments/environment.development';
+
+import { AuthService } from '../../services/auth/auth.service';
+import { LoadingService } from '../../../shared/services/loading/loading.service';
 
 @Component({
   selector: 'app-sign-in',
@@ -26,9 +29,9 @@ export default class SignInComponent implements OnInit {
 
   constructor(
     private formBuilder: FormBuilder,
-    // private router: Router,
+    private router: Router,
 
-    // private authService: AuthService,
+    private authService: AuthService,
     // private alertService: AlertService,
     private loadingService: LoadingService,
   ) { }
@@ -50,8 +53,37 @@ export default class SignInComponent implements OnInit {
       password: this.form.value.password
     };
 
-    // if (this.form.valid && body)
-    //   this.login(body);
+    if (this.form.valid && body)
+      this.signIn(body);
+  }
+
+  signIn(body: any): void {
+    this.loadingService.show();
+    var alertBody = null;
+
+    this.authService.signIn(body).subscribe({
+      next: (response) => {
+        alertBody = {
+          type: 'okay',
+          title: 'welcome',
+          message: response.message,
+        }
+
+        // this.alertService.showAlert(alertBody);
+        this.loadingService.hide();
+        // this.router.navigate(['/']);
+      },
+      error: (response) => {
+        alertBody = {
+          type: 'error',
+          title: 'wrong credentials',
+          message: response.error.message,
+        }
+
+        // this.alertService.showAlert(alertBody);
+        this.loadingService.hide();
+      }
+    });
   }
 
   togglePasswordVisibility(): void {

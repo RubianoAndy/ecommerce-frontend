@@ -10,43 +10,52 @@ import { Observable, tap } from 'rxjs';
 export class AuthService {
   private apiUrl = environment.apiUrl;
 
-  private accessToken: string | null = null;
-  private refreshToken: string | null = null;
-
   constructor(
     private http: HttpClient,
     private router: Router,
   ) { }
 
   signIn(body: any): Observable<any> {
-    return this.http.post(`${this.apiUrl}/login`, body).pipe(
+    return this.http.post(`${this.apiUrl}/sign-in`, body).pipe(
+      // El tap se ejecuta depués de realizada la petición
       tap((response: any) => {
         this.setTokens(response.accessToken, response.refreshToken);
+      })
+    );
+  }
+
+  signOut(): Observable<any> {
+    const body = {
+      access_token: this.getAccessToken(),
+      refresh_token: this.getRefreshToken(),
+    };
+
+    return this.http.post<any>(`${this.apiUrl}/sign-out`, body).pipe(
+      // El tap se ejecuta depués de realizada la petición
+      tap(() => {
+        localStorage.removeItem('accessToken');
+        localStorage.removeItem('refreshToken');
+        this.router.navigate(['sign-in']);
       })
     );
   }
 
   setTokens(accessToken: string, refreshToken: string) {
-    this.accessToken = accessToken;
-    this.refreshToken = refreshToken;
     localStorage.setItem('accessToken', accessToken);
     localStorage.setItem('refreshToken', refreshToken);
   }
 
   getAccessToken(): string | null {
-    return this.accessToken || localStorage.getItem('accessToken');
+    if (typeof(window) !== undefined)
+      return localStorage.getItem('accessToken');
+    else
+      return null;
   }
 
   getRefreshToken(): string | null {
-    return this.refreshToken || localStorage.getItem('refreshToken');
-  }
-
-  refreshAccessToken(): Observable<any> {
-    const refreshToken = this.getRefreshToken();
-    return this.http.post(`${this.apiUrl}/refresh`, { refreshToken: refreshToken }).pipe(
-      tap((response: any) => {
-        this.setTokens(response.accessToken, response.refreshToken);
-      })
-    );
+    if (typeof(window) !== undefined)
+      return localStorage.getItem('refreshToken');
+    else
+      return null;
   }
 }
