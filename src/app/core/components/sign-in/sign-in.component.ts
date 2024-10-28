@@ -66,7 +66,7 @@ export default class SignInComponent implements OnInit {
       next: (response) => {
         alertBody = {
           type: 'okay',
-          title: 'Bienvenido',
+          title: '¡Bienvenido!',
           message: response.message,
         }
 

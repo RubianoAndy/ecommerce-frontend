@@ -26,16 +26,16 @@ export class AuthService {
 
   signOut(): Observable<any> {
     const body = {
-      access_token: this.getAccessToken(),
-      refresh_token: this.getRefreshToken(),
+      accessToken: this.getAccessToken(),
+      refreshToken: this.getRefreshToken(),
     };
 
-    return this.http.post<any>(`${this.apiUrl}/sign-out`, body).pipe(
+    return this.http.post(`${this.apiUrl}/sign-out`, body).pipe(
       // El tap se ejecuta depués de realizada la petición
       tap(() => {
         localStorage.removeItem('accessToken');
         localStorage.removeItem('refreshToken');
-        this.router.navigate(['sign-in']);
+        this.router.navigate(['/']);
       })
     );
   }
@@ -57,5 +57,16 @@ export class AuthService {
       return localStorage.getItem('refreshToken');
     else
       return null;
+  }
+
+  isAuthenticated(): boolean {
+    const token = this.getAccessToken();
+
+    if (!token)
+      return false;
+
+    const payload = JSON.parse(atob(token.split('.')[1]));
+    const expired = payload.exp * 1000;   // Para dejarlo en milisegundos
+    return Date.now() < expired;
   }
 }
