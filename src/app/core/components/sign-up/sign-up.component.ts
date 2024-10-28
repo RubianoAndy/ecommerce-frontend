@@ -3,6 +3,8 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 import { RouterLink } from '@angular/router';
 import { environment } from '../../../../environments/environment.development';
+import { TermsAndConditionsInformationComponent } from '../../../features/components/terms-and-conditions/terms-and-conditions-information/terms-and-conditions-information.component';
+import { PrivacyPolicyInformationComponent } from '../../../features/components/privacy-policy/privacy-policy-information/privacy-policy-information.component';
 
 @Component({
   selector: 'app-sign-up',
@@ -13,6 +15,8 @@ import { environment } from '../../../../environments/environment.development';
     RouterLink,
     NgClass,
     NgIf,
+    TermsAndConditionsInformationComponent,
+    PrivacyPolicyInformationComponent,
   ],
   templateUrl: './sign-up.component.html',
   styleUrl: './sign-up.component.scss'
@@ -22,6 +26,9 @@ export default class SignUpComponent implements OnInit {
   form!: FormGroup;
 
   isPasswordVisible: boolean = false;
+
+  isModalOpen = false;
+  modalPart: string | undefined;
 
   constructor(
     private formBuilder: FormBuilder,
@@ -57,6 +64,16 @@ export default class SignUpComponent implements OnInit {
 
   togglePasswordVisibility(): void {
     this.isPasswordVisible = !this.isPasswordVisible;
+  }
+
+  openModal(event: Event, modalPart: string): void {
+    this.modalPart = modalPart;
+    event.preventDefault(); // Evita la navegación por defecto del enlace
+    this.isModalOpen = true;
+  }
+
+  closeModal(): void {
+    this.isModalOpen = false;
   }
   
   /* private googleInitialize() {
