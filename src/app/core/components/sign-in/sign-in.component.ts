@@ -6,6 +6,7 @@ import { Router, RouterLink } from '@angular/router';
 import { environment } from '../../../../environments/environment.development';
 
 import { AuthService } from '../../services/auth/auth.service';
+import { AlertService } from '../../services/alert/alert.service';
 import { LoadingService } from '../../../shared/services/loading/loading.service';
 
 @Component({
@@ -32,7 +33,7 @@ export default class SignInComponent implements OnInit {
     private router: Router,
 
     private authService: AuthService,
-    // private alertService: AlertService,
+    private alertService: AlertService,
     private loadingService: LoadingService,
   ) { }
 
@@ -65,22 +66,22 @@ export default class SignInComponent implements OnInit {
       next: (response) => {
         alertBody = {
           type: 'okay',
-          title: 'welcome',
+          title: 'Bienvenido',
           message: response.message,
         }
 
-        // this.alertService.showAlert(alertBody);
+        this.alertService.showAlert(alertBody);
         this.loadingService.hide();
         // this.router.navigate(['/']);
       },
       error: (response) => {
         alertBody = {
           type: 'error',
-          title: 'wrong credentials',
+          title: 'Credenciales incorrectas',
           message: response.error.message,
         }
 
-        // this.alertService.showAlert(alertBody);
+        this.alertService.showAlert(alertBody);
         this.loadingService.hide();
       }
     });
