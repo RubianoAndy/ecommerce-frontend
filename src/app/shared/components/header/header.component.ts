@@ -58,7 +58,7 @@ export class HeaderComponent implements OnInit {
           message: response.error.message,
         }
         this.isAuthenticated = true;
-        // this.alertService.showAlert(alertBody);
+        this.alertService.showAlert(alertBody);
         this.loadingService.hide();
       }
     });

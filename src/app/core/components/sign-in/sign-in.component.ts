@@ -70,7 +70,7 @@ export default class SignInComponent implements OnInit {
           message: response.message,
         }
 
-        this.alertService.showAlert(alertBody);
+        // this.alertService.showAlert(alertBody);
         this.loadingService.hide();
         this.router.navigate(['/']);
       },
