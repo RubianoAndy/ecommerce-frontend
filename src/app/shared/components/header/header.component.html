@@ -6,8 +6,10 @@
 
         @if (!isAuthenticated) {
             <div class="space-x-6 md:absolute md:right-10 flex items-center max-md:ml-auto">
-                <div routerLink="sign-in" class="flex border-gray-300 border-l-2 pl-6 cursor-pointer items-center">
-                    <span class="material-icons text-4xl hover:text-green-700">person</span>
+                <div class="flex border-gray-300 border-l-2 pl-6 py-2 cursor-pointer items-center">
+                    <button type="button" routerLink="/sign-in" class="flex flex-1 w-full justify-center text-white bg-green-700 hover:bg-green-800 font-medium px-4 py-2.5 me-2 dark:bg-green-600 dark:hover:bg-green-700 dark:focus:ring-green-800">
+                        <span class="material-icons me-2">login</span> Cuenta
+                    </button>
                 </div>
             </div>
         } @else {
