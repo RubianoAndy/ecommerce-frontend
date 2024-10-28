@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
+
+import { AlertComponent } from './core/components/alert/alert.component';
 import { LoadingComponent } from './shared/components/loading/loading.component';
 
 @Component({
@@ -7,6 +9,7 @@ import { LoadingComponent } from './shared/components/loading/loading.component'
   standalone: true,
   imports: [
     RouterOutlet,
+    AlertComponent,
     LoadingComponent,
   ],
   templateUrl: './app.component.html',
