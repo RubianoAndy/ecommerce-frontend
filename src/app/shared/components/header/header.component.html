@@ -5,16 +5,16 @@
         </a>
 
         @if (!isAuthenticated) {
-            <div class="space-x-6 md:absolute md:right-10 flex items-center max-md:ml-auto">
-                <div class="flex border-gray-300 border-l-2 pl-6 py-2 cursor-pointer items-center">
+            <div class="space-x-6 md:absolute md:right-5 flex items-center max-md:ml-auto">
+                <div class="flex border-gray-300 border-l-2 pl-6 py-2 items-center">
                     <button type="button" routerLink="/sign-in" class="flex flex-1 w-full justify-center text-white bg-green-700 hover:bg-green-800 font-medium px-4 py-2.5 me-2 dark:bg-green-600 dark:hover:bg-green-700 dark:focus:ring-green-800">
                         <span class="material-icons me-2">login</span> Cuenta
                     </button>
                 </div>
             </div>
         } @else {
-            <div class="space-x-6 md:absolute md:right-10 flex items-center max-md:ml-auto group relative">
-                <div class="inline-block border-gray-300 border-l-2 pl-6 cursor-pointer">
+            <div class="space-x-6 md:absolute md:right-8 flex items-center max-md:ml-auto group relative">
+                <div class="inline-block border-gray-300 border-l-2 pl-6 py-2">
                     <button type="button" class="flex" aria-expanded="false" (click)="toggleAccountMenu()">
                         <img class="w-10 h-10 rounded-lg" src="https://flowbite.com/docs/images/people/profile-picture-5.jpg" alt="user photo">
                     </button>
