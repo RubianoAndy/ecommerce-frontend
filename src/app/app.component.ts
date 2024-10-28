@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 
-import { AlertComponent } from './core/components/alert/alert.component';
+import { AlertComponent } from './shared/components/alert/alert.component';
 import { LoadingComponent } from './shared/components/loading/loading.component';
 
 @Component({

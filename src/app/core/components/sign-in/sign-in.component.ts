@@ -6,7 +6,7 @@ import { Router, RouterLink } from '@angular/router';
 import { environment } from '../../../../environments/environment.development';
 
 import { AuthService } from '../../services/auth/auth.service';
-import { AlertService } from '../../services/alert/alert.service';
+import { AlertService } from '../../../shared/services/alert/alert.service';
 import { LoadingService } from '../../../shared/services/loading/loading.service';
 
 @Component({

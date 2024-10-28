@@ -4,7 +4,7 @@ import { RouterLink, RouterLinkActive } from '@angular/router';
 import { environment } from '../../../../environments/environment.development';
 import { AuthService } from '../../../core/services/auth/auth.service';
 import { LoadingService } from '../../services/loading/loading.service';
-import { AlertService } from '../../../core/services/alert/alert.service';
+import { AlertService } from '../../services/alert/alert.service';
 
 @Component({
   selector: 'app-header',
