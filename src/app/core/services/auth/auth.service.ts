@@ -19,7 +19,7 @@ export class AuthService {
     return this.http.post(`${this.apiUrl}/sign-in`, body).pipe(
       // El tap se ejecuta depués de realizada la petición
       tap((response: any) => {
-        this.setTokens(response.accessToken, response.refreshToken);
+        this.saveTokens(response.accessToken, response.refreshToken);
       })
     );
   }
@@ -39,21 +39,7 @@ export class AuthService {
     );
   }
 
-  refreshTokens(): Observable<any> {
-    const refreshToken = this.getRefreshToken();
-    if (!refreshToken) {
-      this.signOut();
-      return throwError(() => 'No refresh token available');
-    }
-
-    return this.http.post(`${this.apiUrl}/refresh-token`, { refreshToken }).pipe(
-      tap((response: any) => {
-        this.setTokens(response.accessToken, response.refreshToken);
-      })
-    );
-  }
-
-  setTokens(accessToken: string, refreshToken: string) {
+  saveTokens(accessToken: string, refreshToken: string) {
     localStorage.setItem('accessToken', accessToken);
     localStorage.setItem('refreshToken', refreshToken);
   }
