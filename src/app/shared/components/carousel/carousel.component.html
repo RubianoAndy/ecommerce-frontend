@@ -1,9 +1,9 @@
-<div id="carouselExampleCaptions" class="relative"> 
+<div id="carousel" class="relative"> 
     <div class="relative w-full overflow-hidden">
         <div class="flex transition-transform duration-[600ms] ease-in-out"
         [style.transform]="'translateX(' + (-currentSlide * 100) + '%)'">
             <div *ngFor="let slide of slides; let i = index" class="w-full flex-shrink-0 relative">
-                <img [src]="slide.image" class="block w-full max-h-[583px] object-cover" alt="Slide image" />
+                <img [src]="slide.image" class="block w-full max-h-[800px] object-cover" alt="Slide image" />
                 <!-- <div class="absolute inset-0 flex flex-col items-center justify-center bg-black bg-opacity-50 text-white text-center p-5">
                     <h5 class="text-xl">{{ slide.label }}</h5>
                     <p>{{ slide.description }}</p>

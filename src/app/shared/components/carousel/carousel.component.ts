@@ -21,21 +21,21 @@ export class CarouselComponent implements OnInit, OnDestroy {
   slideTime: number = 5; // Segundos
   slideInterval: any; // Variable para almacenar el intervalo
 
-  // Tamaño de cada slide debe ser ser de 1320 x 583 px
+  // Tamaño de cada slide debe ser ser de 1920 x 1080 px
 
   slides: CarouselItem[] = [
     {
-      image: 'https://tecdn.b-cdn.net/img/Photos/Slides/img%20(15).jpg',
+      image: 'assets/images/carousel/Banner 1.png',
       label: 'First slide label',
       description: 'Some representative placeholder content for the first slide.'
     },
     {
-      image: 'https://tecdn.b-cdn.net/img/Photos/Slides/img%20(22).jpg',
+      image: 'assets/images/carousel/Banner 2.png',
       label: 'Second slide label',
       description: 'Some representative placeholder content for the second slide.'
     },
     {
-      image: 'https://tecdn.b-cdn.net/img/Photos/Slides/img%20(23).jpg',
+      image: 'assets/images/carousel/Banner 3.png',
       label: 'Third slide label',
       description: 'Some representative placeholder content for the third slide.'
     }
