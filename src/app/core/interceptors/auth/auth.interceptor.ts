@@ -6,11 +6,14 @@ import { catchError, switchMap, throwError } from 'rxjs';
 export const authInterceptor: HttpInterceptorFn = (req, next) => {
   const authService = inject(AuthService);
 
+  if (req.url.includes('/sign-in') || req.url.includes('/sign-out'))
+    return next(req); // Pasar la solicitud sin modificarla
+
   const accessToken = authService.getAccessToken();
 
   const authReq = req.clone({
     setHeaders: {
-      Authorization: accessToken,
+      Authorization: `Bearer ${accessToken}`,
     }
   });
 
@@ -22,7 +25,7 @@ export const authInterceptor: HttpInterceptorFn = (req, next) => {
 
           const newReq = req.clone({
             setHeaders: {
-              Authorization: response.accessToken,
+              Authorization: `Bearer ${response.accessToken}`,
             }
           });
 
@@ -30,7 +33,7 @@ export const authInterceptor: HttpInterceptorFn = (req, next) => {
         }),
         catchError(error => {
           authService.signOut();
-
+          
           return throwError(() => new Error(error));
         })
       );

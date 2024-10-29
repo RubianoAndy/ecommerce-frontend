@@ -27,8 +27,8 @@
                     <div id="dropdown-user" [ngClass]="{'max-h-[500px] opacity-100': isAccountMenuOpen, 'max-h-0 opacity-0': !isAccountMenuOpen}" 
                          class="z-10 overflow-hidden transition-all duration-500 absolute right-0 mt-2 text-lg list-none bg-white shadow-lg border border-gray-100">
                         <div class="px-4 py-3 border-b border-gray-200" role="none">
-                            <p class="text-sm font-bold text-green-700" role="none">Andy Rubiano</p>
-                            <p class="text-sm text-gray-900 truncate" role="none">ar.andy.rubiano gmail.com</p>
+                            <p class="text-sm font-bold text-green-700" role="none">{{ profile?.name_1 }} {{ profile?.lastname_1 }}</p>
+                            <p class="text-sm text-gray-900 truncate" role="none">{{ profile?.email || 'Email no disponible' }}</p>
                         </div>
             
                         <ul class="py-1 text-sm text-black" role="none">

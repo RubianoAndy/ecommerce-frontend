@@ -5,6 +5,13 @@ import { environment } from '../../../../environments/environment.development';
 import { AuthService } from '../../../core/services/auth/auth.service';
 import { LoadingService } from '../../services/loading/loading.service';
 import { AlertService } from '../../services/alert/alert.service';
+import { ProfileService } from '../../../features/services/profile/profile.service';
+
+/* interface profileInfo {
+  name_1: string;
+  lastname_1: string;
+  email: string;
+} */
 
 @Component({
   selector: 'app-header',
@@ -26,14 +33,18 @@ export class HeaderComponent implements OnInit {
   isSubMenuOpen = false;
   isAccountMenuOpen = false;
 
+  // profile: profileInfo | null = null;
+  profile: any = null;
+
   constructor (
     private authService: AuthService,
+    private profileService: ProfileService,
     private loadingService: LoadingService,
     private alertService: AlertService,
   ) { }
 
   ngOnInit(): void {
-    this.isAuthenticated = this.authService.isAuthenticated();  
+    this.getProfile();
   }
 
   signOut() {
@@ -62,6 +73,30 @@ export class HeaderComponent implements OnInit {
         this.loadingService.hide();
       }
     });
+  }
+
+  getProfile() {
+    var alertBody = null;
+
+    this.profileService.getProfile().subscribe({
+      next: (response) => {
+        alertBody = {
+          type: 'okay',
+          title: '¡Tu información ha sido cargada!',
+          message: response.message,
+        }
+        this.profile = response;
+        this.isAuthenticated = true;
+      },
+      error: (response) => {
+        alertBody = {
+          type: 'error',
+          title: 'Error',
+          message: response.error.message,
+        }
+        this.alertService.showAlert(alertBody);
+      }
+    })
   }
 
   toggleMenu() {
