@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { environment } from '../../../../environments/environment.development';
 import { HttpClient } from '@angular/common/http';
 import { Router } from '@angular/router';
-import { Observable, tap } from 'rxjs';
+import { Observable, tap, throwError } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -33,9 +33,22 @@ export class AuthService {
     return this.http.post(`${this.apiUrl}/sign-out`, body).pipe(
       // El tap se ejecuta depués de realizada la petición
       tap(() => {
-        localStorage.removeItem('accessToken');
-        localStorage.removeItem('refreshToken');
+        this.clearTokens();
         this.router.navigate(['/']);
+      })
+    );
+  }
+
+  refreshTokens(): Observable<any> {
+    const refreshToken = this.getRefreshToken();
+    if (!refreshToken) {
+      this.signOut();
+      return throwError(() => 'No refresh token available');
+    }
+
+    return this.http.post(`${this.apiUrl}/refresh-token`, { refreshToken }).pipe(
+      tap((response: any) => {
+        this.setTokens(response.accessToken, response.refreshToken);
       })
     );
   }
@@ -43,6 +56,11 @@ export class AuthService {
   setTokens(accessToken: string, refreshToken: string) {
     localStorage.setItem('accessToken', accessToken);
     localStorage.setItem('refreshToken', refreshToken);
+  }
+
+  clearTokens() {
+    localStorage.removeItem('accessToken');
+    localStorage.removeItem('refreshToken');
   }
 
   getAccessToken(): string | null {
