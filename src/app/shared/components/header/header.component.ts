@@ -51,7 +51,15 @@ export class HeaderComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    this.getProfile();
+    if (!this.profileService.getCurrentProfile())
+      this.profileService.getProfile();
+
+    this.profileService.profile$.subscribe(profile => {
+      this.profile = profile; // Actualizar la propiedad del componente
+      if (profile) {
+        this.isAuthenticated = true; // Actualizar estado de autenticación si hay perfil
+      }
+    });
   }
 
   signOut() {
@@ -80,30 +88,6 @@ export class HeaderComponent implements OnInit {
         this.loadingService.hide();
       }
     });
-  }
-
-  getProfile() {
-    var alertBody = null;
-
-    this.profileService.getProfile().subscribe({
-      next: (response) => {
-        alertBody = {
-          type: 'okay',
-          title: '¡Tu información ha sido cargada!',
-          message: response.message,
-        }
-        this.profile = response;
-        this.isAuthenticated = true;
-      },
-      error: (response) => {
-        alertBody = {
-          type: 'error',
-          title: 'Error',
-          message: response.error.message,
-        }
-        this.alertService.showAlert(alertBody);
-      }
-    })
   }
 
   toggleMenu() {
