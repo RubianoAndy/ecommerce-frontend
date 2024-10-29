@@ -20,7 +20,7 @@ import { LoadingService } from '../../../shared/services/loading/loading.service
 })
 export default class RecoveryPasswordComponent {
   formSelected: string = 'form_2'; // 'form_2'
-  logo = environment.dark_logo;
+  logo = environment.darkLogo;
   form_1!: FormGroup;
   form_2!: FormGroup;
 

@@ -22,7 +22,7 @@ import { PrivacyPolicyInformationComponent } from '../../../features/components/
   styleUrl: './sign-up.component.scss'
 })
 export default class SignUpComponent implements OnInit {
-  logo = environment.dark_logo;
+  logo = environment.darkLogo;
   form!: FormGroup;
 
   isPasswordVisible: boolean = false;

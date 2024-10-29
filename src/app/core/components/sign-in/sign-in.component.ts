@@ -23,7 +23,7 @@ import { LoadingService } from '../../../shared/services/loading/loading.service
   styleUrl: './sign-in.component.scss'
 })
 export default class SignInComponent implements OnInit {
-  logo = environment.dark_logo;
+  logo = environment.darkLogo;
   form!: FormGroup;
 
   isPasswordVisible: boolean = false;

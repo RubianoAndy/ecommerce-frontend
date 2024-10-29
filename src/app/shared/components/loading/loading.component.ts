@@ -13,7 +13,7 @@ import { LoadingService } from '../../services/loading/loading.service';
   styleUrl: './loading.component.scss'
 })
 export class LoadingComponent implements OnInit {
-  logo = environment.light_logo;
+  logo = environment.lightLogo;
   isLoading = false;
 
   constructor (

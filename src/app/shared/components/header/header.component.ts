@@ -33,7 +33,7 @@ interface profileInfo {
   styleUrl: './header.component.scss'
 })
 export class HeaderComponent implements OnInit {
-  logo = environment.dark_logo;
+  logo = environment.darkLogo;
   isAuthenticated = false;
 
   isMenuOpen = false;
