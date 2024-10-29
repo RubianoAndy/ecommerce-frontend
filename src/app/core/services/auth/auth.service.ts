@@ -39,6 +39,12 @@ export class AuthService {
     );
   }
 
+  refreshToken(): Observable<any> {
+    const refreshToken = this.getRefreshToken();
+
+    return this.http.post(`${this.apiUrl}/refresh-token`, { refreshToken });
+  }
+
   saveTokens(accessToken: string, refreshToken: string) {
     localStorage.setItem('accessToken', accessToken);
     localStorage.setItem('refreshToken', refreshToken);
@@ -49,18 +55,12 @@ export class AuthService {
     localStorage.removeItem('refreshToken');
   }
 
-  getAccessToken(): string | null {
-    if (typeof(window) !== undefined)
-      return localStorage.getItem('accessToken');
-    else
-      return null;
+  getAccessToken() {
+    return localStorage.getItem('accessToken') || '';
   }
 
-  getRefreshToken(): string | null {
-    if (typeof(window) !== undefined)
-      return localStorage.getItem('refreshToken');
-    else
-      return null;
+  getRefreshToken() {
+    return localStorage.getItem('refreshToken') || '';
   }
 
   isAuthenticated(): boolean {
