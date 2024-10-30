@@ -1,4 +1,4 @@
-<footer class="bg-gray-100 py-12 px-8">
+<footer class="bg-gray-100 py-12 px-8 overflow-hidden">
   <div class="grid max-lg:grid-cols-1 lg:grid-cols-5 gap-12 lg:gap-16">
     <div class="lg:col-span-3">
       <a routerLink="/" class="flex justify-center lg:justify-start">
@@ -10,7 +10,7 @@
       </p>
     </div>
 
-    <div class="grid max-md:grid-cols-1 md:grid-cols-2 gap-8 lg:gap-12 lg:col-span-2 max-md:justify-center max-md:text-center">
+    <div class="grid max-md:grid-cols-1 md:grid-cols-2 gap-7 lg:gap-10 lg:col-span-2 max-md:justify-center max-md:text-center">
       <div>
         <h4 class="text-lg font-bold mb-4 text-green-700">COMPAÑÍA</h4>
         <ul class="space-y-4 text-black text-sm">
@@ -26,7 +26,7 @@
         <ul class="space-y-4 text-black text-sm">
           <li class="flex max-md:justify-center items-center">
             <span class="material-icons mr-2 text-green-700">mail</span>
-            <a [href]="'mailto:' + email" class="hover:text-blue-500">{{ email }}</a>
+            <a [href]="'mailto:' + email" class="hover:text-blue-500 overflow-wrap break-words">{{ email }}</a>
           </li>
           
           <li class="flex max-md:justify-center items-center">
@@ -49,7 +49,6 @@
   <hr class="my-8 border-gray-600" />
 
   <div class="flex justify-center lg:justify-between items-center flex-wrap gap-6 text-center">
-    <!-- URL de descarga de íconos tamaño 48px X 48px https://iconos8.es/icons/set/social-media -->
     <div class="flex flex-wrap space-x-3 max-md:justify-center">
       <a href="https://www.facebook.com/RubianoAndy" target="_blank">
         <img src="assets/images/social media/Facebook.png" alt="Facebook" class="w-10 h-10">
