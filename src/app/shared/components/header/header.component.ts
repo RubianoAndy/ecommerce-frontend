@@ -37,7 +37,22 @@ export class HeaderComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    
+    this.isAuthenticated = this.authService.isAuthenticated();
+    if (this.isAuthenticated) {
+      this.getProfile();
+    }
+  }
+
+  getProfile() {
+    this.profileService.getProfile().subscribe({
+      next: (response) => {
+        this.profile = response;
+        // this.alertService.showAlert(alertBody);
+      },
+      error: (response) => {
+        let error = response;     // Analizar bien esto tanto en frontend como en Backend
+      }
+    });
   }
 
   signOut() {
