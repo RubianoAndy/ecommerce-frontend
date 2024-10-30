@@ -27,7 +27,7 @@
                     <div id="dropdown-user" [ngClass]="{'max-h-[500px] opacity-100': isAccountMenuOpen, 'max-h-0 opacity-0': !isAccountMenuOpen}" 
                          class="z-10 overflow-hidden transition-all duration-500 absolute right-0 mt-2 text-lg list-none bg-white shadow-lg border border-gray-100">
                         <div class="px-4 py-3 border-b border-gray-200" role="none">
-                            <p class="text-sm font-bold text-green-700" role="none">{{ profile?.name_1 }} {{ profile?.lastname_1 }}</p>
+                            <p class="text-sm font-semibold text-green-700" role="none">{{ profile?.name_1 }} {{ profile?.lastname_1 }}</p>
                             <p class="text-sm text-gray-900 truncate" role="none">{{ profile?.email || 'Email no disponible' }}</p>
                         </div>
             
@@ -62,34 +62,34 @@
                     </a>
                 </li> -->
                 <li>
-                    <a routerLink='/' routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }" class='block font-bold hover:text-blue-600'>
-                        Home
+                    <a routerLink='/' routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }" class='block font-semibold hover:text-blue-600'>
+                        Inicio
                     </a>
                 </li>
 
                 <li class='group relative flex flex-row cursor-pointer'>
-                    <div class='flex items-center font-bold hover:text-blue-700'>
+                    <div class='flex items-center font-semibold hover:text-blue-700'>
                         Categorías <span class="material-icons ml-2">keyboard_arrow_down</span>
                     </div>
 
                     <ul class='absolute z-10 shadow-lg bg-white lg:top-5 -left-6 min-w-[250px] max-h-0 overflow-hidden group-hover:opacity-100 group-hover:max-h-[700px] group-hover:pb-4 group-hover:pt-6 transition-all duration-500'>
                         <li>
-                            <a routerLink="/#" class="flex items-center w-full text-left px-4 py-2 hover:bg-gray-100 hover:text-blue-700 hover:font-bold" role="menuitem">
+                            <a routerLink="/#" class="flex items-center w-full text-left px-4 py-2 hover:bg-gray-100 hover:text-blue-700 hover:font-semibold" role="menuitem">
                                 Dionaea Muscipula
                             </a>
                         </li>
                         <li>
-                            <a routerLink="/#" class="flex items-center w-full text-left px-4 py-2 hover:bg-gray-100 hover:text-blue-700 hover:font-bold" role="menuitem">
+                            <a routerLink="/#" class="flex items-center w-full text-left px-4 py-2 hover:bg-gray-100 hover:text-blue-700 hover:font-semibold" role="menuitem">
                                 Drosera
                             </a>
                         </li>
                         <li>
-                            <a routerLink="/#" class="flex items-center w-full text-left px-4 py-2 hover:bg-gray-100 hover:text-blue-700 hover:font-bold" role="menuitem">
+                            <a routerLink="/#" class="flex items-center w-full text-left px-4 py-2 hover:bg-gray-100 hover:text-blue-700 hover:font-semibold" role="menuitem">
                                 Nepenthes
                             </a>
                         </li>
                         <li>
-                            <a routerLink="/#" class="flex items-center w-full text-left px-4 py-2 hover:bg-gray-100 hover:text-blue-700 hover:font-bold" role="menuitem">
+                            <a routerLink="/#" class="flex items-center w-full text-left px-4 py-2 hover:bg-gray-100 hover:text-blue-700 hover:font-semibold" role="menuitem">
                                 Cephalotus follicularis
                             </a>
                         </li>
@@ -97,13 +97,13 @@
                 </li>
                 
                 <li>
-                    <a routerLink='/about' routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }" class='block font-bold text-black hover:text-blue-700'>
+                    <a routerLink='/about' routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }" class='block font-semibold text-black hover:text-blue-700'>
                         About
                     </a>
                 </li>
 
                 <li>
-                    <a routerLink='/contact' routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }" class='block font-bold text-black hover:text-blue-700'>
+                    <a routerLink='/contact' routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }" class='block font-semibold text-black hover:text-blue-700'>
                         Contact
                     </a>
                 </li>
@@ -136,7 +136,7 @@
         </div>
     </div>
 
-    <div [ngClass]="{'translate-x-0': isMenuOpen, '-translate-x-full': !isMenuOpen}" class="fixed left-0 top-0 bottom-0 z-10 bg-white w-1/2 min-w-[300px] shadow-md p-6 h-full transition-transform duration-500">
+    <div [ngClass]="{'translate-x-0': isMenuOpen, '-translate-x-full': !isMenuOpen}" class="lg:hidden fixed left-0 top-0 bottom-0 z-10 bg-white w-1/2 min-w-[300px] shadow-md p-6 h-full transition-transform duration-500">
         <ul class='fixed bg-white w-full top-0 left-0 p-6 h-full shadow-md overflow-auto'>
             <li>
                 <a routerLink='/' (click)="toggleMenu()">
@@ -147,13 +147,13 @@
             <hr class="mt-6 w-full text-gray-200">
 
             <li>
-                <a routerLink='/' routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }" (click)="toggleMenu()" class="flex items-center w-full text-left px-4 py-2 hover:bg-gray-100 hover:text-blue-700 hover:font-bold" role="menuitem">
+                <a routerLink='/' routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }" (click)="toggleMenu()" class="flex items-center w-full text-left px-4 py-2 hover:bg-gray-100 hover:text-blue-700 hover:font-semibold" role="menuitem">
                     Home
                 </a>
             </li>
 
             <li>
-                <button (click)="toggleSubMenu()" class="flex items-center w-full text-left px-4 py-2 hover:bg-gray-100 hover:text-blue-700 hover:font-bold">
+                <button (click)="toggleSubMenu()" class="flex items-center w-full text-left px-4 py-2 hover:bg-gray-100 hover:text-blue-700 hover:font-semibold">
                     Opciones <span class="material-icons ml-auto">{{ isSubMenuOpen ? 'keyboard_arrow_up' : 'keyboard_arrow_down' }}</span>
                 </button>
                 
@@ -172,13 +172,13 @@
             </li>
 
             <li>
-                <a routerLink='/about' routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }" (click)="toggleMenu()" class="flex items-center w-full text-left px-4 py-2 hover:bg-gray-100 hover:text-blue-700 hover:font-bold" role="menuitem">
+                <a routerLink='/about' routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }" (click)="toggleMenu()" class="flex items-center w-full text-left px-4 py-2 hover:bg-gray-100 hover:text-blue-700 hover:font-semibold" role="menuitem">
                     About
                 </a>
             </li>
 
             <li>
-                <a routerLink='/contact' routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }" (click)="toggleMenu()" class="flex items-center w-full text-left px-4 py-2 hover:bg-gray-100 hover:text-blue-700 hover:font-bold" role="menuitem">
+                <a routerLink='/contact' routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }" (click)="toggleMenu()" class="flex items-center w-full text-left px-4 py-2 hover:bg-gray-100 hover:text-blue-700 hover:font-semibold" role="menuitem">
                     Contact
                 </a>
             </li>

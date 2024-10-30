@@ -54,11 +54,14 @@ export class HeaderComponent implements OnInit {
     if (!this.profileService.getCurrentProfile())
       this.profileService.getProfile();
 
+    this.loadProfile();
+  }
+
+  loadProfile() {
     this.profileService.profile$.subscribe(profile => {
-      this.profile = profile; // Actualizar la propiedad del componente
-      if (profile) {
-        this.isAuthenticated = true; // Actualizar estado de autenticación si hay perfil
-      }
+      this.profile = profile;
+      if (profile)
+        this.isAuthenticated = true; 
     });
   }
 
