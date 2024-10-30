@@ -14,5 +14,6 @@ import { RouterLink } from '@angular/router';
 export class FooterComponent {
   logo = environment.darkLogo;
   page = environment.siteName;
-  currentYear = environment.currentYear
+  currentYear = environment.currentYear;
+  email = environment.email;
 }
