@@ -7,19 +7,6 @@ import { LoadingService } from '../../services/loading/loading.service';
 import { AlertService } from '../../services/alert/alert.service';
 import { ProfileService } from '../../../features/services/profile/profile.service';
 
-interface profileInfo {
-  id: number,
-  name_1: string;
-  name_2: string;
-  lastname_1: string;
-  lastname_2: string;
-  dniType: string,
-  dni: string,
-  prefix: string,
-  mobile: string,
-  email: string;
-}
-
 @Component({
   selector: 'app-header',
   standalone: true,
@@ -40,8 +27,7 @@ export class HeaderComponent implements OnInit {
   isSubMenuOpen = false;
   isAccountMenuOpen = false;
 
-  profile: profileInfo | null = null;
-  // profile: any = null;
+  profile: any = null;
 
   constructor (
     private authService: AuthService,
@@ -51,18 +37,7 @@ export class HeaderComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    if (!this.profileService.getCurrentProfile())
-      this.profileService.getProfile();
-
-    this.loadProfile();
-  }
-
-  loadProfile() {
-    this.profileService.profile$.subscribe(profile => {
-      this.profile = profile;
-      if (profile)
-        this.isAuthenticated = true; 
-    });
+    
   }
 
   signOut() {
