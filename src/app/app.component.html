@@ -1,3 +1,8 @@
 <app-alert />
 <app-loading />
+
+<app-header *ngIf="isVisible" />
+
 <router-outlet />
+
+<app-footer *ngIf="isVisible" />
