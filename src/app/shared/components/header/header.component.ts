@@ -21,7 +21,6 @@ import { ProfileService } from '../../../features/services/profile/profile.servi
 })
 export class HeaderComponent implements OnInit {
   logo = environment.darkLogo;
-  isAuthenticated = false;
 
   isMenuOpen = false;
   isSubMenuOpen = false;
@@ -37,10 +36,8 @@ export class HeaderComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    this.isAuthenticated = this.authService.isAuthenticated();
-    if (this.isAuthenticated) {
-      this.getProfile();
-    }
+    // if (this.isAuthenticated)
+    this.getProfile();
   }
 
   getProfile() {
@@ -66,7 +63,6 @@ export class HeaderComponent implements OnInit {
           title: '¡Esperamos verte pronto!',
           message: response.message,
         }
-        this.isAuthenticated = false;
         // this.alertService.showAlert(alertBody);
         this.loadingService.hide();
       },
@@ -76,7 +72,6 @@ export class HeaderComponent implements OnInit {
           title: 'Error',
           message: response.error.message,
         }
-        this.isAuthenticated = true;
         this.alertService.showAlert(alertBody);
         this.loadingService.hide();
       }

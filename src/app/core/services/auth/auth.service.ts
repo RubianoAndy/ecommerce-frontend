@@ -33,7 +33,7 @@ export class AuthService {
     return this.http.post(`${this.apiUrl}/sign-out`, body).pipe(
       // El tap se ejecuta depués de realizada la petición
       tap(() => {
-        this.clearTokens();
+        this.deleteTokens();
         this.router.navigate(['/']);
       })
     );
@@ -50,7 +50,7 @@ export class AuthService {
     localStorage.setItem('refreshToken', refreshToken);
   }
 
-  clearTokens() {
+  deleteTokens() {
     localStorage.removeItem('accessToken');
     localStorage.removeItem('refreshToken');
   }
