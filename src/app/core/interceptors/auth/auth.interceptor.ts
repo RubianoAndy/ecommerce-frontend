@@ -6,8 +6,16 @@ import { catchError, switchMap, throwError, zip } from 'rxjs';
 export const authInterceptor: HttpInterceptorFn = (req, next) => {
   const authService = inject(AuthService);
 
+  var ignoreRoutes = [
+    '/refresh-token',
+    '/sign-in',
+    '/sign-out',
+    '/generate-code',
+    '/verify-code',
+  ];
+
   // Deja pasar la petición sin interceptarla, para evitar un bucle infinito
-  if (req.url.includes('/refresh-token'))
+  if (ignoreRoutes.some(route => req.url.includes(route)))
     return next(req);
 
   const accessToken = authService.getAccessToken();
