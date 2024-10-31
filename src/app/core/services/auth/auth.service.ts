@@ -22,6 +22,7 @@ export class AuthService {
     return this.http.post(`${this.apiUrl}/sign-in`, body).pipe(
       tap((response: any) => {
         this.saveTokens(response.accessToken, response.refreshToken);
+        this.router.navigate(['/']);
       }),
       finalize(() => {
         this.loadingService.hide(); // Ocultar loading después de la petición

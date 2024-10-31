@@ -5,6 +5,8 @@ import { RouterLink } from '@angular/router';
 import { environment } from '../../../../environments/environment.development';
 import { TermsAndConditionsInformationComponent } from '../../../features/components/terms-and-conditions/terms-and-conditions-information/terms-and-conditions-information.component';
 import { PrivacyPolicyInformationComponent } from '../../../features/components/privacy-policy/privacy-policy-information/privacy-policy-information.component';
+import { AlertService } from '../../../shared/services/alert/alert.service';
+import { RegisterService } from '../../services/register/register.service';
 
 @Component({
   selector: 'app-sign-up',
@@ -27,6 +29,8 @@ export default class SignUpComponent implements OnInit {
 
   isPasswordVisible: boolean = false;
 
+  loading: boolean = false;
+
   isModalOpen = false;
   modalPart: string | undefined;
 
@@ -34,9 +38,8 @@ export default class SignUpComponent implements OnInit {
     private formBuilder: FormBuilder,
     // private router: Router,
 
-    // private authService: AuthService,
-    // private alertService: AlertService,
-    // private loadingService: LoadingService,
+    private registerService: RegisterService,
+    private alertService: AlertService,
   ) { }
 
   ngOnInit(): void {
@@ -54,12 +57,41 @@ export default class SignUpComponent implements OnInit {
 
   onSubmit() {
     var body = {
+      name_1: this.form.value.name_1,
+      lastname_1: this.form.value.lastname_1,
       email: this.form.value.email,
       password: this.form.value.password
     };
 
-    // if (this.form.valid && body)
-    //   this.login(body);
+    if (this.form.valid && body)
+      this.register(body);
+  }
+
+  register(body:any): void {
+    this.loading = true;
+    var alertBody = null;
+
+    this.registerService.register(body).subscribe({
+      next: (response) => {
+        alertBody = {
+          type: 'warning',
+          title: '¡Activa tu cuenta!',
+          message: response.message,
+        }
+
+        this.alertService.showAlert(alertBody);
+      },
+      error: (response) => {
+        this.loading = false;
+        alertBody = {
+          type: 'error',
+          title: '¡Error!',
+          message: response.error.message,
+        }
+
+        this.alertService.showAlert(alertBody);
+      }
+    });
   }
 
   togglePasswordVisibility(): void {

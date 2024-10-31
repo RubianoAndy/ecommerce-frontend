@@ -10,6 +10,7 @@ export const authInterceptor: HttpInterceptorFn = (req, next) => {
     '/refresh-token',
     '/sign-in',
     '/sign-out',
+    'register',
     '/generate-code',
     '/verify-code',
   ];
