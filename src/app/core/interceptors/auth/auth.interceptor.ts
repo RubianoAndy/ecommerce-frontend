@@ -19,7 +19,6 @@ export const authInterceptor: HttpInterceptorFn = (req, next) => {
     return next(req);
 
   const accessToken = authService.getAccessToken();
-
   const request = req.clone({
     setHeaders: {
       Authorization: `Bearer ${accessToken}`,
@@ -31,7 +30,7 @@ export const authInterceptor: HttpInterceptorFn = (req, next) => {
       if (err.status === 401) {
         return authService.refreshToken().pipe(
           switchMap(response => {
-            authService.saveTokens(response.accessToken, response.refreshToken);
+            authService.setAccessToken(response.accessToken);
             const newRequest = req.clone({
               setHeaders: {
                 Authorization: `Bearer ${response.accessToken}`,
@@ -46,7 +45,6 @@ export const authInterceptor: HttpInterceptorFn = (req, next) => {
           })
         );
       }
-
       return throwError(() => new Error(err)); // Propaga el error
     })
   );

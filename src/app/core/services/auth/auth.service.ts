@@ -61,6 +61,10 @@ export class AuthService {
     localStorage.removeItem('refreshToken');
   }
 
+  setAccessToken(accessToken: string,) {
+    localStorage.setItem('accessToken', accessToken);
+  }
+
   getAccessToken() {
     return localStorage.getItem('accessToken') || '';
   }
