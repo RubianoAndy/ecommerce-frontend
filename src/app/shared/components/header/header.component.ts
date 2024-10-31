@@ -40,19 +40,21 @@ export class HeaderComponent implements OnInit {
   }
 
   getProfile() {
+    this.loadingService.show();
+
     this.profileService.getProfile().subscribe({
       next: (response) => {
         this.profile = response;
-        // this.alertService.showAlert(alertBody);
+        this.loadingService.hide();
       },
-      error: (response) => {
-        let error = response;     // Analizar bien esto tanto en frontend como en Backend
+      error: () => {
+        // console.error(response.error);
+        this.loadingService.hide();
       }
     });
   }
 
   signOut() {
-    this.loadingService.show();
     var alertBody = null;
 
     this.authService.signOut().subscribe({
@@ -62,8 +64,8 @@ export class HeaderComponent implements OnInit {
           title: '¡Esperamos verte pronto!',
           message: response.message,
         }
+        this.profile = null;
         // this.alertService.showAlert(alertBody);
-        this.loadingService.hide();
       },
       error: (response) => {
         alertBody = {
@@ -72,7 +74,6 @@ export class HeaderComponent implements OnInit {
           message: response.error.message,
         }
         this.alertService.showAlert(alertBody);
-        this.loadingService.hide();
       }
     });
   }

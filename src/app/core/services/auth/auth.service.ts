@@ -2,7 +2,8 @@ import { Injectable } from '@angular/core';
 import { environment } from '../../../../environments/environment.development';
 import { HttpClient } from '@angular/common/http';
 import { Router } from '@angular/router';
-import { Observable, tap, throwError } from 'rxjs';
+import { finalize, Observable, tap } from 'rxjs';
+import { LoadingService } from '../../../shared/services/loading/loading.service';
 
 @Injectable({
   providedIn: 'root'
@@ -13,6 +14,7 @@ export class AuthService {
   constructor(
     private http: HttpClient,
     private router: Router,
+    private loadingService: LoadingService,
   ) { }
 
   signIn(body: any): Observable<any> {
@@ -25,6 +27,7 @@ export class AuthService {
   }
 
   signOut(): Observable<any> {
+    this.loadingService.show();
     const body = {
       accessToken: this.getAccessToken(),
       refreshToken: this.getRefreshToken(),
@@ -35,6 +38,9 @@ export class AuthService {
       tap(() => {
         this.deleteTokens();
         this.router.navigate(['/']);
+      }),
+      finalize(() => {
+        this.loadingService.hide(); // Ocultar loading después de la petición
       })
     );
   }
