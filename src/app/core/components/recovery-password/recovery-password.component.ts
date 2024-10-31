@@ -1,9 +1,11 @@
 import { NgClass, NgIf } from '@angular/common';
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
-import { RouterLink } from '@angular/router';
+import { Router, RouterLink } from '@angular/router';
 import { environment } from '../../../../environments/environment.development';
-import { LoadingService } from '../../../shared/services/loading/loading.service';
+
+import { ForgotPasswordService } from '../../services/forgot-password/forgot-password.service';
+import { AlertService } from '../../../shared/services/alert/alert.service';
 
 @Component({
   selector: 'app-recovery-password',
@@ -19,21 +21,23 @@ import { LoadingService } from '../../../shared/services/loading/loading.service
   styleUrl: './recovery-password.component.scss'
 })
 export default class RecoveryPasswordComponent {
-  formSelected: string = 'form_2'; // 'form_2'
   logo = environment.darkLogo;
+
+  formSelected: string = 'form_1'; // 'form_2'
   form_1!: FormGroup;
   form_2!: FormGroup;
 
-  user_id: number = 0;
+  userId: number = 0;
   isPasswordVisible: boolean = false;
+
+  loading: boolean = false;
 
   constructor(
     private formBuilder: FormBuilder,
-    // private router: Router,
+    private router: Router,
 
-    // private forgotPasswordService: ForgotPasswordService,
-    // private alertService: AlertService,
-    private loadingService: LoadingService,
+    private forgotPasswordService: ForgotPasswordService,
+    private alertService: AlertService,
   ) { }
 
   ngOnInit(): void {
@@ -62,13 +66,10 @@ export default class RecoveryPasswordComponent {
   }
 
   onSubmitForm1() {
-    var body = {
-      email: this.form_1.value.email,
-      language: localStorage.getItem('language'),
-    };
+    var email = this.form_1.value.email;
     
-    if (this.form_1.valid && body)
-      this.generateCode(body);
+    if (this.form_1.valid && email)
+      this.generateCode(email);
   }
 
   onSubmitForm2() {
@@ -81,77 +82,76 @@ export default class RecoveryPasswordComponent {
     }
 
     var body = {
-      user_id: this.user_id,  // (this.user_id != 0) ? this.user_id : null
+      userId: this.userId,  // (this.userId != 0) ? this.userId : null
       code: code,
-      new_password: this.form_2.value.new_password,
-      language: localStorage.getItem('language'),
+      password: this.form_2.value.password,
     };
 
     if (this.form_2.valid && body)
-      this.changePasswordFromCode(body);
+      this.verifyCode(body);
   }
 
-  generateCode(body: any): void {
-    this.loadingService.show();
+  generateCode(email: string): void {
+    this.loading = true;
     var alertBody = null;
 
-    /* this.forgotPasswordService.generateCode(body).subscribe({
-      next: (response) => {
-        this.user_id = response.user_id;
+    this.forgotPasswordService.generateCode(email).subscribe({
+      next: (response: any) => {
+        this.loading = false;
+        this.userId = response.userId;
 
-        alertBody = {
-          type: 'okay',
-          title: 'check your email',
-          message: response.message,
-        }
-
-        this.alertService.showAlert(alertBody);
-        this.loadingService.hide();
-        this.form_type = 'form_2';
-      },
-      error: (response) => {
         alertBody = {
           type: 'warning',
-          title: 'warning',
-          message: response.error.message,
-        }
-
-        this.alertService.showAlert(alertBody);
-        this.loadingService.hide();
-        this.form_1.reset();
-      }
-    }); */
-  }
-
-  changePasswordFromCode(body: any): void {
-    this.loadingService.show();
-    var alertBody = null;
-
-    /* this.forgotPasswordService.changePasswordFromCode(body).subscribe({
-      next: (response) => {
-        alertBody = {
-          type: 'okay',
-          title: 'congratulations',
+          title: '¡Revisa tu email!',
           message: response.message,
         }
 
         this.alertService.showAlert(alertBody);
-        this.loadingService.hide();
-        this.router.navigate(['auth/login']);
+        this.formSelected = 'form_2';
       },
       error: (response) => {
+        this.loading = false;
         alertBody = {
           type: 'error',
-          title: 'error',
+          title: 'Error!',
           message: response.error.message,
         }
 
         this.alertService.showAlert(alertBody);
-        this.loadingService.hide();
-        this.form_2.reset();
-        this.form_type = 'form_1';
+        this.form_1.reset();
       }
-    }); */
+    });
+  }
+
+  verifyCode(body: any): void {
+    this.loading = true;
+    var alertBody = null;
+
+    this.forgotPasswordService.verifyCode(body).subscribe({
+      next: (response:any) => {
+        this.loading = false;
+        alertBody = {
+          type: 'okay',
+          title: '¡Felicitaciones!',
+          message: response.message,
+        }
+
+        this.alertService.showAlert(alertBody);
+        this.router.navigate(['sign-in']);
+      },
+      error: (response) => {
+        this.loading = false;
+        alertBody = {
+          type: 'error',
+          title: '¡Error!',
+          message: response.error.message,
+        }
+
+        this.alertService.showAlert(alertBody);
+        this.form_2.reset();
+        this.formSelected = 'form_1';
+      }
+    });
   }
 
   togglePasswordVisibility(): void {
