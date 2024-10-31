@@ -1,47 +1,45 @@
 import { HttpInterceptorFn } from '@angular/common/http';
 import { inject } from '@angular/core';
 import { AuthService } from '../../services/auth/auth.service';
-import { catchError, switchMap, throwError } from 'rxjs';
+import { catchError, switchMap, throwError, zip } from 'rxjs';
 
 export const authInterceptor: HttpInterceptorFn = (req, next) => {
   const authService = inject(AuthService);
-  let refreshAttempted = false; // Flag para evitar reintentos infinitos
 
-  if (req.url.includes('/sign-in') || req.url.includes('/sign-out'))
+  // Deja pasar la petición sin interceptarla, para evitar un bucle infinito
+  if (req.url.includes('/refresh-token'))
     return next(req);
 
   const accessToken = authService.getAccessToken();
 
-  const authReq = req.clone({
+  const request = req.clone({
     setHeaders: {
       Authorization: `Bearer ${accessToken}`,
     }
   });
 
-  return next(authReq).pipe(
-    catchError(err => {
-      if (err.status === 401 && !refreshAttempted) {
-        refreshAttempted = true;
+  return next(request).pipe(
+    catchError((err: any) => {
+      if (err.status === 401) {
         return authService.refreshToken().pipe(
-          switchMap((response: any) => {
+          switchMap(response => {
             authService.saveTokens(response.accessToken, response.refreshToken);
-
-            const newReq = req.clone({
+            const newRequest = req.clone({
               setHeaders: {
                 Authorization: `Bearer ${response.accessToken}`,
               }
             });
 
-            return next(newReq);
+            return next(newRequest);
           }),
           catchError(error => {
             authService.signOut();
-            
-            return throwError(() => new Error(error));
+            return throwError(() => new Error(error)); // Propaga el error
           })
         );
       }
-      return throwError(() => new Error(err));
+
+      return throwError(() => new Error(err)); // Propaga el error
     })
   );
 };
