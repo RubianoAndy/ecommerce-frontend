@@ -18,10 +18,13 @@ export class AuthService {
   ) { }
 
   signIn(body: any): Observable<any> {
+    this.loadingService.show();
     return this.http.post(`${this.apiUrl}/sign-in`, body).pipe(
-      // El tap se ejecuta depués de realizada la petición
       tap((response: any) => {
         this.saveTokens(response.accessToken, response.refreshToken);
+      }),
+      finalize(() => {
+        this.loadingService.hide(); // Ocultar loading después de la petición
       })
     );
   }
@@ -34,7 +37,6 @@ export class AuthService {
     };
 
     return this.http.post(`${this.apiUrl}/sign-out`, body).pipe(
-      // El tap se ejecuta depués de realizada la petición
       tap(() => {
         this.deleteTokens();
         this.router.navigate(['/']);

@@ -7,7 +7,6 @@ import { environment } from '../../../../environments/environment.development';
 
 import { AuthService } from '../../services/auth/auth.service';
 import { AlertService } from '../../../shared/services/alert/alert.service';
-import { LoadingService } from '../../../shared/services/loading/loading.service';
 
 @Component({
   selector: 'app-sign-in',
@@ -28,13 +27,14 @@ export default class SignInComponent implements OnInit {
 
   isPasswordVisible: boolean = false;
 
+  loading: boolean = false;
+
   constructor(
     private formBuilder: FormBuilder,
     private router: Router,
 
     private authService: AuthService,
     private alertService: AlertService,
-    private loadingService: LoadingService,
   ) { }
 
   ngOnInit(): void {
@@ -59,7 +59,7 @@ export default class SignInComponent implements OnInit {
   }
 
   signIn(body: any): void {
-    this.loadingService.show();
+    this.loading = true;
     var alertBody = null;
 
     this.authService.signIn(body).subscribe({
@@ -71,10 +71,10 @@ export default class SignInComponent implements OnInit {
         }
 
         // this.alertService.showAlert(alertBody);
-        this.loadingService.hide();
         this.router.navigate(['/']);
       },
       error: (response) => {
+        this.loading = false;
         alertBody = {
           type: 'error',
           title: 'Credenciales incorrectas',
@@ -82,7 +82,6 @@ export default class SignInComponent implements OnInit {
         }
 
         this.alertService.showAlert(alertBody);
-        this.loadingService.hide();
       }
     });
   }
