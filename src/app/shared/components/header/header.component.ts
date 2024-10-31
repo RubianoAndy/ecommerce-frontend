@@ -31,7 +31,6 @@ export class HeaderComponent implements OnInit {
   constructor (
     private authService: AuthService,
     private profileService: ProfileService,
-    private loadingService: LoadingService,
     private alertService: AlertService,
   ) { }
 
@@ -40,16 +39,12 @@ export class HeaderComponent implements OnInit {
   }
 
   getProfile() {
-    this.loadingService.show();
-
     this.profileService.getProfile().subscribe({
       next: (response) => {
         this.profile = response;
-        this.loadingService.hide();
       },
       error: () => {
         // console.error(response.error);
-        this.loadingService.hide();
       }
     });
   }
