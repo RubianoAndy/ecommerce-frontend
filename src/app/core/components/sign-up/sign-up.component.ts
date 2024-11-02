@@ -32,7 +32,7 @@ export default class SignUpComponent implements OnInit {
   loading: boolean = false;
 
   isModalOpen = false;
-  modalPart: string | undefined;
+  modalPart: 'TC' | 'PP' = 'TC';
 
   constructor(
     private formBuilder: FormBuilder,
@@ -98,9 +98,8 @@ export default class SignUpComponent implements OnInit {
     this.isPasswordVisible = !this.isPasswordVisible;
   }
 
-  openModal(event: Event, modalPart: string): void {
-    this.modalPart = modalPart;
-    event.preventDefault(); // Evita la navegación por defecto del enlace
+  openModal(part: 'TC' | 'PP') {
+    this.modalPart = part;
     this.isModalOpen = true;
   }
 
