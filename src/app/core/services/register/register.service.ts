@@ -28,4 +28,13 @@ export class RegisterService {
       })
     );
   }
+
+  activate(token: string): Observable<any> {
+    this.loadingService.show();
+    return this.http.post(`${this.apiUrl}/activate`, { token }).pipe(
+      finalize(() => {
+        this.loadingService.hide();
+      })
+    );
+  }
 }

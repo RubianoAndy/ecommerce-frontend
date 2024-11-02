@@ -18,6 +18,10 @@ export const routes: Routes = [
         canActivate: [authGuard], data: { requiresAuth: false }
     },
     { 
+        path: 'activate', loadComponent: () => import('./core/components/activate-account/activate-account.component'),
+        canActivate: [authGuard], data: { requiresAuth: false }
+    },
+    { 
         path: 'privacy-policy', loadComponent: () => import('./features/components/privacy-policy/privacy-policy.component'),
     },
     { 

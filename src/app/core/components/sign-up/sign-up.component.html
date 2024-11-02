@@ -66,8 +66,8 @@
                 <div class="flex items-center w-full">
                     <p class="text-xs text-justify text-black">
                         Al hacer clic en <b>Regístrate</b>, aceptas nuestos
-                        <a (click)="openModal($event, 'TC')" class="cursor-pointer text-green-600 font-semibold hover:underline">Términos y condiciones</a> y 
-                        <a (click)="openModal($event, 'PP')" class="cursor-pointer text-green-600 font-semibold hover:underline">Política de privacidad</a>.
+                        <a (click)="openModal($event, 'TC')" class="cursor-pointer text-green-600 font-bold hover:text-blue-500 hover:underline">Términos y condiciones</a> y 
+                        <a (click)="openModal($event, 'PP')" class="cursor-pointer text-green-600 font-bold hover:text-blue-500 hover:underline">Política de privacidad</a>.
                     </p>
                 </div>
 
@@ -116,13 +116,13 @@
     </div>
 </div>
 
-<div *ngIf="isModalOpen" class="flex fixed inset-0 z-0 items-center justify-center p-4 bg-gray-900 bg-opacity-80">
+<div *ngIf="isModalOpen" class="flex fixed inset-0 z-0 items-center justify-center p-4 bg-gray-900 bg-opacity-80" (click)="closeModal()">
     <div class="relative w-full max-w-2xl bg-white shadow-lg">
         <div class="flex items-center justify-between p-4 bg-gray-100">
             <h3 *ngIf="modalPart == 'TC'" class="text-2xl font-semibold text-black">Términos y condiciones</h3>
             <h3 *ngIf="modalPart == 'PP'" class="text-2xl font-semibold text-black">Política de privacidad</h3>
 
-            <button type="button" class="text-black hover:bg-red-500 hover:text-white w-6 h-6 ms-auto inline-flex justify-center items-center" (click)="closeModal()">
+            <button type="button" class="text-black hover:text-red-500 font-bold w-6 h-6 ms-auto inline-flex justify-center items-center" (click)="closeModal()">
                 <span class="material-icons">close</span>
             </button>
         </div>

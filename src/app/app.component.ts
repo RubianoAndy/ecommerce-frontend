@@ -29,7 +29,8 @@ export class AppComponent {
   excludedRoutes = [
     '/sign-in',
     '/sign-up',
-    '/recovery-password'
+    '/recovery-password',
+    '/activate'
   ];
 
   constructor (
@@ -38,7 +39,7 @@ export class AppComponent {
     this.router.events.pipe(
       filter(event => event instanceof NavigationEnd)
     ).subscribe((event: NavigationEnd) => {
-      this.isVisible = !this.excludedRoutes.includes(event.url);
+      this.isVisible = !this.excludedRoutes.some(route => event.url.includes(route));
     });
   }
 }

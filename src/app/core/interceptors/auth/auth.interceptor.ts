@@ -11,6 +11,7 @@ export const authInterceptor: HttpInterceptorFn = (req, next) => {
     '/sign-in',
     '/sign-out',
     '/register',
+    '/activate',
     '/generate-code',
     '/verify-code',
   ];

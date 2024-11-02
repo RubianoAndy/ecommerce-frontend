@@ -1,8 +1,12 @@
 <app-alert />
 <app-loading />
 
-<app-header *ngIf="isVisible" />
+<div class="min-h-screen flex flex-col">
+    <app-header *ngIf="isVisible" />
 
-<router-outlet />
+    <div class="flex-grow">
+        <router-outlet />
+    </div>
 
-<app-footer *ngIf="isVisible" />
+    <app-footer *ngIf="isVisible" />
+</div>
