@@ -1,86 +1,93 @@
-<footer class="bg-gray-100 py-12 px-8 overflow-hidden">
-  <div class="grid max-lg:grid-cols-1 lg:grid-cols-5 gap-12 lg:gap-16">
-    <div class="lg:col-span-3">
-      <a routerLink="/" class="flex justify-center lg:justify-start">
-        <img [src]="logo" alt="Logo" class="w-48" />
-      </a>
-      <p class="text-black text-sm lg:max-w-lg mt-6 text-justify">
-        Somos una empresa especializada en el estudio, investigación, conservación, reproducción y comercialización
-        responsable de plantas carnívoras, fomentando su conocimiento y cuidado.
+<footer class="bg-gray-100">
+  <div class="mx-auto w-full p-6 md:py-8">
+    <div class="md:flex md:justify-between">
+      <div class="flex flex-col items-center mb-6 md:mb-0">
+        <a routerLink="/" target="_blank" class="flex items-center mb-3">
+          <img [src]="logo" class="h-20" alt="Logo" />
+        </a>
+        <span class="text-xl font-semibold text-black text-center">{{ page }}</span>
+      </div>
+
+      <div class="grid max-sm:grid-cols-1 grid-cols-2 max-sm:flex max-sm:flex-col max-sm:items-center max-sm:space-y-8 max-sm:text-center">
+        <div>
+          <h2 class="mb-4 text-sm font-bold text-green-600 uppercase">Marco legal</h2>
+
+          <ul class="text-black text-sm">
+            <li class="mb-4">
+              <a routerLink="/terms-and-conditions" class="hover:underline">Términos y condiciones</a>
+            </li>
+
+            <li class="mb-4">
+              <a routerLink="/privacy-policy" class="hover:underline">Política de privacidad</a>
+            </li>
+
+            <li>
+              <a routerLink="/faq" class="hover:underline">Preguntas frecuentes</a>
+            </li>
+          </ul>
+        </div>
+
+        <div>
+          <h2 class="mb-4 text-sm font-bold text-green-600 uppercase">Contacto</h2>
+
+          <ul class="text-black text-sm">
+            <li class="mb-4 flex items-center">
+              <span class="material-icons mr-2 text-green-700 w-5 h-5">mail</span>
+              <a [href]="'mailto:' + email" class="hover:text-blue-500 overflow-wrap break-words">{{ email }}</a>
+            </li>
+
+            <li class="mb-4 flex items-center">
+              <span class="material-icons mr-2 text-green-700 w-5 h-5">call</span>
+              <a href="https://wa.me/573178737226" target="_blank" class="hover:text-blue-500">
+                +57 317 873 7226
+              </a>
+            </li>
+
+            <li class="flex items-center">
+              <span class="material-icons mr-2 text-green-700 w-5 h-5">location_on</span>
+              Bogotá, Colombia
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+      
+    <hr class="sm:mx-auto my-6 lg:my-8 border-gray-300"/>
+
+    <div class="flex justify-center lg:justify-between items-center flex-wrap gap-6 text-center">
+      <div class="flex flex-wrap space-x-3 max-md:justify-center">
+        <a href="https://www.facebook.com/RubianoAndy" target="_blank">
+          <img src="assets/images/social media/Facebook.png" alt="Facebook" class="w-10 h-10">
+        </a>
+  
+        <a href="https://www.instagram.com/RubianoAndy" target="_blank">
+          <img src="assets/images/social media/Instagram.png" alt="Instagram" class="w-10 h-10">
+        </a>
+  
+        <a href="https://www.youtube.com/@RubianoAndy" target="_blank">
+          <img src="assets/images/social media/YouTube.png" alt="YouTube" class="w-10 h-10">
+        </a>
+  
+        <a href="https://www.x.com/RubianoAndy" target="_blank">
+          <img src="assets/images/social media/X.png" alt="X (Twitter)" class="w-10 h-10">
+        </a>
+  
+        <a href="https://www.linkedin.com/company/andyrubiano" target="_blank">
+          <img src="assets/images/social media/LinkedIn.png" alt="LinkedIn" class="w-10 h-10">
+        </a>
+  
+        <a href="https://www.tiktok.com/@RubianoAndy" target="_blank">
+          <img src="assets/images/social media/TikTok.png" alt="TikTok" class="w-10 h-10">
+        </a>
+  
+        <a href="https://wa.me/573178737226" target="_blank">
+          <img src="assets/images/social media/WhatsApp.png" alt="WhatsApp" class="w-10 h-10">
+        </a>
+      </div>
+  
+      <p class="text-black text-sm">
+        &copy; {{ currentYear }}. <a href="https://YouTube.com/@RubianoAndy" target="_blank" class="hover:underline hover:text-green-700">{{ page }}</a>. Todos los derechos reservados.
       </p>
     </div>
-
-    <div class="grid max-md:grid-cols-1 md:grid-cols-2 gap-7 lg:gap-10 lg:col-span-2 max-md:justify-center max-md:text-center">
-      <div>
-        <h4 class="text-lg font-bold mb-4 text-green-700">COMPAÑÍA</h4>
-        <ul class="space-y-4 text-black text-sm">
-          <li><a routerLink="privacy-policy" class="hover:text-blue-500">Política de privacidad</a></li>
-          <li><a routerLink="terms-and-conditions" class="hover:text-blue-500">Términos y condiciones</a></li>
-          <li><a routerLink="faq" class="hover:text-blue-500">Preguntas frecuentes</a></li>
-          <li><a routerLink="story" class="hover:text-blue-500">Historia</a></li>
-        </ul>
-      </div>
-    
-      <div>
-        <h4 class="text-lg font-bold mb-4 text-green-700">CONTÁCTANOS</h4>
-        <ul class="space-y-4 text-black text-sm">
-          <li class="flex max-md:justify-center items-center">
-            <span class="material-icons mr-2 text-green-700">mail</span>
-            <a [href]="'mailto:' + email" class="hover:text-blue-500 overflow-wrap break-words">{{ email }}</a>
-          </li>
-          
-          <li class="flex max-md:justify-center items-center">
-            <span class="material-icons mr-2 text-green-700">call</span>
-            <a href="https://wa.me/573178737226" target="_blank" class="hover:text-blue-500">
-              +57 317 873 7226
-            </a>
-          </li>
-    
-          <li class="flex max-md:justify-center items-center">
-            <span class="material-icons mr-2 text-green-700">location_on</span>
-            Bogotá, Colombia
-          </li>
-        </ul>
-      </div>
-    </div>
-    
-  </div>
-
-  <hr class="my-8 border-gray-600" />
-
-  <div class="flex justify-center lg:justify-between items-center flex-wrap gap-6 text-center">
-    <div class="flex flex-wrap space-x-3 max-md:justify-center">
-      <a href="https://www.facebook.com/RubianoAndy" target="_blank">
-        <img src="assets/images/social media/Facebook.png" alt="Facebook" class="w-10 h-10">
-      </a>
-
-      <a href="https://www.instagram.com/RubianoAndy" target="_blank">
-        <img src="assets/images/social media/Instagram.png" alt="Instagram" class="w-10 h-10">
-      </a>
-
-      <a href="https://www.youtube.com/@RubianoAndy" target="_blank">
-        <img src="assets/images/social media/YouTube.png" alt="YouTube" class="w-10 h-10">
-      </a>
-
-      <a href="https://www.x.com/RubianoAndy" target="_blank">
-        <img src="assets/images/social media/X.png" alt="X (Twitter)" class="w-10 h-10">
-      </a>
-
-      <a href="https://www.linkedin.com/company/andyrubiano" target="_blank">
-        <img src="assets/images/social media/LinkedIn.png" alt="LinkedIn" class="w-10 h-10">
-      </a>
-
-      <a href="https://www.tiktok.com/@RubianoAndy" target="_blank">
-        <img src="assets/images/social media/TikTok.png" alt="TikTok" class="w-10 h-10">
-      </a>
-
-      <a href="https://wa.me/573178737226" target="_blank">
-        <img src="assets/images/social media/WhatsApp.png" alt="WhatsApp" class="w-10 h-10">
-      </a>
-    </div>
-
-    <p class="text-black text-sm">
-      &copy; {{ currentYear }}. <a href="https://YouTube.com/@RubianoAndy" target="_blank" class="hover:underline hover:text-green-700">{{ page }}</a>. Todos los derechos reservados.
-    </p>
   </div>
 </footer>
