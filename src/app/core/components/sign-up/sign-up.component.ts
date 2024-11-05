@@ -57,8 +57,8 @@ export default class SignUpComponent implements OnInit {
 
   onSubmit() {
     var body = {
-      name_1: this.capitalizeFormat(this.form.value.name_1),
-      lastname_1: this.capitalizeFormat(this.form.value.lastname_1),
+      name_1: this.toCapitalizeCase(this.form.value.name_1),
+      lastname_1: this.toCapitalizeCase(this.form.value.lastname_1),
       email: this.form.value.email.toLowerCase(),
       password: this.form.value.password
     };
@@ -107,7 +107,7 @@ export default class SignUpComponent implements OnInit {
     this.isModalOpen = false;
   }
 
-  private capitalizeFormat(text: string): string {
+  private toCapitalizeCase(text: string): string {
     if (!text)
       return text;
 
