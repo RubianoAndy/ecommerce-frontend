@@ -57,9 +57,9 @@ export default class SignUpComponent implements OnInit {
 
   onSubmit() {
     var body = {
-      name_1: this.form.value.name_1,
-      lastname_1: this.form.value.lastname_1,
-      email: this.form.value.email,
+      name_1: this.capitalizeFormat(this.form.value.name_1),
+      lastname_1: this.capitalizeFormat(this.form.value.lastname_1),
+      email: this.form.value.email.toLowerCase(),
       password: this.form.value.password
     };
 
@@ -105,6 +105,15 @@ export default class SignUpComponent implements OnInit {
 
   closeModal(): void {
     this.isModalOpen = false;
+  }
+
+  private capitalizeFormat(text: string): string {
+    if (!text)
+      return text;
+
+    text = text.trim();
+
+    return text.charAt(0).toUpperCase() + text.slice(1).toLowerCase();
   }
   
   /* private googleInitialize() {

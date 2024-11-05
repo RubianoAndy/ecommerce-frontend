@@ -50,8 +50,8 @@ export default class SignInComponent implements OnInit {
 
   onSubmit() {
     var body = {
-      email: this.form.value.email,
-      password: this.form.value.password
+      email: this.form.value.email.toLowerCase(),
+      password: this.form.value.password,
     };
 
     if (this.form.valid && body)
