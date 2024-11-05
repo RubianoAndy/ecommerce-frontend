@@ -63,14 +63,8 @@ export default class SignInComponent implements OnInit {
     var alertBody = null;
 
     this.authService.signIn(body).subscribe({
-      next: (response) => {
-        alertBody = {
-          type: 'okay',
-          title: '¡Bienvenido!',
-          message: response.message,
-        }
-
-        // this.alertService.showAlert(alertBody);
+      next: () => {
+        
       },
       error: (response) => {
         this.loading = false;

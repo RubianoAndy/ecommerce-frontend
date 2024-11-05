@@ -28,6 +28,7 @@ export default class SignUpComponent implements OnInit {
   form!: FormGroup;
 
   isPasswordVisible: boolean = false;
+  isRegistered: boolean = false;
 
   loading: boolean = false;
 
@@ -39,7 +40,6 @@ export default class SignUpComponent implements OnInit {
     // private router: Router,
 
     private registerService: RegisterService,
-    private alertService: AlertService,
   ) { }
 
   ngOnInit(): void {
@@ -69,27 +69,13 @@ export default class SignUpComponent implements OnInit {
 
   register(body:any): void {
     this.loading = true;
-    var alertBody = null;
 
     this.registerService.register(body).subscribe({
       next: (response) => {
-        alertBody = {
-          type: 'warning',
-          title: '¡Activa tu cuenta!',
-          message: response.message,
-        }
-
-        this.alertService.showAlert(alertBody);
+        this.isRegistered = true;
       },
       error: (response) => {
         this.loading = false;
-        alertBody = {
-          type: 'error',
-          title: '¡Error!',
-          message: response.error.message,
-        }
-
-        this.alertService.showAlert(alertBody);
       }
     });
   }

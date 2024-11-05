@@ -20,9 +20,6 @@ export class RegisterService {
   register(body: any): Observable<any> {
     this.loadingService.show();
     return this.http.post(`${this.apiUrl}/register`, body).pipe(
-      tap(() => {
-        this.router.navigate(['/']);
-      }),
       finalize(() => {
         this.loadingService.hide();
       })
