@@ -77,12 +77,12 @@ export class AuthService {
   }
 
   isAuthenticated(): boolean {
-    const token = this.getAccessToken();
+    const accessToken = this.getAccessToken();
 
-    if (!token)
+    if (!accessToken || accessToken == '')
       return false;
 
-    const payload = JSON.parse(atob(token.split('.')[1]));
+    const payload = JSON.parse(atob(accessToken.split('.')[1]));
     const expired = payload.exp * 1000;   // Para dejarlo en milisegundos
     return Date.now() < expired;
   }
