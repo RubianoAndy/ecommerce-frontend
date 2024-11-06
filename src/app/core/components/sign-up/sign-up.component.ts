@@ -6,7 +6,7 @@ import { environment } from '../../../../environments/environment.development';
 import { TermsAndConditionsInformationComponent } from '../../../features/components/terms-and-conditions/terms-and-conditions-information/terms-and-conditions-information.component';
 import { PrivacyPolicyInformationComponent } from '../../../features/components/privacy-policy/privacy-policy-information/privacy-policy-information.component';
 import { RegisterService } from '../../services/register/register.service';
-import { passwordValidator } from '../../../shared/functions/password.validator';
+import { passwordValidator } from '../../../shared/validators/password.validator';
 
 @Component({
   selector: 'app-sign-up',

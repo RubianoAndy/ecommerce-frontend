@@ -7,7 +7,7 @@ import { environment } from '../../../../environments/environment.development';
 
 import { AuthService } from '../../services/auth/auth.service';
 import { AlertService } from '../../../shared/services/alert/alert.service';
-import { passwordValidator } from '../../../shared/functions/password.validator';
+import { passwordValidator } from '../../../shared/validators/password.validator';
 
 @Component({
   selector: 'app-sign-in',
