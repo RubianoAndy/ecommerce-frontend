@@ -17,7 +17,8 @@
                         formControlName="email" 
                         placeholder="name@email.com"
                         [ngClass]="{
-                            'border-red-500': !form.controls['email'].valid && form.controls['email'].touched
+                            'border-red-500': !form.controls['email'].valid && form.controls['email'].touched,
+                            'border-green-500': form.controls['email'].valid && form.controls['email'].touched
                         }" class="border w-full py-2 px-3 text-black leading-tight focus:outline-none focus:shadow-outline"
                     />
                 </div>
@@ -29,7 +30,8 @@
                         formControlName="password" 
                         placeholder="Contraseña"
                         [ngClass]="{
-                            'border-red-500': !form.controls['password'].valid && form.controls['password'].touched
+                            'border-red-500': !form.controls['password'].valid && form.controls['password'].touched,
+                            'border-green-500': form.controls['password'].valid && form.controls['password'].touched
                         }" class="border w-full py-2 px-3 text-black leading-tight focus:outline-none focus:shadow-outline"
                     />
                     

@@ -7,6 +7,7 @@ import { TermsAndConditionsInformationComponent } from '../../../features/compon
 import { PrivacyPolicyInformationComponent } from '../../../features/components/privacy-policy/privacy-policy-information/privacy-policy-information.component';
 import { AlertService } from '../../../shared/services/alert/alert.service';
 import { RegisterService } from '../../services/register/register.service';
+import { passwordValidator } from '../../../shared/functions/password.validator';
 
 @Component({
   selector: 'app-sign-up',
@@ -51,7 +52,7 @@ export default class SignUpComponent implements OnInit {
       name_1: [data?.name_1 || '', [ Validators.required, Validators.minLength(2), Validators.maxLength(20) ]],
       lastname_1: [data?.lastname_1 || '', [ Validators.required, Validators.minLength(2), Validators.maxLength(20) ]],
       email: [data?.email || '', [ Validators.required, Validators.minLength(6), Validators.maxLength(50), Validators.email ]],
-      password: [data?.password || '', [ Validators.required, Validators.minLength(6), Validators.maxLength(20) ]],
+      password: [data?.password || '', [ Validators.required, passwordValidator() ]],
     });
   }
 

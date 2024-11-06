@@ -7,6 +7,7 @@ import { environment } from '../../../../environments/environment.development';
 
 import { AuthService } from '../../services/auth/auth.service';
 import { AlertService } from '../../../shared/services/alert/alert.service';
+import { passwordValidator } from '../../../shared/functions/password.validator';
 
 @Component({
   selector: 'app-sign-in',
@@ -44,7 +45,7 @@ export default class SignInComponent implements OnInit {
   createForm(data: any = null) {
     this.form = this.formBuilder.group({
       email: [data?.email || '', [ Validators.required, Validators.minLength(6), Validators.maxLength(50), Validators.email ]],
-      password: [data?.password || '', [ Validators.required, Validators.minLength(6), Validators.maxLength(20) ]],
+      password: [data?.password || '', [ Validators.required, passwordValidator() ]],
     });
   }
 
