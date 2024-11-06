@@ -43,6 +43,30 @@ export default class ContactComponent implements OnInit {
   }
 
   onSubmit() {
+    var body = {
+      name: this.toCapitalizeCase(this.form.value.name),
+      email: this.form.value.email.toLowerCase(),
+      subject: this.form.value.subject,
+      message: this.form.value.message,
+    }
 
+    if (this.form.valid && body)
+      this.sendContactForm(body);
+
+  }
+
+  sendContactForm (body: any) {
+
+  }
+
+  private toCapitalizeCase (text:string): string {
+    if (!text)
+      return text;
+
+    return text
+      .trim()
+      .split(' ')
+      .map(word => word.charAt(0).toUpperCase() + word.slice(1).toLowerCase())
+      .join(' ');
   }
 }

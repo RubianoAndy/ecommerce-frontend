@@ -93,13 +93,15 @@ export default class SignUpComponent implements OnInit {
     this.isModalOpen = false;
   }
 
-  private toCapitalizeCase(text: string): string {
+  private toCapitalizeCase (text:string): string {
     if (!text)
       return text;
 
-    text = text.trim();
-
-    return text.charAt(0).toUpperCase() + text.slice(1).toLowerCase();
+    return text
+      .trim()
+      .split(' ')
+      .map(word => word.charAt(0).toUpperCase() + word.slice(1).toLowerCase())
+      .join(' ');
   }
   
   /* private googleInitialize() {
