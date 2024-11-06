@@ -1,9 +1,8 @@
-import { NgClass, NgIf } from '@angular/common';
+import { NgClass } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { RouterLink, RouterLinkActive } from '@angular/router';
 import { environment } from '../../../../environments/environment.development';
 import { AuthService } from '../../../core/services/auth/auth.service';
-import { LoadingService } from '../../services/loading/loading.service';
 import { AlertService } from '../../services/alert/alert.service';
 import { ProfileService } from '../../../features/services/profile/profile.service';
 
@@ -12,7 +11,6 @@ import { ProfileService } from '../../../features/services/profile/profile.servi
   standalone: true,
   imports: [
     NgClass,
-    NgIf,
     RouterLink,
     RouterLinkActive,
   ],

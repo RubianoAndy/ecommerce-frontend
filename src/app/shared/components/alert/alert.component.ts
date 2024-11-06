@@ -1,13 +1,10 @@
-import { NgIf } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { AlertService } from '../../services/alert/alert.service';
 
 @Component({
   selector: 'app-alert',
   standalone: true,
-  imports: [
-    NgIf,
-  ],
+  imports: [],
   templateUrl: './alert.component.html',
   styleUrl: './alert.component.scss'
 })
