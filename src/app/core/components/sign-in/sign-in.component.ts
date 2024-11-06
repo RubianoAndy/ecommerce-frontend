@@ -1,4 +1,4 @@
-import { NgClass, NgIf } from '@angular/common';
+import { NgClass } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 import { Router, RouterLink } from '@angular/router';
@@ -17,7 +17,6 @@ import { passwordValidator } from '../../../shared/functions/password.validator'
     ReactiveFormsModule,
     RouterLink,
     NgClass,
-    NgIf
   ],
   templateUrl: './sign-in.component.html',
   styleUrl: './sign-in.component.scss'

@@ -1,8 +1,6 @@
 import { Component } from '@angular/core';
 import { NavigationEnd, Router, RouterOutlet } from '@angular/router';
 
-import { NgIf } from '@angular/common';
-
 import { AlertComponent } from './shared/components/alert/alert.component';
 import { LoadingComponent } from './shared/components/loading/loading.component';
 import { filter } from 'rxjs';
@@ -14,7 +12,6 @@ import { HeaderComponent } from './shared/components/header/header.component';
   standalone: true,
   imports: [
     RouterOutlet,
-    NgIf,
     AlertComponent,
     LoadingComponent,
     HeaderComponent,

@@ -1,4 +1,4 @@
-import { NgClass, NgIf } from '@angular/common';
+import { NgClass } from '@angular/common';
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 import { Router, RouterLink } from '@angular/router';
@@ -6,6 +6,7 @@ import { environment } from '../../../../environments/environment.development';
 
 import { ForgotPasswordService } from '../../services/forgot-password/forgot-password.service';
 import { AlertService } from '../../../shared/services/alert/alert.service';
+import { passwordValidator } from '../../../shared/functions/password.validator';
 
 @Component({
   selector: 'app-recovery-password',
@@ -15,7 +16,6 @@ import { AlertService } from '../../../shared/services/alert/alert.service';
     ReactiveFormsModule,
     RouterLink,
     NgClass,
-    NgIf,
   ],
   templateUrl: './recovery-password.component.html',
   styleUrl: './recovery-password.component.scss'
@@ -61,7 +61,7 @@ export default class RecoveryPasswordComponent {
       code_6: [data?.code_6 || '', [ Validators.required ]],
       code_7: [data?.code_7 || '', [ Validators.required ]],
 
-      password: [data?.password || '', [ Validators.required, Validators.minLength(6), Validators.maxLength(20) ]],
+      password: [data?.password || '', [ Validators.required, passwordValidator() ]],
     });
   }
 

@@ -2,11 +2,15 @@
 <app-loading />
 
 <div class="min-h-screen flex flex-col">
-    <app-header *ngIf="isVisible" />
+    @if (isVisible) {
+        <app-header />
+    }
 
     <div class="flex-grow">
         <router-outlet />
     </div>
 
-    <app-footer *ngIf="isVisible" />
+    @if (isVisible) {
+        <app-footer />
+    }
 </div>

@@ -1,4 +1,3 @@
-import { NgIf } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { environment } from '../../../../environments/environment.development';
 import { LoadingService } from '../../services/loading/loading.service';
@@ -6,9 +5,7 @@ import { LoadingService } from '../../services/loading/loading.service';
 @Component({
   selector: 'app-loading',
   standalone: true,
-  imports: [
-    NgIf,
-  ],
+  imports: [],
   templateUrl: './loading.component.html',
   styleUrl: './loading.component.scss'
 })
