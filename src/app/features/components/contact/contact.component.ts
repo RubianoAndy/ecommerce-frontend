@@ -5,6 +5,7 @@ import { HeaderComponent } from "../../../shared/components/header/header.compon
 import { FooterComponent } from "../../../shared/components/footer/footer.component";
 import { AlertService } from '../../../shared/services/alert/alert.service';
 import { NgClass } from '@angular/common';
+import { environment } from '../../../../environments/environment.development';
 
 @Component({
   selector: 'app-contact',
@@ -21,6 +22,7 @@ import { NgClass } from '@angular/common';
 })
 export default class ContactComponent implements OnInit {
   form!: FormGroup;
+  email = environment.email;
 
   constructor (
     private formBuilder: FormBuilder,
