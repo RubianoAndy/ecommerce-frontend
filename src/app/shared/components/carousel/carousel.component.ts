@@ -1,4 +1,3 @@
-import { NgFor } from '@angular/common';
 import { Component, OnDestroy, OnInit } from '@angular/core';
 
 interface CarouselItem {
@@ -10,9 +9,7 @@ interface CarouselItem {
 @Component({
   selector: 'app-carousel',
   standalone: true,
-  imports: [
-    NgFor,
-  ],
+  imports: [],
   templateUrl: './carousel.component.html',
   styleUrl: './carousel.component.scss'
 })

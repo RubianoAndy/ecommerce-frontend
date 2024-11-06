@@ -2,13 +2,15 @@
     <div class="relative w-full overflow-hidden">
         <div class="flex transition-transform duration-[600ms] ease-in-out"
         [style.transform]="'translateX(' + (-currentSlide * 100) + '%)'">
-            <div *ngFor="let slide of slides; let i = index" class="w-full flex-shrink-0 relative">
-                <img [src]="slide.image" class="block w-full max-h-[800px] object-cover" alt="Slide image" />
-                <!-- <div class="absolute inset-0 flex flex-col items-center justify-center bg-black bg-opacity-50 text-white text-center p-5">
-                    <h5 class="text-xl">{{ slide.label }}</h5>
-                    <p>{{ slide.description }}</p>
-                </div> -->
-            </div>
+            @for (slide of slides; track $index) {
+                <div class="w-full flex-shrink-0 relative">
+                    <img [src]="slide.image" class="block w-full max-h-[800px] object-cover" alt="Slide image" />
+                    <!-- <div class="absolute inset-0 flex flex-col items-center justify-center bg-black bg-opacity-50 text-white text-center p-5">
+                        <h5 class="text-xl">{{ slide.label }}</h5>
+                        <p>{{ slide.description }}</p>
+                    </div> -->
+                </div>
+            }
         </div>
     </div>
   
@@ -21,10 +23,12 @@
     </button>
 
     <div class="absolute bottom-4 left-1/2 transform -translate-x-1/2 z-[2] flex space-x-2">
-        <button *ngFor="let slide of slides; let i = index" type="button" (click)="goToSlide(i)"
-            [class.bg-white]="i === currentSlide"
-            [class.bg-gray-500]="i !== currentSlide"
-            class="h-1 w-6 transition-all duration-[300ms]">
-        </button>
+        @for (slide of slides; track $index) {
+            <button type="button" (click)="goToSlide($index)"
+                [class.bg-white]="$index === currentSlide"
+                [class.bg-gray-500]="$index !== currentSlide"
+                class="h-1 w-6 transition-all duration-[300ms]">
+            </button>
+        }
     </div>
 </div>
