@@ -1,11 +1,10 @@
-import { NgClass, NgIf } from '@angular/common';
+import { NgClass } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 import { RouterLink } from '@angular/router';
 import { environment } from '../../../../environments/environment.development';
 import { TermsAndConditionsInformationComponent } from '../../../features/components/terms-and-conditions/terms-and-conditions-information/terms-and-conditions-information.component';
 import { PrivacyPolicyInformationComponent } from '../../../features/components/privacy-policy/privacy-policy-information/privacy-policy-information.component';
-import { AlertService } from '../../../shared/services/alert/alert.service';
 import { RegisterService } from '../../services/register/register.service';
 import { passwordValidator } from '../../../shared/functions/password.validator';
 
@@ -17,7 +16,6 @@ import { passwordValidator } from '../../../shared/functions/password.validator'
     ReactiveFormsModule,
     RouterLink,
     NgClass,
-    NgIf,
     TermsAndConditionsInformationComponent,
     PrivacyPolicyInformationComponent,
   ],

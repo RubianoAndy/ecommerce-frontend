@@ -134,20 +134,28 @@
     </div>
 </div>
 
-<div *ngIf="isModalOpen" class="flex fixed inset-0 z-0 items-center justify-center p-4 bg-gray-900 bg-opacity-80" (click)="closeModal()">
-    <div class="relative w-full max-w-2xl bg-white shadow-lg">
-        <div class="flex items-center justify-between p-4 bg-gray-100">
-            <h3 *ngIf="modalPart == 'TC'" class="text-2xl font-semibold text-black">Términos y condiciones</h3>
-            <h3 *ngIf="modalPart == 'PP'" class="text-2xl font-semibold text-black">Política de privacidad</h3>
+@if (isModalOpen) {
+    <div class="flex fixed inset-0 z-0 items-center justify-center p-4 bg-gray-900 bg-opacity-80" (click)="closeModal()">
+        <div class="relative w-full max-w-2xl bg-white shadow-lg">
+            <div class="flex items-center justify-between p-4 bg-gray-100">
+                @if (modalPart == 'TC') {
+                    <h3 class="text-2xl font-semibold text-black">Términos y condiciones</h3>
+                } @else if (modalPart == 'PP') {
+                    <h3 class="text-2xl font-semibold text-black">Política de privacidad</h3>
+                }
 
-            <button type="button" class="text-black hover:text-red-500 font-bold w-6 h-6 ms-auto inline-flex justify-center items-center" (click)="closeModal()">
-                <span class="material-icons">close</span>
-            </button>
-        </div>
+                <button type="button" class="text-black hover:text-red-500 font-bold w-6 h-6 ms-auto inline-flex justify-center items-center" (click)="closeModal()">
+                    <span class="material-icons">close</span>
+                </button>
+            </div>
 
-        <div class="px-4 pb-4 space-y-4 text-black text-sm h-80 overflow-y-auto">
-            <app-terms-and-conditions-information *ngIf="modalPart == 'TC'"/>
-            <app-privacy-policy-information *ngIf="modalPart == 'PP'" />
+            <div class="px-4 pb-4 space-y-4 text-black text-sm h-80 overflow-y-auto">
+                @if (modalPart == 'TC') {
+                    <app-terms-and-conditions-information />
+                } @else if (modalPart == 'PP') {
+                    <app-privacy-policy-information />
+                }
+            </div>
         </div>
     </div>
-</div>
+}
