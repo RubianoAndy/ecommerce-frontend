@@ -21,6 +21,9 @@ export const routes: Routes = [
         path: 'activate', loadComponent: () => import('./core/components/activate-account/activate-account.component'),
         canActivate: [authGuard], data: { requiresAuth: false }
     },
+    {
+        path: 'faq', loadComponent: () => import('./features/components/faq/faq.component'),
+    },
     { 
         path: 'privacy-policy', loadComponent: () => import('./features/components/privacy-policy/privacy-policy.component'),
     },
