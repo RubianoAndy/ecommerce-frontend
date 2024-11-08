@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { environment } from '../../../../environments/environment.development';
-import { Router, RouterLink } from '@angular/router';
+import { RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-footer',
@@ -16,14 +16,4 @@ export class FooterComponent {
   page = environment.siteName;
   currentYear = environment.currentYear;
   email = environment.email;
-
-  constructor (
-    private router: Router,
-  ) { }
-
-  navigateTo(url: string) {
-    this.router.navigate([url]).then(() => {
-      window.scrollTo(0, 0);
-    });
-  }
 }
