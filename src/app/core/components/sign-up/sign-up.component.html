@@ -65,6 +65,24 @@
                         <button type="button" (click)="togglePasswordVisibility()" class="absolute flex items-center inset-y-0 right-0 px-3 mt-8">
                             <span class="material-icons">{{ isPasswordVisible ? 'visibility_off' : 'visibility' }}</span>
                         </button>
+
+                        @if (!form.controls['password'].valid && form.controls['password'].touched) {
+                            <div class="relative z-10">
+                                <div class="w-full max-w-[280px] p-4 bg-red-100 shadow-lg absolute top-2 mt-2 before:w-4 before:h-4 before:rotate-45 before:bg-red-100 before:absolute before:-top-2 before:left-6">
+                                    <div class="my-2">
+                                        <div class="flex flex-col items-start text-left text-sm">
+                                            <span>La contraseña debe tener:</span>
+                                            <ul class="list-disc pl-5 mt-1">
+                                                <li>Entre 8 y 20 caracteres.</li>
+                                                <li>Al menos una letra en mayúscula.</li>
+                                                <li>Al menos una letra en minúscula.</li>
+                                                <li>Al menos un carácter especial.</li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        }
                     </div>
     
                     <div class="flex items-center w-full">
