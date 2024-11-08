@@ -13,16 +13,16 @@
           <h2 class="mb-4 text-sm font-bold text-green-700 uppercase">Marco legal</h2>
 
           <ul class="text-black text-sm">
-            <li class="mb-4">
-              <a routerLink="/terms-and-conditions" class="hover:text-blue-500">Términos y condiciones</a>
+            <li (click)="navigateTo('/terms-and-conditions')" class="mb-4 hover:text-blue-500 cursor-pointer">
+              Términos y condiciones
             </li>
 
-            <li class="mb-4">
-              <a routerLink="/privacy-policy" class="hover:text-blue-500">Política de privacidad</a>
+            <li (click)="navigateTo('/privacy-policy')" class="mb-4 hover:text-blue-500 cursor-pointer">
+              Política de privacidad
             </li>
 
-            <li>
-              <a routerLink="/faq" class="hover:text-blue-500">Preguntas frecuentes</a>
+            <li (click)="navigateTo('/faq')" class="hover:text-blue-500 cursor-pointer">
+              Preguntas frecuentes
             </li>
           </ul>
         </div>
