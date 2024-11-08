@@ -56,6 +56,8 @@
                             [type]="isPasswordVisible ? 'text' : 'password'" 
                             formControlName="password" 
                             placeholder="Contraseña"
+                            (focus)="onPasswordFocus()"
+                            (blur)="onPasswordBlur()"
                             [ngClass]="{
                                 'border-red-500': !form.controls['password'].valid && form.controls['password'].touched,
                                 'border-green-500': form.controls['password'].valid && form.controls['password'].touched
@@ -66,7 +68,7 @@
                             <span class="material-icons">{{ isPasswordVisible ? 'visibility_off' : 'visibility' }}</span>
                         </button>
 
-                        @if (!form.controls['password'].valid && form.controls['password'].touched) {
+                        @if (!form.controls['password'].valid && form.controls['password'].touched && isPasswordFocused) {
                             <div class="relative z-10">
                                 <div class="w-full max-w-[280px] p-4 bg-gray-100 shadow-lg absolute top-2 mt-2 before:w-4 before:h-4 before:rotate-45 before:bg-gray-100 before:absolute before:-top-2 before:left-6">
                                     <div class="my-2">

@@ -27,6 +27,8 @@ export default class SignUpComponent implements OnInit {
   form!: FormGroup;
 
   isPasswordVisible: boolean = false;
+  isPasswordFocused: boolean = false;
+
   isRegistered: boolean = false;
 
   loading: boolean = false;
@@ -153,6 +155,16 @@ export default class SignUpComponent implements OnInit {
       return null;
     }
   } */
+
+  // Método para mostrar el popover
+  onPasswordFocus(): void {
+    this.isPasswordFocused = true;
+  }
+
+  // Método para ocultar el popover
+  onPasswordBlur(): void {
+    this.isPasswordFocused = false;
+  }
 
   checkPasswordCriteria(password: string): void {
     this.passwordCriteria.hasUpperCase = /[A-Z]/.test(password);
