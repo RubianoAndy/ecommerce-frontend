@@ -34,6 +34,14 @@ export default class SignUpComponent implements OnInit {
   isModalOpen = false;
   modalPart: 'TC' | 'PP' = 'TC';
 
+  passwordCriteria = {
+    hasUpperCase: false,
+    hasLowerCase: false,
+    hasSpecialChar: false,
+    hasNumber: false,
+    isValidLength: false
+  };
+
   constructor(
     private formBuilder: FormBuilder,
     // private router: Router,
@@ -43,6 +51,10 @@ export default class SignUpComponent implements OnInit {
 
   ngOnInit(): void {
     this.createForm();
+
+    this.form.get('password')?.valueChanges.subscribe(value => {
+      this.checkPasswordCriteria(value);
+    });
   }
 
   createForm(data: any = null) {
@@ -141,4 +153,12 @@ export default class SignUpComponent implements OnInit {
       return null;
     }
   } */
+
+  checkPasswordCriteria(password: string): void {
+    this.passwordCriteria.hasUpperCase = /[A-Z]/.test(password);
+    this.passwordCriteria.hasLowerCase = /[a-z]/.test(password);
+    this.passwordCriteria.hasSpecialChar = /[!@#$%^&*(),.?":{}|<>]/.test(password);
+    this.passwordCriteria.hasNumber = /\d/.test(password);
+    this.passwordCriteria.isValidLength = password.length >= 8 && password.length <= 20;
+  }
 }

@@ -68,16 +68,29 @@
 
                         @if (!form.controls['password'].valid && form.controls['password'].touched) {
                             <div class="relative z-10">
-                                <div class="w-full max-w-[280px] p-4 bg-red-100 shadow-lg absolute top-2 mt-2 before:w-4 before:h-4 before:rotate-45 before:bg-red-100 before:absolute before:-top-2 before:left-6">
+                                <div class="w-full max-w-[280px] p-4 bg-gray-100 shadow-lg absolute top-2 mt-2 before:w-4 before:h-4 before:rotate-45 before:bg-gray-100 before:absolute before:-top-2 before:left-6">
                                     <div class="my-2">
                                         <div class="flex flex-col items-start text-left text-sm">
                                             <span>La contraseña debe tener:</span>
-                                            <ul class="list-disc pl-5 mt-1">
-                                                <li>Entre 8 y 20 caracteres.</li>
-                                                <li>Al menos una letra en mayúscula.</li>
-                                                <li>Al menos una letra en minúscula.</li>
-                                                <li>Al menos un carácter especial.</li>
-                                            </ul>
+                                            <div class="flex items-center">
+                                                <span class="material-icons mr-2" [ngClass]="passwordCriteria.hasUpperCase ? 'text-green-500' : 'text-red-500'">{{ passwordCriteria.hasUpperCase ? 'check' : 'close' }}</span> Al menos una letra en mayúscula.
+                                            </div>
+
+                                            <div class="flex items-center">
+                                                <span class="material-icons mr-2" [ngClass]="passwordCriteria.hasLowerCase ? 'text-green-500' : 'text-red-500'">{{ passwordCriteria.hasLowerCase ? 'check' : 'close' }}</span> Al menos una letra en minúscula.
+                                            </div>
+
+                                            <div class="flex items-center">
+                                                <span class="material-icons mr-2" [ngClass]="passwordCriteria.hasSpecialChar ? 'text-green-500' : 'text-red-500'">{{ passwordCriteria.hasSpecialChar ? 'check' : 'close' }}</span> Al menos un carácter especial.
+                                            </div>
+
+                                            <div class="flex items-center">
+                                                <span class="material-icons mr-2" [ngClass]="passwordCriteria.hasNumber ? 'text-green-500' : 'text-red-500'">{{ passwordCriteria.hasNumber ? 'check' : 'close' }}</span> Al menos un número.
+                                            </div>
+
+                                            <div class="flex items-center">
+                                                <span class="material-icons mr-2" [ngClass]="passwordCriteria.isValidLength ? 'text-green-500' : 'text-red-500'">{{ passwordCriteria.isValidLength ? 'check' : 'close' }}</span> Entre 8 y 20 caracteres.
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
