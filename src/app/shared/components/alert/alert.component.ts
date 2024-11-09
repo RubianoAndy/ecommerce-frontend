@@ -1,5 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { AlertService } from '../../services/alert/alert.service';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-alert',
@@ -8,12 +9,14 @@ import { AlertService } from '../../services/alert/alert.service';
   templateUrl: './alert.component.html',
   styleUrl: './alert.component.scss'
 })
-export class AlertComponent implements OnInit {
+export class AlertComponent implements OnInit, OnDestroy {
   alertTime: number = 4;    // Tiempo en segundos
   message: string = '';
   type: string = '';
   title: string = '';
   showAlert: boolean = false;
+
+  private alertSubscription: Subscription = new Subscription();
 
   constructor (
     private alertService: AlertService,
@@ -24,7 +27,7 @@ export class AlertComponent implements OnInit {
   }
 
   alert() {
-    this.alertService.alertMessage$.subscribe(msg => {
+    this.alertSubscription = this.alertService.alertMessage$.subscribe(msg => {
       this.type = msg.type;
       this.message = msg.message;
       this.title = msg.title;
@@ -38,5 +41,10 @@ export class AlertComponent implements OnInit {
 
   closeAlert() {
     this.showAlert = false;
+  }
+
+  ngOnDestroy(): void {
+    if (this.alertSubscription)
+      this.alertSubscription.unsubscribe();
   }
 }
