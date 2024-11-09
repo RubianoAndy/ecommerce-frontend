@@ -91,7 +91,7 @@ For documentation purposes, this repository was created as follows:
 | 3-  | Install Angular CLI                           | `npm install -g @angular/cli@latest`          |
 | 4-  | Create the project                            | `ng new project-name`                         |
 | 5-  | Select SCSS in stylesheet format              |                                               |
-| 6-  | Select yes to enable SSR and SSG/Prerendering |                                               |
+| 6-  | Select no to enable SSR and SSG/Prerendering  |                                               |
 | 7-  | Install Tailwind (only steps 1, 2 y 3)        | https://tailwindcss.com/docs/installation     |
 | 8-  | Replace in tailwind.config.js                 | Put `content: ["./src/**/*.{html,ts,scss}"],` |
 
