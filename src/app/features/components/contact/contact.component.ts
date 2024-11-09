@@ -1,8 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 
-import { HeaderComponent } from "../../../shared/components/header/header.component";
-import { FooterComponent } from "../../../shared/components/footer/footer.component";
 import { AlertService } from '../../../shared/services/alert/alert.service';
 import { NgClass } from '@angular/common';
 import { environment } from '../../../../environments/environment.development';
@@ -13,8 +11,6 @@ import { environment } from '../../../../environments/environment.development';
   imports: [
     FormsModule,
     ReactiveFormsModule,
-    HeaderComponent, 
-    FooterComponent,
     NgClass,
   ],
   templateUrl: './contact.component.html',
