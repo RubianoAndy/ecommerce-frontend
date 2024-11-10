@@ -18,6 +18,7 @@ import { ProfileService } from '../../../features/services/profile/profile.servi
 })
 export class HeaderComponent implements OnInit {
   logo = environment.darkLogo;
+  avatar = 'assets/images/avatar/Avatar.png';
   
   isAccountMenuOpen = false;
   profile: any = null;
