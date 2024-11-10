@@ -23,6 +23,19 @@ export class NavbarComponent implements OnInit {
 
   profile: any = null;
 
+  navbarOptions = [
+    { label: 'Inicio', url: '/' },
+    { label: 'Faq', url: '/faq' },
+    { label: 'Contacto', url: '/contact' },
+  ];
+
+  categories = [
+    { label: 'Plantas', url: '/#'},
+    { label: 'Sustratos', url: '/#'},
+    { label: 'Materas', url: '/#'},
+    { label: 'Recordatorios', url: '/#'},
+  ];
+
   constructor () { }
 
   ngOnInit(): void {

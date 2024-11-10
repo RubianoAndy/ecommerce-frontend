@@ -1,45 +1,27 @@
 <nav class='bg-white md:bg-secondary max-h-[70px]'>
     <div class="max-w-screen-xl mx-auto flex flex-wra container max-md:py-2">
         <div class="group relative hidden md:flex px-8 py-4 bg-primary items-center cursor-pointer text-white">
-            Categorías <span class="material-icons ml-2 transition-transform duration-300 group-hover:rotate-180">keyboard_arrow_down</span>
+            <span class="material-icons mr-2">store</span> Productos
+            <span class="material-icons ml-2 transition-transform duration-300 group-hover:rotate-180">keyboard_arrow_down</span>
 
             <ul class='absolute z-10 shadow-lg text-black bg-white md:top-14 left-0 min-w-[250px] max-h-0 overflow-hidden group-hover:opacity-100 group-hover:max-h-[700px] group-hover:py-2 transition-all duration-500'>
-                <li>
-                    <a routerLink="/#" class="flex items-center w-full text-left px-4 py-2 hover:bg-gray-100 hover:text-blue-700 hover:font-semibold" role="menuitem">
-                        Dionaea Muscipula
-                    </a>
-                </li>
-                <li>
-                    <a routerLink="/#" class="flex items-center w-full text-left px-4 py-2 hover:bg-gray-100 hover:text-blue-700 hover:font-semibold" role="menuitem">
-                        Drosera
-                    </a>
-                </li>
-                <li>
-                    <a routerLink="/#" class="flex items-center w-full text-left px-4 py-2 hover:bg-gray-100 hover:text-blue-700 hover:font-semibold" role="menuitem">
-                        Nepenthes
-                    </a>
-                </li>
-                <li>
-                    <a routerLink="/#" class="flex items-center w-full text-left px-4 py-2 hover:bg-gray-100 hover:text-blue-700 hover:font-semibold" role="menuitem">
-                        Cephalotus follicularis
-                    </a>
-                </li>
+                @for (category of categories; track $index) {
+                    <li>
+                        <a [routerLink]="category.url" class="flex items-center w-full text-left px-4 py-2 hover:bg-gray-100 hover:text-blue-700 hover:font-semibold" role="menuitem">
+                            {{ category.label }}
+                        </a>
+                    </li>
+                }
             </ul>
         </div>
 
         <div class="flex container items-center justify-end md:justify-between flex-grow pl-12">
             <div class="hidden md:flex items-center space-x-6">
-                <a routerLink='/' routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }" class='block font-semibold text-black hover:text-white'>
-                    Inicio
-                </a>
-    
-                <a routerLink='/about' routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }" class='block font-semibold text-black hover:text-white'>
-                    About
-                </a>
-    
-                <a routerLink='/contact' routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }" class='block font-semibold text-black hover:text-white'>
-                    Contacto
-                </a>
+                @for (navbarOption of navbarOptions; track $index) {
+                    <a [routerLink]='navbarOption.url' routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }" class='block font-semibold text-black hover:text-white'>
+                        {{ navbarOption.label }}
+                    </a>
+                }
             </div>
 
             <div class='flex items-center justify-center space-x-6 px-4 md:px-10'>
