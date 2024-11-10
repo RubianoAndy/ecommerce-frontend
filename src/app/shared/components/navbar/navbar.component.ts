@@ -2,6 +2,7 @@ import { NgClass } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { RouterLink, RouterLinkActive } from '@angular/router';
 import { environment } from '../../../../environments/environment.development';
+import { PrivacyPolicyInformationComponent } from "../../../features/components/privacy-policy/privacy-policy-information/privacy-policy-information.component";
 
 @Component({
   selector: 'app-navbar',
@@ -10,7 +11,8 @@ import { environment } from '../../../../environments/environment.development';
     NgClass,
     RouterLink,
     RouterLinkActive,
-  ],
+    PrivacyPolicyInformationComponent
+],
   templateUrl: './navbar.component.html',
   styleUrl: './navbar.component.scss'
 })
@@ -24,9 +26,9 @@ export class NavbarComponent implements OnInit {
   profile: any = null;
 
   navbarOptions = [
-    { label: 'Inicio', url: '/' },
-    { label: 'Faq', url: '/faq' },
-    { label: 'Contacto', url: '/contact' },
+    { label: 'Inicio', url: '/', icon: 'home' },
+    { label: 'Faq', url: '/faq', icon: 'psychology' },
+    { label: 'Contacto', url: '/contact', icon: 'person' },
   ];
 
   categories = [
