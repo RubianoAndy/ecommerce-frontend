@@ -90,7 +90,7 @@
 
             <li>
                 <button (click)="toggleSubMenu()" class="flex items-center w-full text-left px-4 py-2 hover:bg-gray-100 hover:text-blue-700 hover:font-semibold">
-                    Opciones <span class="material-icons ml-auto">{{ isSubMenuOpen ? 'keyboard_arrow_up' : 'keyboard_arrow_down' }}</span>
+                    Opciones <span class="material-icons ml-auto transition-transform duration-300" [ngClass]="{'rotate-180': isSubMenuOpen}">keyboard_arrow_down</span>
                 </button>
                 
                 <ul [ngClass]="{'max-h-[500px] opacity-100': isSubMenuOpen, 'max-h-0 opacity-0': !isSubMenuOpen}" class="transition-all duration-500 overflow-hidden pl-4 space-y-2">
