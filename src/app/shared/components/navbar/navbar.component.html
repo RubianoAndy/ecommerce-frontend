@@ -1,4 +1,4 @@
-<nav class='bg-white md:bg-secondary'>
+<nav class='bg-white md:bg-secondary font-sans max-h-[70px] overflow-hidden'>
     <div class="max-w-screen-xl mx-auto flex flex-wra container max-md:py-2">
         <div class="group relative hidden md:flex px-8 py-4 bg-primary items-center cursor-pointer text-white">
             Categorías <span class="material-icons ml-2 transition-transform duration-300 group-hover:rotate-180">keyboard_arrow_down</span>
@@ -27,7 +27,7 @@
             </ul>
         </div>
 
-        <div class="flex container items-center justify-center md:justify-between flex-grow pl-12">
+        <div class="flex container items-center justify-end md:justify-between flex-grow pl-12">
             <div class="hidden md:flex items-center space-x-6">
                 <a routerLink='/' routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }" class='block font-semibold text-black hover:text-white'>
                     Inicio
@@ -42,7 +42,7 @@
                 </a>
             </div>
 
-            <div class='flex items-center justify-center space-x-6'>
+            <div class='flex items-center justify-center space-x-6 px-4 md:px-10'>
                 <span class="relative">
                     <span 
                         (mouseover)="isHovered = true" (mouseout)="isHovered = false" 
