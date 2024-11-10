@@ -22,6 +22,10 @@ export const routes: Routes = [
         canActivate: [authGuard], data: { requiresAuth: false }
     },
     {
+        path: 'account', loadChildren: () => import('./account/account.routes'),
+        canActivate: [authGuard], data: { requiresAuth: true }
+    },
+    {
         path: 'faq', loadComponent: () => import('./features/components/faq/faq.component'),
     },
     { 
