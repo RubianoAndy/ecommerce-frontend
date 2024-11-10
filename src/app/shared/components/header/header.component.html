@@ -27,20 +27,20 @@
                     <div id="dropdown-user" [ngClass]="{'max-h-[500px] opacity-100': isAccountMenuOpen, 'max-h-0 opacity-0': !isAccountMenuOpen}" 
                          class="z-10 overflow-hidden transition-all duration-500 absolute right-0 mt-2 text-lg list-none bg-white shadow-lg border border-gray-100">
                         <div class="px-4 py-3 border-b border-gray-200" role="none">
-                            <p class="text-sm font-semibold text-green-700" role="none">{{ profile?.name_1 }} {{ profile?.lastname_1 }}</p>
+                            <p class="text-sm font-semibold text-primary" role="none">{{ profile?.name_1 }} {{ profile?.lastname_1 }}</p>
                             <p class="text-sm text-gray-900 truncate" role="none">{{ profile?.email || 'Email no disponible' }}</p>
                         </div>
             
                         <ul class="py-1 text-sm text-black" role="none">
                             <li>
                                 <button class="flex items-center px-4 py-2 hover:bg-gray-100 w-full text-left" role="menuitem">
-                                    <span class="material-icons me-2 text-green-700">settings</span> Configuración
+                                    <span class="material-icons me-2 text-primary">settings</span> Configuración
                                 </button>
                             </li>
             
                             <li>
                                 <button (click)="signOut()" class="flex items-center px-4 py-2 hover:bg-gray-100 w-full text-left" role="menuitem">
-                                    <span class="material-icons me-2 text-green-700">logout</span> Cerrar sesión
+                                    <span class="material-icons me-2 text-primary">logout</span> Cerrar sesión
                                 </button>
                             </li>
                         </ul>
