@@ -1,0 +1,123 @@
+<nav class='bg-white md:bg-secondary'>
+    <div class="max-w-screen-xl mx-auto flex flex-wra container max-md:py-2">
+        <div class="group relative hidden md:flex px-8 py-4 bg-primary items-center cursor-pointer text-white">
+            Categorías <span class="material-icons ml-2 transition-transform duration-300 group-hover:rotate-180">keyboard_arrow_down</span>
+
+            <ul class='absolute z-10 shadow-lg text-black bg-white md:top-14 left-0 min-w-[250px] max-h-0 overflow-hidden group-hover:opacity-100 group-hover:max-h-[700px] group-hover:py-2 transition-all duration-500'>
+                <li>
+                    <a routerLink="/#" class="flex items-center w-full text-left px-4 py-2 hover:bg-gray-100 hover:text-blue-700 hover:font-semibold" role="menuitem">
+                        Dionaea Muscipula
+                    </a>
+                </li>
+                <li>
+                    <a routerLink="/#" class="flex items-center w-full text-left px-4 py-2 hover:bg-gray-100 hover:text-blue-700 hover:font-semibold" role="menuitem">
+                        Drosera
+                    </a>
+                </li>
+                <li>
+                    <a routerLink="/#" class="flex items-center w-full text-left px-4 py-2 hover:bg-gray-100 hover:text-blue-700 hover:font-semibold" role="menuitem">
+                        Nepenthes
+                    </a>
+                </li>
+                <li>
+                    <a routerLink="/#" class="flex items-center w-full text-left px-4 py-2 hover:bg-gray-100 hover:text-blue-700 hover:font-semibold" role="menuitem">
+                        Cephalotus follicularis
+                    </a>
+                </li>
+            </ul>
+        </div>
+
+        <div class="flex container items-center justify-center md:justify-between flex-grow pl-12">
+            <div class="hidden md:flex items-center space-x-6">
+                <a routerLink='/' routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }" class='block font-semibold text-black hover:text-white'>
+                    Inicio
+                </a>
+    
+                <a routerLink='/about' routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }" class='block font-semibold text-black hover:text-white'>
+                    About
+                </a>
+    
+                <a routerLink='/contact' routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }" class='block font-semibold text-black hover:text-white'>
+                    Contacto
+                </a>
+            </div>
+
+            <div class='flex items-center justify-center space-x-6'>
+                <span class="relative">
+                    <span 
+                        (mouseover)="isHovered = true" (mouseout)="isHovered = false" 
+                        class="material-icons inline cursor-pointer text-black hover:text-red-700 text-3xl">{{ isHovered ? 'favorite' : 'favorite_border' }}
+                    </span>
+                    <span class="absolute left-auto -ml-1 top-0 rounded-full bg-red-600 px-1 py-0 text-xs text-white">0</span>
+                </span>
+    
+                <span class="relative">
+                    <span class="material-icons inline cursor-pointer text-black hover:text-primary text-3xl">shopping_cart</span>
+                    <span class="absolute left-auto -ml-1 top-0 rounded-full bg-red-600 px-1 py-0 text-xs text-white">0</span>
+                </span>
+    
+                <!-- <span class="relative lg:hidden block">
+                    <span class="material-icons inline cursor-pointer text-black hover:text-primary text-3xl">search</span>
+                </span> -->
+        
+                <button id="toggleOpen" (click)="toggleMenu()" class="lg:hidden block hover:text-primary rounded">
+                    <span class="material-icons text-4xl flex items-center">menu</span>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <div class="fixed inset-0 z-10 transition-opacity duration-500" [ngClass]="{'opacity-100 visible': isMenuOpen, 'opacity-0 invisible': !isMenuOpen}">
+        <div class="fixed inset-0 bg-black bg-opacity-50 border-b border-gray-200" (click)="toggleMenu()">
+        </div>
+    </div>
+
+    <div [ngClass]="{'translate-x-0': isMenuOpen, '-translate-x-full': !isMenuOpen}" class="lg:hidden fixed left-0 top-0 bottom-0 z-10 bg-white w-1/2 min-w-[300px] shadow-md p-6 h-full transition-transform duration-500">
+        <ul class='fixed bg-white w-full top-0 left-0 p-6 h-full shadow-md overflow-auto'>
+            <li>
+                <a routerLink='/' (click)="toggleMenu()">
+                    <img [src]="logo" alt="logo" class='w-36' />
+                </a>
+            </li>
+
+            <hr class="mt-6 w-full text-gray-200">
+
+            <li>
+                <a routerLink='/' routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }" (click)="toggleMenu()" class="flex items-center w-full text-left px-4 py-2 hover:bg-gray-100 hover:text-blue-700 hover:font-semibold" role="menuitem">
+                    Home
+                </a>
+            </li>
+
+            <li>
+                <button (click)="toggleSubMenu()" class="flex items-center w-full text-left px-4 py-2 hover:bg-gray-100 hover:text-blue-700 hover:font-semibold">
+                    Opciones <span class="material-icons ml-auto">{{ isSubMenuOpen ? 'keyboard_arrow_up' : 'keyboard_arrow_down' }}</span>
+                </button>
+                
+                <ul [ngClass]="{'max-h-[500px] opacity-100': isSubMenuOpen, 'max-h-0 opacity-0': !isSubMenuOpen}" class="transition-all duration-500 overflow-hidden pl-4 space-y-2">
+                    <li>
+                        <a routerLink='/opcion1' (click)="toggleMenu()" class="flex items-center w-full text-left px-4 py-2 hover:bg-gray-100 hover:text-blue-700" role="menuitem">
+                            Opción 1
+                        </a>
+                    </li>
+                    <li>
+                        <a routerLink='/opcion2' (click)="toggleMenu()" class="flex items-center w-full text-left px-4 py-2 hover:bg-gray-100 hover:text-blue-700" role="menuitem">
+                            Opción 2
+                        </a>
+                    </li>
+                </ul>
+            </li>
+
+            <li>
+                <a routerLink='/about' routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }" (click)="toggleMenu()" class="flex items-center w-full text-left px-4 py-2 hover:bg-gray-100 hover:text-blue-700 hover:font-semibold" role="menuitem">
+                    About
+                </a>
+            </li>
+
+            <li>
+                <a routerLink='/contact' routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }" (click)="toggleMenu()" class="flex items-center w-full text-left px-4 py-2 hover:bg-gray-100 hover:text-blue-700 hover:font-semibold" role="menuitem">
+                    Contact
+                </a>
+            </li>
+        </ul>
+    </div>
+</nav>

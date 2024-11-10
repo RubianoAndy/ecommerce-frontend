@@ -1,11 +1,14 @@
 import { Component, OnInit } from '@angular/core';
 import { NavigationEnd, Router, RouterOutlet } from '@angular/router';
 
+import { filter } from 'rxjs';
+
 import { AlertComponent } from './shared/components/alert/alert.component';
 import { LoadingComponent } from './shared/components/loading/loading.component';
-import { filter } from 'rxjs';
-import { FooterComponent } from "./shared/components/footer/footer.component";
+
 import { HeaderComponent } from './shared/components/header/header.component';
+import { NavbarComponent } from './shared/components/navbar/navbar.component';
+import { FooterComponent } from "./shared/components/footer/footer.component";
 
 @Component({
   selector: 'app-root',
@@ -15,6 +18,7 @@ import { HeaderComponent } from './shared/components/header/header.component';
     AlertComponent,
     LoadingComponent,
     HeaderComponent,
+    NavbarComponent,
     FooterComponent,
 ],
   templateUrl: './app.component.html',

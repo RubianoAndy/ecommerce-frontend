@@ -12,18 +12,14 @@ import { ProfileService } from '../../../features/services/profile/profile.servi
   imports: [
     NgClass,
     RouterLink,
-    RouterLinkActive,
   ],
   templateUrl: './header.component.html',
   styleUrl: './header.component.scss'
 })
 export class HeaderComponent implements OnInit {
   logo = environment.darkLogo;
-
-  isMenuOpen = false;
-  isSubMenuOpen = false;
+  
   isAccountMenuOpen = false;
-
   profile: any = null;
 
   constructor (
@@ -70,14 +66,6 @@ export class HeaderComponent implements OnInit {
         this.alertService.showAlert(alertBody);
       }
     });
-  }
-
-  toggleMenu() {
-    this.isMenuOpen = !this.isMenuOpen;
-  }
-
-  toggleSubMenu() {
-    this.isSubMenuOpen = !this.isSubMenuOpen;
   }
 
   toggleAccountMenu() {

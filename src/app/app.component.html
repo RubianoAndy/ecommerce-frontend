@@ -3,7 +3,12 @@
 
 <div class="min-h-screen flex flex-col">
     @if (isVisible) {
-        <app-header class="mb-[150px]" />
+        <div class="fixed w-full flex flex-col z-10">
+            <app-header />
+            <app-navbar />
+        </div>
+
+        <div class="h-[140px] md:h-[130px]"></div>
     }
 
     <div class="flex-grow">
