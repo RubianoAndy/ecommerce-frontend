@@ -25,14 +25,17 @@ import { FooterComponent } from "./shared/components/footer/footer.component";
   styleUrl: './app.component.scss'
 })
 export class AppComponent implements OnInit{
-  isVisible = true;
+  isHeaderVisible = true;
+  isFooterVisible = true;
 
-  excludedRoutes = [
+  headerExcludedRoutes = [
     '/sign-in',
     '/sign-up',
     '/recovery-password',
     '/activate'
   ];
+
+  footerExcludedRoutes = [...this.headerExcludedRoutes, '/account'];
 
   constructor (
     private router: Router,
@@ -40,7 +43,8 @@ export class AppComponent implements OnInit{
     this.router.events.pipe(
       filter(event => event instanceof NavigationEnd)
     ).subscribe((event: NavigationEnd) => {
-      this.isVisible = !this.excludedRoutes.some(route => event.url.includes(route));
+      this.isHeaderVisible = !this.headerExcludedRoutes.some(route => event.url.includes(route));
+      this.isFooterVisible = !this.footerExcludedRoutes.some(route => event.url.includes(route));
     });
   }
 

@@ -2,7 +2,7 @@
 <app-loading />
 
 <div class="min-h-screen flex flex-col">
-    @if (isVisible) {
+    @if (isHeaderVisible) {
         <div class="fixed w-full flex flex-col z-10">
             <app-header />
             <app-navbar />
@@ -15,7 +15,7 @@
         <router-outlet />
     </div>
 
-    @if (isVisible) {
+    @if (isFooterVisible) {
         <app-footer />
     }
 </div>
