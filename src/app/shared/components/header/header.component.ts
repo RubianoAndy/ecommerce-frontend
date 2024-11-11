@@ -30,8 +30,10 @@ export class HeaderComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    if (this.authService.isAuthenticated())
-      this.getProfile();
+    this.authService.isAuthenticated().subscribe(isAuthenticated => {
+      if (isAuthenticated)
+        this.getProfile();
+    });
   }
 
   getProfile() {

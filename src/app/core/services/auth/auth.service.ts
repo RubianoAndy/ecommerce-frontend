@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { environment } from '../../../../environments/environment.development';
 import { HttpClient } from '@angular/common/http';
 import { Router } from '@angular/router';
-import { finalize, Observable, tap } from 'rxjs';
+import { catchError, finalize, map, Observable, of, tap } from 'rxjs';
 import { LoadingService } from '../../../shared/services/loading/loading.service';
 
 @Injectable({
@@ -76,14 +76,29 @@ export class AuthService {
     return localStorage.getItem('refreshToken') || '';
   }
 
-  isAuthenticated(): boolean {
+  isAuthenticated(): Observable<boolean> {
     const accessToken = this.getAccessToken();
-
-    if (!accessToken || accessToken == '')
-      return false;
-
+  
+    if (!accessToken) {
+      return of(false);
+    }
+  
     const payload = JSON.parse(atob(accessToken.split('.')[1]));
-    const expired = payload.exp * 1000;   // Para dejarlo en milisegundos
-    return Date.now() < expired;
+    const expired = payload.exp * 1000;
+  
+    if (Date.now() < expired) {
+      return of(true);
+    } else {
+      return this.refreshToken().pipe(
+        map((response) => {
+          this.saveTokens(response.accessToken, response.refreshToken);
+          return true;
+        }),
+        catchError(() => {
+          this.signOut();
+          return of(false);
+        })
+      );
+    }
   }
 }
