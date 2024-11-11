@@ -2,7 +2,6 @@ import { NgClass } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { RouterLink, RouterLinkActive } from '@angular/router';
 import { environment } from '../../../../environments/environment.development';
-import { PrivacyPolicyInformationComponent } from "../../../features/components/privacy-policy/privacy-policy-information/privacy-policy-information.component";
 
 @Component({
   selector: 'app-navbar',
@@ -11,7 +10,6 @@ import { PrivacyPolicyInformationComponent } from "../../../features/components/
     NgClass,
     RouterLink,
     RouterLinkActive,
-    PrivacyPolicyInformationComponent
 ],
   templateUrl: './navbar.component.html',
   styleUrl: './navbar.component.scss'
