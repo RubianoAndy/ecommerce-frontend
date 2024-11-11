@@ -1,1 +1,98 @@
-<p>users works!</p>
+<div class="overflow-x-auto">
+    <table class="min-w-full divide-y divide-gray-200">
+        <thead class="bg-gray-100 whitespace-nowrap">
+            <tr>
+                <th class="px-4 py-4 text-left text-xs font-semibold text-green-700 uppercase tracking-wider">
+                    ID
+                </th>
+                <th class="px-4 py-4 text-left text-xs font-semibold text-green-700 uppercase tracking-wider">
+                    Nombre
+                </th>
+                <th class="px-4 py-4 text-left text-xs font-semibold text-green-700 uppercase tracking-wider">
+                    Email
+                </th>
+                <th class="px-4 py-4 text-left text-xs font-semibold text-green-700 uppercase tracking-wider">
+                    Rol
+                </th>
+                <th class="px-4 py-4 text-left text-xs font-semibold text-green-700 uppercase tracking-wider">
+                    Estado
+                </th>
+                <th class="px-4 py-4 text-left text-xs font-semibold text-green-700 uppercase tracking-wider">
+                    Fecha de creación
+                </th>
+                <th class="px-4 py-4 text-left text-xs font-semibold text-green-700 uppercase tracking-wider">
+                    Acciones
+                </th>
+            </tr>
+        </thead>
+
+        <tbody class="bg-white divide-y divide-gray-200 whitespace-nowrap">
+            @for (item of items; track $index) {
+                <tr>
+                    <td class="px-4 py-4 text-sm text-black">
+                        {{ $index + 1 }}
+                    </td>
+                    <td class="px-4 py-4 text-sm text-black">
+                        Alen doe
+                    </td>
+                    <td class="px-4 py-4 text-sm text-black">
+                        alenexample.com
+                    </td>
+                    <td class="px-4 py-4 text-sm text-black">
+                        User
+                    </td>
+                    <td class="px-4 py-4 text-sm text-black">
+                        <label class="relative cursor-pointer">
+                            <input type="checkbox" class="sr-only peer" [(ngModel)]="isChecked"/>
+                            <div
+                              class="w-11 h-6 flex items-center bg-gray-300 rounded-full peer peer-checked:after:translate-x-full after:absolute after:left-[2px] peer-checked:after:border-white after:bg-white after:border after:border-gray-300 after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-green-700">
+                            </div>
+                        </label>
+                    </td>
+                    <td class="px-4 py-4 text-sm text-black">
+                        2022-07-21
+                    </td>
+                    <td class="px-4 py-4 text-sm text-black">
+                        <button class="text-blue-600 mr-4"><span class="material-icons-outlined">edit</span></button>
+                        <button class="text-red-600"><span class="material-icons-outlined">delete</span></button>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+
+    <div class="md:flex m-4">
+        <p class="text-sm text-black flex-1">Showind 1 to 5 of 100 entries</p>
+
+        <div class="flex items-center max-md:mt-4">
+            <p class="text-sm text-black">Display</p>
+            <select class="text-sm text-black border border-gray-400 h-7 mx-4 px-1 outline-none">
+                <option>10</option>
+                <option>20</option>
+                <option>50</option>
+                <option>100</option>
+            </select>
+
+            <ul class="flex space-x-1 ml-2">
+                <li class="flex items-center justify-center cursor-pointer bg-green-700 text-white w-7 h-7 ">
+                    <span class="material-icons">keyboard_arrow_left</span>
+                </li>
+                <li class="flex items-center justify-center cursor-pointer text-sm w-7 h-7 text-gray-500 ">
+                    1
+                </li>
+                <li class="flex items-center justify-center cursor-pointer text-sm bg-green-700 text-white w-7 h-7 ">
+                    2
+                </li>
+                <li class="flex items-center justify-center cursor-pointer text-sm w-7 h-7 text-gray-500 ">
+                    3
+                </li>
+                <li class="flex items-center justify-center cursor-pointer text-sm w-7 h-7 text-gray-500 ">
+                    4
+                </li>
+                <li class="flex items-center justify-center cursor-pointer bg-green-700 text-white w-7 h-7 ">
+                    <span class="material-icons">keyboard_arrow_right</span>
+                </li>
+            </ul>
+        </div>
+    </div>
+  </div>
