@@ -69,7 +69,7 @@ export default class UsersComponent implements OnInit {
         alertBody = {
           type: 'error',
           title: '¡Error!',
-          message: response.error.message,
+          message: response.error?.message || 'Ha ocurrido un error inesperado',
         }
 
         this.alertService.showAlert(alertBody);
