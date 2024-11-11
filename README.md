@@ -47,12 +47,12 @@ and [Tailwind CSS](https://tailwindcss.com/) version 3.4.13.
 
 Once the repository is cloned, go in it and install the initial packages with the following commands:
 
-| Command                              | What it does?                         |
-| ------------------------------------ | :------------------------------------ |
-| `npm install -g @angular/cli@latest` | Install Angular in its latest version |
-| `npm install`                        | Install node modules dependencies     |
-| `npm install -D tailwindcss`         | Install Tailwindcss dependencies      |
-| `npx tailwindcss init`               | Init Tailwindcss                      |
+| Command                                                   | What it does?                         |
+| --------------------------------------------------------- | :------------------------------------ |
+| `npm install -g @angular/cli@latest`                      | Install Angular in its latest version |
+| `npm install`                                             | Install node modules dependencies     |
+| `npm install -D tailwindcss postcss autoprefixer`         | Install Tailwindcss dependencies      |
+| `npx tailwindcss init`                                    | Init Tailwindcss                      |
 
 ### Angular project commands
 
