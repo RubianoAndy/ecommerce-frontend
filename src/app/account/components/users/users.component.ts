@@ -18,15 +18,19 @@ export default class UsersComponent implements OnInit {
   tableFileds: string[] = ['Id', 'Nombre', 'Email', 'Rol', 'Estado', 'Fecha de creación', 'Acciones'];
   usersRecords: any[] = [];
 
-  page = 1;
-  pageSize = 10;
-  totalPages = 1;
-  totalRecords = 0;
+  page: number = 1;
+  pageSize: number = 10;
+  totalPages: number = 1;
+  totalRecords: number = 0;
   
   filters = [];
 
-  startRecord = 0;
-  endRecord = 0;
+  startRecord: number = 0;
+  endRecord: number = 0;
+
+  maxPageNumbers: number = 5;
+  startPage: number = 0;
+  endPage: number = 0;
 
   constructor (
     private usersService: UsersService,
@@ -50,6 +54,8 @@ export default class UsersComponent implements OnInit {
 
         this.startRecord = (this.page - 1) * this.pageSize + 1;
         this.endRecord = Math.min(this.page * this.pageSize, this.totalRecords);
+
+        this.calculatePageRange();
         
         alertBody = {
           type: 'okay',
@@ -89,6 +95,25 @@ export default class UsersComponent implements OnInit {
     if (this.page < this.totalPages) {
       this.page++;
       this.getUsers();
+    }
+  }
+
+  calculatePageRange() {
+    if (this.totalPages <= this.maxPageNumbers) {
+      this.startPage = 1;
+      this.endPage = this.totalPages;
+    } else {
+        let half = Math.floor(this.maxPageNumbers / 2);
+        if (this.page <= half) {
+          this.startPage = 1;
+          this.endPage = this.maxPageNumbers;
+        } else if (this.page + half >= this.totalPages) {
+          this.startPage = this.totalPages - this.maxPageNumbers + 1;
+          this.endPage = this.totalPages;
+        } else {
+          this.startPage = this.page - half;
+          this.endPage = this.page + half;
+        }
     }
   }
 }

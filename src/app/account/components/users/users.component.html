@@ -63,14 +63,14 @@
                 <li class="flex items-center justify-center cursor-pointer bg-green-700 text-white w-7 h-7" (click)="previousPage()" [class.disabled]="page <= 1">
                     <span class="material-icons">keyboard_arrow_left</span>
                 </li>
-                @for (i of [].constructor(totalPages); track $index) {
-                    <li 
-                      class="flex items-center justify-center cursor-pointer text-sm w-7 h-7"
-                      [class.bg-green-700]="page === ($index + 1)"
-                      [class.text-white]="page === ($index + 1)"
-                      [class.text-black]="page !== ($index + 1)"
-                      (click)="changePage($index + 1)">
-                        {{ $index + 1 }}
+
+                @for (i of [].constructor(endPage - startPage + 1); track $index) {
+                    <li class="flex items-center justify-center cursor-pointer text-sm w-7 h-7"
+                        [class.bg-green-700]="page === (startPage + $index)"
+                        [class.text-white]="page === (startPage + $index)"
+                        [class.text-black]="page !== (startPage + $index)"
+                        (click)="changePage(startPage + $index)">
+                        {{ startPage + $index }}
                     </li>
                 }
                 
