@@ -103,17 +103,18 @@ export default class UsersComponent implements OnInit {
       this.startPage = 1;
       this.endPage = this.totalPages;
     } else {
-        let half = Math.floor(this.maxPageNumbers / 2);
-        if (this.page <= half) {
-          this.startPage = 1;
-          this.endPage = this.maxPageNumbers;
-        } else if (this.page + half >= this.totalPages) {
-          this.startPage = this.totalPages - this.maxPageNumbers + 1;
-          this.endPage = this.totalPages;
-        } else {
-          this.startPage = this.page - half;
-          this.endPage = this.page + half;
-        }
+      let half = Math.floor(this.maxPageNumbers / 2);
+      
+      if (this.page <= half) {
+        this.startPage = 1;
+        this.endPage = this.maxPageNumbers;
+      } else if (this.page + half >= this.totalPages) {
+        this.startPage = this.totalPages - this.maxPageNumbers + 1;
+        this.endPage = this.totalPages;
+      } else {
+        this.startPage = this.page - half;
+        this.endPage = this.page + half;
+      }
     }
   }
 }
