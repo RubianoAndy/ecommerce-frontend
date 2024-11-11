@@ -57,13 +57,15 @@
     <div [ngClass]="{'translate-x-0': isMenuOpen, '-translate-x-full': !isMenuOpen}" class="lg:hidden fixed left-0 top-0 bottom-0 z-10 bg-white w-[250px] shadow-lg h-full transition-transform duration-500 text-sm">
         <div class='relative flex flex-col h-full'>
 
-            <div class="flex flex-wrap items-center justify-center cursor-pointer relative">
+            <div class="flex flex-wrap items-center justify-center cursor-pointer relative mt-4">
                 <a routerLink='/' (click)="toggleMenu()">
                     <img [src]='logo' class="w-32" />
                 </a>
             </div>
-            
-            <hr class="my-6 text-gray-200" />
+
+            <div class="px-4">
+                <hr class="my-6" />
+            </div>
 
             <div>
                 <!-- <h4 class="text-primary font-semibold mb-4">Productos</h4> -->
@@ -83,23 +85,64 @@
                 </ul>
             </div>
 
-            <hr class="my-6" />
-            
-            <div class="px-4">
-                <h4 class="text-green-700 font-semibold mb-4">Navegación</h4>
+            <div class="flex flex-col h-full px-4">
+                <hr class="my-6" />
+                
+                <div>
+                    <h4 class="text-green-700 font-semibold mb-4">Navegación</h4>
 
-                <ul class="space-y-4 px-2 flex-1 ">
-                    @for (navbarOption of navbarOptions; track $index) {
-                        <li>
-                            <a [routerLink]="navbarOption.url" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }" (click)="toggleMenu()" class="flex items-center w-full text-black hover:text-blue-600 transition-all">
-                                <span class="material-icons-outlined mr-4">{{ navbarOption.icon }}</span> {{ navbarOption.label }}
-                            </a>
-                        </li>
-                    }
-                </ul>
+                    <ul class="space-y-4 px-2 flex-1 ">
+                        @for (navbarOption of navbarOptions; track $index) {
+                            <li>
+                                <a [routerLink]="navbarOption.url" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }" (click)="toggleMenu()" class="flex items-center w-full text-black hover:text-blue-600 transition-all">
+                                    <span class="material-icons-outlined mr-4">{{ navbarOption.icon }}</span> {{ navbarOption.label }}
+                                </a>
+                            </li>
+                        }
+                    </ul>
+                </div>
+
+                <hr class="my-6" />
+
+                <div class="flex-1">
+                    <h4 class="text-green-700 font-semibold mb-4">Navegación</h4>
+
+                    <ul class="space-y-4 px-2 flex-1 ">
+                        @for (navbarOption of navbarOptions; track $index) {
+                            <li>
+                                <a [routerLink]="navbarOption.url" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }" (click)="toggleMenu()" class="flex items-center w-full text-black hover:text-blue-600 transition-all">
+                                    <span class="material-icons-outlined mr-4">{{ navbarOption.icon }}</span> {{ navbarOption.label }}
+                                </a>
+                            </li>
+                        }
+                    </ul>
+                </div>
+
+                <hr class="my-6" />
+
+                <div class="my-4">
+                    <ul class="space-y-4 px-2">
+                    <li>
+                        <a href="javascript:void(0)" class="text-black text-sm flex items-center hover:text-blue-600 transition-all">
+                        <span class="material-icons-outlined mr-2 text-primary">settings</span> Configuración
+                        </a>
+                    </li>
+                    <li>
+                        <a href="javascript:void(0)" class="text-black text-sm flex items-center hover:text-blue-600 transition-all">
+                        <span class="material-icons-outlined mr-2 text-primary">person</span> Perfil
+                        </a>
+                    </li>
+                    </ul>
+        
+                    <!-- <div class="flex flex-wrap items-center cursor-pointer border-t py-2 mt-6">
+                    <img src='https://readymadeui.com/team-2.webp' class="w-10 h-10 rounded-md border-2 border-white" />
+                    <div class="ml-4">
+                        <p class="text-sm text-[#333] font-semibold">John Doe</p>
+                        <p class="text-xs text-gray-400 mt-0.5">Active free account</p>
+                    </div>
+                    </div> -->
+                </div>
             </div>
-
-            <hr class="my-6" />
         </div>
         <!-- <ul class='relative flex flex-col h-full'>
             <li>
