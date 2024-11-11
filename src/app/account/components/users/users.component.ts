@@ -44,7 +44,13 @@ export default class UsersComponent implements OnInit {
   getUsers () {
     var alertBody = null;
 
-    this.usersService.getUsers(this.page + 1, this.pageSize, this.filters).subscribe({
+    /* if (this.filters)
+      this.filters.push({ field: 'name', value: 'Valor del formulario' });
+  
+    if (this.filters)
+      this.filters.push({ field: 'email', value: 'Valor del formulario' }); */
+
+    this.usersService.getUsers(this.page, this.pageSize, this.filters).subscribe({
       next: (response) => {
         this.usersRecords = response.users;
         this.page = response.page;
