@@ -91,7 +91,7 @@ export class AuthService {
     } else {
       return this.refreshToken().pipe(
         map((response) => {
-          this.saveTokens(response.accessToken, response.refreshToken);
+          this.setAccessToken(response.accessToken);
           return true;
         }),
         catchError(() => {
