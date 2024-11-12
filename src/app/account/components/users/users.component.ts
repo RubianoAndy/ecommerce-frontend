@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { UsersService } from '../../../features/services/users/users.service';
+import { UsersService } from '../../services/users/users.service';
 import { DatePipe } from '@angular/common';
 import { AlertService } from '../../../shared/services/alert/alert.service';
 
