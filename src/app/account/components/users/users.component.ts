@@ -42,8 +42,6 @@ export default class UsersComponent implements OnInit {
   }
 
   getUsers () {
-    var alertBody = null;
-
     /* if (this.filters)
       this.filters.push({ field: 'name', value: 'Valor del formulario' });
   
@@ -62,23 +60,8 @@ export default class UsersComponent implements OnInit {
         this.endRecord = Math.min(this.page * this.pageSize, this.totalRecords);
 
         this.calculatePageRange();
-        
-        alertBody = {
-          type: 'okay',
-          title: '¡Felicidades!',
-          message: response.message,
-        }
-
-        this.alertService.showAlert(alertBody);
       },
-      error: (response) => {
-        alertBody = {
-          type: 'error',
-          title: '¡Error!',
-          message: response.error?.message || 'Ha ocurrido un error inesperado',
-        }
-
-        this.alertService.showAlert(alertBody);
+      error: () => {
       }
     })
   }
@@ -122,5 +105,39 @@ export default class UsersComponent implements OnInit {
         this.endPage = this.page + half;
       }
     }
+  }
+
+  changeStatus(user: any) {
+    var alertBody = null;
+
+    var body = {
+      userId: user.id,
+      activated: user.activated,
+    };
+
+    this.usersService.changeStatus(body).subscribe({
+      next: (response) => {
+        alertBody = {
+          type: 'okay',
+          title: '¡Felicidades!',
+          message: response.message,
+        };
+
+        this.getUsers();
+
+        this.alertService.showAlert(alertBody);
+      },
+      error: (response) => {
+        alertBody = {
+          type: 'error',
+          title: '¡Error!',
+          message: response.error?.message || 'Ha ocurrido un error inesperado',
+        };
+
+        this.getUsers();
+
+        this.alertService.showAlert(alertBody);
+      }
+    })
   }
 }
