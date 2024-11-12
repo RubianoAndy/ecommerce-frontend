@@ -1,11 +1,14 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { AlertService } from '../../services/alert/alert.service';
 import { Subscription } from 'rxjs';
+import { NgClass } from '@angular/common';
 
 @Component({
   selector: 'app-alert',
   standalone: true,
-  imports: [],
+  imports: [
+    NgClass
+  ],
   templateUrl: './alert.component.html',
   styleUrl: './alert.component.scss'
 })
