@@ -32,6 +32,10 @@ export default class UsersComponent implements OnInit {
   startPage: number = 0;
   endPage: number = 0;
 
+  deleteModal: boolean = false;
+
+  userSelected = null;
+
   constructor (
     private usersService: UsersService,
     private alertService: AlertService,
@@ -139,5 +143,44 @@ export default class UsersComponent implements OnInit {
         this.alertService.showAlert(alertBody);
       }
     })
+  }
+
+  openDeleteModal(userId: any) {
+    this.userSelected = userId;
+    this.deleteModal = true;
+  }
+
+  closeDeleteModal() {
+    this.userSelected = null;
+    this.deleteModal = false;
+  }
+
+  deleteUser() {
+    var alertBody = null;
+
+    this.usersService.delete(this.userSelected).subscribe({
+      next: (response: any) => {
+        alertBody = {
+          type: 'okay',
+          title: '¡Listo!',
+          message: response.message,
+        };
+
+        this.getUsers();
+
+        this.alertService.showAlert(alertBody);
+      },
+      error: (response) => {
+        alertBody = {
+          type: 'error',
+          title: '¡Error!',
+          message: response.error?.message || 'Ha ocurrido un error inesperado',
+        };
+
+        this.alertService.showAlert(alertBody);
+      }
+    });
+
+    this.getUsers();
   }
 }

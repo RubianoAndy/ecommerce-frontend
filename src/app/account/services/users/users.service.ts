@@ -33,7 +33,7 @@ export class UsersService {
 
     return this.http.get(`${this.apiUrl}/users`, { params }).pipe(
       finalize(() => {
-        this.loadingService.hide(); // Ocultar loading después de la petición
+        this.loadingService.hide();
       })
     );
   }
@@ -43,7 +43,17 @@ export class UsersService {
 
     return this.http.patch(`${this.apiUrl}/update-user-status`, body).pipe(
       finalize(() => {
-        this.loadingService.hide(); // Ocultar loading después de la petición
+        this.loadingService.hide();
+      })
+    );
+  }
+
+  delete(userId: any) {
+    this.loadingService.show()
+
+    return this.http.delete(`${this.apiUrl}/delete-user/${userId}`).pipe(
+      finalize(() => {
+        this.loadingService.hide();
       })
     );
   }
