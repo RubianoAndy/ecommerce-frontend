@@ -15,7 +15,7 @@ import { RouterLink, RouterLinkActive, RouterOutlet } from '@angular/router';
 export class AccountComponent {
 
   adminMenuOptions = [
-    { label: 'Usuarios', url: '/', icon: 'person' },
-  ]
+    { label: 'Usuarios', url: 'users', icon: 'person' },
+  ];
 
 }

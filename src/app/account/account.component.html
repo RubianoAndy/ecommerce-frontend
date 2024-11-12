@@ -52,7 +52,7 @@
       <ul class="space-y-4 px-2 flex-1">
         @for (adminMenuOption of adminMenuOptions; track $index) {
           <li>
-            <a [routerLink]="['/account', adminMenuOption.url]" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }" class="text-black text-sm flex items-center hover:text-blue-500 transition-all">
+            <a [routerLink]="adminMenuOption.url" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }" class="text-black text-sm flex items-center hover:text-blue-500 transition-all">
               <span class="material-icons-outlined mr-2">{{ adminMenuOption.icon }}</span> {{ adminMenuOption.label }}
             </a>
           </li>

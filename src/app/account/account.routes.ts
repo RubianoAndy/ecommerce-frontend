@@ -8,13 +8,13 @@ const routes: Routes = [{
     component: AccountComponent,
     children: [
       {
-        path: '', redirectTo: '', pathMatch: 'full'
+        path: '', redirectTo: 'users', pathMatch: 'full'
       },
       {
-        path: '', loadComponent: () => import('./components/users/users.component')
+        path: 'users', loadComponent: () => import('./components/users/users.component')
       },
       { 
-        path: '**', redirectTo: '', pathMatch: 'full'
+        path: '**', redirectTo: 'users', pathMatch: 'full'
       },
     ]
 }];
