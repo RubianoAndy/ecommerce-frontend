@@ -41,7 +41,7 @@ export class UsersService {
   changeStatus(body: any): Observable<any> {
     this.loadingService.show()
 
-    return this.http.post(`${this.apiUrl}/user-activation`, body).pipe(
+    return this.http.patch(`${this.apiUrl}/update-user-status`, body).pipe(
       finalize(() => {
         this.loadingService.hide(); // Ocultar loading después de la petición
       })
