@@ -1,5 +1,6 @@
 import { NgClass } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
+import { DarkModeService } from '../../services/dark-mode/dark-mode.service';
 
 @Component({
   selector: 'app-dark-mode-toggle',
@@ -13,6 +14,10 @@ import { Component, OnInit } from '@angular/core';
 export class DarkModeToggleComponent implements OnInit {
   darkMode: boolean | undefined;
 
+  constructor (
+    private darkModeService: DarkModeService,
+  ) { }
+
   ngOnInit(): void {
     const theme = localStorage.getItem('theme');
     if (theme === 'dark' ) {
@@ -22,6 +27,8 @@ export class DarkModeToggleComponent implements OnInit {
       document.documentElement.classList.remove('dark');
       this.darkMode = false;
     }
+
+    this.darkModeService.setDarkMode(this.darkMode);
   }
 
   toggleDarkMode() {
@@ -36,5 +43,7 @@ export class DarkModeToggleComponent implements OnInit {
       localStorage.setItem('theme', 'dark');
       this.darkMode = true;
     }
+    
+    this.darkModeService.setDarkMode(this.darkMode);
   }
 }
