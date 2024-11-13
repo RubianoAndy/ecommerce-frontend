@@ -49,6 +49,18 @@ export class AppComponent implements OnInit{
   }
 
   ngOnInit(): void {
+    const theme = localStorage.getItem('theme');
+
+    if (theme) {
+      if (theme === 'dark')
+        document.documentElement.classList.add('dark');
+      else 
+        document.documentElement.classList.remove('dark');
+    } else {
+      localStorage.setItem('theme', 'dark');
+      document.documentElement.classList.add('dark');
+    }
+
     // Esta parte permite que los links del footer redirigan mostrando la parte alta de la página
     this.router.events
       .pipe(filter(event => event instanceof NavigationEnd))
