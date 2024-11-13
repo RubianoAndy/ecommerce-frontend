@@ -1,18 +1,18 @@
-<footer class="bg-gray-100">
+<footer class="bg-gray-100 dark:bg-gray-800 border-t dark:border-gray-300">
   <div class="mx-auto w-full p-6 md:py-8">
     <div class="md:flex md:justify-between">
       <div class="flex flex-col items-center mb-6 md:mb-0">
         <a routerLink="/" class="flex items-center mb-3">
           <img [src]="logo" class="h-20" alt="Logo" />
         </a>
-        <span class="text-xl font-semibold text-black text-center">{{ page }}</span>
+        <span class="text-xl font-semibold text-black dark:text-white text-center">{{ page }}</span>
       </div>
 
       <div class="grid max-sm:grid-cols-1 grid-cols-2 max-sm:flex max-sm:flex-col max-sm:items-center max-sm:space-y-8 max-sm:text-center">
         <div>
           <h2 class="mb-4 text-sm font-bold text-green-700 uppercase">Marco legal</h2>
 
-          <ul class="text-black text-sm">
+          <ul class="text-black dark:text-white text-sm">
             <li class="mb-4">
               <a routerLink="/terms-and-conditions" class="hover:text-blue-500">Términos y condiciones</a>
             </li>
@@ -30,21 +30,21 @@
         <div>
           <h2 class="mb-4 text-sm font-bold text-green-700 uppercase">Contacto</h2>
 
-          <ul class="text-black text-sm">
+          <ul class="text-black dark:text-white text-sm">
             <li class="mb-4 flex items-center max-sm:justify-center">
-              <span class="material-icons mr-2 text-green-700 w-5 h-5">mail</span>
+              <span class="material-icons mr-4 text-green-700 w-5 h-5">mail</span>
               <a [href]="'mailto:' + email" class="hover:text-blue-500 overflow-wrap break-words">{{ email }}</a>
             </li>
 
             <li class="mb-4 flex items-center max-sm:justify-center">
-              <span class="material-icons mr-2 text-green-700 w-5 h-5">call</span>
+              <span class="material-icons mr-4 text-green-700 w-5 h-5">call</span>
               <a href="https://wa.me/573178737226" target="_blank" class="hover:text-blue-500">
                 +57 317 873 7226
               </a>
             </li>
 
             <li class="flex items-center max-sm:justify-center">
-              <span class="material-icons mr-2 text-green-700 w-5 h-5">location_on</span>
+              <span class="material-icons mr-4 text-green-700 w-5 h-5">location_on</span>
               Bogotá, Colombia
             </li>
           </ul>
@@ -85,7 +85,7 @@
         </a>
       </div>
   
-      <p class="text-black text-sm">
+      <p class="text-black dark:text-white text-sm">
         &copy; {{ currentYear }}. <a href="https://YouTube.com/@RubianoAndy" target="_blank" class="hover:underline hover:text-green-700">{{ page }}</a>. Todos los derechos reservados.
       </p>
     </div>
