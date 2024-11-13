@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { UsersService } from '../../services/users/users.service';
-import { DatePipe } from '@angular/common';
+import { DatePipe, NgClass } from '@angular/common';
 import { AlertService } from '../../../shared/services/alert/alert.service';
 
 @Component({
@@ -10,11 +10,14 @@ import { AlertService } from '../../../shared/services/alert/alert.service';
   imports: [
     FormsModule,
     DatePipe,
+    NgClass,
   ],
   templateUrl: './users.component.html',
   styleUrl: './users.component.scss'
 })
 export default class UsersComponent implements OnInit {
+  avatar = 'assets/images/avatar/Avatar.png';
+
   tableFileds: string[] = ['Id', 'Nombre', 'Email', 'Rol', 'Estado', 'Fecha de creación', 'Acciones'];
   usersRecords: any[] = [];
 

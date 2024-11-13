@@ -1,27 +1,27 @@
 <div class="flex flex-col">
     <div class="overflow-x-auto">
         <div class="inline-block min-w-full align-middle">
-            <div class="overflow-hidden shadow">
-                <table class="min-w-full divide-gray-200">
-                    <thead class="bg-gray-100 whitespace-nowrap">
+            <div class="overflow-hidden">
+                <table class="min-w-full divide-gray-200 dark:divide-gray-700">
+                    <thead class="bg-gray-200 dark:bg-black whitespace-nowrap">
                         <tr>
                             @for (tableFiled of tableFileds; track $index) {
-                                <th class="px-4 py-4 text-left text-xs font-semibold text-green-700 uppercase tracking-wider">
+                                <th class="px-4 py-4 text-left text-xs font-semibold text-green-700 dark:text-secondary uppercase tracking-wider">
                                     {{ tableFiled}}
                                 </th>
                             }
                         </tr>
                     </thead>
 
-                    <tbody class="bg-white divide-y divide-gray-200 whitespace-nowrap">
+                    <tbody class="bg-white dark:bg-gray-900 divide-y divide-gray-200 dark:divide-gray-700 whitespace-nowrap">
                         @for (user of usersRecords; track $index) {
-                            <tr>
-                                <td class="px-4 py-4 text-sm text-black">
+                            <tr class="hover:bg-gray-100 dark:hover:bg-gray-700">
+                                <td class="px-4 py-4 text-sm text-black dark:text-white">
                                     {{ user.id }}
                                 </td>
 
-                                <td class="flex items-center space-x-6 p-4 mr-12 text-sm text-black whitespace-nowrap">
-                                    <img class="w-10 h-10 rounded-full" src="https://readymadeui.com/profile_3.webp" alt="avatar">
+                                <td class="flex items-center space-x-6 p-4 mr-12 text-sm text-black dark:text-white whitespace-nowrap">
+                                    <img class="w-10 h-10" [src]="avatar" alt="avatar">
                                     <div class="text-sm font-normal">
                                         <div class="text-base font-semibold">
                                             {{ user.name_1 }} {{ user.name_2 }} {{ user.lastname_1 }} {{ user.lastname_2 }}
@@ -35,15 +35,15 @@
                                     </div>
                                 </td>
 
-                                <td class="px-4 py-4 text-sm text-black">
+                                <td class="px-4 py-4 text-sm text-black dark:text-white">
                                     {{ user.email }}
                                 </td>
 
-                                <td class="px-4 py-4 text-sm text-black">
+                                <td class="px-4 py-4 text-sm text-black dark:text-white">
                                     {{ user.role }}
                                 </td>
 
-                                <td class="px-4 py-4 text-sm text-black">
+                                <td class="px-4 py-4 text-sm text-black dark:text-white">
                                     <label class="relative cursor-pointer">
                                         <input type="checkbox" class="sr-only peer" (change)="changeStatus(user)" [(ngModel)]="user.activated"/>
                                         <div
@@ -52,7 +52,7 @@
                                     </label>
                                 </td>
 
-                                <td class="px-4 py-4 text-sm text-black">
+                                <td class="px-4 py-4 text-sm text-black dark:text-white">
                                     {{ user.createdAt | date: 'dd/MM/yyyy HH:mm:ss' }}
                                 </td>
 
@@ -68,7 +68,7 @@
         </div>
 
         <div class="md:flex m-4">
-            <p class="text-sm text-black flex-1">
+            <p class="text-sm text-black dark:text-white flex-1">
                 Mostrando {{ startRecord }} a {{ endRecord }} de {{ totalRecords }} registros
             </p>
 
@@ -82,21 +82,23 @@
                 </select> -->
 
                 <ul class="flex space-x-1 ml-2">
-                    <li class="flex items-center justify-center cursor-pointer bg-green-700 text-white w-7 h-7" (click)="previousPage()" [class.disabled]="page <= 1">
+                    <li class="flex items-center justify-center cursor-pointer bg-green-700 text-secondary w-7 h-7" (click)="previousPage()" [class.disabled]="page <= 1">
                         <span class="material-icons">keyboard_arrow_left</span>
                     </li>
 
                     @for (i of [].constructor(endPage - startPage + 1); track $index) {
                         <li class="flex items-center justify-center cursor-pointer text-sm w-7 h-7"
-                            [class.bg-green-700]="page === (startPage + $index)"
-                            [class.text-white]="page === (startPage + $index)"
-                            [class.text-black]="page !== (startPage + $index)"
-                            (click)="changePage(startPage + $index)">
+                            [ngClass]="{
+                                'bg-green-700': page === (startPage + $index),
+                                'text-white': page === (startPage + $index),
+                                'text-black dark:text-white': page !== (startPage + $index),
+                            }" (click)="changePage(startPage + $index)"
+                        >
                             {{ startPage + $index }}
                         </li>
                     }
                     
-                    <li class="flex items-center justify-center cursor-pointer bg-green-700 text-white w-7 h-7" (click)="nextPage()" [class.disabled]="page >= totalPages">
+                    <li class="flex items-center justify-center cursor-pointer bg-green-700 text-secondary w-7 h-7" (click)="nextPage()" [class.disabled]="page >= totalPages">
                         <span class="material-icons">keyboard_arrow_right</span>
                     </li>
                 </ul>
