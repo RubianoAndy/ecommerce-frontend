@@ -1,10 +1,10 @@
 <div class="flex" style="height: calc(100vh - 120px);"> <!-- Misma altura que en el app.component.html -->
-  <div class="w-[250px] bg-gray-100 p-4 max-lg:hidden flex flex-col h-full">
+  <div class="w-[250px] bg-gray-100 dark:bg-gray-900 p-4 max-lg:hidden flex flex-col h-full">
     <div>
-      <h4 class="text-sm text-gray-400 mb-4">Insights</h4>
+      <h4 class="text-sm text-blue-600 dark:text-secondary font-bold mb-4">Insights</h4>
       <ul class="space-y-4 px-2 flex-1">
         <li>
-          <a href="javascript:void(0)" class="text-[#333] text-sm flex items-center hover:text-blue-600 transition-all">
+          <a href="javascript:void(0)" class="text-black dark:text-white text-sm flex items-center hover:text-blue-600 dark:hover:text-blue-600 transition-all">
             <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" class="w-4 h-4 mr-4"
               viewBox="0 0 512 512">
               <path
@@ -15,7 +15,7 @@
           </a>
         </li>
         <li>
-          <a href="javascript:void(0)" class="text-[#333] text-sm flex items-center hover:text-blue-600 transition-all">
+          <a href="javascript:void(0)" class="text-black dark:text-white text-sm flex items-center hover:text-blue-600 dark:hover:text-blue-600 transition-all">
             <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" class="w-4 h-4 mr-4"
               viewBox="0 0 16 16">
               <path
@@ -26,7 +26,7 @@
           </a>
         </li>
         <li>
-          <a href="javascript:void(0)" class="text-[#333] text-sm flex items-center hover:text-blue-600 transition-all">
+          <a href="javascript:void(0)" class="text-black dark:text-white text-sm flex items-center hover:text-blue-600 dark:hover:text-blue-600 transition-all">
             <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" class="w-4 h-4 mr-4"
               viewBox="0 0 512 512">
               <path
@@ -48,11 +48,11 @@
     <hr class="my-6" />
 
     <div class="flex-1">
-      <h4 class="text-sm font-semibold text-green-700 mb-4">Administración</h4>
+      <h4 class="text-sm text-blue-600 dark:text-secondary font-bold mb-4">Administración</h4>
       <ul class="space-y-4 px-2 flex-1">
         @for (adminMenuOption of adminMenuOptions; track $index) {
           <li>
-            <a [routerLink]="adminMenuOption.url" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }" class="text-black text-sm flex items-center hover:text-blue-500 transition-all">
+            <a [routerLink]="adminMenuOption.url" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }" class="text-black dark:text-white text-sm flex items-center hover:text-blue-600 dark:hover:text-blue-600 transition-all">
               <span class="material-icons-outlined mr-2">{{ adminMenuOption.icon }}</span> {{ adminMenuOption.label }}
             </a>
           </li>
@@ -62,16 +62,16 @@
 
     <hr class="my-6" />
 
-    <div class="mt-4">
+    <div class="my-4">
       <ul class="space-y-4 px-2">
         <li>
-          <a href="javascript:void(0)" class="text-black text-sm flex items-center hover:text-blue-600 transition-all">
-            <span class="material-icons-outlined mr-2 text-primary">settings</span> Configuración
+          <a href="javascript:void(0)" class="text-black dark:text-white text-sm flex items-center hover:text-blue-600 dark:hover:text-blue-600 transition-all">
+            <span class="material-icons-outlined mr-2 text-green-700">settings</span> Configuración
           </a>
         </li>
         <li>
-          <a href="javascript:void(0)" class="text-black text-sm flex items-center hover:text-blue-600 transition-all">
-            <span class="material-icons-outlined mr-2 text-primary">person</span> Perfil
+          <a href="javascript:void(0)" class="text-black dark:text-white text-sm flex items-center hover:text-blue-600 dark:hover:text-blue-600 transition-all">
+            <span class="material-icons-outlined mr-2 text-green-700">person</span> Perfil
           </a>
         </li>
       </ul>
