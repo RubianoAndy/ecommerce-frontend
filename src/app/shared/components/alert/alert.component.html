@@ -1,12 +1,12 @@
-@if (showAlert) {
-    <div aria-live="assertive" class="fixed inset-0 flex items-end md:items-start justify-center md:justify-end p-4 z-50 pointer-events-none">
+<div aria-live="assertive" class="fixed inset-0 flex flex-col items-center justify-end lg:items-end lg:justify-start p-4 z-50 pointer-events-none space-y-2">
+    @for (alert of alerts; track $index) {
         <div class="flex w-full max-w-xs overflow-hidden bg-white shadow-lg relative border pointer-events-auto"
         [ngClass]="{
-            'border-green-700 ': type === 'okay',
-            'border-yellow-500 ': type === 'warning',
-            'border-red-500 ': type === 'error',
+            'border-green-700 ': alert.type === 'okay',
+            'border-yellow-500 ': alert.type === 'warning',
+            'border-red-500 ': alert.type === 'error',
         }">
-            @switch (type) {
+            @switch (alert.type) {
                 @case ('okay') {
                     <div class="bg-green-700 w-16 shrink-0 flex items-center justify-center">    
                         <span class="material-icons text-white">check</span>
@@ -27,21 +27,21 @@
             <div class="flex flex-col justify-center px-4 py-1">
                 <p class="font-bold text-sm mr-4 mb-0.5 uppercase"
                 [ngClass]="{
-                    'text-green-700': type === 'okay',
-                    'text-yellow-500': type === 'warning',
-                    'text-red-500': type === 'error',
+                    'text-green-700': alert.type === 'okay',
+                    'text-yellow-500': alert.type === 'warning',
+                    'text-red-500': alert.type === 'error',
                 }">
-                    {{ title }}
+                    {{ alert.title }}
                 </p>
 
-                <span class="text-sm text-start text-black">{{ message }}</span>
+                <span class="text-sm text-start text-black">{{ alert.message }}</span>
             </div>
 
             <div class="ml-4 flex flex-shrink-0 absolute right-1 top-1">
-                <button (click)="closeAlert()" type="button" class="text-black bg-transparent hover:text-red-500 text-sm w-6 h-6 ms-auto inline-flex justify-center items-center">
+                <button (click)="closeAlert(alert)" alert.type="button" class="text-black bg-transparent hover:text-red-500 text-sm w-6 h-6 ms-auto inline-flex justify-center items-center">
                     <span class="material-icons">close</span>
                 </button>
             </div>
         </div>
-    </div>
-}
+    }
+</div>

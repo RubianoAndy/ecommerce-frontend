@@ -3,6 +3,12 @@ import { AlertService } from '../../services/alert/alert.service';
 import { Subscription } from 'rxjs';
 import { NgClass } from '@angular/common';
 
+interface Alert {
+  type: 'okay' | 'warning' | 'error';
+  title: string;
+  message: string;
+}
+
 @Component({
   selector: 'app-alert',
   standalone: true,
@@ -13,13 +19,9 @@ import { NgClass } from '@angular/common';
   styleUrl: './alert.component.scss'
 })
 export class AlertComponent implements OnInit, OnDestroy {
-  alertTime: number = 4;    // Tiempo en segundos
-  message: string = '';
-  type: string = '';
-  title: string = '';
-  showAlert: boolean = false;
-
+  alerts: Alert[] = [];
   private alertSubscription: Subscription = new Subscription();
+  alertTime: number = 4;    // Tiempo en segundos
 
   constructor (
     private alertService: AlertService,
@@ -29,25 +31,32 @@ export class AlertComponent implements OnInit, OnDestroy {
     this.alert();
   }
 
-  alert() {
-    this.alertSubscription = this.alertService.alertMessage$.subscribe(msg => {
-      this.type = msg.type;
-      this.message = msg.message;
-      this.title = msg.title;
-      this.showAlert = true;
-
-      setTimeout(() => {
-        this.showAlert = false;
-      }, 1000 * this.alertTime);
-    });
-  }
-
-  closeAlert() {
-    this.showAlert = false;
-  }
-
   ngOnDestroy(): void {
     if (this.alertSubscription)
       this.alertSubscription.unsubscribe();
+  }
+
+  alert() {
+    this.alertSubscription = this.alertService.alertMessage$.subscribe(msg => {
+      const newAlert: Alert = {
+        type: msg.type,
+        title: msg.title,
+        message: msg.message
+      };
+
+      this.alerts.push(newAlert);
+
+      setTimeout(() => {
+        this.removeAlert(newAlert);
+      }, this.alertTime * 1000);
+    });
+  }
+
+  removeAlert(alert: Alert): void {
+    this.alerts = this.alerts.filter(a => a !== alert);
+  }
+
+  closeAlert(alert: Alert): void {
+    this.removeAlert(alert);
   }
 }
