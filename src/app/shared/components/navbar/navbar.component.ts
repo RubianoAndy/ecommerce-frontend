@@ -2,6 +2,7 @@ import { NgClass } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { RouterLink, RouterLinkActive } from '@angular/router';
 import { environment } from '../../../../environments/environment.development';
+import { DarkModeToggleComponent } from '../dark-mode-toggle/dark-mode-toggle.component';
 
 @Component({
   selector: 'app-navbar',
@@ -10,6 +11,7 @@ import { environment } from '../../../../environments/environment.development';
     NgClass,
     RouterLink,
     RouterLinkActive,
+    DarkModeToggleComponent
 ],
   templateUrl: './navbar.component.html',
   styleUrl: './navbar.component.scss'
@@ -19,7 +21,6 @@ export class NavbarComponent implements OnInit {
 
   isMenuOpen = false;
   isSubMenuOpen = false;
-  isHovered = false;
 
   profile: any = null;
 

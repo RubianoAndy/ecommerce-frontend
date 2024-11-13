@@ -5,6 +5,7 @@ import { environment } from '../../../../environments/environment.development';
 import { AuthService } from '../../../core/services/auth/auth.service';
 import { AlertService } from '../../services/alert/alert.service';
 import { ProfileService } from '../../../account/services/profile/profile.service';
+import { DarkModeService } from '../../services/dark-mode/dark-mode.service';
 
 @Component({
   selector: 'app-header',
@@ -27,9 +28,14 @@ export class HeaderComponent implements OnInit {
     private authService: AuthService,
     private profileService: ProfileService,
     private alertService: AlertService,
+    private darkModeService: DarkModeService,
   ) { }
 
   ngOnInit(): void {
+    this.darkModeService.darkMode$.subscribe(darkMode => {
+      this.logo = darkMode ? environment.lightLogo : environment.darkLogo;
+    });
+
     this.authService.isAuthenticated().subscribe(isAuthenticated => {
       if (isAuthenticated)
         this.getProfile();
