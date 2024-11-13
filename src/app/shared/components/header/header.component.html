@@ -1,4 +1,4 @@
-<header class='border-b dark:border-gray-300 bg-white dark:bg-gray-800 max-h-[70px]'>
+<header class='border-b dark:border-gray-300 bg-white dark:bg-gray-900 max-h-[70px]'>
     <div class='max-w-screen-2xl mx-auto flex items-center md:justify-center flex-wrap gap-5 relative py-3 px-10'>
         <a routerLink="/">
             <img [src]="logo" alt="logo" class='w-24' />
@@ -14,7 +14,7 @@
             </div>
         } @else {
             <div class="space-x-6 md:absolute md:right-8 flex items-center max-md:ml-auto group relative">
-                <div class="inline-block border-gray-100 dark:border-gray-700 border-l-2 pl-6 py-2">
+                <div class="inline-block border-gray-100 dark:border-white border-l-2 pl-6 py-2">
                     <button type="button" class="flex" aria-expanded="false" (click)="toggleAccountMenu()">
                         <img class="w-10 h-10 rounded-lg" [src]="avatar" alt="user photo">
                     </button>
@@ -25,7 +25,7 @@
                     </div>
             
                     <div id="dropdown-user" [ngClass]="{'max-h-[500px] opacity-100': isAccountMenuOpen, 'max-h-0 opacity-0': !isAccountMenuOpen}" 
-                         class="z-10 overflow-hidden transition-all duration-500 absolute right-0 mt-2 text-lg list-none bg-white dark:bg-gray-800 shadow-lg border border-gray-100 dark:border-gray-700">
+                    class="z-10 overflow-hidden transition-all duration-500 absolute right-0 mt-2 text-lg list-none bg-white dark:bg-gray-900 shadow-lg border border-gray-100 dark:border-gray-700">
                         <div class="px-4 py-3 border-b border-gray-100 dark:border-gray-700" role="none">
                             <p class="text-sm font-semibold text-primary dark:text-secondary" role="none">{{ profile?.name_1 }} {{ profile?.lastname_1 }}</p>
                             <p class="text-sm text-gray-900 dark:text-white truncate" role="none">{{ profile?.email || 'Email no disponible' }}</p>

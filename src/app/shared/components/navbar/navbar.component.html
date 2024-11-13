@@ -1,4 +1,4 @@
-<nav class='border-b dark:border-white dark:bg-gray-800 bg-secondary max-h-[70px]'>
+<nav class='dark:border-b dark:border-white bg-secondary dark:bg-gray-900 max-h-[70px]'>
     <div class="flex max-w-screen-2xl mx-auto max-md:py-2">
         <div class="group relative hidden md:flex px-10 py-4 bg-primary items-center cursor-pointer text-white">
             <span class="material-icons-outlined mr-2">store</span> Productos
@@ -7,7 +7,7 @@
             <ul class='absolute z-10 shadow-lg text-black bg-white md:top-14 left-0 min-w-[250px] max-h-0 overflow-hidden group-hover:opacity-100 group-hover:max-h-[700px] group-hover:py-2 transition-all duration-500'>
                 @for (category of categories; track $index) {
                     <li>
-                        <a [routerLink]="category.url" class="flex items-center w-full text-left px-4 py-2 hover:bg-gray-100 hover:text-blue-700 hover:font-semibold" role="menuitem">
+                        <a [routerLink]="category.url" class="flex items-center w-full text-left px-4 py-2 hover:bg-gray-100 hover:text-blue-600 hover:font-semibold" role="menuitem">
                             {{ category.label }}
                         </a>
                     </li>
