@@ -145,7 +145,7 @@ export default class UsersComponent implements OnInit {
     })
   }
 
-  openDeleteModal(userId: any) {
+  /* openDeleteModal(userId: any) {
     this.userSelected = userId;
     this.deleteModal = true;
   }
@@ -153,9 +153,9 @@ export default class UsersComponent implements OnInit {
   closeDeleteModal() {
     this.userSelected = null;
     this.deleteModal = false;
-  }
+  } */
 
-  deleteUser() {
+  /* deleteUser() {
     var alertBody = null;
 
     this.usersService.delete(this.userSelected).subscribe({
@@ -166,6 +166,7 @@ export default class UsersComponent implements OnInit {
           message: response.message,
         };
 
+        this.closeDeleteModal();
         this.getUsers();
 
         this.alertService.showAlert(alertBody);
@@ -182,5 +183,5 @@ export default class UsersComponent implements OnInit {
     });
 
     this.getUsers();
-  }
+  } */
 }
