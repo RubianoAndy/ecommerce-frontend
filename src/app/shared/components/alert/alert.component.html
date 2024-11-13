@@ -1,6 +1,6 @@
 <div aria-live="assertive" class="fixed inset-0 flex flex-col items-center justify-end lg:items-end lg:justify-start p-4 z-50 pointer-events-none space-y-2">
     @for (alert of alerts; track $index) {
-        <div class="flex w-full max-w-xs overflow-hidden bg-white shadow-lg relative border pointer-events-auto"
+        <div class="flex w-full max-w-xs overflow-hidden bg-white shadow-lg relative border pointer-events-auto rounded"
         [ngClass]="{
             'border-green-700 ': alert.type === 'okay',
             'border-yellow-500 ': alert.type === 'warning',
