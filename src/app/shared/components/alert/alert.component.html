@@ -2,18 +2,18 @@
     @for (alert of alerts; track $index) {
         <div class="flex w-full max-w-xs overflow-hidden bg-white shadow-lg relative border pointer-events-auto rounded"
         [ngClass]="{
-            'border-green-700 ': alert.type === 'okay',
-            'border-yellow-500 ': alert.type === 'warning',
+            'border-primary ': alert.type === 'okay',
+            'border-secondary ': alert.type === 'warning',
             'border-red-500 ': alert.type === 'error',
         }">
             @switch (alert.type) {
                 @case ('okay') {
-                    <div class="bg-green-700 w-16 shrink-0 flex items-center justify-center">    
+                    <div class="bg-primary w-16 shrink-0 flex items-center justify-center">    
                         <span class="material-icons text-white">check</span>
                     </div>
                 }
                 @case ('warning') {
-                    <div class="bg-yellow-500 w-16 shrink-0 flex items-center justify-center">    
+                    <div class="bg-secoborder-secondary w-16 shrink-0 flex items-center justify-center">    
                         <span class="material-icons text-white">warning</span>
                     </div>
                 }
@@ -27,8 +27,8 @@
             <div class="flex flex-col justify-center px-4 py-1">
                 <p class="font-bold text-sm mr-4 mb-0.5 uppercase"
                 [ngClass]="{
-                    'text-green-700': alert.type === 'okay',
-                    'text-yellow-500': alert.type === 'warning',
+                    'text-primary': alert.type === 'okay',
+                    'text-secondary': alert.type === 'warning',
                     'text-red-500': alert.type === 'error',
                 }">
                     {{ alert.title }}
