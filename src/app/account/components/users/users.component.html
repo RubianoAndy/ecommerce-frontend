@@ -91,7 +91,7 @@
                                     <td class="flex items-center space-x-6 p-4 mr-12 text-sm text-black dark:text-white whitespace-nowrap">
                                         <img class="w-10 h-10" [src]="avatar" alt="avatar">
                                         <div class="text-sm font-normal">
-                                            <div class="text-base font-semibold">
+                                            <div class="text-base font-semibold text-primary dark:text-secondary">
                                                 {{ user.name_1 }} {{ user.name_2 }} {{ user.lastname_1 }} {{ user.lastname_2 }}
                                             </div>
 
@@ -125,7 +125,7 @@
                                     </td>
 
                                     <td class="px-4 py-4 text-sm text-black">
-                                        <button class="text-blue-600 mr-4 hover:bg-gray-100"><span class="material-icons-outlined">edit</span></button>
+                                        <button class="text-blue-600 hover:text-secondary mr-4"><span class="material-icons-outlined">edit</span></button>
                                         <!-- <button class="text-red-500 hover:bg-gray-100" (click)="openDeleteModal(user.id)"><span class="material-icons-outlined">delete</span></button> -->
                                     </td>
                                 </tr>
