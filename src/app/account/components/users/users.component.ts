@@ -46,10 +46,11 @@ export default class UsersComponent implements OnInit {
     private usersService: UsersService,
     private alertService: AlertService,
     private rolesService: RolesService,
-  ) { }
+  ) {
+    this.getRoles();
+  }
 
   ngOnInit(): void {
-    this.getRoles();
     this.getUsers();
   }
 
@@ -153,10 +154,10 @@ export default class UsersComponent implements OnInit {
     });
   }
 
-  getRoles() {
+  async getRoles() {
     var alertBody = null;
 
-    this.rolesService.getAllRoles().subscribe({
+    await this.rolesService.getAllRoles().subscribe({
       next: (response) => {
         this.roles = response;
       },
