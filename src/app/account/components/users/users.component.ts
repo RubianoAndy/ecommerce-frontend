@@ -21,7 +21,7 @@ export default class UsersComponent implements OnInit {
 
   roles: any[] = [];
 
-  tableFileds: string[] = ['Id', 'Nombre', 'Email', 'Rol', 'Estado', 'Fecha de creación', 'Acciones'];
+  tableFileds: string[] = ['Nombre', 'Email', 'Rol', 'Estado', 'Fecha de creación', 'Acciones'];
   usersRecords: any[] = [];
 
   page: number = 1;
@@ -29,7 +29,7 @@ export default class UsersComponent implements OnInit {
   totalPages: number = 1;
   totalRecords: number = 0;
   
-  filters = [];
+  filters: any[] = [];
 
   startRecord: number = 0;
   endRecord: number = 0;
@@ -54,13 +54,25 @@ export default class UsersComponent implements OnInit {
     this.getUsers();
   }
 
-  getUsers () {
-    /* if (this.filters)
-      this.filters.push({ field: 'name', value: 'Valor del formulario' });
-  
-    if (this.filters)
-      this.filters.push({ field: 'email', value: 'Valor del formulario' }); */
+  updateFilters(fieldName: string, event: Event) {
+    const target = event.target as HTMLInputElement; // Asegura que el target es un HTMLInputElement
+    const value = target.value;
 
+    if (!value)
+      this.filters = this.filters.filter(filter => filter.field !== fieldName);
+    else {
+      const index = this.filters.findIndex(filter => filter.field === fieldName);
+      
+      if (index > -1)
+        this.filters[index].value = value;
+      else
+        this.filters.push({ field: fieldName, value });
+    }
+
+    this.getUsers();
+  }
+
+  getUsers () {
     this.usersService.getUsers(this.page, this.pageSize, this.filters).subscribe({
       next: (response) => {
         this.usersRecords = response.users;
