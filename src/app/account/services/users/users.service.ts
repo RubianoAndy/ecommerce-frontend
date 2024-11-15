@@ -13,7 +13,6 @@ export class UsersService {
 
   constructor(
     private http: HttpClient,
-    private router: Router,
     private loadingService: LoadingService,
   ) { }
 

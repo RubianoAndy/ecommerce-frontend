@@ -3,6 +3,7 @@ import { FormsModule } from '@angular/forms';
 import { UsersService } from '../../services/users/users.service';
 import { DatePipe, NgClass } from '@angular/common';
 import { AlertService } from '../../../shared/services/alert/alert.service';
+import { RolesService } from '../../services/roles/roles.service';
 
 @Component({
   selector: 'app-users',
@@ -17,6 +18,8 @@ import { AlertService } from '../../../shared/services/alert/alert.service';
 })
 export default class UsersComponent implements OnInit {
   avatar = 'assets/images/avatar/Avatar.png';
+
+  roles: any[] = [];
 
   tableFileds: string[] = ['Id', 'Nombre', 'Email', 'Rol', 'Estado', 'Fecha de creación', 'Acciones'];
   usersRecords: any[] = [];
@@ -42,9 +45,11 @@ export default class UsersComponent implements OnInit {
   constructor (
     private usersService: UsersService,
     private alertService: AlertService,
+    private rolesService: RolesService,
   ) { }
 
   ngOnInit(): void {
+    this.getRoles();
     this.getUsers();
   }
 
@@ -70,7 +75,7 @@ export default class UsersComponent implements OnInit {
       },
       error: () => {
       }
-    })
+    });
   }
 
   changePage(pageNumber: number) {
@@ -145,7 +150,27 @@ export default class UsersComponent implements OnInit {
 
         this.alertService.showAlert(alertBody);
       }
-    })
+    });
+  }
+
+  getRoles() {
+    var alertBody = null;
+
+    this.rolesService.getAllRoles().subscribe({
+      next: (response) => {
+        this.roles = response;
+      },
+
+      error: (response) => {
+        alertBody = {
+          type: 'error',
+          title: '¡Error!',
+          message: response.error?.message || 'Ha ocurrido un error al cargar los roles',
+        };
+
+        this.alertService.showAlert(alertBody);
+      }
+    });
   }
 
   /* openDeleteModal(userId: any) {

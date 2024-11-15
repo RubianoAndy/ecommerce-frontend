@@ -14,9 +14,9 @@
         <div class="flex items-center w-full md:w-1/4">
             <select id="role_filter" class="block w-full p-2 bg-white border border-gray-200 text-black text-sm focus:outline-none focus:ring focus:ring-primary dark:bg-gray-900 dark:border-gray-700 dark:text-white dark:focus:ring-secondary">
                 <option value="" disabled selected>Seleccionar rol</option>
-                <option value="option1">Opción 1</option>
-                <option value="option2">Opción 2</option>
-                <option value="option3">Opción 3</option>
+                @for (role of roles; track $index) {
+                    <option [value]="role.id">{{ role.name }}</option>
+                }
             </select>
         </div>
 
