@@ -42,6 +42,11 @@ export default class UsersComponent implements OnInit {
 
   userSelected = null;
 
+  activatedOptions = [
+    { label: 'Activo', value: true },
+    { label: 'Inactivo', value: false },
+  ]
+
   constructor (
     private usersService: UsersService,
     private alertService: AlertService,

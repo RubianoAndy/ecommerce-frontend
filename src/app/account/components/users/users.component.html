@@ -7,7 +7,7 @@
                 <div class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none text-blue-500 dark:text-secondary">
                     <span class="material-icons">search</span>
                 </div>
-                <input type="text" id="name" (input)="updateFilters('name', $event)" class="block w-full pl-10 p-2 bg-white border border-gray-200 text-black text-sm focus:outline-none focus:ring focus:ring-primary dark:bg-gray-900 dark:border-gray-700 dark:text-white dark:focus:ring-secondary" placeholder="Nombre"/>
+                <input type="text" id="name" (input)="updateFilters('name', $event)" maxlength="15" class="block w-full pl-10 p-2 bg-white border border-gray-200 text-black text-sm focus:outline-none focus:ring focus:ring-primary dark:bg-gray-900 dark:border-gray-700 dark:text-white dark:focus:ring-secondary" placeholder="Nombre"/>
             </div>
         </div>
 
@@ -37,16 +37,16 @@
                 <div class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none text-blue-500 dark:text-secondary">
                     <span class="material-icons">search</span>
                 </div>
-                <input type="text" id="email_filter" class="block w-full pl-10 p-2 bg-white border border-gray-200 text-black text-sm focus:outline-none focus:ring focus:ring-primary dark:bg-gray-900 dark:border-gray-700 dark:text-white dark:focus:ring-secondary" placeholder="Email"/>
+                <input type="email" id="email" (input)="updateFilters('email', $event)" class="block w-full pl-10 p-2 bg-white border border-gray-200 text-black text-sm focus:outline-none focus:ring focus:ring-primary dark:bg-gray-900 dark:border-gray-700 dark:text-white dark:focus:ring-secondary" placeholder="Email"/>
             </div>
         </div>
 
         <div class="flex items-center w-full md:w-1/4">
-            <select id="status_filter" class="block w-full p-2 bg-white border border-gray-200 text-black text-sm focus:outline-none focus:ring focus:ring-primary dark:bg-gray-900 dark:border-gray-700 dark:text-white dark:focus:ring-secondary">
+            <select id="activated" (change)="updateFilters('activated', $event)" class="block w-full p-2 bg-white border border-gray-200 text-black text-sm focus:outline-none focus:ring focus:ring-primary dark:bg-gray-900 dark:border-gray-700 dark:text-white dark:focus:ring-secondary">
                 <option value="" selected>Seleccionar estado</option>
-                <option value="option1">Opción 1</option>
-                <option value="option2">Opción 2</option>
-                <option value="option3">Opción 3</option>
+                @for (activatedOption of activatedOptions; track $index) {
+                    <option [value]="activatedOption.value">{{ activatedOption.label }}</option>
+                }
             </select>
         </div>
 
@@ -55,7 +55,7 @@
                 <div class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none text-blue-500 dark:text-secondary">
                     <span class="material-icons">search</span>
                 </div>
-                <input type="text" id="q_filter" class="block w-full pl-10 p-2 bg-white border border-gray-200 text-black text-sm focus:outline-none focus:ring focus:ring-primary dark:bg-gray-900 dark:border-gray-700 dark:text-white dark:focus:ring-secondary" placeholder="DNI o ID"/>
+                <input type="text" id="dni" (input)="updateFilters('dni', $event)" class="block w-full pl-10 p-2 bg-white border border-gray-200 text-black text-sm focus:outline-none focus:ring focus:ring-primary dark:bg-gray-900 dark:border-gray-700 dark:text-white dark:focus:ring-secondary" placeholder="DNI"/>
             </div>
         </div>
     </div>
@@ -88,12 +88,12 @@
                                         <img class="w-10 h-10" [src]="avatar" alt="avatar">
                                         <div class="text-sm font-normal">
                                             <div class="text-base font-semibold text-primary dark:text-secondary">
-                                                {{ user.name_1 }} {{ user.name_2 }} {{ user.lastname_1 }} {{ user.lastname_2 }}
+                                                {{ user.Profile.name_1 }} {{ user.Profile.name_2 }} {{ user.Profile.lastname_1 }} {{ user.Profile.lastname_2 }}
                                             </div>
 
-                                            @if (user.dni && user.dniType) {
+                                            @if (user.Profile.dni && user.Profile.dniType) {
                                                 <div class="text-sm font-normal">
-                                                    {{ user.dniType }}: {{ user.dni }}
+                                                    {{ user.Profile.dniType }}: {{ user.Profile.dni }}
                                                 </div>
                                             }
                                         </div>
