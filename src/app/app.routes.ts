@@ -23,7 +23,7 @@ export const routes: Routes = [
     },
     {
         path: 'account', loadChildren: () => import('./account/account.routes'),
-        canActivate: [authGuard], data: { requiresAuth: true }
+        canActivate: [authGuard], data: { requiresAuth: true, breadcrumb: 'Cuenta' }
     },
     {
         path: 'faq', loadComponent: () => import('./features/components/faq/faq.component'),
