@@ -1,4 +1,4 @@
-<p align="center">
+p align="center">
     <a href="https://YouTube.com/@RubianoAndy" target="_blank">
         <img src="https://raw.githubusercontent.com/RubianoAndy/App_images/main/Logo.png" width="150">
     </a>
@@ -40,19 +40,20 @@
 
 # EcommerceFrontend
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 18.2.7, [NodeJS](https://nodejs.org/en) version 20.17.0 
-and [Tailwind CSS](https://tailwindcss.com/) version 3.4.13.
+This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 18.2.7 and updated to [Angular CLI](https://github.com/angular/angular-cli) 
+version 19.0.0, [NodeJS](https://nodejs.org/en) version 22.11.0 and NPM 10.9.0 and [Tailwind CSS](https://tailwindcss.com/) version 3.4.13.
 
 ### Initial install
 
 Once the repository is cloned, go in it and install the initial packages with the following commands:
 
-| Command                                                   | What it does?                         |
-| --------------------------------------------------------- | :------------------------------------ |
-| `npm install -g @angular/cli@latest`                      | Install Angular in its latest version |
-| `npm install`                                             | Install node modules dependencies     |
-| `npm install -D tailwindcss postcss autoprefixer`         | Install Tailwindcss dependencies      |
-| `npx tailwindcss init`                                    | Init Tailwindcss                      |
+| Command                                                   | What it does?                            |
+| --------------------------------------------------------- | :--------------------------------------- |
+| `npm install -g @angular/cli@latest`                      | Install Angular in its latest version    |
+| `npm install`                                             | Install node modules dependencies        |
+| `npm install -D tailwindcss postcss autoprefixer`         | Install Tailwindcss dependencies         |
+| `npx tailwindcss init`                                    | Init Tailwindcss                         |
+| `ng update @angular/core @angular/cli`                    | Update Angular CLI to the latest version |
 
 ### Angular project commands
 
