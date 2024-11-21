@@ -11,7 +11,12 @@ const routes: Routes = [{
         path: '', redirectTo: 'users', pathMatch: 'full'
       },
       {
-        path: 'users', loadComponent: () => import('./components/users/users.component')
+        path: 'roles', loadComponent: () => import('./components/roles/roles.component'),
+        data: { breadcrumb: 'Roles' }
+      },
+      {
+        path: 'users', loadComponent: () => import('./components/users/users.component'),
+        data: { breadcrumb: 'Usuarios' }
       },
       { 
         path: '**', redirectTo: 'users', pathMatch: 'full'
