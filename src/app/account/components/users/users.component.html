@@ -7,7 +7,7 @@
                 <div class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none text-blue-500 dark:text-secondary">
                     <span class="material-icons">search</span>
                 </div>
-                <input type="text" id="name" (input)="updateFilters('name', $event)" maxlength="15" class="block w-full pl-10 p-2 bg-white border border-gray-200 text-black text-sm focus:outline-none focus:ring focus:ring-primary dark:bg-gray-900 dark:border-gray-700 dark:text-white dark:focus:ring-secondary" placeholder="Nombre"/>
+                <input type="text" id="name" autocomplete="name" (input)="updateFilters('name', $event)" maxlength="15" class="block w-full pl-10 p-2 bg-white border border-gray-200 text-black text-sm focus:outline-none focus:ring focus:ring-primary dark:bg-gray-900 dark:border-gray-700 dark:text-white dark:focus:ring-secondary" placeholder="Nombre"/>
             </div>
         </div>
 
@@ -37,7 +37,7 @@
                 <div class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none text-blue-500 dark:text-secondary">
                     <span class="material-icons">search</span>
                 </div>
-                <input type="email" id="email" (input)="updateFilters('email', $event)" class="block w-full pl-10 p-2 bg-white border border-gray-200 text-black text-sm focus:outline-none focus:ring focus:ring-primary dark:bg-gray-900 dark:border-gray-700 dark:text-white dark:focus:ring-secondary" placeholder="Email"/>
+                <input type="email" id="email" autocomplete="email" (input)="updateFilters('email', $event)" class="block w-full pl-10 p-2 bg-white border border-gray-200 text-black text-sm focus:outline-none focus:ring focus:ring-primary dark:bg-gray-900 dark:border-gray-700 dark:text-white dark:focus:ring-secondary" placeholder="Email"/>
             </div>
         </div>
 
@@ -55,7 +55,7 @@
                 <div class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none text-blue-500 dark:text-secondary">
                     <span class="material-icons">search</span>
                 </div>
-                <input type="text" id="dni" (input)="updateFilters('dni', $event)" class="block w-full pl-10 p-2 bg-white border border-gray-200 text-black text-sm focus:outline-none focus:ring focus:ring-primary dark:bg-gray-900 dark:border-gray-700 dark:text-white dark:focus:ring-secondary" placeholder="DNI"/>
+                <input type="text" id="dni" autocomplete="dni" (input)="updateFilters('dni', $event)" class="block w-full pl-10 p-2 bg-white border border-gray-200 text-black text-sm focus:outline-none focus:ring focus:ring-primary dark:bg-gray-900 dark:border-gray-700 dark:text-white dark:focus:ring-secondary" placeholder="DNI"/>
             </div>
         </div>
     </div>
@@ -109,9 +109,8 @@
 
                                     <td class="px-4 py-4 text-sm text-black dark:text-white">
                                         <label class="relative cursor-pointer">
-                                            <input type="checkbox" class="sr-only peer" (change)="changeStatus(user)" [(ngModel)]="user.activated"/>
-                                            <div
-                                            class="w-11 h-6 flex items-center bg-gray-300 rounded-full peer peer-checked:after:translate-x-full after:absolute after:left-[2px] peer-checked:after:border-white after:bg-white after:border after:border-gray-300 after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-primary">
+                                            <input type="checkbox" [id]="user.id" class="sr-only peer" (change)="changeStatus(user)" [(ngModel)]="user.activated"/>
+                                            <div class="w-11 h-6 flex items-center bg-gray-300 rounded-full peer peer-checked:after:translate-x-full after:absolute after:left-[2px] peer-checked:after:border-white after:bg-white after:border after:border-gray-300 after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-primary">
                                             </div>
                                         </label>
                                     </td>
