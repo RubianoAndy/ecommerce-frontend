@@ -9,16 +9,15 @@ import { AlertService } from '../../../shared/services/alert/alert.service';
 import { passwordValidator } from '../../../shared/validators/password.validator';
 
 @Component({
-  selector: 'app-recovery-password',
-  standalone: true,
-  imports: [
-    FormsModule,
-    ReactiveFormsModule,
-    RouterLink,
-    NgClass,
-  ],
-  templateUrl: './recovery-password.component.html',
-  styleUrl: './recovery-password.component.scss'
+    selector: 'app-recovery-password',
+    imports: [
+        FormsModule,
+        ReactiveFormsModule,
+        RouterLink,
+        NgClass,
+    ],
+    templateUrl: './recovery-password.component.html',
+    styleUrl: './recovery-password.component.scss'
 })
 export default class RecoveryPasswordComponent {
   logo = environment.darkLogo;

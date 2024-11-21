@@ -10,13 +10,12 @@ interface Alert {
 }
 
 @Component({
-  selector: 'app-alert',
-  standalone: true,
-  imports: [
-    NgClass
-  ],
-  templateUrl: './alert.component.html',
-  styleUrl: './alert.component.scss'
+    selector: 'app-alert',
+    imports: [
+        NgClass
+    ],
+    templateUrl: './alert.component.html',
+    styleUrl: './alert.component.scss'
 })
 export class AlertComponent implements OnInit, OnDestroy {
   alerts: Alert[] = [];

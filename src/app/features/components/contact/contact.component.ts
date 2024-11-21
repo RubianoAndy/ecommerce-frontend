@@ -6,15 +6,14 @@ import { NgClass } from '@angular/common';
 import { environment } from '../../../../environments/environment.development';
 
 @Component({
-  selector: 'app-contact',
-  standalone: true,
-  imports: [
-    FormsModule,
-    ReactiveFormsModule,
-    NgClass,
-  ],
-  templateUrl: './contact.component.html',
-  styleUrl: './contact.component.scss'
+    selector: 'app-contact',
+    imports: [
+        FormsModule,
+        ReactiveFormsModule,
+        NgClass,
+    ],
+    templateUrl: './contact.component.html',
+    styleUrl: './contact.component.scss'
 })
 export default class ContactComponent implements OnInit {
   form!: FormGroup;

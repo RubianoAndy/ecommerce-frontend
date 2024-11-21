@@ -3,13 +3,12 @@ import { Component, OnInit } from '@angular/core';
 import { DarkModeService } from '../../services/dark-mode/dark-mode.service';
 
 @Component({
-  selector: 'app-dark-mode-toggle',
-  standalone: true,
-  imports: [
-    NgClass
-  ],
-  templateUrl: './dark-mode-toggle.component.html',
-  styleUrl: './dark-mode-toggle.component.scss'
+    selector: 'app-dark-mode-toggle',
+    imports: [
+        NgClass
+    ],
+    templateUrl: './dark-mode-toggle.component.html',
+    styleUrl: './dark-mode-toggle.component.scss'
 })
 export class DarkModeToggleComponent implements OnInit {
   darkMode: boolean | undefined;

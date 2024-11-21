@@ -7,11 +7,10 @@ interface CarouselItem {
 }
 
 @Component({
-  selector: 'app-carousel',
-  standalone: true,
-  imports: [],
-  templateUrl: './carousel.component.html',
-  styleUrl: './carousel.component.scss'
+    selector: 'app-carousel',
+    imports: [],
+    templateUrl: './carousel.component.html',
+    styleUrl: './carousel.component.scss'
 })
 export class CarouselComponent implements OnInit, OnDestroy {
   currentSlide: number = 0;

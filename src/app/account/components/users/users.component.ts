@@ -6,15 +6,14 @@ import { AlertService } from '../../../shared/services/alert/alert.service';
 import { RolesService } from '../../services/roles/roles.service';
 
 @Component({
-  selector: 'app-users',
-  standalone: true,
-  imports: [
-    FormsModule,
-    DatePipe,
-    NgClass,
-  ],
-  templateUrl: './users.component.html',
-  styleUrl: './users.component.scss'
+    selector: 'app-users',
+    imports: [
+        FormsModule,
+        DatePipe,
+        NgClass,
+    ],
+    templateUrl: './users.component.html',
+    styleUrl: './users.component.scss'
 })
 export default class UsersComponent implements OnInit {
   avatar = 'assets/images/avatar/Avatar.png';

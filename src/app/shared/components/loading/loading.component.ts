@@ -4,11 +4,10 @@ import { LoadingService } from '../../services/loading/loading.service';
 import { Subscription } from 'rxjs';
 
 @Component({
-  selector: 'app-loading',
-  standalone: true,
-  imports: [],
-  templateUrl: './loading.component.html',
-  styleUrl: './loading.component.scss'
+    selector: 'app-loading',
+    imports: [],
+    templateUrl: './loading.component.html',
+    styleUrl: './loading.component.scss'
 })
 export class LoadingComponent implements OnInit, OnDestroy {
   logo = environment.darkLogo;

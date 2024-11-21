@@ -10,16 +10,15 @@ import { AlertService } from '../../../shared/services/alert/alert.service';
 import { passwordValidator } from '../../../shared/validators/password.validator';
 
 @Component({
-  selector: 'app-sign-in',
-  standalone: true,
-  imports: [
-    FormsModule,
-    ReactiveFormsModule,
-    RouterLink,
-    NgClass,
-  ],
-  templateUrl: './sign-in.component.html',
-  styleUrl: './sign-in.component.scss'
+    selector: 'app-sign-in',
+    imports: [
+        FormsModule,
+        ReactiveFormsModule,
+        RouterLink,
+        NgClass,
+    ],
+    templateUrl: './sign-in.component.html',
+    styleUrl: './sign-in.component.scss'
 })
 export default class SignInComponent implements OnInit {
   logo = environment.darkLogo;

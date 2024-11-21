@@ -7,16 +7,15 @@ import { DarkModeService } from '../../services/dark-mode/dark-mode.service';
 import { Subject } from 'rxjs';
 
 @Component({
-  selector: 'app-navbar',
-  standalone: true,
-  imports: [
-    NgClass,
-    RouterLink,
-    RouterLinkActive,
-    DarkModeToggleComponent
-],
-  templateUrl: './navbar.component.html',
-  styleUrl: './navbar.component.scss'
+    selector: 'app-navbar',
+    imports: [
+        NgClass,
+        RouterLink,
+        RouterLinkActive,
+        DarkModeToggleComponent
+    ],
+    templateUrl: './navbar.component.html',
+    styleUrl: './navbar.component.scss'
 })
 export class NavbarComponent implements OnInit, OnDestroy {
   logo = environment.darkLogo;

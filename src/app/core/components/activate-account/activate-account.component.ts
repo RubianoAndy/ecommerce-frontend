@@ -5,13 +5,12 @@ import { RegisterService } from '../../services/register/register.service';
 import { AlertService } from '../../../shared/services/alert/alert.service';
 
 @Component({
-  selector: 'app-activate-account',
-  standalone: true,
-  imports: [
-    RouterLink,
-  ],
-  templateUrl: './activate-account.component.html',
-  styleUrl: './activate-account.component.scss'
+    selector: 'app-activate-account',
+    imports: [
+        RouterLink,
+    ],
+    templateUrl: './activate-account.component.html',
+    styleUrl: './activate-account.component.scss'
 })
 export default class ActivateAccountComponent implements OnInit {
   logo = environment.darkLogo;

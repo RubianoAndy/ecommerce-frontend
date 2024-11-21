@@ -9,18 +9,17 @@ import { RegisterService } from '../../services/register/register.service';
 import { passwordValidator } from '../../../shared/validators/password.validator';
 
 @Component({
-  selector: 'app-sign-up',
-  standalone: true,
-  imports: [
-    FormsModule,
-    ReactiveFormsModule,
-    RouterLink,
-    NgClass,
-    TermsAndConditionsInformationComponent,
-    PrivacyPolicyInformationComponent,
-  ],
-  templateUrl: './sign-up.component.html',
-  styleUrl: './sign-up.component.scss'
+    selector: 'app-sign-up',
+    imports: [
+        FormsModule,
+        ReactiveFormsModule,
+        RouterLink,
+        NgClass,
+        TermsAndConditionsInformationComponent,
+        PrivacyPolicyInformationComponent,
+    ],
+    templateUrl: './sign-up.component.html',
+    styleUrl: './sign-up.component.scss'
 })
 export default class SignUpComponent implements OnInit {
   logo = environment.darkLogo;

@@ -5,13 +5,12 @@ import { DarkModeService } from '../../services/dark-mode/dark-mode.service';
 import { Subject } from 'rxjs';
 
 @Component({
-  selector: 'app-footer',
-  standalone: true,
-  imports: [
-    RouterLink,
-  ],
-  templateUrl: './footer.component.html',
-  styleUrl: './footer.component.scss'
+    selector: 'app-footer',
+    imports: [
+        RouterLink,
+    ],
+    templateUrl: './footer.component.html',
+    styleUrl: './footer.component.scss'
 })
 export class FooterComponent implements OnInit, OnDestroy {
   logo = environment.darkLogo;
