@@ -53,7 +53,6 @@ Once the repository is cloned, go in it and install the initial packages with th
 | `npm install`                                             | Install node modules dependencies        |
 | `npm install -D tailwindcss postcss autoprefixer`         | Install Tailwindcss dependencies         |
 | `npx tailwindcss init`                                    | Init Tailwindcss                         |
-| `ng update @angular/core @angular/cli`                    | Update Angular CLI to the latest version |
 
 ### Angular project commands
 
@@ -95,6 +94,25 @@ For documentation purposes, this repository was created as follows:
 | 6-  | Select no to enable SSR and SSG/Prerendering  |                                               |
 | 7-  | Install Tailwind (only steps 1, 2 y 3)        | https://tailwindcss.com/docs/installation     |
 | 8-  | Replace in tailwind.config.js                 | Put `content: ["./src/**/*.{html,ts,scss}"],` |
+
+### How to update a project in Angular to the latest version?
+
+To update Angular to its latest version, you need to enter the project folder and follow these steps:
+
+|  #  | Step                                                     | Command or information                 |
+| --- | :------------------------------------------------------- | :------------------------------------- |
+| 1-  | Install Node.js to the latest version without Chocolatey | https://nodejs.org                     |
+| 2-  | Check node version                                       | `node -v`                              |
+| 3-  | Globally update npm to the latest version (if necessary) | `npm install -g npm@latest`            |
+| 4-  | Check npm version                                        | `npm -v`                               |
+| 5-  | Globally uninstall the Angular CLI                       | `npm uninstall -g @angular/cli`        |
+| 6-  | Globally install the Angular CLI to the latest version   | `npm install -g @angular/cli@latest`   |
+| 7-  | Update Angular project to the latest version             | `ng update @angular/core @angular/cli` |
+| 8-  | Check Angular project version                            | `ng version`                           |
+| 9-  | Run the server                                           | `ng serve`                             |
+| 10- | Review the errors and make the correction                |                                        |
+
+⚠️ **Waring**: Other dependencies may need to be updated and code changes may be required to eliminate errors present in this process.
 
 <hr>
 
