@@ -1,0 +1,123 @@
+<div class="flex flex-col">
+    <h1 class="text-xl sm:text-3xl font-semibold text-primary dark:text-secondary mb-4">Perfil</h1>
+
+    <div class="flex mx-auto items-center relative mb-6">
+        <div class="flex">
+            <img 
+                src="assets/images/avatar/Avatar.png" 
+                alt="Profile photo" 
+                class="flex w-40 h-40 rounded-lg transition-opacity duration-300 ease-in-out hover:opacity-50 shadow-lg"
+            >
+            <div class="cursor-pointer absolute inset-0 flex items-center justify-center transition-opacity duration-300 ease-in-out opacity-0 hover:opacity-100 bg-black bg-opacity-50 rounded-lg">
+                <span class="text-white text-lg">Cambiar foto</span>
+            </div>
+        </div>
+    </div>
+
+    <h2 class="text-lg sm:text-2xl text-center font-semibold text-primary dark:text-secondary mb-4">Datos personales</h2>
+
+    <div class="w-full max-w-2xl mx-auto px-8">
+        <form class="space-y-4" [formGroup]="form" (ngSubmit)="onSubmit()">
+            <div class="flex flex-col md:flex-row md:space-x-4 space-y-4 md:space-y-0">
+                <div class="w-full md:w-1/2">
+                    <label for="name_1" class="block font-semibold text-primary dark:text-secondary mb-2"> Primer nombre <span class="text-red-500">*</span></label>
+                    <input id="name_1" 
+                        type="text" 
+                        formControlName="name_1" 
+                        placeholder="Primer nombre"
+                        [ngClass]="{
+                            'border-red-500': !form.controls['name_1'].valid && form.controls['name_1'].touched,
+                            'border-green-500': form.controls['name_1'].valid && form.controls['name_1'].touched
+                        }" class="block w-full p-2 bg-white border border-gray-200 text-black text-sm dark:bg-gray-800 dark:border-gray-700 dark:text-white shadow-lg"
+                    />
+                </div>
+
+                <div class="w-full md:w-1/2">
+                    <label for="name_2" class="block font-semibold text-primary dark:text-secondary mb-2"> Segundo nombre </label>
+                    <input id="name_2" 
+                        type="text" 
+                        formControlName="name_2" 
+                        placeholder="Segundo nombre"
+                        [ngClass]="{
+                            'border-red-500': !form.controls['name_2'].valid && form.controls['name_2'].touched,
+                            'border-green-500': form.controls['name_2'].valid && form.controls['name_2'].touched
+                        }" class="block w-full p-2 bg-white border border-gray-200 text-black text-sm dark:bg-gray-800 dark:border-gray-700 dark:text-white shadow-lg"
+                    />
+                </div>
+            </div>
+            
+            <div class="flex flex-col md:flex-row md:space-x-4 space-y-4 md:space-y-0">
+                <div class="w-full md:w-1/2">
+                    <label for="lastname_1" class="block font-semibold text-primary dark:text-secondary mb-2"> Primer apellido <span class="text-red-500">*</span></label>
+                    <input id="lastname_1" 
+                        type="text" 
+                        formControlName="lastname_1" 
+                        placeholder="Primer apellido"
+                        [ngClass]="{
+                            'border-red-500': !form.controls['lastname_1'].valid && form.controls['lastname_1'].touched,
+                            'border-green-500': form.controls['lastname_1'].valid && form.controls['lastname_1'].touched
+                        }" class="block w-full p-2 bg-white border border-gray-200 text-black text-sm dark:bg-gray-800 dark:border-gray-700 dark:text-white shadow-lg"
+                    />
+                </div>
+
+                <div class="w-full md:w-1/2">
+                    <label for="lastname_2" class="block font-semibold text-primary dark:text-secondary mb-2"> Segundo apellido </label>
+                    <input id="lastname_2" 
+                        type="text" 
+                        formControlName="lastname_2" 
+                        placeholder="Segundo apellido"
+                        [ngClass]="{
+                            'border-red-500': !form.controls['lastname_2'].valid && form.controls['lastname_2'].touched,
+                            'border-green-500': form.controls['lastname_2'].valid && form.controls['lastname_2'].touched
+                        }" class="block w-full p-2 bg-white border border-gray-200 text-black text-sm dark:bg-gray-800 dark:border-gray-700 dark:text-white shadow-lg"
+                    />
+                </div>
+            </div>
+
+            <div class="flex flex-col md:flex-row md:space-x-4 space-y-4 md:space-y-0">
+                <div class="w-full md:w-1/2">
+                    <label for="dniType" class="block font-semibold text-primary dark:text-secondary mb-2"> Tipo de documento <span class="text-red-500">*</span></label>
+                    <select id="dniType" formControlName="dniType"
+                    [ngClass]="{
+                        'border-red-500': !form.controls['dniType'].valid && form.controls['dniType'].touched,
+                        'border-green-500': form.controls['dniType'].valid && form.controls['dniType'].touched,
+                        'text-gray-400 dark:text-gray-400': !form.controls['dniType'].value
+                    }" class="block w-full px-1 py-2 bg-white border border-gray-200 text-black text-sm focus:outline-none dark:bg-gray-800 dark:border-gray-700 dark:text-white focus:ring focus:ring-black dark:focus:ring-white shadow-lg">
+                        <option value="" disabled selected>Tipo de documento</option>
+                        @for (dniOption of dniOptions; track $index) {
+                            <option [value]="dniOption.value" class="text-black dark:text-white">{{ dniOption.label }}</option>
+                        }
+                    </select>
+                </div>
+
+                <div class="w-full md:w-1/2">
+                    <label for="dni" class="block font-semibold text-primary dark:text-secondary mb-2"> Documento de identificación <span class="text-red-500">*</span></label>
+                    <input id="dni"
+                        type="text" 
+                        formControlName="dni" 
+                        placeholder="Documento de identificación"
+                        [ngClass]="{
+                            'border-red-500': !form.controls['dni'].valid && form.controls['dni'].touched,
+                            'border-green-500': form.controls['dni'].valid && form.controls['dni'].touched
+                        }" class="block w-full p-2 bg-white border border-gray-200 text-black text-sm dark:bg-gray-800 dark:border-gray-700 dark:text-white shadow-lg"
+                    />
+                </div>
+            </div>
+
+            <div class="flex flex-col md:flex-row md:space-x-4 space-y-4 md:space-y-0">
+                <div class="w-full">
+                    <label for="email" class="block font-semibold text-primary dark:text-secondary mb-2"> Email </label>
+                    <input id="email" autocomplete="email"
+                        type="email" 
+                        formControlName="email" 
+                        placeholder="Email"
+                        [ngClass]="{
+                            'border-red-500': !form.controls['email'].valid && form.controls['email'].touched,
+                            'border-green-500': form.controls['email'].valid && form.controls['email'].touched
+                        }" class="block w-full p-2 bg-white border border-gray-200 text-black text-sm dark:bg-gray-800 dark:border-gray-700 dark:text-white shadow-lg"
+                    />
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
