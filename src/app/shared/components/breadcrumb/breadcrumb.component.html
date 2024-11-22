@@ -1,4 +1,4 @@
-<ul class="flex items-center space-x-2">
+<ul class="flex text-sm items-center space-x-2 mt-2">
     @for (breadcrumb of breadcrumbs; track $index) {
         <li [routerLink]="breadcrumb.url" class="text-black hover:text-blue-600 dark:text-white dark:hover:text-secondary cursor-pointer">
             {{ breadcrumb.label }}
@@ -8,4 +8,4 @@
             <span class="material-icons text-primary dark:text-secondary">arrow_forward_ios</span>
         }
     }
-  </ul>
+</ul>
