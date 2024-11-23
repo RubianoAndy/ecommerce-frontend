@@ -1,0 +1,11 @@
+<select id="country" formControlName="country"
+[ngClass]="{
+    'border-red-500': !countryForm.controls['country'].valid && countryForm.controls['country'].touched,
+    'border-green-500': countryForm.controls['country'].valid && countryForm.controls['country'].touched,
+    'text-gray-400 dark:text-gray-400': !countryForm.controls['country'].value
+}" class="block w-full px-1 py-2 bg-white border border-gray-200 text-black text-sm focus:outline-none dark:bg-gray-800 dark:border-gray-700 dark:text-white focus:ring focus:ring-black dark:focus:ring-white shadow-lg">
+    <option value="" disabled selected>País</option>
+    @for (country of countries; track $index) {
+        <option [value]="country.id" class="text-black dark:text-white">{{ country.name }}</option>
+    }
+</select>
