@@ -52,6 +52,7 @@ export default class ProfileComponent implements OnInit {
       email: [data?.email || '', [ Validators.required, Validators.minLength(6), Validators.maxLength(50), Validators.email ]],
 
       prefix: [data?.prefix || '', [ Validators.required, Validators.minLength(2) ]],
+      mobile: [data?.mobile || '', [ Validators.required, Validators.minLength(2), Validators.maxLength(30), Validators.pattern('^[0-9]*$') ]],
     });
   }
 
