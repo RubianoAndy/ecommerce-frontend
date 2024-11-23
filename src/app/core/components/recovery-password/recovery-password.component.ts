@@ -22,14 +22,24 @@ import { passwordValidator } from '../../../shared/validators/password.validator
 export default class RecoveryPasswordComponent {
   logo = environment.darkLogo;
 
-  formSelected: string = 'form_1'; // 'form_2'
+  formSelected: string = 'form_2'; // 'form_2'
   form_1!: FormGroup;
   form_2!: FormGroup;
 
   userId: number = 0;
+
   isPasswordVisible: boolean = false;
+  isPasswordFocused: boolean = false;
 
   loading: boolean = false;
+
+  passwordCriteria = {
+    hasUpperCase: false,
+    hasLowerCase: false,
+    hasSpecialChar: false,
+    hasNumber: false,
+    isValidLength: false
+  };
 
   constructor(
     private formBuilder: FormBuilder,
@@ -42,6 +52,10 @@ export default class RecoveryPasswordComponent {
   ngOnInit(): void {
     this.createForm1();
     this.createForm2();
+
+    this.form_2.get('password')?.valueChanges.subscribe(value => {
+      this.checkPasswordCriteria(value);
+    });
   }
 
   createForm1(data: any = null) {
@@ -186,5 +200,23 @@ export default class RecoveryPasswordComponent {
       prevInput.value = '';  // Borrar el valor anterior
       event.preventDefault();
     }
+  }
+
+  // Método para mostrar el popover
+  onPasswordFocus(): void {
+    this.isPasswordFocused = true;
+  }
+
+  // Método para ocultar el popover
+  onPasswordBlur(): void {
+    this.isPasswordFocused = false;
+  }
+
+  checkPasswordCriteria(password: string): void {
+    this.passwordCriteria.hasUpperCase = /[A-Z]/.test(password);
+    this.passwordCriteria.hasLowerCase = /[a-z]/.test(password);
+    this.passwordCriteria.hasSpecialChar = /[!@#$%^&*(),.?":{}|<>]/.test(password);
+    this.passwordCriteria.hasNumber = /\d/.test(password);
+    this.passwordCriteria.isValidLength = password.length >= 8 && password.length <= 20;
   }
 }
