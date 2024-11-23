@@ -1,6 +1,7 @@
 import { NgClass } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
+import { CountriesService } from '../../../shared/services/countries/countries.service';
 
 @Component({
   selector: 'app-profile',
@@ -17,6 +18,8 @@ export default class ProfileComponent implements OnInit {
 
   loading: boolean = false;
 
+  prefixOptions: any[] = []
+
   dniOptions = [
     { label: 'Cédula de ciudadanía (DNI)', value: 'Cédula de ciudadanía (DNI)' },
     { label: 'Cédula de extranjería', value: 'Cédula de extranjería' },
@@ -30,7 +33,10 @@ export default class ProfileComponent implements OnInit {
 
   constructor (
     private formBuilder: FormBuilder,
-  ) { }
+    private countriesService: CountriesService,
+  ) {
+    this.getCountries()
+  }
   ngOnInit(): void {
     this.createForm();
   }
@@ -44,10 +50,18 @@ export default class ProfileComponent implements OnInit {
       dniType: [data?.dniType || '', [ Validators.required, Validators.minLength(2) ]],
       dni: [data?.dni || '', [ Validators.required, Validators.minLength(2), Validators.maxLength(30) ]],
       email: [data?.email || '', [ Validators.required, Validators.minLength(6), Validators.maxLength(50), Validators.email ]],
+
+      prefix: [data?.prefix || '', [ Validators.required, Validators.minLength(2) ]],
     });
   }
 
   onSubmit() {
 
+  }
+
+  getCountries() {
+    this.countriesService.getAllCountries().subscribe(
+      response => this.prefixOptions = response
+    );
   }
 }

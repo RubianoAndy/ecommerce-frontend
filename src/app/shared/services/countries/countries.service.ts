@@ -6,7 +6,7 @@ import { Observable } from 'rxjs';
 @Injectable({
   providedIn: 'root'
 })
-export class CountryService {
+export class CountriesService {
   private apiUrl = environment.apiUrl;
 
   constructor(
