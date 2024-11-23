@@ -22,7 +22,7 @@ import { passwordValidator } from '../../../shared/validators/password.validator
 export default class RecoveryPasswordComponent {
   logo = environment.darkLogo;
 
-  formSelected: string = 'form_2'; // 'form_2'
+  formSelected: string = 'form_1';
   form_1!: FormGroup;
   form_2!: FormGroup;
 
