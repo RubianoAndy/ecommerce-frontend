@@ -12,7 +12,7 @@
             <form class="space-y-4" [formGroup]="form" (ngSubmit)="onSubmit()">
                 <div>
                     <label for="email" class="block font-semibold text-black mb-2"> Email <span class="text-red-500">*</span></label>
-                    <input id="email" autocomplete="email"
+                    <input id="email" autocomplete="off"
                         type="email" 
                         formControlName="email" 
                         placeholder="name@email.com"

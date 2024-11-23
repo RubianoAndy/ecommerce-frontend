@@ -15,7 +15,7 @@
                             <label for="name_1" class="block font-semibold text-black mb-2"> Primer nombre <span class="text-red-500">*</span></label>
                             <input id="name_1" 
                                 type="text" 
-                                formControlName="name_1" 
+                                formControlName="name_1" autocomplete="off"
                                 placeholder="Primer nombre"
                                 [ngClass]="{
                                     'border-red-500': !form.controls['name_1'].valid && form.controls['name_1'].touched,
@@ -26,7 +26,7 @@
     
                         <div class="w-full">
                             <label for="lastname_1" class="block font-semibold text-black mb-2"> Primer apellido <span class="text-red-500">*</span></label>
-                            <input id="lastname_1" 
+                            <input id="lastname_1" autocomplete="off"
                                 type="text" 
                                 formControlName="lastname_1" 
                                 placeholder="Primer apellido"
@@ -39,7 +39,7 @@
                     </div>
                     <div>
                         <label for="email" class="block font-semibold text-black mb-2"> Email <span class="text-red-500">*</span></label>
-                        <input id="email" autocomplete="email"
+                        <input id="email" autocomplete="off"
                             type="email" 
                             formControlName="email" 
                             placeholder="name@email.com"
