@@ -1,4 +1,4 @@
-<select id="country" formControlName="country"
+<select id="country" formControlName="country" autocomplete="off"
 [ngClass]="{
     'border-red-500': !countryForm.controls['country'].valid && countryForm.controls['country'].touched,
     'border-green-500': countryForm.controls['country'].valid && countryForm.controls['country'].touched,
