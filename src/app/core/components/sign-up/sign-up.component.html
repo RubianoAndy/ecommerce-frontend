@@ -18,7 +18,7 @@
                                 formControlName="name_1" autocomplete="off"
                                 placeholder="Primer nombre"
                                 [ngClass]="{
-                                    'border-red-500': !form.controls['name_1'].valid && form.controls['name_1'].touched,
+                                    'border-red-500': !form.controls['name_1'].valid,
                                     'border-green-500': form.controls['name_1'].valid && form.controls['name_1'].touched
                                 }" class="border w-full py-2 px-3 text-black leading-tight focus:outline-none focus:shadow-outline"
                             />
@@ -31,7 +31,7 @@
                                 formControlName="lastname_1" 
                                 placeholder="Primer apellido"
                                 [ngClass]="{
-                                    'border-red-500': !form.controls['lastname_1'].valid && form.controls['lastname_1'].touched,
+                                    'border-red-500': !form.controls['lastname_1'].valid,
                                     'border-green-500': form.controls['lastname_1'].valid && form.controls['lastname_1'].touched
                                 }" class="border w-full py-2 px-3 text-black leading-tight focus:outline-none focus:shadow-outline"
                             />
@@ -44,7 +44,7 @@
                             formControlName="email" 
                             placeholder="name@email.com"
                             [ngClass]="{
-                                'border-red-500': !form.controls['email'].valid && form.controls['email'].touched,
+                                'border-red-500': !form.controls['email'].valid,
                                 'border-green-500': form.controls['email'].valid && form.controls['email'].touched
                             }" class="border w-full py-2 px-3 text-black leading-tight focus:outline-none focus:shadow-outline"
                         />
@@ -59,7 +59,7 @@
                             (focus)="onPasswordFocus()"
                             (blur)="onPasswordBlur()"
                             [ngClass]="{
-                                'border-red-500': !form.controls['password'].valid && form.controls['password'].touched,
+                                'border-red-500': !form.controls['password'].valid,
                                 'border-green-500': form.controls['password'].valid && form.controls['password'].touched
                             }" class="border w-full py-2 px-3 text-black leading-tight focus:outline-none focus:shadow-outline"
                         />
@@ -68,7 +68,7 @@
                             <span class="material-icons">{{ isPasswordVisible ? 'visibility_off' : 'visibility' }}</span>
                         </button>
 
-                        @if (!form.controls['password'].valid && form.controls['password'].touched && isPasswordFocused) {
+                        @if (!form.controls['password'].valid && isPasswordFocused) {
                             <div class="relative z-10">
                                 <div class="w-full max-w-[280px] p-4 bg-gray-100 shadow-lg absolute top-2 mt-2 before:w-4 before:h-4 before:rotate-45 before:bg-gray-100 before:absolute before:-top-2 before:left-6">
                                     <div class="my-2">
