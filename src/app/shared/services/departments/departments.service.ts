@@ -6,14 +6,14 @@ import { Observable } from 'rxjs';
 @Injectable({
   providedIn: 'root'
 })
-export class CountriesService {
+export class DepartmentsService {
   private apiUrl = environment.apiUrl;
 
   constructor(
     private http: HttpClient,
   ) { }
 
-  getCountries(): Observable<any> {
-    return this.http.get(`${this.apiUrl}/api/countries`);
+  getDepartments(countryId: string): Observable<any> {
+    return this.http.get(`${this.apiUrl}/api/departments/${countryId}`);
   }
 }

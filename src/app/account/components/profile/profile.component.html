@@ -34,8 +34,8 @@
                                 placeholder="Primer nombre"
                                 [ngClass]="{
                                     'border-red-500 dark:border-red-500': !form1.controls['name_1'].valid,
-                                    'border-green-500 dark:border-green-500': form1.controls['name_1'].valid
-                                }" class="block w-full p-2 bg-white border border-gray-200 text-black text-sm dark:bg-gray-800 dark:border-gray-700 dark:text-white shadow-lg"
+                                    'border-green-500 dark:border-green-500': form1.controls['name_1'].valid && form1.controls['name_1'].touched
+                                }" class="block w-full p-2 bg-white border border-gray-200 text-black text-sm dark:bg-gray-800 dark:border-gray-700 dark:text-white shadow-lg focus:outline-none"
                             />
                         </div>
 
@@ -48,7 +48,7 @@
                                 [ngClass]="{
                                     'border-red-500 dark:border-red-500': !form1.controls['name_2'].valid,
                                     'border-green-500 dark:border-green-500': form1.controls['name_2'].valid && form1.controls['name_2'].touched
-                                }" class="block w-full p-2 bg-white border border-gray-200 text-black text-sm dark:bg-gray-800 dark:border-gray-700 dark:text-white shadow-lg"
+                                }" class="block w-full p-2 bg-white border border-gray-200 text-black text-sm dark:bg-gray-800 dark:border-gray-700 dark:text-white shadow-lg focus:outline-none"
                             />
                         </div>
                     </div>
@@ -63,7 +63,7 @@
                                 [ngClass]="{
                                     'border-red-500 dark:border-red-500': !form1.controls['lastname_1'].valid,
                                     'border-green-500 dark:border-green-500': form1.controls['lastname_1'].valid && form1.controls['lastname_1'].touched
-                                }" class="block w-full p-2 bg-white border border-gray-200 text-black text-sm dark:bg-gray-800 dark:border-gray-700 dark:text-white shadow-lg"
+                                }" class="block w-full p-2 bg-white border border-gray-200 text-black text-sm dark:bg-gray-800 dark:border-gray-700 dark:text-white shadow-lg focus:outline-none"
                             />
                         </div>
 
@@ -76,7 +76,7 @@
                                 [ngClass]="{
                                     'border-red-500 dark:border-red-500': !form1.controls['lastname_2'].valid,
                                     'border-green-500 dark:border-green-500': form1.controls['lastname_2'].valid && form1.controls['lastname_2'].touched
-                                }" class="block w-full p-2 bg-white border border-gray-200 text-black text-sm dark:bg-gray-800 dark:border-gray-700 dark:text-white shadow-lg"
+                                }" class="block w-full p-2 bg-white border border-gray-200 text-black text-sm dark:bg-gray-800 dark:border-gray-700 dark:text-white shadow-lg focus:outline-none"
                             />
                         </div>
                     </div>
@@ -89,7 +89,7 @@
                                 'border-red-500 dark:border-red-500': !form1.controls['dniType'].valid,
                                 'border-green-500 dark:border-green-500': form1.controls['dniType'].valid && form1.controls['dniType'].touched,
                                 'text-gray-400 dark:text-gray-400': !form1.controls['dniType'].value
-                            }" class="block w-full px-1 py-2 bg-white border border-gray-200 text-black text-sm focus:outline-none dark:bg-gray-800 dark:border-gray-700 dark:text-white focus:ring focus:ring-black dark:focus:ring-white shadow-lg">
+                            }" class="block w-full px-1 py-2 bg-white border border-gray-200 text-black text-sm dark:bg-gray-800 dark:border-gray-700 dark:text-white shadow-lg">
                                 <option value="" disabled selected>Tipo de documento</option>
                                 @for (dniOption of dniOptions; track $index) {
                                     <option [value]="dniOption.value" class="text-black dark:text-white">{{ dniOption.label }}</option>
@@ -106,7 +106,7 @@
                                 [ngClass]="{
                                     'border-red-500 dark:border-red-500': !form1.controls['dni'].valid,
                                     'border-green-500 dark:border-green-500': form1.controls['dni'].valid && form1.controls['dni'].touched
-                                }" class="block w-full p-2 bg-white border border-gray-200 text-black text-sm dark:bg-gray-800 dark:border-gray-700 dark:text-white shadow-lg"
+                                }" class="block w-full p-2 bg-white border border-gray-200 text-black text-sm dark:bg-gray-800 dark:border-gray-700 dark:text-white shadow-lg focus:outline-none"
                             />
                         </div>
                     </div>
@@ -119,7 +119,7 @@
                                 'border-red-500 dark:border-red-500': !form1.controls['prefix'].valid,
                                 'border-green-500 dark:border-green-500': form1.controls['prefix'].valid && form1.controls['prefix'].touched,
                                 'text-gray-400 dark:text-gray-400': !form1.controls['prefix'].value
-                            }" class="block w-full px-1 py-2 bg-white border border-gray-200 text-black text-sm focus:outline-none dark:bg-gray-800 dark:border-gray-700 dark:text-white focus:ring focus:ring-black dark:focus:ring-white shadow-lg">
+                            }" class="block w-full px-1 py-2 bg-white border border-gray-200 text-black text-sm dark:bg-gray-800 dark:border-gray-700 dark:text-white shadow-lg">
                                 <option value="" disabled selected>Prefijo</option>
                                 @for (prefixOption of prefixOptions; track $index) {
                                     <option [value]="prefixOption.prefix" class="text-black dark:text-white">{{ prefixOption.name }} ({{ prefixOption.prefix }})</option>
@@ -136,7 +136,7 @@
                                 [ngClass]="{
                                     'border-red-500 dark:border-red-500': !form1.controls['mobile'].valid,
                                     'border-green-500 dark:border-green-500': form1.controls['mobile'].valid && form1.controls['mobile'].touched
-                                }" class="block w-full p-2 bg-white border border-gray-200 text-black text-sm dark:bg-gray-800 dark:border-gray-700 dark:text-white shadow-lg"
+                                }" class="block w-full p-2 bg-white border border-gray-200 text-black text-sm dark:bg-gray-800 dark:border-gray-700 dark:text-white shadow-lg focus:outline-none"
                             />
                         </div>
                     </div>
@@ -151,14 +151,14 @@
                                 [ngClass]="{
                                     'border-red-500 dark:border-red-500': !form1.controls['email'].valid,
                                     'border-green-500 dark:border-green-500': form1.controls['email'].valid && form1.controls['email'].touched
-                                }" class="block w-full p-2 bg-white border border-gray-200 text-black text-sm dark:bg-gray-800 dark:border-gray-700 dark:text-white shadow-lg"
+                                }" class="block w-full p-2 bg-white border border-gray-200 text-black text-sm dark:bg-gray-800 dark:border-gray-700 dark:text-white shadow-lg focus:outline-none"
                             />
                         </div>
                     </div>
 
                     <div class="flex items-center mb-4 space-x-4">
                         <div class="w-full">
-                            <button type="submit" [disabled]="form1.invalid || loading" class="flex flex-1 w-full justify-center focus:outline-none text-white bg-primary hover:bg-green-800 font-medium px-5 py-2.5 me-2 mb-2 dark:bg-green-600 dark:hover:bg-primary disabled:bg-green-400 disabled:opacity-50">Guardar</button>
+                            <button type="submit" [disabled]="form1.invalid || loading" class="flex flex-1 w-full justify-center text-white bg-primary hover:bg-green-800 font-medium px-5 py-2.5 me-2 mb-2 dark:bg-green-600 dark:hover:bg-primary disabled:bg-green-400 disabled:opacity-50">Guardar</button>
                         </div>
                     </div>
                 </form>
@@ -173,7 +173,7 @@
                 <span class="material-icons ml-auto">{{ isAccordionForm2Open ? 'keyboard_arrow_up' : 'keyboard_arrow_down' }}</span>
             </div>
 
-            <div [ngClass]="{'max-h-[500px] opacity-100': isAccordionForm2Open, 'max-h-0 opacity-0': !isAccordionForm2Open}" class="transition-all duration-500 overflow-hidden space-y-2">
+            <div [ngClass]="{'max-h-[500px] opacity-100 overflow-visible': isAccordionForm2Open, 'max-h-0 opacity-0 overflow-hidden': !isAccordionForm2Open}" class="transition-all duration-500 space-y-2 overflow-hidden">
                 <form class="space-y-4" [formGroup]="form2" (ngSubmit)="onSubmitForm2()">
                     <div class="flex flex-col md:flex-row md:space-x-4 space-y-4 md:space-y-0">
                         <div class="w-full relative">
@@ -188,7 +188,7 @@
                                 [ngClass]="{
                                     'border-red-500 dark:border-red-500': !form2.controls['currentPassword'].valid && form2.controls['currentPassword'].touched,
                                     'border-green-500 dark:border-green-500': form2.controls['currentPassword'].valid && form2.controls['currentPassword'].touched
-                                }" class="block w-full p-2 bg-white border border-gray-200 text-black text-sm dark:bg-gray-800 dark:border-gray-700 dark:text-white shadow-lg"
+                                }" class="block w-full p-2 bg-white border border-gray-200 text-black text-sm dark:bg-gray-800 dark:border-gray-700 dark:text-white shadow-lg focus:outline-none"
                             />
                             
                             <button type="button" (click)="togglePasswordVisibility('currentPassword')" class="absolute flex items-center inset-y-0 right-0 px-3 mt-8">
@@ -197,9 +197,9 @@
 
                             @if (!form2.controls['currentPassword'].valid && isCurrentPasswordFocused) {
                                 <div class="relative z-10">
-                                    <div class="w-full max-w-[280px] p-4 bg-gray-100 shadow-lg absolute top-2 mt-2 before:w-4 before:h-4 before:rotate-45 before:bg-gray-100 before:absolute before:-top-2 before:left-6">
+                                    <div class="w-full max-w-[280px] p-4 bg-gray-100 dark:bg-gray-700 shadow-lg absolute top-2 mt-2 before:w-4 before:h-4 before:rotate-45 before:bg-gray-100 dark:before:bg-gray-700 before:absolute before:-top-2 before:left-6">
                                         <div class="my-2">
-                                            <div class="flex flex-col items-start text-left text-sm">
+                                            <div class="flex flex-col items-start text-left text-sm text-black dark:text-white">
                                                 <span>La contraseña debe tener:</span>
                                                 <div class="flex items-center">
                                                     <span class="material-icons mr-2" [ngClass]="currentPasswordCriteria.hasUpperCase ? 'text-green-500' : 'text-red-500'">{{ currentPasswordCriteria.hasUpperCase ? 'check' : 'close' }}</span> Al menos una letra en mayúscula.
@@ -239,7 +239,7 @@
                                 [ngClass]="{
                                     'border-red-500 dark:border-red-500': !form2.controls['newPassword'].valid && form2.controls['newPassword'].touched,
                                     'border-green-500 dark:border-green-500': form2.controls['newPassword'].valid && form2.controls['newPassword'].touched
-                                }" class="block w-full p-2 bg-white border border-gray-200 text-black text-sm dark:bg-gray-800 dark:border-gray-700 dark:text-white shadow-lg"
+                                }" class="block w-full p-2 bg-white border border-gray-200 text-black text-sm dark:bg-gray-800 dark:border-gray-700 dark:text-white shadow-lg focus:outline-none"
                             />
                             
                             <button type="button" (click)="togglePasswordVisibility('newPassword')" class="absolute flex items-center inset-y-0 right-0 px-3 mt-8">
@@ -248,9 +248,9 @@
 
                             @if (!form2.controls['newPassword'].valid && isNewPasswordFocused) {
                                 <div class="relative z-10">
-                                    <div class="w-full max-w-[280px] p-4 bg-gray-100 shadow-lg absolute top-2 mt-2 before:w-4 before:h-4 before:rotate-45 before:bg-gray-100 before:absolute before:-top-2 before:left-6">
+                                    <div class="w-full max-w-[280px] p-4 bg-gray-100 dark:bg-gray-700 shadow-lg absolute top-2 mt-2 before:w-4 before:h-4 before:rotate-45 before:bg-gray-100 dark:before:bg-gray-700 before:absolute before:-top-2 before:left-6">
                                         <div class="my-2">
-                                            <div class="flex flex-col items-start text-left text-sm">
+                                            <div class="flex flex-col items-start text-left text-sm text-black dark:text-white">
                                                 <span>La contraseña debe tener:</span>
                                                 <div class="flex items-center">
                                                     <span class="material-icons mr-2" [ngClass]="newPasswordCriteria.hasUpperCase ? 'text-green-500' : 'text-red-500'">{{ newPasswordCriteria.hasUpperCase ? 'check' : 'close' }}</span> Al menos una letra en mayúscula.
@@ -281,7 +281,7 @@
 
                     <div class="flex items-center mb-4 space-x-4">
                         <div class="w-full">
-                            <button type="submit" [disabled]="form2.invalid || loading" class="flex flex-1 w-full justify-center focus:outline-none text-white bg-primary hover:bg-green-800 font-medium px-5 py-2.5 me-2 mb-2 dark:bg-green-600 dark:hover:bg-primary disabled:bg-green-400 disabled:opacity-50">Cambiar contraseña</button>
+                            <button type="submit" [disabled]="form2.invalid || loading" class="flex flex-1 w-full justify-center text-white bg-primary hover:bg-green-800 font-medium px-5 py-2.5 me-2 mb-2 dark:bg-green-600 dark:hover:bg-primary disabled:bg-green-400 disabled:opacity-50">Cambiar contraseña</button>
                         </div>
                     </div>
                 </form>
@@ -300,6 +300,66 @@
                 <form class="space-y-4" [formGroup]="form3" (ngSubmit)="onSubmitForm3()">
                     <div class="flex flex-col md:flex-row md:space-x-4 space-y-4 md:space-y-0">
                         <div class="w-full">
+                            <label for="countryId" class="block font-semibold text-primary dark:text-secondary mb-2"> País <span class="text-red-500">*</span></label>
+                            <select id="countryId" formControlName="countryId" (change)="changeCountry()"
+                            [ngClass]="{
+                                'border-red-500 dark:border-red-500': !form3.controls['countryId'].valid,
+                                'border-green-500 dark:border-green-500': form3.controls['countryId'].valid && form3.controls['countryId'].touched,
+                                'text-gray-400 dark:text-gray-400': !form3.controls['countryId'].value
+                            }" class="block w-full px-1 py-2 bg-white border border-gray-200 text-black text-sm dark:bg-gray-800 dark:border-gray-700 dark:text-white shadow-lg">
+                                <option value="" disabled selected>País</option>
+                                @for (countriesOption of countriesOptions; track $index) {
+                                    <option [value]="countriesOption.id" class="text-black dark:text-white">{{ countriesOption.name }}</option>
+                                }
+                            </select>
+                        </div>
+
+                        <div class="w-full">
+                            <label for="departmentId" class="block font-semibold text-primary dark:text-secondary mb-2"> Departamento / Provincia / Estado <span class="text-red-500">*</span></label>
+                            <select id="departmentId" formControlName="departmentId"
+                            [ngClass]="{
+                                'border-red-500 dark:border-red-500': !form3.controls['departmentId'].valid,
+                                'border-green-500 dark:border-green-500': form3.controls['departmentId'].valid && form3.controls['departmentId'].touched,
+                                'text-gray-400 dark:text-gray-400': !form3.controls['departmentId'].value
+                            }" class="block w-full px-1 py-2 bg-white border border-gray-200 text-black text-sm dark:bg-gray-800 dark:border-gray-700 dark:text-white shadow-lg">
+                                <option value="" disabled selected>Departamento / Provincia / Estado</option>
+                                @for (departmentsOption of departmentsOptions; track $index) {
+                                    <option [value]="departmentsOption.id" class="text-black dark:text-white">{{ departmentsOption.name }}</option>
+                                }
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="flex flex-col md:flex-row md:space-x-4 space-y-4 md:space-y-0">
+                        <div class="w-full">
+                            <label for="city" class="block font-semibold text-primary dark:text-secondary mb-2"> Ciudad <span class="text-red-500">*</span></label>
+                            <input id="city" autocomplete="off"
+                                type="text" 
+                                formControlName="city"
+                                placeholder="Ciudad"
+                                [ngClass]="{
+                                    'border-red-500 dark:border-red-500': !form3.controls['city'].valid,
+                                    'border-green-500 dark:border-green-500': form3.controls['city'].valid && form3.controls['city'].touched
+                                }" class="block w-full p-2 bg-white border border-gray-200 text-black text-sm dark:bg-gray-800 dark:border-gray-700 dark:text-white shadow-lg focus:outline-none"
+                            />
+                        </div>
+
+                        <div class="w-full">
+                            <label for="zipCode" class="block font-semibold text-primary dark:text-secondary mb-2"> Zip / Código postal </label>
+                            <input id="zipCode" autocomplete="off"
+                                type="number" 
+                                formControlName="zipCode"
+                                placeholder="Zip / Código postal"
+                                [ngClass]="{
+                                    'border-red-500 dark:border-red-500': !form3.controls['zipCode'].valid,
+                                    'border-green-500 dark:border-green-500': form3.controls['zipCode'].valid && form3.controls['zipCode'].touched
+                                }" class="block w-full p-2 bg-white border border-gray-200 text-black text-sm dark:bg-gray-800 dark:border-gray-700 dark:text-white shadow-lg focus:outline-none"
+                            />
+                        </div>
+                    </div>
+
+                    <div class="flex flex-col md:flex-row md:space-x-4 space-y-4 md:space-y-0">
+                        <div class="w-full">
                             <label for="address" class="block font-semibold text-primary dark:text-secondary mb-2"> Dirección <span class="text-red-500">*</span></label>
                             <input id="address" autocomplete="off"
                                 type="text" 
@@ -307,8 +367,8 @@
                                 placeholder="Dirección"
                                 [ngClass]="{
                                     'border-red-500 dark:border-red-500': !form3.controls['address'].valid,
-                                    'border-green-500 dark:border-green-500': form3.controls['address'].valid
-                                }" class="block w-full p-2 bg-white border border-gray-200 text-black text-sm dark:bg-gray-800 dark:border-gray-700 dark:text-white shadow-lg"
+                                    'border-green-500 dark:border-green-500': form3.controls['address'].valid && form3.controls['address'].touched
+                                }" class="block w-full p-2 bg-white border border-gray-200 text-black text-sm dark:bg-gray-800 dark:border-gray-700 dark:text-white shadow-lg focus:outline-none"
                             />
                         </div>
                     </div>
@@ -316,38 +376,21 @@
                     <div class="flex flex-col md:flex-row md:space-x-4 space-y-4 md:space-y-0">
                         <div class="w-full">
                             <label for="addressObservations" class="block font-semibold text-primary dark:text-secondary mb-2"> Información adicional <span class="text-red-500">*</span></label>
-                            <input id="addressObservations" autocomplete="off" maxlength="100"
-                                type="text" 
-                                formControlName="addressObservations"
+                            <textarea id="addressObservations" autocomplete="off" maxlength="500" rows="4" 
+                                formControlName="addressObservations" 
                                 placeholder="Información adicional"
                                 [ngClass]="{
                                     'border-red-500 dark:border-red-500': !form3.controls['addressObservations'].valid,
-                                    'border-green-500 dark:border-green-500': form3.controls['addressObservations'].valid
-                                }" class="block w-full p-2 bg-white border border-gray-200 text-black text-sm dark:bg-gray-800 dark:border-gray-700 dark:text-white shadow-lg"
-                            />
-                        </div>
-                    </div>
-
-                    <div class="flex flex-col md:flex-row md:space-x-4 space-y-4 md:space-y-0">
-                        <div class="w-full">
-                            <label for="countryId" class="block font-semibold text-primary dark:text-secondary mb-2"> País <span class="text-red-500">*</span></label>
-                            <select id="countryId" formControlName="countryId" (change)="changeCountry()"
-                            [ngClass]="{
-                                'border-red-500 dark:border-red-500': !form3.controls['countryId'].valid,
-                                'border-green-500 dark:border-green-500': form3.controls['countryId'].valid && form3.controls['countryId'].touched,
-                                'text-gray-400 dark:text-gray-400': !form3.controls['countryId'].value
-                            }" class="block w-full px-1 py-2 bg-white border border-gray-200 text-black text-sm focus:outline-none dark:bg-gray-800 dark:border-gray-700 dark:text-white focus:ring focus:ring-black dark:focus:ring-white shadow-lg">
-                                <option value="" disabled selected>País</option>
-                                @for (countriesOption of countriesOptions; track $index) {
-                                    <option [value]="countriesOption.id" class="text-black dark:text-white">{{ countriesOption.name }}</option>
-                                }
-                            </select>
+                                    'border-green-500 dark:border-green-500': form3.controls['addressObservations'].valid && form3.controls['addressObservations'].touched
+                                }" 
+                                class="block w-full p-2 bg-white border border-gray-200 text-black text-sm dark:bg-gray-800 dark:border-gray-700 dark:text-white shadow-lg focus:outline-none resize-none"
+                            ></textarea>
                         </div>
                     </div>
 
                     <div class="flex items-center mb-4 space-x-4">
                         <div class="w-full">
-                            <button type="submit" [disabled]="form3.invalid || loading" class="flex flex-1 w-full justify-center focus:outline-none text-white bg-primary hover:bg-green-800 font-medium px-5 py-2.5 me-2 mb-2 dark:bg-green-600 dark:hover:bg-primary disabled:bg-green-400 disabled:opacity-50">Guardar</button>
+                            <button type="submit" [disabled]="form3.invalid || loading" class="flex flex-1 w-full justify-center text-white bg-primary hover:bg-green-800 font-medium px-5 py-2.5 me-2 mb-2 dark:bg-green-600 dark:hover:bg-primary disabled:bg-green-400 disabled:opacity-50">Guardar</button>
                         </div>
                     </div>
                 </form>

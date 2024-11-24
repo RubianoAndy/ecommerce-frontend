@@ -3,6 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 import { CountriesService } from '../../../shared/services/countries/countries.service';
 import { passwordValidator } from '../../../shared/validators/password.validator';
+import { DepartmentsService } from '../../../shared/services/departments/departments.service';
 
 @Component({
   selector: 'app-profile',
@@ -49,6 +50,7 @@ export default class ProfileComponent implements OnInit {
 
   prefixOptions: any[] = [];
   countriesOptions: any[] = [];
+  departmentsOptions: any[] = [];
 
   dniOptions = [
     { label: 'Cédula de ciudadanía (DNI)', value: 'Cédula de ciudadanía (DNI)' },
@@ -64,6 +66,7 @@ export default class ProfileComponent implements OnInit {
   constructor (
     private formBuilder: FormBuilder,
     private countriesService: CountriesService,
+    private departmentsService: DepartmentsService,
   ) {
     this.getCountries()
   }
@@ -102,7 +105,7 @@ export default class ProfileComponent implements OnInit {
       city: [data?.city || '', [ Validators.required, Validators.minLength(5), Validators.maxLength(50) ]],
       zipCode: [data?.zipCode || '', [ Validators.required, Validators.minLength(5), Validators.maxLength(8), Validators.pattern('^[0-9]*$') ]],
       address: [data?.address || '', [ Validators.required, Validators.minLength(5), Validators.maxLength(80) ]],
-      addressObservations: [data?.addressObservations || '', [ Validators.required, Validators.minLength(5), Validators.maxLength(100) ]],
+      addressObservations: [data?.addressObservations || '', [ Validators.required, Validators.minLength(5), Validators.maxLength(500) ]],
     });
   }
 
@@ -119,12 +122,16 @@ export default class ProfileComponent implements OnInit {
   }
 
   getCountries() {
-    this.countriesService.getAllCountries().subscribe(
+    this.countriesService.getCountries().subscribe(
       response => {
         this.prefixOptions = response;
         this.countriesOptions = response;
       }
     );
+  }
+
+  getDepartments(countryId:string) {
+    this.departmentsService.getDepartments(countryId).subscribe(response => this.departmentsOptions = response);
   }
 
   togglePasswordVisibility(formName: string): void {
@@ -190,6 +197,8 @@ export default class ProfileComponent implements OnInit {
   }
 
   changeCountry() {
-    alert('Sí cambió el país');
+    const countryIdSelected = this.form3.get('countryId')?.value;
+    this.getDepartments(countryIdSelected);
+    this.form3.get('departmentId')?.setValue('');
   }
 }
