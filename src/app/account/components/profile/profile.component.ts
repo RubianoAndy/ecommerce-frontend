@@ -2,6 +2,7 @@ import { NgClass } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 import { CountriesService } from '../../../shared/services/countries/countries.service';
+import { passwordValidator } from '../../../shared/validators/password.validator';
 
 @Component({
   selector: 'app-profile',
@@ -14,7 +15,30 @@ import { CountriesService } from '../../../shared/services/countries/countries.s
   styleUrl: './profile.component.scss'
 })
 export default class ProfileComponent implements OnInit {
-  form!: FormGroup;
+  form_1!: FormGroup;
+  form_2!: FormGroup;
+
+  isCurrentPasswordVisible: boolean = false;
+  isNewPasswordVisible: boolean = false;
+
+  isCurrentPasswordFocused: boolean = false;
+  isNewPasswordFocused: boolean = false;
+
+  currentPasswordCriteria = {
+    hasUpperCase: false,
+    hasLowerCase: false,
+    hasSpecialChar: false,
+    hasNumber: false,
+    isValidLength: false
+  };
+
+  newPasswordCriteria = {
+    hasUpperCase: false,
+    hasLowerCase: false,
+    hasSpecialChar: false,
+    hasNumber: false,
+    isValidLength: false
+  };
 
   loading: boolean = false;
 
@@ -38,11 +62,12 @@ export default class ProfileComponent implements OnInit {
     this.getCountries()
   }
   ngOnInit(): void {
-    this.createForm();
+    this.createForm1();
+    this.createForm2();
   }
 
-  createForm(data: any = null) {
-    this.form = this.formBuilder.group({
+  createForm1(data: any = null) {
+    this.form_1 = this.formBuilder.group({
       name_1: [data?.name_1 || '', [ Validators.required, Validators.minLength(2), Validators.maxLength(20) ]],
       name_2: [data?.name_2 || '', [ Validators.minLength(2), Validators.maxLength(20) ]],
       lastname_1: [data?.lastname_1 || '', [ Validators.required, Validators.minLength(2), Validators.maxLength(20) ]],
@@ -56,7 +81,18 @@ export default class ProfileComponent implements OnInit {
     });
   }
 
-  onSubmit() {
+  createForm2(data: any = null) {
+    this.form_2 = this.formBuilder.group({
+      currentPassword: [data?.currentPassword || '', [ Validators.required, passwordValidator() ]],
+      newPassword: [data?.newPassword || '', [ Validators.required, passwordValidator() ]],
+    });
+  }
+
+  onSubmitForm1() {
+
+  }
+
+  onSubmitForm2() {
 
   }
 
@@ -64,5 +100,56 @@ export default class ProfileComponent implements OnInit {
     this.countriesService.getAllCountries().subscribe(
       response => this.prefixOptions = response
     );
+  }
+
+  togglePasswordVisibility(formName: string): void {
+    const visibilityMap: any = {
+      currentPassword: () => { this.isCurrentPasswordVisible = !this.isCurrentPasswordVisible; },
+      newPassword: () => { this.isNewPasswordVisible = !this.isNewPasswordVisible; }
+    };
+
+    if (visibilityMap[formName])
+      visibilityMap[formName]();
+    // else
+    //   console.warn(`No se puede mostrar contraseña para ${formName}`);
+  }
+
+  onPasswordFocus(formName: string): void {
+    if (formName === 'currentPassword')
+      this.isCurrentPasswordFocused = true;
+    else if (formName === 'newPassword')
+      this.isNewPasswordFocused = true;
+  }
+
+  onPasswordBlur(formName: string): void {
+    if (formName === 'currentPassword')
+      this.isCurrentPasswordFocused = false;
+    else if (formName === 'newPassword')
+      this.isNewPasswordFocused = false;
+  }
+
+  checkPasswordCriteria(password: string, formName: string): void {
+    const criteria = {
+      hasUpperCase: /[A-Z]/.test(password),
+      hasLowerCase: /[a-z]/.test(password),
+      hasSpecialChar: /[!@#$%^&*(),.?":{}|<>]/.test(password),
+      hasNumber: /\d/.test(password),
+      isValidLength: password.length >= 8 && password.length <= 20,
+    };
+
+    if (formName === 'currentPassword')
+      this.currentPasswordCriteria = criteria;
+    else if (formName === 'newPassword')
+      this.newPasswordCriteria = criteria;
+  }
+
+  onCurrentPasswordChange(event: Event): void {
+    const password = (event.target as HTMLInputElement).value;
+    this.checkPasswordCriteria(password, 'currentPassword');
+  }
+
+  onNewPasswordChange(event: Event): void {
+    const password = (event.target as HTMLInputElement).value;
+    this.checkPasswordCriteria(password, 'newPassword');
   }
 }
