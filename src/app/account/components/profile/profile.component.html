@@ -28,8 +28,8 @@
                         formControlName="name_1"
                         placeholder="Primer nombre"
                         [ngClass]="{
-                            'border-red-500': !form_1.controls['name_1'].valid && form_1.controls['name_1'].touched,
-                            'border-green-500': form_1.controls['name_1'].valid && form_1.controls['name_1'].touched
+                            'border-red-500 dark:border-red-500': !form_1.controls['name_1'].valid,
+                            'border-green-500 dark:border-green-500': form_1.controls['name_1'].valid
                         }" class="block w-full p-2 bg-white border border-gray-200 text-black text-sm dark:bg-gray-800 dark:border-gray-700 dark:text-white shadow-lg"
                     />
                 </div>
@@ -41,8 +41,8 @@
                         formControlName="name_2"
                         placeholder="Segundo nombre"
                         [ngClass]="{
-                            'border-red-500': !form_1.controls['name_2'].valid && form_1.controls['name_2'].touched,
-                            'border-green-500': form_1.controls['name_2'].valid && form_1.controls['name_2'].touched
+                            'border-red-500 dark:border-red-500': !form_1.controls['name_2'].valid,
+                            'border-green-500 dark:border-green-500': form_1.controls['name_2'].valid && form_1.controls['name_2'].touched
                         }" class="block w-full p-2 bg-white border border-gray-200 text-black text-sm dark:bg-gray-800 dark:border-gray-700 dark:text-white shadow-lg"
                     />
                 </div>
@@ -56,8 +56,8 @@
                         formControlName="lastname_1"
                         placeholder="Primer apellido"
                         [ngClass]="{
-                            'border-red-500': !form_1.controls['lastname_1'].valid && form_1.controls['lastname_1'].touched,
-                            'border-green-500': form_1.controls['lastname_1'].valid && form_1.controls['lastname_1'].touched
+                            'border-red-500 dark:border-red-500': !form_1.controls['lastname_1'].valid,
+                            'border-green-500 dark:border-green-500': form_1.controls['lastname_1'].valid && form_1.controls['lastname_1'].touched
                         }" class="block w-full p-2 bg-white border border-gray-200 text-black text-sm dark:bg-gray-800 dark:border-gray-700 dark:text-white shadow-lg"
                     />
                 </div>
@@ -69,8 +69,8 @@
                         formControlName="lastname_2" 
                         placeholder="Segundo apellido"
                         [ngClass]="{
-                            'border-red-500': !form_1.controls['lastname_2'].valid && form_1.controls['lastname_2'].touched,
-                            'border-green-500': form_1.controls['lastname_2'].valid && form_1.controls['lastname_2'].touched
+                            'border-red-500 dark:border-red-500': !form_1.controls['lastname_2'].valid,
+                            'border-green-500 dark:border-green-500': form_1.controls['lastname_2'].valid && form_1.controls['lastname_2'].touched
                         }" class="block w-full p-2 bg-white border border-gray-200 text-black text-sm dark:bg-gray-800 dark:border-gray-700 dark:text-white shadow-lg"
                     />
                 </div>
@@ -81,8 +81,8 @@
                     <label for="dniType" class="block font-semibold text-primary dark:text-secondary mb-2"> Tipo de documento <span class="text-red-500">*</span></label>
                     <select id="dniType" formControlName="dniType"
                     [ngClass]="{
-                        'border-red-500': !form_1.controls['dniType'].valid && form_1.controls['dniType'].touched,
-                        'border-green-500': form_1.controls['dniType'].valid && form_1.controls['dniType'].touched,
+                        'border-red-500 dark:border-red-500': !form_1.controls['dniType'].valid,
+                        'border-green-500 dark:border-green-500': form_1.controls['dniType'].valid && form_1.controls['dniType'].touched,
                         'text-gray-400 dark:text-gray-400': !form_1.controls['dniType'].value
                     }" class="block w-full px-1 py-2 bg-white border border-gray-200 text-black text-sm focus:outline-none dark:bg-gray-800 dark:border-gray-700 dark:text-white focus:ring focus:ring-black dark:focus:ring-white shadow-lg">
                         <option value="" disabled selected>Tipo de documento</option>
@@ -99,8 +99,8 @@
                         formControlName="dni" 
                         placeholder="Documento de identificación"
                         [ngClass]="{
-                            'border-red-500': !form_1.controls['dni'].valid && form_1.controls['dni'].touched,
-                            'border-green-500': form_1.controls['dni'].valid && form_1.controls['dni'].touched
+                            'border-red-500 dark:border-red-500': !form_1.controls['dni'].valid,
+                            'border-green-500 dark:border-green-500': form_1.controls['dni'].valid && form_1.controls['dni'].touched
                         }" class="block w-full p-2 bg-white border border-gray-200 text-black text-sm dark:bg-gray-800 dark:border-gray-700 dark:text-white shadow-lg"
                     />
                 </div>
@@ -111,8 +111,8 @@
                     <label for="prefix" class="block font-semibold text-primary dark:text-secondary mb-2"> Prefijo <span class="text-red-500">*</span></label>
                     <select id="prefix" formControlName="prefix"
                     [ngClass]="{
-                        'border-red-500': !form_1.controls['prefix'].valid && form_1.controls['prefix'].touched,
-                        'border-green-500': form_1.controls['prefix'].valid && form_1.controls['prefix'].touched,
+                        'border-red-500 dark:border-red-500': !form_1.controls['prefix'].valid,
+                        'border-green-500 dark:border-green-500': form_1.controls['prefix'].valid && form_1.controls['prefix'].touched,
                         'text-gray-400 dark:text-gray-400': !form_1.controls['prefix'].value
                     }" class="block w-full px-1 py-2 bg-white border border-gray-200 text-black text-sm focus:outline-none dark:bg-gray-800 dark:border-gray-700 dark:text-white focus:ring focus:ring-black dark:focus:ring-white shadow-lg">
                         <option value="" disabled selected>Prefijo</option>
@@ -129,8 +129,8 @@
                         formControlName="mobile" 
                         placeholder="Número de celular"
                         [ngClass]="{
-                            'border-red-500': !form_1.controls['mobile'].valid && form_1.controls['mobile'].touched,
-                            'border-green-500': form_1.controls['mobile'].valid && form_1.controls['mobile'].touched
+                            'border-red-500 dark:border-red-500': !form_1.controls['mobile'].valid,
+                            'border-green-500 dark:border-green-500': form_1.controls['mobile'].valid && form_1.controls['mobile'].touched
                         }" class="block w-full p-2 bg-white border border-gray-200 text-black text-sm dark:bg-gray-800 dark:border-gray-700 dark:text-white shadow-lg"
                     />
                 </div>
@@ -144,8 +144,8 @@
                         formControlName="email" 
                         placeholder="Email"
                         [ngClass]="{
-                            'border-red-500': !form_1.controls['email'].valid && form_1.controls['email'].touched,
-                            'border-green-500': form_1.controls['email'].valid && form_1.controls['email'].touched
+                            'border-red-500 dark:border-red-500': !form_1.controls['email'].valid,
+                            'border-green-500 dark:border-green-500': form_1.controls['email'].valid && form_1.controls['email'].touched
                         }" class="block w-full p-2 bg-white border border-gray-200 text-black text-sm dark:bg-gray-800 dark:border-gray-700 dark:text-white shadow-lg"
                     />
                 </div>
@@ -174,8 +174,8 @@
                         (blur)="onPasswordBlur('currentPassword')"
                         (input)="onCurrentPasswordChange($event)"
                         [ngClass]="{
-                            'border-red-500': !form_2.controls['currentPassword'].valid && form_2.controls['currentPassword'].touched,
-                            'border-green-500': form_2.controls['currentPassword'].valid && form_2.controls['currentPassword'].touched
+                            'border-red-500 dark:border-red-500': !form_2.controls['currentPassword'].valid && form_2.controls['currentPassword'].touched,
+                            'border-green-500 dark:border-green-500': form_2.controls['currentPassword'].valid && form_2.controls['currentPassword'].touched
                         }" class="block w-full p-2 bg-white border border-gray-200 text-black text-sm dark:bg-gray-800 dark:border-gray-700 dark:text-white shadow-lg"
                     />
                     
@@ -183,7 +183,7 @@
                         <span class="material-icons text-primary dark:text-secondary">{{ isCurrentPasswordVisible ? 'visibility_off' : 'visibility' }}</span>
                     </button>
 
-                    @if (!form_2.controls['currentPassword'].valid && form_2.controls['currentPassword'].touched && isCurrentPasswordFocused) {
+                    @if (!form_2.controls['currentPassword'].valid && isCurrentPasswordFocused) {
                         <div class="relative z-10">
                             <div class="w-full max-w-[280px] p-4 bg-gray-100 shadow-lg absolute top-2 mt-2 before:w-4 before:h-4 before:rotate-45 before:bg-gray-100 before:absolute before:-top-2 before:left-6">
                                 <div class="my-2">
@@ -225,8 +225,8 @@
                         (blur)="onPasswordBlur('newPassword')"
                         (input)="onNewPasswordChange($event)"
                         [ngClass]="{
-                            'border-red-500': !form_2.controls['newPassword'].valid && form_2.controls['newPassword'].touched,
-                            'border-green-500': form_2.controls['newPassword'].valid && form_2.controls['newPassword'].touched
+                            'border-red-500 dark:border-red-500': !form_2.controls['newPassword'].valid && form_2.controls['newPassword'].touched,
+                            'border-green-500 dark:border-green-500': form_2.controls['newPassword'].valid && form_2.controls['newPassword'].touched
                         }" class="block w-full p-2 bg-white border border-gray-200 text-black text-sm dark:bg-gray-800 dark:border-gray-700 dark:text-white shadow-lg"
                     />
                     
@@ -234,7 +234,7 @@
                         <span class="material-icons text-primary dark:text-secondary">{{ isNewPasswordVisible ? 'visibility_off' : 'visibility' }}</span>
                     </button>
 
-                    @if (!form_2.controls['newPassword'].valid && form_2.controls['newPassword'].touched && isNewPasswordFocused) {
+                    @if (!form_2.controls['newPassword'].valid && isNewPasswordFocused) {
                         <div class="relative z-10">
                             <div class="w-full max-w-[280px] p-4 bg-gray-100 shadow-lg absolute top-2 mt-2 before:w-4 before:h-4 before:rotate-45 before:bg-gray-100 before:absolute before:-top-2 before:left-6">
                                 <div class="my-2">
