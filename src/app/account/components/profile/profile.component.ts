@@ -15,11 +15,13 @@ import { passwordValidator } from '../../../shared/validators/password.validator
   styleUrl: './profile.component.scss'
 })
 export default class ProfileComponent implements OnInit {
-  form_1!: FormGroup;
-  form_2!: FormGroup;
+  form1!: FormGroup;
+  form2!: FormGroup;
+  form3!: FormGroup;
 
-  isAccordionOpenForm1: boolean = true;
-  isAccordionOpenForm2: boolean = false;
+  isAccordionForm1Open: boolean = true;
+  isAccordionForm2Open: boolean = false;
+  isAccordionForm3Open: boolean = false;
 
   isCurrentPasswordVisible: boolean = false;
   isNewPasswordVisible: boolean = false;
@@ -45,7 +47,8 @@ export default class ProfileComponent implements OnInit {
 
   loading: boolean = false;
 
-  prefixOptions: any[] = []
+  prefixOptions: any[] = [];
+  countriesOptions: any[] = [];
 
   dniOptions = [
     { label: 'Cédula de ciudadanía (DNI)', value: 'Cédula de ciudadanía (DNI)' },
@@ -67,10 +70,11 @@ export default class ProfileComponent implements OnInit {
   ngOnInit(): void {
     this.createForm1();
     this.createForm2();
+    this.createForm3();
   }
 
   createForm1(data: any = null) {
-    this.form_1 = this.formBuilder.group({
+    this.form1 = this.formBuilder.group({
       name_1: [data?.name_1 || '', [ Validators.required, Validators.minLength(2), Validators.maxLength(20) ]],
       name_2: [data?.name_2 || '', [ Validators.minLength(2), Validators.maxLength(20) ]],
       lastname_1: [data?.lastname_1 || '', [ Validators.required, Validators.minLength(2), Validators.maxLength(20) ]],
@@ -85,9 +89,20 @@ export default class ProfileComponent implements OnInit {
   }
 
   createForm2(data: any = null) {
-    this.form_2 = this.formBuilder.group({
+    this.form2 = this.formBuilder.group({
       currentPassword: [data?.currentPassword || '', [ Validators.required, passwordValidator() ]],
       newPassword: [data?.newPassword || '', [ Validators.required, passwordValidator() ]],
+    });
+  }
+
+  createForm3(data: any = null) {
+    this.form3 = this.formBuilder.group({
+      countryId: [data?.countryId || '', [ Validators.required, Validators.minLength(2) ]],
+      departmentId: [data?.departmentId || '', [ Validators.required, Validators.minLength(2) ]],
+      city: [data?.city || '', [ Validators.required, Validators.minLength(5), Validators.maxLength(50) ]],
+      zipCode: [data?.zipCode || '', [ Validators.required, Validators.minLength(5), Validators.maxLength(8), Validators.pattern('^[0-9]*$') ]],
+      address: [data?.address || '', [ Validators.required, Validators.minLength(5), Validators.maxLength(80) ]],
+      addressObservations: [data?.addressObservations || '', [ Validators.required, Validators.minLength(5), Validators.maxLength(100) ]],
     });
   }
 
@@ -99,9 +114,16 @@ export default class ProfileComponent implements OnInit {
 
   }
 
+  onSubmitForm3() {
+
+  }
+
   getCountries() {
     this.countriesService.getAllCountries().subscribe(
-      response => this.prefixOptions = response
+      response => {
+        this.prefixOptions = response;
+        this.countriesOptions = response;
+      }
     );
   }
 
@@ -157,13 +179,17 @@ export default class ProfileComponent implements OnInit {
   }
 
   toggleAccordion(form: string): void {
-
     const accordionSection: any = {
-      form_1: () => { this.isAccordionOpenForm1 = !this.isAccordionOpenForm1; },
-      form_2: () => { this.isAccordionOpenForm2 = !this.isAccordionOpenForm2; },
+      form1: () => { this.isAccordionForm1Open = !this.isAccordionForm1Open; },
+      form2: () => { this.isAccordionForm2Open = !this.isAccordionForm2Open; },
+      form3: () => { this.isAccordionForm3Open = !this.isAccordionForm3Open; },
     };
 
     if (accordionSection[form])
       accordionSection[form]();
+  }
+
+  changeCountry() {
+    alert('Sí cambió el país');
   }
 }
