@@ -18,6 +18,9 @@ export default class ProfileComponent implements OnInit {
   form_1!: FormGroup;
   form_2!: FormGroup;
 
+  isAccordionOpenForm1: boolean = true;
+  isAccordionOpenForm2: boolean = false;
+
   isCurrentPasswordVisible: boolean = false;
   isNewPasswordVisible: boolean = false;
 
@@ -151,5 +154,16 @@ export default class ProfileComponent implements OnInit {
   onNewPasswordChange(event: Event): void {
     const password = (event.target as HTMLInputElement).value;
     this.checkPasswordCriteria(password, 'newPassword');
+  }
+
+  toggleAccordion(form: string): void {
+
+    const accordionSection: any = {
+      form_1: () => { this.isAccordionOpenForm1 = !this.isAccordionOpenForm1; },
+      form_2: () => { this.isAccordionOpenForm2 = !this.isAccordionOpenForm2; },
+    };
+
+    if (accordionSection[form])
+      accordionSection[form]();
   }
 }
