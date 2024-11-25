@@ -13,7 +13,7 @@ import { BreadcrumbComponent } from '../shared/components/breadcrumb/breadcrumb.
     templateUrl: './account.component.html',
     styleUrl: './account.component.scss'
 })
-export class AccountComponent {
+export default class AccountComponent {
 
   adminMenuOptions = [
     { label: 'Roles', url: 'roles', icon: 'person' },
