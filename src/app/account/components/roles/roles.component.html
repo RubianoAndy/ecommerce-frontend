@@ -87,4 +87,36 @@
             </ul>
         </div>
     </div>
+
+    @if (deleteModal) {
+        <div class="flex fixed inset-0 z-0 items-center justify-center p-4 bg-gray-900 bg-opacity-80">
+            <div class="relative w-full max-w-md bg-white shadow-lg">
+                <div class="flex items-center p-4">
+                    <button type="button" class="text-black hover:text-red-500 font-bold w-6 h-6 ms-auto inline-flex justify-center items-center" (click)="closeDeleteModal()">
+                        <span class="material-icons">close</span>
+                    </button>
+                </div>
+
+                <div class="p-4 text-black h-60 overflow-y-auto">
+                    <div class="text-center space-y-4">
+                        <span class="material-icons-outlined text-red-500 text-6xl">error_outline</span>
+                        
+                        <h3 class="text-xl text-black">
+                            ¿Deseas eliminar este usuario?
+                        </h3>
+
+                        <div class="flex justify-center space-x-4">
+                            <button type="button" (click)="deleteRole()" class="flex px-5 py-2.5 bg-primary hover:bg-green-800 text-white shadow-lg">
+                                <span class="material-icons-outlined mr-2">check</span> ¡Sí!
+                            </button>
+        
+                            <button type="button" (click)="closeDeleteModal()" class="flex px-5 py-2.5 bg-red-500 hover:bg-red-800 text-white shadow-lg">
+                                <span class="material-icons-outlined mr-2">close</span> ¡No!
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    }
 </div>

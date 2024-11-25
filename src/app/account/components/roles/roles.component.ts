@@ -1,6 +1,7 @@
 import { DatePipe, NgClass } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { RolesService } from '../../services/roles/roles.service';
+import { AlertService } from '../../../shared/services/alert/alert.service';
 
 @Component({
   selector: 'app-roles',
@@ -31,8 +32,11 @@ export default class RolesComponent implements OnInit {
 
   deleteModal: boolean = false;
 
+  roleSelected = null;
+
   constructor (
     private rolesService: RolesService,
+    private alertService: AlertService,
   ) { }
 
   ngOnInit(): void {
@@ -99,13 +103,43 @@ export default class RolesComponent implements OnInit {
     }
   }
 
-  openDeleteModal(userId: any) {
-    // this.userSelected = userId;
+  openDeleteModal(roleId: any) {
+    this.roleSelected = roleId;
     this.deleteModal = true;
   }
 
   closeDeleteModal() {
-    // this.userSelected = null;
+    this.roleSelected = null;
     this.deleteModal = false;
+  }
+
+  deleteRole() {
+    var alertBody = null;
+
+    this.rolesService.delete(this.roleSelected).subscribe({
+      next: (response: any) => {
+        alertBody = {
+          type: 'okay',
+          title: '¡Listo!',
+          message: response.message,
+        };
+
+        this.closeDeleteModal();
+        this.getRoles();
+
+        this.alertService.showAlert(alertBody);
+      },
+      error: (response) => {
+        alertBody = {
+          type: 'error',
+          title: '¡Error!',
+          message: response.error?.message || 'Ha ocurrido un error inesperado',
+        };
+
+        this.alertService.showAlert(alertBody);
+      }
+    });
+
+    this.getRoles();
   }
 }

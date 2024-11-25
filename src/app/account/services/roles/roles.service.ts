@@ -36,6 +36,16 @@ export class RolesService {
     );
   }
 
+  delete(roleId: any) {
+    this.loadingService.show()
+
+    return this.http.delete(`${this.apiUrl}/delete-role/${roleId}`).pipe(
+      finalize(() => {
+        this.loadingService.hide();
+      })
+    );
+  }
+
   getRolesSmall(): Observable<any> {
     this.loadingService.show();
 
