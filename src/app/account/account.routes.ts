@@ -22,6 +22,10 @@ const routes: Routes = [{
         path: 'users', loadComponent: () => import('./components/users/users.component'),
         data: { breadcrumb: 'Usuarios' }
       },
+      {
+        path: 'settings', loadComponent: () => import('./components/settings/settings.component'),
+        data: { breadcrumb: 'Configuración' }
+      },
       { 
         path: '**', redirectTo: 'users', pathMatch: 'full'
       },
