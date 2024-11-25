@@ -1,11 +1,10 @@
 import { RouterModule, Routes } from "@angular/router";
 import { NgModule } from "@angular/core";
 import { provideHttpClient, withInterceptorsFromDi } from "@angular/common/http";
-import { AccountComponent } from "./account.component";
 
 const routes: Routes = [{
     path: '',
-    component: AccountComponent,
+    loadComponent: () => import('./account.component'),
     children: [
       {
         path: '', redirectTo: 'users', pathMatch: 'full'
