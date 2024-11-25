@@ -43,6 +43,24 @@ export default class RolesComponent implements OnInit {
     this.getRoles();
   }
 
+  updateFilters(fieldName: string, event: Event) {
+    const target = event.target as HTMLInputElement; // Asegura que el target es un HTMLInputElement
+    const value = target.value;
+
+    if (!value)
+      this.filters = this.filters.filter(filter => filter.field !== fieldName);
+    else {
+      const index = this.filters.findIndex(filter => filter.field === fieldName);
+      
+      if (index > -1)
+        this.filters[index].value = value;
+      else
+        this.filters.push({ field: fieldName, value });
+    }
+
+    this.getRoles();
+  }
+
   getRoles () {
     this.rolesService.getRoles(this.page, this.pageSize, this.filters).subscribe({
       next: (response) => {
