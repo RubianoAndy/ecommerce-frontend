@@ -9,7 +9,7 @@
                 [ngClass]="{
                     'border-red-500 dark:border-red-500': !form.controls['name_1'].valid,
                     'border-green-500 dark:border-green-500': form.controls['name_1'].valid && form.controls['name_1'].touched
-                }" class="block w-full p-2 bg-white border border-gray-200 text-black text-sm dark:bg-gray-800 dark:border-gray-700 dark:text-white shadow-lg focus:outline-none"
+                }" class="block w-full p-2 bg-white border border-gray-200 text-black text-sm dark:bg-gray-900 dark:border-gray-700 dark:text-white shadow-lg focus:outline-none"
             />
         </div>
 
@@ -22,7 +22,7 @@
                 [ngClass]="{
                     'border-red-500 dark:border-red-500': !form.controls['name_2'].valid,
                     'border-green-500 dark:border-green-500': form.controls['name_2'].valid && form.controls['name_2'].touched
-                }" class="block w-full p-2 bg-white border border-gray-200 text-black text-sm dark:bg-gray-800 dark:border-gray-700 dark:text-white shadow-lg focus:outline-none"
+                }" class="block w-full p-2 bg-white border border-gray-200 text-black text-sm dark:bg-gray-900 dark:border-gray-700 dark:text-white shadow-lg focus:outline-none"
             />
         </div>
     </div>
@@ -37,7 +37,7 @@
                 [ngClass]="{
                     'border-red-500 dark:border-red-500': !form.controls['lastname_1'].valid,
                     'border-green-500 dark:border-green-500': form.controls['lastname_1'].valid && form.controls['lastname_1'].touched
-                }" class="block w-full p-2 bg-white border border-gray-200 text-black text-sm dark:bg-gray-800 dark:border-gray-700 dark:text-white shadow-lg focus:outline-none"
+                }" class="block w-full p-2 bg-white border border-gray-200 text-black text-sm dark:bg-gray-900 dark:border-gray-700 dark:text-white shadow-lg focus:outline-none"
             />
         </div>
 
@@ -50,7 +50,7 @@
                 [ngClass]="{
                     'border-red-500 dark:border-red-500': !form.controls['lastname_2'].valid,
                     'border-green-500 dark:border-green-500': form.controls['lastname_2'].valid && form.controls['lastname_2'].touched
-                }" class="block w-full p-2 bg-white border border-gray-200 text-black text-sm dark:bg-gray-800 dark:border-gray-700 dark:text-white shadow-lg focus:outline-none"
+                }" class="block w-full p-2 bg-white border border-gray-200 text-black text-sm dark:bg-gray-900 dark:border-gray-700 dark:text-white shadow-lg focus:outline-none"
             />
         </div>
     </div>
@@ -63,7 +63,7 @@
                 'border-red-500 dark:border-red-500': !form.controls['dniType'].valid,
                 'border-green-500 dark:border-green-500': form.controls['dniType'].valid && form.controls['dniType'].touched,
                 'text-gray-400 dark:text-gray-400': !form.controls['dniType'].value
-            }" class="block w-full px-1 py-2 bg-white border border-gray-200 text-black text-sm dark:bg-gray-800 dark:border-gray-700 dark:text-white shadow-lg">
+            }" class="block w-full px-1 py-2 bg-white border border-gray-200 text-black text-sm dark:bg-gray-900 dark:border-gray-700 dark:text-white shadow-lg focus:outline-none">
                 <option value="" disabled selected>Tipo de documento</option>
                 @for (dniOption of dniOptions; track $index) {
                     <option [value]="dniOption.value" class="text-black dark:text-white">{{ dniOption.label }}</option>
@@ -80,7 +80,7 @@
                 [ngClass]="{
                     'border-red-500 dark:border-red-500': !form.controls['dni'].valid,
                     'border-green-500 dark:border-green-500': form.controls['dni'].valid && form.controls['dni'].touched
-                }" class="block w-full p-2 bg-white border border-gray-200 text-black text-sm dark:bg-gray-800 dark:border-gray-700 dark:text-white shadow-lg focus:outline-none"
+                }" class="block w-full p-2 bg-white border border-gray-200 text-black text-sm dark:bg-gray-900 dark:border-gray-700 dark:text-white shadow-lg focus:outline-none"
             />
         </div>
     </div>
@@ -93,7 +93,7 @@
                 'border-red-500 dark:border-red-500': !form.controls['prefix'].valid,
                 'border-green-500 dark:border-green-500': form.controls['prefix'].valid && form.controls['prefix'].touched,
                 'text-gray-400 dark:text-gray-400': !form.controls['prefix'].value
-            }" class="block w-full px-1 py-2 bg-white border border-gray-200 text-black text-sm dark:bg-gray-800 dark:border-gray-700 dark:text-white shadow-lg">
+            }" class="block w-full px-1 py-2 bg-white border border-gray-200 text-black text-sm dark:bg-gray-900 dark:border-gray-700 dark:text-white shadow-lg focus:outline-none">
                 <option value="" disabled selected>Prefijo</option>
                 @for (prefixOption of prefixOptions; track $index) {
                     <option [value]="prefixOption.prefix" class="text-black dark:text-white">{{ prefixOption.name }} ({{ prefixOption.prefix }})</option>
@@ -110,7 +110,7 @@
                 [ngClass]="{
                     'border-red-500 dark:border-red-500': !form.controls['mobile'].valid,
                     'border-green-500 dark:border-green-500': form.controls['mobile'].valid && form.controls['mobile'].touched
-                }" class="block w-full p-2 bg-white border border-gray-200 text-black text-sm dark:bg-gray-800 dark:border-gray-700 dark:text-white shadow-lg focus:outline-none"
+                }" class="block w-full p-2 bg-white border border-gray-200 text-black text-sm dark:bg-gray-900 dark:border-gray-700 dark:text-white shadow-lg focus:outline-none"
             />
         </div>
     </div>
@@ -125,7 +125,7 @@
                 [ngClass]="{
                     'border-red-500 dark:border-red-500': !form.controls['email'].valid,
                     'border-green-500 dark:border-green-500': form.controls['email'].valid && form.controls['email'].touched
-                }" class="block w-full p-2 bg-white border border-gray-200 text-black text-sm dark:bg-gray-800 dark:border-gray-700 dark:text-white shadow-lg focus:outline-none"
+                }" class="block w-full p-2 bg-white border border-gray-200 text-black text-sm dark:bg-gray-900 dark:border-gray-700 dark:text-white shadow-lg focus:outline-none"
             />
         </div>
     </div>

@@ -7,7 +7,7 @@
                 'border-red-500 dark:border-red-500': !form.controls['countryId'].valid,
                 'border-green-500 dark:border-green-500': form.controls['countryId'].valid && form.controls['countryId'].touched,
                 'text-gray-400 dark:text-gray-400': !form.controls['countryId'].value
-            }" class="block w-full px-1 py-2 bg-white border border-gray-200 text-black text-sm dark:bg-gray-800 dark:border-gray-700 dark:text-white shadow-lg">
+            }" class="block w-full px-1 py-2 bg-white border border-gray-200 text-black text-sm dark:bg-gray-900 dark:border-gray-700 dark:text-white shadow-lg focus:outline-none">
                 <option value="" disabled selected>País</option>
                 @for (countriesOption of countriesOptions; track $index) {
                     <option [value]="countriesOption.id" class="text-black dark:text-white">{{ countriesOption.name }}</option>
@@ -22,7 +22,7 @@
                 'border-red-500 dark:border-red-500': !form.controls['departmentId'].valid,
                 'border-green-500 dark:border-green-500': form.controls['departmentId'].valid && form.controls['departmentId'].touched,
                 'text-gray-400 dark:text-gray-400': !form.controls['departmentId'].value
-            }" class="block w-full px-1 py-2 bg-white border border-gray-200 text-black text-sm dark:bg-gray-800 dark:border-gray-700 dark:text-white shadow-lg">
+            }" class="block w-full px-1 py-2 bg-white border border-gray-200 text-black text-sm dark:bg-gray-900 dark:border-gray-700 dark:text-white shadow-lg focus:outline-none">
                 <option value="" disabled selected>Departamento / Provincia / Estado</option>
                 @for (departmentsOption of departmentsOptions; track $index) {
                     <option [value]="departmentsOption.id" class="text-black dark:text-white">{{ departmentsOption.name }}</option>
@@ -41,7 +41,7 @@
                 [ngClass]="{
                     'border-red-500 dark:border-red-500': !form.controls['city'].valid,
                     'border-green-500 dark:border-green-500': form.controls['city'].valid && form.controls['city'].touched
-                }" class="block w-full p-2 bg-white border border-gray-200 text-black text-sm dark:bg-gray-800 dark:border-gray-700 dark:text-white shadow-lg focus:outline-none"
+                }" class="block w-full p-2 bg-white border border-gray-200 text-black text-sm dark:bg-gray-900 dark:border-gray-700 dark:text-white shadow-lg focus:outline-none"
             />
         </div>
 
@@ -54,7 +54,7 @@
                 [ngClass]="{
                     'border-red-500 dark:border-red-500': !form.controls['zipCode'].valid,
                     'border-green-500 dark:border-green-500': form.controls['zipCode'].valid && form.controls['zipCode'].touched
-                }" class="block w-full p-2 bg-white border border-gray-200 text-black text-sm dark:bg-gray-800 dark:border-gray-700 dark:text-white shadow-lg focus:outline-none"
+                }" class="block w-full p-2 bg-white border border-gray-200 text-black text-sm dark:bg-gray-900 dark:border-gray-700 dark:text-white shadow-lg focus:outline-none"
             />
         </div>
     </div>
@@ -69,7 +69,7 @@
                 [ngClass]="{
                     'border-red-500 dark:border-red-500': !form.controls['address'].valid,
                     'border-green-500 dark:border-green-500': form.controls['address'].valid && form.controls['address'].touched
-                }" class="block w-full p-2 bg-white border border-gray-200 text-black text-sm dark:bg-gray-800 dark:border-gray-700 dark:text-white shadow-lg focus:outline-none"
+                }" class="block w-full p-2 bg-white border border-gray-200 text-black text-sm dark:bg-gray-900 dark:border-gray-700 dark:text-white shadow-lg focus:outline-none"
             />
         </div>
     </div>
@@ -84,7 +84,7 @@
                     'border-red-500 dark:border-red-500': !form.controls['addressObservations'].valid,
                     'border-green-500 dark:border-green-500': form.controls['addressObservations'].valid && form.controls['addressObservations'].touched
                 }" 
-                class="block w-full p-2 bg-white border border-gray-200 text-black text-sm dark:bg-gray-800 dark:border-gray-700 dark:text-white shadow-lg focus:outline-none resize-none"
+                class="block w-full p-2 bg-white border border-gray-200 text-black text-sm dark:bg-gray-900 dark:border-gray-700 dark:text-white shadow-lg focus:outline-none resize-none"
             ></textarea>
         </div>
     </div>
