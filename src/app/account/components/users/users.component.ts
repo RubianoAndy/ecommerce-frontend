@@ -173,7 +173,7 @@ export default class UsersComponent implements OnInit {
   async getRoles() {
     var alertBody = null;
 
-    await this.rolesService.getAllRoles().subscribe({
+    await this.rolesService.getRoles().subscribe({
       next: (response) => {
         this.roles = response;
       },

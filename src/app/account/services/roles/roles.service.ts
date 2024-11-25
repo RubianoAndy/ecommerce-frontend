@@ -15,10 +15,10 @@ export class RolesService {
     private loadingService: LoadingService,
   ) { }
 
-  getAllRoles(): Observable<any> {
+  getRoles(): Observable<any> {
     this.loadingService.show();
 
-    return this.http.get(`${this.apiUrl}/all-roles`).pipe(
+    return this.http.get(`${this.apiUrl}/roles`).pipe(
       finalize(() => {
         this.loadingService.hide();
       })
