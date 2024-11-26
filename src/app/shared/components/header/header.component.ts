@@ -52,14 +52,11 @@ export class HeaderComponent implements OnInit, OnDestroy {
   }
 
   getProfile() {
-    this.profileService.getProfile().subscribe({
-      next: (response) => {
+    this.profileService.getProfile().subscribe(
+      response => {
         this.profile = response;
-      },
-      error: () => {
-        // console.error(response.error);
       }
-    });
+    );
   }
 
   signOut() {
