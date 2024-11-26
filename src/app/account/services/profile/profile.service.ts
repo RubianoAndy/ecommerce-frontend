@@ -24,4 +24,13 @@ export class ProfileService {
       })
     );
   }
+
+  updateProfile(body: any): Observable<any> {
+    this.loadingService.show();
+    return this.http.patch(`${this.apiUrl}/update-profile`, body).pipe(
+      finalize(() => {
+        this.loadingService.hide(); // Ocultar loading después de la petición
+      })
+    );
+  }
 }

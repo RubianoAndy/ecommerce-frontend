@@ -100,8 +100,9 @@ export class PersonalInformationComponent implements OnInit {
         console.log('Petición de crear formulario');
       else if (this.id() > 0)
         console.log('Petición de editar formulario');
-      else
-        console.log('Petición de editar formulario usando token del interceptor, se considera que lo hace desde la parte del menú perfil');
+      else {
+        this.updateProfile(body);
+      }
     }
   }
 
@@ -122,6 +123,14 @@ export class PersonalInformationComponent implements OnInit {
         });
       }
     });
+  }
+
+  updateProfile(body: any) {
+    this.profileService.updateProfile(body).subscribe({
+      next: () => {
+        this.getProfile();
+      }
+    })
   }
 
   getCountries() {

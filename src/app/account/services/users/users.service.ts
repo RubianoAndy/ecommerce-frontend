@@ -38,7 +38,7 @@ export class UsersService {
   }
 
   changeStatus(body: any): Observable<any> {
-    this.loadingService.show()
+    this.loadingService.show();
 
     return this.http.patch(`${this.apiUrl}/update-user-status`, body).pipe(
       finalize(() => {
