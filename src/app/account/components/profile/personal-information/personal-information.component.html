@@ -7,8 +7,9 @@
                 formControlName="name_1"
                 placeholder="Primer nombre"
                 [ngClass]="{
-                    'border-red-500 dark:border-red-500': !form.controls['name_1'].valid,
-                    'border-green-500 dark:border-green-500': form.controls['name_1'].valid && form.controls['name_1'].touched
+                    'border-red-500 dark:border-red-500': !form.controls['name_1'].valid && !form.controls['name_1'].disabled,
+                    'border-green-500 dark:border-green-500': form.controls['name_1'].valid && form.controls['name_1'].touched,
+                    'cursor-not-allowed': form.controls['name_1'].disabled
                 }" class="block w-full p-2 bg-white border border-gray-200 text-black text-sm dark:bg-gray-900 dark:border-gray-700 dark:text-white shadow-lg focus:outline-none"
             />
         </div>
@@ -20,8 +21,9 @@
                 formControlName="name_2"
                 placeholder="Segundo nombre"
                 [ngClass]="{
-                    'border-red-500 dark:border-red-500': !form.controls['name_2'].valid,
-                    'border-green-500 dark:border-green-500': form.controls['name_2'].valid && form.controls['name_2'].touched
+                    'border-red-500 dark:border-red-500': !form.controls['name_2'].valid && !form.controls['name_2'].disabled,
+                    'border-green-500 dark:border-green-500': form.controls['name_2'].valid && form.controls['name_2'].touched,
+                    'cursor-not-allowed': form.controls['name_2'].disabled
                 }" class="block w-full p-2 bg-white border border-gray-200 text-black text-sm dark:bg-gray-900 dark:border-gray-700 dark:text-white shadow-lg focus:outline-none"
             />
         </div>
@@ -35,8 +37,9 @@
                 formControlName="lastname_1"
                 placeholder="Primer apellido"
                 [ngClass]="{
-                    'border-red-500 dark:border-red-500': !form.controls['lastname_1'].valid,
-                    'border-green-500 dark:border-green-500': form.controls['lastname_1'].valid && form.controls['lastname_1'].touched
+                    'border-red-500 dark:border-red-500': !form.controls['lastname_1'].valid && !form.controls['lastname_1'].disabled,
+                    'border-green-500 dark:border-green-500': form.controls['lastname_1'].valid && form.controls['lastname_1'].touched,
+                    'cursor-not-allowed': form.controls['lastname_1'].disabled
                 }" class="block w-full p-2 bg-white border border-gray-200 text-black text-sm dark:bg-gray-900 dark:border-gray-700 dark:text-white shadow-lg focus:outline-none"
             />
         </div>
@@ -48,8 +51,9 @@
                 formControlName="lastname_2" 
                 placeholder="Segundo apellido"
                 [ngClass]="{
-                    'border-red-500 dark:border-red-500': !form.controls['lastname_2'].valid,
-                    'border-green-500 dark:border-green-500': form.controls['lastname_2'].valid && form.controls['lastname_2'].touched
+                    'border-red-500 dark:border-red-500': !form.controls['lastname_2'].valid && !form.controls['lastname_2'].disabled,
+                    'border-green-500 dark:border-green-500': form.controls['lastname_2'].valid && form.controls['lastname_2'].touched,
+                    'cursor-not-allowed': form.controls['lastname_2'].disabled
                 }" class="block w-full p-2 bg-white border border-gray-200 text-black text-sm dark:bg-gray-900 dark:border-gray-700 dark:text-white shadow-lg focus:outline-none"
             />
         </div>
@@ -60,9 +64,10 @@
             <label for="dniType" class="block font-semibold text-primary dark:text-secondary mb-2"> Tipo de documento <span class="text-red-500">*</span></label>
             <select id="dniType" formControlName="dniType"
             [ngClass]="{
-                'border-red-500 dark:border-red-500': !form.controls['dniType'].valid,
+                'border-red-500 dark:border-red-500': !form.controls['dniType'].valid && !form.controls['dniType'].disabled,
                 'border-green-500 dark:border-green-500': form.controls['dniType'].valid && form.controls['dniType'].touched,
-                'text-gray-400 dark:text-gray-400': !form.controls['dniType'].value
+                'text-gray-400 dark:text-gray-400': !form.controls['dniType'].value,
+                'cursor-not-allowed': form.controls['dniType'].disabled
             }" class="block w-full px-1 py-2 bg-white border border-gray-200 text-black text-sm dark:bg-gray-900 dark:border-gray-700 dark:text-white shadow-lg focus:outline-none">
                 <option value="" disabled selected>Tipo de documento</option>
                 @for (dniOption of dniOptions; track $index) {
@@ -78,8 +83,9 @@
                 formControlName="dni" 
                 placeholder="Documento de identificación"
                 [ngClass]="{
-                    'border-red-500 dark:border-red-500': !form.controls['dni'].valid,
-                    'border-green-500 dark:border-green-500': form.controls['dni'].valid && form.controls['dni'].touched
+                    'border-red-500 dark:border-red-500': !form.controls['dni'].valid && !form.controls['dni'].disabled,
+                    'border-green-500 dark:border-green-500': form.controls['dni'].valid && form.controls['dni'].touched,
+                    'cursor-not-allowed': form.controls['dni'].disabled
                 }" class="block w-full p-2 bg-white border border-gray-200 text-black text-sm dark:bg-gray-900 dark:border-gray-700 dark:text-white shadow-lg focus:outline-none"
             />
         </div>
@@ -90,9 +96,10 @@
             <label for="prefix" class="block font-semibold text-primary dark:text-secondary mb-2"> Prefijo <span class="text-red-500">*</span></label>
             <select id="prefix" formControlName="prefix"
             [ngClass]="{
-                'border-red-500 dark:border-red-500': !form.controls['prefix'].valid,
+                'border-red-500 dark:border-red-500': !form.controls['prefix'].valid && !form.controls['prefix'].disabled,
                 'border-green-500 dark:border-green-500': form.controls['prefix'].valid && form.controls['prefix'].touched,
-                'text-gray-400 dark:text-gray-400': !form.controls['prefix'].value
+                'text-gray-400 dark:text-gray-400': !form.controls['prefix'].value,
+                'cursor-not-allowed': form.controls['prefix'].disabled
             }" class="block w-full px-1 py-2 bg-white border border-gray-200 text-black text-sm dark:bg-gray-900 dark:border-gray-700 dark:text-white shadow-lg focus:outline-none">
                 <option value="" disabled selected>Prefijo</option>
                 @for (prefixOption of prefixOptions; track $index) {
@@ -104,12 +111,13 @@
         <div class="w-full">
             <label for="mobile" class="block font-semibold text-primary dark:text-secondary mb-2"> Número de celular <span class="text-red-500">*</span></label>
             <input id="mobile" autocomplete="off"
-                type="number" 
+                type="text" 
                 formControlName="mobile" 
                 placeholder="Número de celular"
                 [ngClass]="{
-                    'border-red-500 dark:border-red-500': !form.controls['mobile'].valid,
-                    'border-green-500 dark:border-green-500': form.controls['mobile'].valid && form.controls['mobile'].touched
+                    'border-red-500 dark:border-red-500': !form.controls['mobile'].valid && !form.controls['mobile'].disabled,
+                    'border-green-500 dark:border-green-500': form.controls['mobile'].valid && form.controls['mobile'].touched,
+                    'cursor-not-allowed': form.controls['mobile'].disabled
                 }" class="block w-full p-2 bg-white border border-gray-200 text-black text-sm dark:bg-gray-900 dark:border-gray-700 dark:text-white shadow-lg focus:outline-none"
             />
         </div>
@@ -123,8 +131,9 @@
                 formControlName="email" 
                 placeholder="Email"
                 [ngClass]="{
-                    'border-red-500 dark:border-red-500': !form.controls['email'].valid,
-                    'border-green-500 dark:border-green-500': form.controls['email'].valid && form.controls['email'].touched
+                    'border-red-500 dark:border-red-500': !form.controls['email'].valid && !form.controls['email'].disabled,
+                    'border-green-500 dark:border-green-500': form.controls['email'].valid && form.controls['email'].touched,
+                    'cursor-not-allowed': form.controls['email'].disabled
                 }" class="block w-full p-2 bg-white border border-gray-200 text-black text-sm dark:bg-gray-900 dark:border-gray-700 dark:text-white shadow-lg focus:outline-none"
             />
         </div>
