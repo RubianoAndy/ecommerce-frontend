@@ -73,7 +73,7 @@
 
                                     <td class="px-4 py-4 text-sm text-black">
                                         <button class="text-blue-600 hover:text-secondary mr-4"><span class="material-icons-outlined">edit</span></button>
-                                        <button class="text-red-500 hover:text-secondary" (click)="openDeleteModal(role.id)"><span class="material-icons-outlined">delete</span></button>
+                                        <button class="text-red-500 hover:text-secondary" (click)="openisDeleteModalOpen(role.id)"><span class="material-icons-outlined">delete</span></button>
                                     </td>
                                 </tr>
                             }
@@ -118,11 +118,11 @@
         </div>
     </div>
 
-    @if (deleteModal) {
+    @if (isDeleteModalOpen) {
         <div class="flex fixed inset-0 z-0 items-center justify-center p-4 bg-gray-900 bg-opacity-80">
             <div class="relative w-full max-w-md bg-white shadow-lg">
                 <div class="flex items-center p-4">
-                    <button type="button" class="text-black hover:text-red-500 font-bold w-6 h-6 ms-auto inline-flex justify-center items-center" (click)="closeDeleteModal()">
+                    <button type="button" class="text-black hover:text-red-500 font-bold w-6 h-6 ms-auto inline-flex justify-center items-center" (click)="closeisDeleteModalOpen()">
                         <span class="material-icons">close</span>
                     </button>
                 </div>
@@ -140,7 +140,7 @@
                                 <span class="material-icons-outlined mr-2">check</span> ¡Sí!
                             </button>
         
-                            <button type="button" (click)="closeDeleteModal()" class="flex px-5 py-2.5 bg-red-500 hover:bg-red-800 text-white shadow-lg">
+                            <button type="button" (click)="closeisDeleteModalOpen()" class="flex px-5 py-2.5 bg-red-500 hover:bg-red-800 text-white shadow-lg">
                                 <span class="material-icons-outlined mr-2">close</span> ¡No!
                             </button>
                         </div>

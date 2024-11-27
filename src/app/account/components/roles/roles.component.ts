@@ -30,7 +30,7 @@ export default class RolesComponent implements OnInit {
   startPage: number = 0;
   endPage: number = 0;
 
-  deleteModal: boolean = false;
+  isDeleteModalOpen: boolean = false;
 
   roleSelected = null;
 
@@ -121,14 +121,14 @@ export default class RolesComponent implements OnInit {
     }
   }
 
-  openDeleteModal(roleId: any) {
+  openisDeleteModalOpen(roleId: any) {
     this.roleSelected = roleId;
-    this.deleteModal = true;
+    this.isDeleteModalOpen = true;
   }
 
-  closeDeleteModal() {
+  closeisDeleteModalOpen() {
     this.roleSelected = null;
-    this.deleteModal = false;
+    this.isDeleteModalOpen = false;
   }
 
   deleteRole() {
@@ -142,7 +142,7 @@ export default class RolesComponent implements OnInit {
           message: response.message,
         };
 
-        this.closeDeleteModal();
+        this.closeisDeleteModalOpen();
         this.getRoles();
 
         this.alertService.showAlert(alertBody);
