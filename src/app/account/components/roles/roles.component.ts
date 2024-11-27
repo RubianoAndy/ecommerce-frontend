@@ -151,7 +151,7 @@ export default class RolesComponent implements OnInit {
         alertBody = {
           type: 'error',
           title: '¡Error!',
-          message: response.error?.message || 'Ha ocurrido un error inesperado',
+          message: response.message,
         };
 
         this.alertService.showAlert(alertBody);
