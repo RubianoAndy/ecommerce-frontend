@@ -93,9 +93,11 @@ export class PersonalInformationComponent implements OnInit {
     else if (this.userId() > 0){
       this.getRoles();
       this.getProfileFromSuperAdmin();
-    } else if (this.userId() == 0)
+    } else if (this.userId() == 0) {
+      this.form.get('roleId')?.setValidators([ Validators.required, Validators.minLength(1) ]);
+      this.form.get('password')?.setValidators([ Validators.required, passwordValidator() ]);
       this.getRoles();
-    
+    }
   }
 
   createForm(data: any = null) {
@@ -111,8 +113,8 @@ export class PersonalInformationComponent implements OnInit {
       prefix: [data?.prefix || '', [ Validators.required, Validators.minLength(1) ]],
       mobile: [data?.mobile || '', [ Validators.required, Validators.minLength(7), Validators.maxLength(30), Validators.pattern('^[0-9]*$') ]],
 
-      password: [data?.password || '', (this.userId() == 0 ) ? [ Validators.required, passwordValidator() ] : [ ]],
-      roleId: [data?.roleId || '', (this.userId() >= 0 ) ? [ Validators.required, Validators.minLength(1) ] : []],
+      password: [data?.password || ''],
+      roleId: [data?.roleId || ''],
     });
   }
 
@@ -128,7 +130,7 @@ export class PersonalInformationComponent implements OnInit {
       else if (this.userId() > 0)
         this.updateProfileFromSuperAdmin(body);
       else if (this.userId() == 0)
-        console.log('Petición de crear formulario');
+        this.newUserFromSuperAdmin(body);
     }
   }
 
@@ -147,6 +149,10 @@ export class PersonalInformationComponent implements OnInit {
           if (formField && formField.value)
             formField.disable();
         });
+
+        // Para evitar que queden habilitados los campos para el usuario
+        this.form.get('password')?.disable();
+        this.form.get('roleId')?.disable();
       }
     });
   }
@@ -167,12 +173,25 @@ export class PersonalInformationComponent implements OnInit {
           dniType: response.dniType === null ? '' : response.dniType,
           prefix: response.prefix === null ? '' : response.prefix,
         };
-        this.form.patchValue(this.edit)
+        this.form.patchValue(this.edit);
+
+        this.form.get('roleId')?.setValidators([ Validators.required, Validators.minLength(1) ]);
+        this.form.get('password')?.setValidators([ passwordValidator() ]);
       }
     });
   }
 
+  newUserFromSuperAdmin(body: any) {
+    this.profileService.add(body).subscribe({
+      next: () => {
+        this.form.patchValue(this.edit);
+      }
+    })
+  }
+
   updateProfileFromSuperAdmin(body: any) {
+    body.password = (body.password == '') ? null : body.password;   // Si no se llena la contraseña, que vaya un null
+
     this.profileService.update(this.userId(), body).subscribe({
       next: () => {
         this.getProfileFromSuperAdmin();

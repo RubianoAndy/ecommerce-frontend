@@ -111,7 +111,7 @@
         <div class="w-full">
             <label for="mobile" class="block font-semibold text-primary dark:text-secondary mb-2"> Número de celular <span class="text-red-500">*</span></label>
             <input id="mobile" autocomplete="off"
-                type="text" 
+                type="number" 
                 formControlName="mobile" 
                 placeholder="Número de celular"
                 [ngClass]="{
@@ -151,8 +151,9 @@
                     (blur)="onPasswordBlur()"
                     (input)="onPasswordChange($event)"
                     [ngClass]="{
-                        'border-red-500 dark:border-red-500': !form.controls['password'].valid,
-                        'border-green-500 dark:border-green-500': form.controls['password'].valid && form.controls['password'].touched
+                        'border-red-500 dark:border-red-500': !form.controls['password'].valid && !form.controls['roleId'].disabled,
+                        'border-green-500 dark:border-green-500': form.controls['password'].valid && form.controls['password'].touched,
+                        'cursor-not-allowed': form.controls['roleId'].disabled
                     }" class="block w-full p-2 bg-white border border-gray-200 text-black text-sm dark:bg-gray-900 dark:border-gray-700 dark:text-white shadow-lg focus:outline-none"
                 />
                 
@@ -160,7 +161,7 @@
                     <span class="material-icons text-primary dark:text-secondary">{{ isPasswordVisible ? 'visibility_off' : 'visibility' }}</span>
                 </button>
 
-                @if (!form.controls['password'].valid && isPasswordFocused) {
+                @if (isPasswordFocused) {
                     <div class="relative z-10">
                         <div class="w-full max-w-[280px] p-4 bg-gray-100 dark:bg-gray-700 shadow-lg absolute top-2 mt-2 before:w-4 before:h-4 before:rotate-45 before:bg-gray-100 dark:before:bg-gray-700 before:absolute before:-top-2 before:left-6">
                             <div class="my-2">
