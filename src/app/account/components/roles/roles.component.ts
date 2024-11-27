@@ -121,12 +121,12 @@ export default class RolesComponent implements OnInit {
     }
   }
 
-  openisDeleteModalOpen(roleId: any) {
+  deleteModalOpen(roleId: any) {
     this.roleSelected = roleId;
     this.isDeleteModalOpen = true;
   }
 
-  closeisDeleteModalOpen() {
+  deleteModalClose() {
     this.roleSelected = null;
     this.isDeleteModalOpen = false;
   }
@@ -142,7 +142,7 @@ export default class RolesComponent implements OnInit {
           message: response.message,
         };
 
-        this.closeisDeleteModalOpen();
+        this.deleteModalClose();
         this.getRoles();
 
         this.alertService.showAlert(alertBody);
