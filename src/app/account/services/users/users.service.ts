@@ -47,6 +47,36 @@ export class UsersService {
     );
   }
 
+  get(userId: any): Observable<any> {
+    this.loadingService.show();
+
+    return this.http.get(`${this.apiUrl}/user/${userId}`).pipe(
+      finalize(() => {
+        this.loadingService.hide(); // Ocultar loading después de la petición
+      })
+    );
+  }
+
+  add(body: any): Observable<any> {
+    this.loadingService.show();
+
+    return this.http.post(`${this.apiUrl}/user`, body).pipe(
+      finalize(() => {
+        this.loadingService.hide(); // Ocultar loading después de la petición
+      })
+    );
+  }
+
+  update(userId: any, body: any): Observable<any> {
+    this.loadingService.show();
+
+    return this.http.put(`${this.apiUrl}/update-user/${userId}`, body).pipe(
+      finalize(() => {
+        this.loadingService.hide(); // Ocultar loading después de la petición
+      })
+    );
+  }
+
   delete(userId: any) {
     this.loadingService.show()
 

@@ -6,6 +6,7 @@ import { CountriesService } from '../../../../shared/services/countries/countrie
 import { ProfileService } from '../../../services/profile/profile.service';
 import { passwordValidator } from '../../../../shared/validators/password.validator';
 import { RolesService } from '../../../services/roles/roles.service';
+import { UsersService } from '../../../services/users/users.service';
 
 interface Profile {
   id: number,
@@ -83,6 +84,7 @@ export class PersonalInformationComponent implements OnInit {
     private profileService: ProfileService,
     private countriesService: CountriesService,
     private rolesService: RolesService,
+    private usersService: UsersService,
   ) {
     this.getCountries();
   }
@@ -104,16 +106,16 @@ export class PersonalInformationComponent implements OnInit {
 
   createForm(data: any = null) {
     this.form = this.formBuilder.group({
-      name_1: [data?.name_1 || '', [ Validators.required, Validators.minLength(2), Validators.maxLength(20) ]],
-      name_2: [data?.name_2 || '', [ Validators.minLength(2), Validators.maxLength(20) ]],
-      lastname_1: [data?.lastname_1 || '', [ Validators.required, Validators.minLength(2), Validators.maxLength(20) ]],
-      lastname_2: [data?.lastname_2 || '', [ Validators.minLength(2), Validators.maxLength(20) ]],
+      name_1: [data?.name_1 || '', [ Validators.required, Validators.minLength(2), Validators.maxLength(20), Validators.pattern('^[a-zA-ZáéíóúÁÉÍÓÚñÑ ]+$') ]],
+      name_2: [data?.name_2 || '', [ Validators.minLength(2), Validators.maxLength(20), Validators.pattern('^[a-zA-ZáéíóúÁÉÍÓÚñÑ ]+$') ]],
+      lastname_1: [data?.lastname_1 || '', [ Validators.required, Validators.minLength(2), Validators.maxLength(20), Validators.pattern('^[a-zA-ZáéíóúÁÉÍÓÚñÑ ]+$') ]],
+      lastname_2: [data?.lastname_2 || '', [ Validators.minLength(2), Validators.maxLength(20), Validators.pattern('^[a-zA-ZáéíóúÁÉÍÓÚñÑ ]+$') ]],
       dniType: [data?.dniType || '', [ Validators.required, Validators.minLength(2) ]],
       dni: [data?.dni || '', [ Validators.required, Validators.minLength(5), Validators.maxLength(30) ]],
-      email: [data?.email || '', [ Validators.required, Validators.minLength(6), Validators.maxLength(50), Validators.email ]],
+      email: [data?.email || '', [ Validators.required, Validators.minLength(6), Validators.maxLength(100), Validators.email ]],
 
       prefix: [data?.prefix || '', [ Validators.required, Validators.minLength(1) ]],
-      mobile: [data?.mobile || '', [ Validators.required, Validators.minLength(7), Validators.maxLength(30), Validators.pattern('^[0-9]*$') ]],
+      mobile: [data?.mobile || '', [ Validators.required, Validators.minLength(7), Validators.maxLength(15), Validators.pattern('^[0-9]*$') ]],
 
       password: [data?.password || ''],
       roleId: [data?.roleId || ''],
@@ -121,10 +123,18 @@ export class PersonalInformationComponent implements OnInit {
   }
 
   onSubmitForm() {
-    var body = this.form.value;
+    var body: any = {
+      name_1: this.toCapitalizeCase(this.form.value.name_1),
+      name_2: (this.form.value.name_2 == '' || this.form.value.name_2 == null) ? null : this.toCapitalizeCase(this.form.value.name_2),
+      lastname_1: this.toCapitalizeCase(this.form.value.lastname_1),
+      lastname_2: (this.form.value.lastname_2 == '' || this.form.value.lastname_2 == null) ? null : this.toCapitalizeCase(this.form.value.lastname_2),
+      dniType: (this.form.value.dniType == '' || this.form.value.dniType == null) ? null : this.form.value.dniType,
+      dni: (this.form.value.dni == '' || this.form.value.dni == null) ? null : this.form.value.dni.trim(),
+      email: (this.form.value.email == '' || this.form.value.email == null) ? null : this.form.value.email.trim().toLowerCase(),
 
-    body.name_2 = (body.name_2 == '') ? null : body.name_2;
-    body.lastname_2 = (body.lastname_2 == '') ? null : body.lastname_2;
+      prefix: this.form.value.prefix,
+      mobile: this.form.value.mobile,
+    };
 
     if (this.form.valid && body) {
       if (this.userId() == null)
@@ -168,7 +178,7 @@ export class PersonalInformationComponent implements OnInit {
   }
 
   getProfileFromSuperAdmin() {
-    this.profileService.get(this.userId()).subscribe({
+    this.usersService.get(this.userId()).subscribe({
       next: (response: Profile) => {
         this.edit = {
           ...response,
@@ -184,7 +194,10 @@ export class PersonalInformationComponent implements OnInit {
   }
 
   newUserFromSuperAdmin(body: any) {
-    this.profileService.add(body).subscribe({
+    body.password = this.form.value.password;
+    body.roleId = this.form.value.roleId;
+
+    this.usersService.add(body).subscribe({
       next: () => {
         this.form.reset();
         this.userCreated.emit();
@@ -194,8 +207,9 @@ export class PersonalInformationComponent implements OnInit {
 
   updateProfileFromSuperAdmin(body: any) {
     body.password = (body.password == '') ? null : body.password;   // Si no se llena la contraseña, que vaya un null
+    body.roleId = this.form.value.roleId;
 
-    this.profileService.update(this.userId(), body).subscribe({
+    this.usersService.update(this.userId(), body).subscribe({
       next: () => {
         this.getProfileFromSuperAdmin();
       }
@@ -245,5 +259,16 @@ export class PersonalInformationComponent implements OnInit {
   onPasswordChange(event: Event): void {
     const password = (event.target as HTMLInputElement).value;
     this.checkPasswordCriteria(password);
+  }
+
+  private toCapitalizeCase (text:string): string {
+    if (!text)
+      return text;
+
+    return text
+      .trim()
+      .split(' ')
+      .map(word => word.charAt(0).toUpperCase() + word.slice(1).toLowerCase())
+      .join(' ');
   }
 }
