@@ -43,11 +43,23 @@ export const authInterceptor: HttpInterceptorFn = (req, next) => {
           }),
           catchError(error => {
             authService.signOut();
-            return throwError(() => new Error(error)); // Propaga el error
+            // return throwError(() => new Error(error)); // Propaga el error
+
+            return throwError(() => ({
+              status: error.status,
+              message: error.error?.message || 'Error al refrescar el token',
+              error: error.error || null,
+            }));
           })
         );
       }
-      return throwError(() => new Error(err)); // Propaga el error
+      // return throwError(() => new Error(err)); // Propaga el error
+
+      return throwError(() => ({
+        status: err.status,
+        message: err.error?.message || 'Error desconocido',
+        error: err.error || null,
+      }));
     })
   );
 };

@@ -33,7 +33,7 @@
 </div>
 
 <p align="center">
-    &copy; 2024 <a href="https://YouTube.com/@RubianoAndy" target="_blank" class="hover:underline">Andy Rubiano™ - International company</a>. All rights reserved.
+    &copy; 2025 <a href="https://YouTube.com/@RubianoAndy" target="_blank" class="hover:underline">Andy Rubiano™ - International company</a>. All rights reserved.
 </p>
 
 <hr>
@@ -41,7 +41,7 @@
 # EcommerceFrontend
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 18.2.7 and updated to [Angular CLI](https://github.com/angular/angular-cli) 
-version 19.0.0, [NodeJS](https://nodejs.org/en) version 22.11.0, [NPM](https://nodejs.org/en) version 10.9.0 and [Tailwind CSS](https://tailwindcss.com/) version 3.4.13.
+version 19.0.2, [NodeJS](https://nodejs.org/en) version 22.11.0, [NPM](https://nodejs.org/en) version 10.9.0 and [Tailwind CSS](https://tailwindcss.com/) version 3.4.13.
 
 ### Initial install
 
@@ -117,5 +117,5 @@ To update Angular to its latest version, you need to enter the project folder an
 <hr>
 
 <p align="center">
-    &copy; 2024 <a href="https://YouTube.com/@RubianoAndy" target="_blank" class="hover:underline">Andy Rubiano™ - International company</a>. All rights reserved.
+    &copy; 2025 <a href="https://YouTube.com/@RubianoAndy" target="_blank" class="hover:underline">Andy Rubiano™ - International company</a>. All rights reserved.
 </p>
