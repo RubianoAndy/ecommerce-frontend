@@ -170,9 +170,28 @@ export class PersonalInformationComponent implements OnInit {
   }
 
   updateProfile(body: any) {
+    var alertBody = null;
+
     this.profileService.updateProfile(body).subscribe({
-      next: () => {
+      next: (response) => {
         this.getProfile();
+
+        alertBody = {
+          type: 'okay',
+          title: '¡Felicidades!',
+          message: response.message,
+        };
+
+        this.alertService.showAlert(alertBody);
+      },
+      error: response => {
+        alertBody = {
+          type: 'error',
+          title: '¡Error!',
+          message: response.message,
+        };
+
+        this.alertService.showAlert(alertBody);
       }
     })
   }
@@ -194,24 +213,62 @@ export class PersonalInformationComponent implements OnInit {
   }
 
   newUserFromSuperAdmin(body: any) {
+    var alertBody = null;
+
     body.password = this.form.value.password;
     body.roleId = this.form.value.roleId;
 
     this.usersService.add(body).subscribe({
-      next: () => {
+      next: (response) => {
         this.form.reset();
         this.userCreated.emit();
+
+        alertBody = {
+          type: 'okay',
+          title: '¡Felicidades!',
+          message: response.message,
+        };
+
+        this.alertService.showAlert(alertBody);
+      },
+      error: response => {
+        alertBody = {
+          type: 'error',
+          title: '¡Error!',
+          message: response.message,
+        };
+
+        this.alertService.showAlert(alertBody);
       }
     })
   }
 
   updateProfileFromSuperAdmin(body: any) {
+    var alertBody = null;
+
     body.password = (body.password == '') ? null : body.password;   // Si no se llena la contraseña, que vaya un null
     body.roleId = this.form.value.roleId;
 
     this.usersService.update(this.userId(), body).subscribe({
-      next: () => {
+      next: (response) => {
         this.getProfileFromSuperAdmin();
+
+        alertBody = {
+          type: 'okay',
+          title: '¡Felicidades!',
+          message: response.message,
+        };
+
+        this.alertService.showAlert(alertBody);
+      },
+      error: response => {
+        alertBody = {
+          type: 'error',
+          title: '¡Error!',
+          message: response.message,
+        };
+
+        this.alertService.showAlert(alertBody);
       }
     })
   }
