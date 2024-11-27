@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 import { passwordValidator } from '../../../../shared/validators/password.validator';
 import { NgClass } from '@angular/common';
+import { ChangePasswordService } from '../../../services/change-password/change-password.service';
+import { AlertService } from '../../../../shared/services/alert/alert.service';
 
 @Component({
   selector: 'app-change-password',
@@ -41,6 +43,8 @@ export class ChangePasswordComponent implements OnInit {
 
   constructor (
     private formBuilder: FormBuilder,
+    private changePasswordService: ChangePasswordService,
+    private alertService: AlertService,
   ) { }
 
   ngOnInit(): void {
@@ -55,7 +59,37 @@ export class ChangePasswordComponent implements OnInit {
   }
 
   onSubmitForm() {
-    
+    let body = this.form.value;
+
+    if (this.form.valid && body)
+      this.changePassword(body);
+  }
+
+  changePassword(body: any) {
+    var alertBody = null;
+
+    this.changePasswordService.changePassword(body).subscribe({
+      next: response =>{
+        alertBody = {
+          type: 'okay',
+          title: '¡Felicidades!',
+          message: response.message,
+        };
+
+        this.form.reset();
+
+        this.alertService.showAlert(alertBody);
+      },
+      error: response => {
+        alertBody = {
+          type: 'error',
+          title: '¡Error!',
+          message: response.message,
+        };
+
+        this.alertService.showAlert(alertBody);
+      }
+    })
   }
 
   togglePasswordVisibility(formName: string): void {
