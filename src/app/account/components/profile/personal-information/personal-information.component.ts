@@ -1,5 +1,5 @@
 import { NgClass } from '@angular/common';
-import { Component, input, OnInit } from '@angular/core';
+import { Component, EventEmitter, input, OnInit, Output } from '@angular/core';
 import { FormBuilder, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 import { AlertService } from '../../../../shared/services/alert/alert.service';
 import { CountriesService } from '../../../../shared/services/countries/countries.service';
@@ -32,6 +32,8 @@ interface Profile {
   styleUrl: './personal-information.component.scss'
 })
 export class PersonalInformationComponent implements OnInit {
+  @Output() userCreated = new EventEmitter<void>();
+
   userId = input<any>();
 
   edit!: Profile;
@@ -184,7 +186,8 @@ export class PersonalInformationComponent implements OnInit {
   newUserFromSuperAdmin(body: any) {
     this.profileService.add(body).subscribe({
       next: () => {
-        this.form.patchValue(this.edit);
+        this.form.reset();
+        this.userCreated.emit();
       }
     })
   }

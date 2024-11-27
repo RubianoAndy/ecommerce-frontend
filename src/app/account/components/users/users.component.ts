@@ -80,7 +80,7 @@ export default class UsersComponent implements OnInit {
     this.getUsers();
   }
 
-  getUsers () {
+  getUsers() {
     this.usersService.getUsers(this.page, this.pageSize, this.filters).subscribe({
       next: (response) => {
         this.usersRecords = response.users;
@@ -202,5 +202,10 @@ export default class UsersComponent implements OnInit {
   closeUserInformation() {
     this.userId = null;
     this.isModalOpen = false;
+    this.getUsers();
+  }
+
+  onUserCreated() {
+    this.closeUserInformation();
   }
 }

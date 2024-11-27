@@ -179,7 +179,7 @@
 
                 <div class="p-4 text-black h-[600px] overflow-y-auto">
                     <h2 class="text-3xl text-center font-semibold text-secondary dark:text-primary mb-4">Información personal</h2>
-                    <app-personal-information [userId]="userId" />
+                    <app-personal-information [userId]="userId" (userCreated)="onUserCreated()" />
 
                     @if(userId != null && userId > 0) {
                         <hr class="text-gray-200 dark:text-gray-700 w-full my-4">
