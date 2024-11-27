@@ -5,7 +5,6 @@ import { DatePipe, NgClass } from '@angular/common';
 import { AlertService } from '../../../shared/services/alert/alert.service';
 import { RolesService } from '../../services/roles/roles.service';
 import { PersonalInformationComponent } from '../profile/personal-information/personal-information.component';
-import { ChangePasswordComponent } from '../profile/change-password/change-password.component';
 import { ShippingInformationComponent } from '../profile/shipping-information/shipping-information.component';
 
 @Component({
@@ -15,7 +14,6 @@ import { ShippingInformationComponent } from '../profile/shipping-information/sh
     DatePipe,
     NgClass,
     PersonalInformationComponent,
-    ChangePasswordComponent,
     ShippingInformationComponent,
   ],
   templateUrl: './users.component.html',

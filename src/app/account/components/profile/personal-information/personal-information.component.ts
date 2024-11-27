@@ -4,6 +4,8 @@ import { FormBuilder, FormGroup, FormsModule, ReactiveFormsModule, Validators } 
 import { AlertService } from '../../../../shared/services/alert/alert.service';
 import { CountriesService } from '../../../../shared/services/countries/countries.service';
 import { ProfileService } from '../../../services/profile/profile.service';
+import { passwordValidator } from '../../../../shared/validators/password.validator';
+import { RolesService } from '../../../services/roles/roles.service';
 
 interface Profile {
   id: number,
@@ -36,6 +38,17 @@ export class PersonalInformationComponent implements OnInit {
   
   form!: FormGroup;
 
+  isPasswordVisible: boolean = false;
+  isPasswordFocused: boolean = false;
+
+  passwordCriteria = {
+    hasUpperCase: false,
+    hasLowerCase: false,
+    hasSpecialChar: false,
+    hasNumber: false,
+    isValidLength: false
+  };
+
   loading: boolean = false;
 
   dniOptions = [
@@ -60,12 +73,14 @@ export class PersonalInformationComponent implements OnInit {
   ];
 
   prefixOptions: any[] = [];
+  rolesOptions: any[] = [];
 
   constructor (
     private formBuilder: FormBuilder,
     private alertService: AlertService,
     private profileService: ProfileService,
     private countriesService: CountriesService,
+    private rolesService: RolesService,
   ) {
     this.getCountries();
   }
@@ -75,8 +90,12 @@ export class PersonalInformationComponent implements OnInit {
 
     if (this.userId() == null)
       this.getProfile();
-    else if (this.userId() > 0)
+    else if (this.userId() > 0){
+      this.getRoles();
       this.getProfileFromSuperAdmin();
+    } else if (this.userId() == 0)
+      this.getRoles();
+    
   }
 
   createForm(data: any = null) {
@@ -91,6 +110,9 @@ export class PersonalInformationComponent implements OnInit {
 
       prefix: [data?.prefix || '', [ Validators.required, Validators.minLength(1) ]],
       mobile: [data?.mobile || '', [ Validators.required, Validators.minLength(7), Validators.maxLength(30), Validators.pattern('^[0-9]*$') ]],
+
+      password: [data?.password || '', (this.userId() == 0 ) ? [ Validators.required, passwordValidator() ] : [ ]],
+      roleId: [data?.roleId || '', (this.userId() >= 0 ) ? [ Validators.required, Validators.minLength(1) ] : []],
     });
   }
 
@@ -164,5 +186,42 @@ export class PersonalInformationComponent implements OnInit {
         this.prefixOptions = response;
       }
     );
+  }
+
+  getRoles() {
+    this.rolesService.getRolesSmall().subscribe(
+      response => {
+        this.rolesOptions = response;
+      }
+    );
+  }
+
+  togglePasswordVisibility(): void {
+    this.isPasswordVisible = !this.isPasswordVisible;
+  }
+
+  onPasswordFocus(): void {
+    this.isPasswordFocused = true;
+  }
+
+  onPasswordBlur(): void {
+    this.isPasswordFocused = false;
+  }
+
+  checkPasswordCriteria(password: string): void {
+    const criteria = {
+      hasUpperCase: /[A-Z]/.test(password),
+      hasLowerCase: /[a-z]/.test(password),
+      hasSpecialChar: /[!@#$%^&*(),.?":{}|<>]/.test(password),
+      hasNumber: /\d/.test(password),
+      isValidLength: password.length >= 8 && password.length <= 20,
+    };
+
+    this.passwordCriteria = criteria;
+  }
+
+  onPasswordChange(event: Event): void {
+    const password = (event.target as HTMLInputElement).value;
+    this.checkPasswordCriteria(password);
   }
 }
