@@ -4,19 +4,25 @@ import { UsersService } from '../../services/users/users.service';
 import { DatePipe, NgClass } from '@angular/common';
 import { AlertService } from '../../../shared/services/alert/alert.service';
 import { RolesService } from '../../services/roles/roles.service';
+import { PersonalInformationComponent } from '../profile/personal-information/personal-information.component';
+import { ChangePasswordComponent } from '../profile/change-password/change-password.component';
+import { ShippingInformationComponent } from '../profile/shipping-information/shipping-information.component';
 
 @Component({
-    selector: 'app-users',
-    imports: [
-        FormsModule,
-        DatePipe,
-        NgClass,
-    ],
-    templateUrl: './users.component.html',
-    styleUrl: './users.component.scss'
+  selector: 'app-users',
+  imports: [
+    FormsModule,
+    DatePipe,
+    NgClass,
+    PersonalInformationComponent,
+    ChangePasswordComponent,
+    ShippingInformationComponent,
+  ],
+  templateUrl: './users.component.html',
+  styleUrl: './users.component.scss'
 })
 export default class UsersComponent implements OnInit {
-  avatar = 'assets/images/avatar/Avatar.png';
+  avatar: string = 'assets/images/avatar/Avatar.png';
 
   roles: any[] = [];
 
@@ -37,9 +43,9 @@ export default class UsersComponent implements OnInit {
   startPage: number = 0;
   endPage: number = 0;
 
-  deleteModal: boolean = false;
+  isModalOpen: boolean = false;
 
-  userSelected = null;
+  userId: number | null = null;
 
   activatedOptions = [
     { label: 'Activo', value: true },
@@ -190,43 +196,13 @@ export default class UsersComponent implements OnInit {
     });
   }
 
-  /* openDeleteModal(userId: any) {
-    this.userSelected = userId;
-    this.deleteModal = true;
+  openUserInformation(userId: string) {
+    this.userId = Number(userId);
+    this.isModalOpen = true;
   }
 
-  closeDeleteModal() {
-    this.userSelected = null;
-    this.deleteModal = false;
-  } */
-
-  /* deleteUser() {
-    var alertBody = null;
-
-    this.usersService.delete(this.userSelected).subscribe({
-      next: (response: any) => {
-        alertBody = {
-          type: 'okay',
-          title: '¡Listo!',
-          message: response.message,
-        };
-
-        this.closeDeleteModal();
-        this.getUsers();
-
-        this.alertService.showAlert(alertBody);
-      },
-      error: (response) => {
-        alertBody = {
-          type: 'error',
-          title: '¡Error!',
-          message: response.message,
-        };
-
-        this.alertService.showAlert(alertBody);
-      }
-    });
-
-    this.getUsers();
-  } */
+  closeUserInformation() {
+    this.userId = null;
+    this.isModalOpen = false;
+  }
 }

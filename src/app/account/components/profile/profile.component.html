@@ -17,26 +17,18 @@
     <div class="w-full max-w-2xl mx-auto px-8">
         <hr class="text-gray-200 dark:text-gray-700 w-full my-4">
 
-        <div class="accordion">
-            <div (click)="toggleAccordion('form1')" class="cursor-pointer flex items-center text-lg sm:text-2xl text-center font-semibold text-primary dark:text-secondary mb-4">
-                <h2>Datos personales</h2>
-                <span class="material-icons ml-auto">{{ isAccordionForm1Open ? 'keyboard_arrow_up' : 'keyboard_arrow_down' }}</span>
-            </div>
-
-            <div [ngClass]="{'max-h-full opacity-100': isAccordionForm1Open, 'max-h-0 opacity-0': !isAccordionForm1Open}" class="transition-all duration-500 overflow-hidden space-y-2">
-                <app-personal-information />                
-            </div>
-        </div>
+        <h2 class="text-3xl text-center font-semibold text-primary dark:text-secondary mb-4">Información personal</h2>
+        <app-personal-information />
 
         <hr class="text-gray-200 dark:text-gray-700 w-full my-4">
 
         <div class="accordion">
-            <div (click)="toggleAccordion('form2')" class="cursor-pointer flex items-center text-lg sm:text-2xl text-center font-semibold text-primary dark:text-secondary mb-4">
+            <div (click)="toggleAccordion('accordion_1')" class="cursor-pointer flex items-center text-2xl text-center font-semibold text-primary dark:text-secondary hover:text-blue-500 dark:hover:text-blue-500 mb-4">
                 <h2>Cambiar contraseña</h2>
-                <span class="material-icons ml-auto">{{ isAccordionForm2Open ? 'keyboard_arrow_up' : 'keyboard_arrow_down' }}</span>
+                <span class="material-icons ml-auto">{{ isAccordion1Open ? 'keyboard_arrow_up' : 'keyboard_arrow_down' }}</span>
             </div>
 
-            <div [ngClass]="{'max-h-[500px] opacity-100 overflow-visible': isAccordionForm2Open, 'max-h-0 opacity-0 overflow-hidden': !isAccordionForm2Open}" class="transition-all duration-500 space-y-2 overflow-hidden">
+            <div [ngClass]="{'max-h-[500px] opacity-100 overflow-visible': isAccordion1Open, 'max-h-0 opacity-0 overflow-hidden': !isAccordion1Open}" class="transition-all duration-500 space-y-2 overflow-hidden">
                 <app-change-password />
             </div>
         </div>
@@ -44,12 +36,12 @@
         <hr class="text-gray-200 dark:text-gray-700 w-full my-4">
 
         <div class="accordion">
-            <div (click)="toggleAccordion('form3')" class="cursor-pointer flex items-center text-lg sm:text-2xl text-center font-semibold text-primary dark:text-secondary mb-4">
+            <div (click)="toggleAccordion('accordion_2')" class="cursor-pointer flex items-center text-2xl text-center font-semibold text-primary dark:text-secondary hover:text-blue-500 dark:hover:text-blue-500 mb-4">
                 <h2>Dirección de envío</h2>
-                <span class="material-icons ml-auto">{{ isAccordionForm3Open ? 'keyboard_arrow_up' : 'keyboard_arrow_down' }}</span>
+                <span class="material-icons ml-auto">{{ isAccordion2Open ? 'keyboard_arrow_up' : 'keyboard_arrow_down' }}</span>
             </div>
 
-            <div [ngClass]="{'max-h-[500px] opacity-100': isAccordionForm3Open, 'max-h-0 opacity-0': !isAccordionForm3Open}" class="transition-all duration-500 overflow-hidden space-y-2">
+            <div [ngClass]="{'max-h-[500px] opacity-100': isAccordion2Open, 'max-h-0 opacity-0': !isAccordion2Open}" class="transition-all duration-500 overflow-hidden space-y-2">
                 <app-shipping-information />
             </div>
         </div>

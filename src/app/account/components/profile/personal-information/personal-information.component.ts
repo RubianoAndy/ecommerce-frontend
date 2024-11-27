@@ -1,7 +1,8 @@
+import { NgClass } from '@angular/common';
 import { Component, input, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
+import { AlertService } from '../../../../shared/services/alert/alert.service';
 import { CountriesService } from '../../../../shared/services/countries/countries.service';
-import { NgClass } from '@angular/common';
 import { ProfileService } from '../../../services/profile/profile.service';
 
 interface Profile {
@@ -15,7 +16,7 @@ interface Profile {
   prefix: string,
   mobile: string,
   email: string,
-  roleId: number,
+  // roleId: number,
 }
 
 @Component({
@@ -29,7 +30,7 @@ interface Profile {
   styleUrl: './personal-information.component.scss'
 })
 export class PersonalInformationComponent implements OnInit {
-  id = input<any>();
+  userId = input<any>();
 
   edit!: Profile;
   
@@ -62,6 +63,7 @@ export class PersonalInformationComponent implements OnInit {
 
   constructor (
     private formBuilder: FormBuilder,
+    private alertService: AlertService,
     private profileService: ProfileService,
     private countriesService: CountriesService,
   ) {
@@ -71,10 +73,10 @@ export class PersonalInformationComponent implements OnInit {
   ngOnInit(): void {
     this.createForm();
 
-    if (this.id() > 0)
-      console.log('Petición para traer la información de un candidato ya creado y llenar el formulario'); // Acá va la petición para traer el formulario si id > 0
-    else
+    if (this.userId() == null)
       this.getProfile();
+    else if (this.userId() > 0)
+      this.getProfileFromSuperAdmin();
   }
 
   createForm(data: any = null) {
@@ -95,14 +97,16 @@ export class PersonalInformationComponent implements OnInit {
   onSubmitForm() {
     var body = this.form.value;
 
+    body.name_2 = (body.name_2 == '') ? null : body.name_2;
+    body.lastname_2 = (body.lastname_2 == '') ? null : body.lastname_2;
+
     if (this.form.valid && body) {
-      if (this.id() == 0)
-        console.log('Petición de crear formulario');
-      else if (this.id() > 0)
-        console.log('Petición de editar formulario');
-      else {
+      if (this.userId() == null)
         this.updateProfile(body);
-      }
+      else if (this.userId() > 0)
+        this.updateProfileFromSuperAdmin(body);
+      else if (this.userId() == 0)
+        console.log('Petición de crear formulario');
     }
   }
 
@@ -129,6 +133,27 @@ export class PersonalInformationComponent implements OnInit {
     this.profileService.updateProfile(body).subscribe({
       next: () => {
         this.getProfile();
+      }
+    })
+  }
+
+  getProfileFromSuperAdmin() {
+    this.profileService.get(this.userId()).subscribe({
+      next: (response: Profile) => {
+        this.edit = {
+          ...response,
+          dniType: response.dniType === null ? '' : response.dniType,
+          prefix: response.prefix === null ? '' : response.prefix,
+        };
+        this.form.patchValue(this.edit)
+      }
+    });
+  }
+
+  updateProfileFromSuperAdmin(body: any) {
+    this.profileService.update(this.userId(), body).subscribe({
+      next: () => {
+        this.getProfileFromSuperAdmin();
       }
     })
   }
