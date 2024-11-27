@@ -170,17 +170,26 @@
         <div class="flex fixed inset-0 z-0 items-center justify-center p-4 bg-gray-900 bg-opacity-80">
             <div class="relative w-full max-w-3xl bg-white dark:bg-gray-950 shadow-lg">
                 <div class="flex items-center p-4">
+                    <h2 class="text-3xl text-center justify-center font-semibold text-primary dark:text-secondary mb-4">Usuario</h2>
+
                     <button type="button" (click)="closeUserInformation()" class="text-primary dark:text-secondary hover:text-red-500 dark:hover:text-red-500 font-bold w-6 h-6 ms-auto inline-flex justify-center items-center">
                         <span class="material-icons">close</span>
                     </button>
                 </div>
 
                 <div class="p-4 text-black h-[600px] overflow-y-auto">
-                    <h2 class="text-2xl text-center font-semibold text-primary dark:text-secondary mb-4 uppercase">Información personal</h2>
+                    <h2 class="text-3xl text-center font-semibold text-secondary dark:text-primary mb-4">Información personal</h2>
                     <app-personal-information [userId]="userId" />
 
                     @if(userId != null && userId > 0) {
+                        <hr class="text-gray-200 dark:text-gray-700 w-full my-4">
+
+                        <h2 class="text-3xl text-center font-semibold text-secondary dark:text-primary mb-4">Cambiar contraseña</h2>
                         <app-change-password />
+
+                        <hr class="text-gray-200 dark:text-gray-700 w-full my-4">
+
+                        <h2 class="text-3xl text-center font-semibold text-secondary dark:text-primary mb-4">Información de correspondencia</h2>
                         <app-shipping-information />
                     }
                 </div>
