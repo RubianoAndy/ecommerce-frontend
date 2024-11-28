@@ -78,9 +78,18 @@ export class UsersService {
   }
 
   delete(userId: any) {
-    this.loadingService.show()
+    this.loadingService.show();
 
     return this.http.delete(`${this.apiUrl}/delete-user/${userId}`).pipe(
+      finalize(() => {
+        this.loadingService.hide();
+      })
+    );
+  }
+
+  export(): Observable<any> {
+    this.loadingService.show();
+    return this.http.get(`${this.apiUrl}/users/excel`, { responseType: 'blob' }).pipe(
       finalize(() => {
         this.loadingService.hide();
       })

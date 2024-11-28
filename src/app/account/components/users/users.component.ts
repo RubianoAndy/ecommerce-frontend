@@ -6,6 +6,7 @@ import { AlertService } from '../../../shared/services/alert/alert.service';
 import { RolesService } from '../../services/roles/roles.service';
 import { PersonalInformationComponent } from '../profile/personal-information/personal-information.component';
 import { ShippingInformationComponent } from '../profile/shipping-information/shipping-information.component';
+import { environment } from '../../../../environments/environment.development';
 
 @Component({
   selector: 'app-users',
@@ -207,5 +208,37 @@ export default class UsersComponent implements OnInit {
 
   onUserCreated() {
     this.closeUserInformation();
+  }
+
+  exportUsers() {
+    var alertBody = null;
+
+    this.usersService.export().subscribe({
+      next: (response) => {
+        const url = window.URL.createObjectURL(response);
+        const a = document.createElement('a');
+        a.href = url;
+        a.download = 'Informe de usuarios.xlsx';
+        a.click();
+        window.URL.revokeObjectURL(url); // Libera memoria
+
+        alertBody = {
+          type: 'okay',
+          title: '¡Felicidades!',
+          message: 'Informe generado con éxito',
+        };
+
+        this.alertService.showAlert(alertBody);
+      },
+      error: (response) => {
+        alertBody = {
+          type: 'error',
+          title: '¡Error!',
+          message: response.message,
+        };
+
+        this.alertService.showAlert(alertBody);
+      }
+    });
   }
 }
