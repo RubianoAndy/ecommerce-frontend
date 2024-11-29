@@ -7,7 +7,10 @@
                 <div class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none text-blue-500 dark:text-secondary">
                     <span class="material-icons">search</span>
                 </div>
-                <input type="text" id="name" autocomplete="name" autocomplete="off" (input)="updateFilters('name', $event)" class="block w-full pl-10 p-2 bg-white border border-gray-200 text-black text-sm focus:outline-none focus:ring focus:ring-primary dark:bg-gray-900 dark:border-gray-700 dark:text-white dark:focus:ring-secondary" placeholder="Nombre"/>
+                <input id="roleNameFilter" type="text" autocomplete="name" autocomplete="off" 
+                    (input)="roleNameSubject.next($event)" placeholder="Nombre"
+                    class="block w-full pl-10 p-2 bg-white border border-gray-200 text-black text-sm focus:outline-none focus:ring focus:ring-primary dark:bg-gray-900 dark:border-gray-700 dark:text-white dark:focus:ring-secondary"
+                />
             </div>
         </div>
 
@@ -16,7 +19,10 @@
                 <div class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none text-blue-500 dark:text-secondary">
                     <span class="material-icons">search</span>
                 </div>
-                <input type="number" id="id" autocomplete="id" (input)="updateFilters('id', $event)" class="block w-full pl-10 p-2 bg-white border border-gray-200 text-black text-sm focus:outline-none focus:ring focus:ring-primary dark:bg-gray-900 dark:border-gray-700 dark:text-white dark:focus:ring-secondary" placeholder="ID"/>
+                <input type="number" id="roleIdFilter" autocomplete="off" 
+                    (input)="roleIdSubject.next($event)" placeholder="ID del rol"
+                    class="block w-full pl-10 p-2 bg-white border border-gray-200 text-black text-sm focus:outline-none focus:ring focus:ring-primary dark:bg-gray-900 dark:border-gray-700 dark:text-white dark:focus:ring-secondary"
+                />
             </div>
         </div>
 

@@ -2,6 +2,12 @@ import { DatePipe, NgClass } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { RolesService } from '../../services/roles/roles.service';
 import { AlertService } from '../../../shared/services/alert/alert.service';
+import { Subject, debounceTime, distinctUntilChanged } from 'rxjs';
+
+interface SubjectFilter {
+  subject: Subject<Event>;
+  field: string;
+}
 
 @Component({
   selector: 'app-roles',
@@ -22,6 +28,9 @@ export default class RolesComponent implements OnInit {
   totalRecords: number = 0;
   
   filters: any[] = [];
+  roleNameSubject = new Subject<Event>();
+  roleIdSubject = new Subject<Event>();
+  subjectsFilters: SubjectFilter[] = [];
 
   startRecord: number = 0;
   endRecord: number = 0;
@@ -31,16 +40,35 @@ export default class RolesComponent implements OnInit {
   endPage: number = 0;
 
   isDeleteModalOpen: boolean = false;
+  isRoleModalOpen: boolean = false;
+
+  roleId: number | null = null;
 
   roleSelected = null;
 
   constructor (
     private rolesService: RolesService,
     private alertService: AlertService,
-  ) { }
+  ) {
+    this.subjectsFilters = [
+      { subject: this.roleNameSubject, field: 'name' },
+      { subject: this.roleIdSubject, field: 'id' },
+    ];
+  }
 
   ngOnInit(): void {
     this.getRoles();
+
+    this.debounceFilter();
+  }
+
+  debounceFilter() {
+    this.subjectsFilters.forEach(({ subject, field }) => 
+      subject.pipe(
+        debounceTime(500),
+        distinctUntilChanged()
+      ).subscribe(value => this.updateFilters(field, value))
+    );
   }
 
   updateFilters(fieldName: string, event: Event) {
@@ -159,5 +187,48 @@ export default class RolesComponent implements OnInit {
     });
 
     this.getRoles();
+  }
+
+  openRoleInformation(roleId: string) {
+    this.roleId = Number(roleId);
+    this.isRoleModalOpen = true;
+  }
+
+  closeRoleInformation() {
+    this.roleId = null;
+    this.isRoleModalOpen = false;
+    this.getRoles();
+  }
+
+  exportRoles() {
+    var alertBody = null;
+
+    this.rolesService.export().subscribe({
+      next: (response) => {
+        const url = window.URL.createObjectURL(response);
+        const a = document.createElement('a');
+        a.href = url;
+        a.download = 'Informe de usuarios.xlsx';
+        a.click();
+        window.URL.revokeObjectURL(url); // Libera memoria
+
+        alertBody = {
+          type: 'okay',
+          title: '¡Felicidades!',
+          message: 'Informe generado con éxito',
+        };
+
+        this.alertService.showAlert(alertBody);
+      },
+      error: (response) => {
+        alertBody = {
+          type: 'error',
+          title: '¡Error!',
+          message: response.message,
+        };
+
+        this.alertService.showAlert(alertBody);
+      }
+    });
   }
 }
