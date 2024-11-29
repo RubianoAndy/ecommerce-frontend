@@ -1,13 +1,10 @@
 import { DatePipe, NgClass } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
+import { Subject, debounceTime, distinctUntilChanged } from 'rxjs';
+import { SubjectFilter } from '../../interfaces/subject-filter/subject-filter';
+
 import { RolesService } from '../../services/roles/roles.service';
 import { AlertService } from '../../../shared/services/alert/alert.service';
-import { Subject, debounceTime, distinctUntilChanged } from 'rxjs';
-
-interface SubjectFilter {
-  subject: Subject<Event>;
-  field: string;
-}
 
 @Component({
   selector: 'app-roles',
