@@ -1,11 +1,17 @@
 import { Component, OnInit } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { UsersService } from '../../services/users/users.service';
 import { DatePipe, NgClass } from '@angular/common';
-import { AlertService } from '../../../shared/services/alert/alert.service';
-import { RolesService } from '../../services/roles/roles.service';
+import { Subject, debounceTime, distinctUntilChanged } from 'rxjs';
+
+import { SubjectFilter } from '../../interfaces/subject-filter/subject-filter';
+
 import { PersonalInformationComponent } from '../profile/personal-information/personal-information.component';
 import { ShippingInformationComponent } from '../profile/shipping-information/shipping-information.component';
+
+import { UsersService } from '../../services/users/users.service';
+import { AlertService } from '../../../shared/services/alert/alert.service';
+import { RolesService } from '../../services/roles/roles.service';
+
 import { environment } from '../../../../environments/environment.development';
 
 @Component({
@@ -34,6 +40,12 @@ export default class UsersComponent implements OnInit {
   totalRecords: number = 0;
   
   filters: any[] = [];
+  userDniSubject = new Subject<Event>();
+  userNameSubject = new Subject<Event>();
+  userEmailSubject = new Subject<Event>();
+  userStatusSubject = new Subject<Event>();
+  roleIdSubject = new Subject<Event>();
+  subjectsFilters: SubjectFilter[] = [];
 
   startRecord: number = 0;
   endRecord: number = 0;
@@ -56,11 +68,29 @@ export default class UsersComponent implements OnInit {
     private alertService: AlertService,
     private rolesService: RolesService,
   ) {
+    this.subjectsFilters = [
+      { subject: this.userDniSubject, field: 'dni' },
+      { subject: this.userNameSubject, field: 'name' },
+      { subject: this.userEmailSubject, field: 'email' },
+      { subject: this.userStatusSubject, field: 'activated' },
+      { subject: this.roleIdSubject, field: 'roleId' },
+    ];
+
     this.getRoles();
   }
 
   ngOnInit(): void {
+    this.debounceFilter();
     this.getUsers();
+  }
+
+  debounceFilter() {
+    this.subjectsFilters.forEach(({ subject, field }) => 
+      subject.pipe(
+        debounceTime(500),
+        distinctUntilChanged()
+      ).subscribe(value => this.updateFilters(field, value))
+    );
   }
 
   updateFilters(fieldName: string, event: Event) {

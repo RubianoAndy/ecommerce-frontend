@@ -7,12 +7,17 @@
                 <div class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none text-blue-500 dark:text-secondary">
                     <span class="material-icons">search</span>
                 </div>
-                <input type="text" id="name_filter" autocomplete="name" (input)="updateFilters('name', $event)" maxlength="15" class="block w-full pl-10 p-2 bg-white border border-gray-200 text-black text-sm focus:outline-none focus:ring focus:ring-primary dark:bg-gray-900 dark:border-gray-700 dark:text-white dark:focus:ring-secondary" placeholder="Nombre"/>
+                <input id="userNameFilter" type="text" autocomplete="name" placeholder="Nombre"
+                    (input)="userNameSubject.next($event)" maxlength="15"
+                    class="block w-full pl-10 p-2 bg-white border border-gray-200 text-black text-sm focus:outline-none focus:ring focus:ring-primary dark:bg-gray-900 dark:border-gray-700 dark:text-white dark:focus:ring-secondary"
+                />
             </div>
         </div>
 
         <div class="flex items-center w-full md:w-1/4">
-            <select id="role_filter" (change)="updateFilters('roleId', $event)" class="block w-full p-2 bg-white border border-gray-200 text-black text-sm focus:outline-none focus:ring focus:ring-primary dark:bg-gray-900 dark:border-gray-700 dark:text-white dark:focus:ring-secondary">
+            <select id="roleIdFilter" (change)="roleIdSubject.next($event)"
+                class="block w-full p-2 bg-white border border-gray-200 text-black text-sm focus:outline-none focus:ring focus:ring-primary dark:bg-gray-900 dark:border-gray-700 dark:text-white dark:focus:ring-secondary"
+            >
                 <option value="" selected>Seleccionar rol</option>
                 @for (role of roles; track $index) {
                     <option [value]="role.id">{{ role.name }}</option>
@@ -37,12 +42,17 @@
                 <div class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none text-blue-500 dark:text-secondary">
                     <span class="material-icons">search</span>
                 </div>
-                <input type="email_filter" id="email_filter" autocomplete="email" (input)="updateFilters('email', $event)" class="block w-full pl-10 p-2 bg-white border border-gray-200 text-black text-sm focus:outline-none focus:ring focus:ring-primary dark:bg-gray-900 dark:border-gray-700 dark:text-white dark:focus:ring-secondary" placeholder="Email"/>
+                <input id="userEmailFilter" type="email" autocomplete="email" placeholder="Email"
+                    (input)="userEmailSubject.next($event)" 
+                    class="block w-full pl-10 p-2 bg-white border border-gray-200 text-black text-sm focus:outline-none focus:ring focus:ring-primary dark:bg-gray-900 dark:border-gray-700 dark:text-white dark:focus:ring-secondary"
+                />
             </div>
         </div>
 
         <div class="flex items-center w-full md:w-1/4">
-            <select id="activated" (change)="updateFilters('activated', $event)" class="block w-full p-2 bg-white border border-gray-200 text-black text-sm focus:outline-none focus:ring focus:ring-primary dark:bg-gray-900 dark:border-gray-700 dark:text-white dark:focus:ring-secondary">
+            <select id="userStatusFilter" (change)="userStatusSubject.next($event)"
+                class="block w-full p-2 bg-white border border-gray-200 text-black text-sm focus:outline-none focus:ring focus:ring-primary dark:bg-gray-900 dark:border-gray-700 dark:text-white dark:focus:ring-secondary"
+            >
                 <option value="" selected>Seleccionar estado</option>
                 @for (activatedOption of activatedOptions; track $index) {
                     <option [value]="activatedOption.value">{{ activatedOption.label }}</option>
@@ -55,7 +65,10 @@
                 <div class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none text-blue-500 dark:text-secondary">
                     <span class="material-icons">search</span>
                 </div>
-                <input type="text" id="dni_filter" autocomplete="dni_filter" (input)="updateFilters('dni', $event)" class="block w-full pl-10 p-2 bg-white border border-gray-200 text-black text-sm focus:outline-none focus:ring focus:ring-primary dark:bg-gray-900 dark:border-gray-700 dark:text-white dark:focus:ring-secondary" placeholder="DNI"/>
+                <input id="userDniFilter" type="text" autocomplete="dni" placeholder="DNI"
+                    (input)="userDniSubject.next($event)"
+                    class="block w-full pl-10 p-2 bg-white border border-gray-200 text-black text-sm focus:outline-none focus:ring focus:ring-primary dark:bg-gray-900 dark:border-gray-700 dark:text-white dark:focus:ring-secondary"
+                />
             </div>
         </div>
     </div>
