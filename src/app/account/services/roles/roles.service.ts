@@ -36,10 +36,49 @@ export class RolesService {
     );
   }
 
-  delete(roleId: any) {
-    this.loadingService.show()
+  get(roleId: any): Observable<any> {
+    this.loadingService.show();
 
-    return this.http.delete(`${this.apiUrl}/delete-role/${roleId}`).pipe(
+    return this.http.get(`${this.apiUrl}/role/${roleId}`).pipe(
+      finalize(() => {
+        this.loadingService.hide(); // Ocultar loading después de la petición
+      })
+    );
+  }
+
+  add(name: string): Observable<any> {
+    this.loadingService.show();
+
+    return this.http.post(`${this.apiUrl}/role`, { name }).pipe(
+      finalize(() => {
+        this.loadingService.hide();
+      })
+    );
+  }
+
+  edit(roleId: any, name: string): Observable<any> {
+    this.loadingService.show();
+
+    return this.http.put(`${this.apiUrl}/role/${roleId}`, { name }).pipe(
+      finalize(() => {
+        this.loadingService.hide(); // Ocultar loading después de la petición
+      })
+    );
+  }
+
+  delete(roleId: any): Observable<any> {
+    this.loadingService.show();
+
+    return this.http.delete(`${this.apiUrl}/role/${roleId}`).pipe(
+      finalize(() => {
+        this.loadingService.hide();
+      })
+    );
+  }
+
+  export(): Observable<any> {
+    this.loadingService.show();
+    return this.http.get(`${this.apiUrl}/roles/excel`, { responseType: 'blob' }).pipe(
       finalize(() => {
         this.loadingService.hide();
       })

@@ -138,9 +138,9 @@ export class PersonalInformationComponent implements OnInit {
 
     if (this.form.valid && body) {
       if (this.userId() == null)
-        this.updateProfile(body);
+        this.editProfile(body);
       else if (this.userId() > 0)
-        this.updateProfileFromSuperAdmin(body);
+        this.editProfileFromSuperAdmin(body);
       else if (this.userId() == 0)
         this.newUserFromSuperAdmin(body);
     }
@@ -169,10 +169,10 @@ export class PersonalInformationComponent implements OnInit {
     });
   }
 
-  updateProfile(body: any) {
+  editProfile(body: any) {
     var alertBody = null;
 
-    this.profileService.updateProfile(body).subscribe({
+    this.profileService.edit(body).subscribe({
       next: (response) => {
         this.getProfile();
 
@@ -243,13 +243,13 @@ export class PersonalInformationComponent implements OnInit {
     })
   }
 
-  updateProfileFromSuperAdmin(body: any) {
+  editProfileFromSuperAdmin(body: any) {
     var alertBody = null;
 
     body.password = (body.password == '') ? null : body.password;   // Si no se llena la contraseña, que vaya un null
     body.roleId = this.form.value.roleId;
 
-    this.usersService.update(this.userId(), body).subscribe({
+    this.usersService.edit(this.userId(), body).subscribe({
       next: (response) => {
         this.getProfileFromSuperAdmin();
 

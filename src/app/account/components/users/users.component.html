@@ -122,7 +122,7 @@
 
                                     <td class="px-4 py-4 text-sm text-black dark:text-white">
                                         <label class="relative cursor-pointer">
-                                            <input type="checkbox" [id]="user.id" class="sr-only peer" (change)="changeStatus(user)" [(ngModel)]="user.activated"/>
+                                            <input type="checkbox" [id]="user.id" class="sr-only peer" (change)="editStatus(user)" [(ngModel)]="user.activated"/>
                                             <div class="w-11 h-6 flex items-center bg-gray-300 rounded-full peer peer-checked:after:translate-x-full after:absolute after:left-[2px] peer-checked:after:border-white after:bg-white after:border after:border-gray-300 after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-primary">
                                             </div>
                                         </label>
@@ -181,23 +181,23 @@
 
     @if (isModalOpen) {
         <div class="flex fixed inset-0 z-0 items-center justify-center p-4 bg-gray-900 bg-opacity-80">
-            <div class="relative w-full max-w-3xl bg-white dark:bg-gray-950 shadow-lg">
-                <div class="flex items-center p-4">
-                    <h2 class="text-3xl text-center justify-center font-semibold text-primary dark:text-secondary mb-4">Usuario</h2>
+            <div class="w-full max-w-3xl bg-white dark:bg-gray-950 shadow-lg">
+                <div class="relative flex items-center p-4 text-primary dark:text-secondary">
+                    <h2 class="text-3xl text-center justify-center font-semibold mb-4">Usuario</h2>
 
-                    <button type="button" (click)="closeUserInformation()" class="text-primary dark:text-secondary hover:text-red-500 dark:hover:text-red-500 font-bold w-6 h-6 ms-auto inline-flex justify-center items-center">
-                        <span class="material-icons">close</span>
+                    <button type="button" (click)="closeUserInformation()" class="absolute top-0 right-0 mt-4 mr-4 hover:text-red-500 w-6 h-6">
+                        <span class="material-icons text-2xl font-bold">close</span>
                     </button>
                 </div>
 
                 <div class="p-4 text-black h-[600px] overflow-y-auto">
-                    <h2 class="text-3xl text-center font-semibold text-secondary dark:text-primary mb-4">Información personal</h2>
+                    <h2 class="text-3xl text-center font-semibold text-primary dark:text-secondary mb-4">Información personal</h2>
                     <app-personal-information [userId]="userId" (userCreated)="onUserCreated()" />
 
                     @if(userId != null && userId > 0) {
                         <hr class="text-gray-200 dark:text-gray-700 w-full my-4">
 
-                        <h2 class="text-3xl text-center font-semibold text-secondary dark:text-primary mb-4">Información de correspondencia</h2>
+                        <h2 class="text-3xl text-center font-semibold text-primary dark:text-secondary mb-4">Información de correspondencia</h2>
                         <app-shipping-information />
                     }
                 </div>

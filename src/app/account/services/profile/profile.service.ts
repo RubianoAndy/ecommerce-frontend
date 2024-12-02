@@ -25,10 +25,10 @@ export class ProfileService {
     );
   }
 
-  updateProfile(body: any): Observable<any> {
+  edit(body: any): Observable<any> {
     this.loadingService.show();
 
-    return this.http.put(`${this.apiUrl}/update-profile`, body).pipe(
+    return this.http.put(`${this.apiUrl}/profile`, body).pipe(
       finalize(() => {
         this.loadingService.hide(); // Ocultar loading después de la petición
       })

@@ -171,7 +171,7 @@ export default class UsersComponent implements OnInit {
     }
   }
 
-  changeStatus(user: any) {
+  editStatus(user: any) {
     var alertBody = null;
 
     var body = {
@@ -179,7 +179,7 @@ export default class UsersComponent implements OnInit {
       activated: user.activated,
     };
 
-    this.usersService.changeStatus(body).subscribe({
+    this.usersService.editStatus(body).subscribe({
       next: (response) => {
         alertBody = {
           type: 'okay',

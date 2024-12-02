@@ -37,10 +37,10 @@ export class UsersService {
     );
   }
 
-  changeStatus(body: any): Observable<any> {
+  editStatus(body: any): Observable<any> {
     this.loadingService.show();
 
-    return this.http.patch(`${this.apiUrl}/update-user-status`, body).pipe(
+    return this.http.patch(`${this.apiUrl}/user-status`, body).pipe(
       finalize(() => {
         this.loadingService.hide();
       })
@@ -67,10 +67,10 @@ export class UsersService {
     );
   }
 
-  update(userId: any, body: any): Observable<any> {
+  edit(userId: any, body: any): Observable<any> {
     this.loadingService.show();
 
-    return this.http.put(`${this.apiUrl}/update-user/${userId}`, body).pipe(
+    return this.http.put(`${this.apiUrl}/user/${userId}`, body).pipe(
       finalize(() => {
         this.loadingService.hide(); // Ocultar loading después de la petición
       })
@@ -80,7 +80,7 @@ export class UsersService {
   delete(userId: any) {
     this.loadingService.show();
 
-    return this.http.delete(`${this.apiUrl}/delete-user/${userId}`).pipe(
+    return this.http.delete(`${this.apiUrl}/user/${userId}`).pipe(
       finalize(() => {
         this.loadingService.hide();
       })

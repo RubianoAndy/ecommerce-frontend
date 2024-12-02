@@ -5,12 +5,14 @@ import { SubjectFilter } from '../../interfaces/subject-filter/subject-filter';
 
 import { RolesService } from '../../services/roles/roles.service';
 import { AlertService } from '../../../shared/services/alert/alert.service';
+import { RoleComponent } from './role/role.component';
 
 @Component({
   selector: 'app-roles',
   imports: [
     DatePipe,
     NgClass,
+    RoleComponent,
   ],
   templateUrl: './roles.component.html',
   styleUrl: './roles.component.scss'
@@ -146,6 +148,21 @@ export default class RolesComponent implements OnInit {
     }
   }
 
+  openRoleInformation(roleId: string) {
+    this.roleId = Number(roleId);
+    this.isRoleModalOpen = true;
+  }
+
+  closeRoleInformation() {
+    this.roleId = null;
+    this.isRoleModalOpen = false;
+    this.getRoles();
+  }
+
+  onRole() {
+    this.closeRoleInformation();
+  }
+
   openDeleteRole(roleId: any) {
     this.roleSelected = roleId;
     this.isDeleteModalOpen = true;
@@ -183,17 +200,6 @@ export default class RolesComponent implements OnInit {
       }
     });
 
-    this.getRoles();
-  }
-
-  openRoleInformation(roleId: string) {
-    this.roleId = Number(roleId);
-    this.isRoleModalOpen = true;
-  }
-
-  closeRoleInformation() {
-    this.roleId = null;
-    this.isRoleModalOpen = false;
     this.getRoles();
   }
 
