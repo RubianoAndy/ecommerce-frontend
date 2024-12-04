@@ -5,21 +5,21 @@ import { environment } from '../../../../environments/environment.development';
 import { DarkModeToggleComponent } from '../dark-mode-toggle/dark-mode-toggle.component';
 import { DarkModeService } from '../../services/dark-mode/dark-mode.service';
 import { Subject } from 'rxjs';
+import { SidebarComponent } from "../sidebar/sidebar.component";
 
 @Component({
     selector: 'app-navbar',
     imports: [
-        NgClass,
-        RouterLink,
-        RouterLinkActive,
-        DarkModeToggleComponent
-    ],
+    NgClass,
+    RouterLink,
+    RouterLinkActive,
+    DarkModeToggleComponent,
+    SidebarComponent,
+],
     templateUrl: './navbar.component.html',
     styleUrl: './navbar.component.scss'
 })
-export class NavbarComponent implements OnInit, OnDestroy {
-  logo = environment.darkLogo;
-
+export class NavbarComponent {
   isMenuOpen = false;
   isSubMenuOpen = false;
 
@@ -37,25 +37,6 @@ export class NavbarComponent implements OnInit, OnDestroy {
     { label: 'Materas', url: '/#'},
     { label: 'Recordatorios', url: '/#'},
   ];
-
-  private unsubscribe$ = new Subject<void>();
-
-  constructor (
-    private darkModeService: DarkModeService,
-    private changeDetectorRef: ChangeDetectorRef,
-  ) { }
-
-  ngOnInit(): void {
-    this.darkModeService.darkMode$.subscribe(darkMode => {
-      this.logo = darkMode ? environment.lightLogo : environment.darkLogo;
-      this.changeDetectorRef.detectChanges();   // Forzar a la detención del cambio del logo en el ciclo de vida
-    });
-  }
-
-  ngOnDestroy(): void {
-    this.unsubscribe$.next();
-    this.unsubscribe$.complete();
-  }
 
   toggleMenu() {
     this.isMenuOpen = !this.isMenuOpen;
