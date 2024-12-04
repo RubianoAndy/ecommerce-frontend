@@ -12,7 +12,7 @@
     <ul class="space-y-4 px-2 flex-1">
       @for (adminMenuOption of adminMenuOptions; track $index) {
         <li>
-          <a [routerLink]="adminMenuOption.url" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }" class="text-black dark:text-white text-sm flex items-center hover:text-blue-600 dark:hover:text-blue-600 transition-all">
+          <a [routerLink]="adminMenuOption.url" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }" (click)="emitEvent()" class="text-black dark:text-white text-sm flex items-center hover:text-blue-600 dark:hover:text-blue-600 transition-all">
             <span class="material-icons-outlined mr-2">{{ adminMenuOption.icon }}</span> {{ adminMenuOption.label }}
           </a>
         </li>
@@ -25,7 +25,7 @@
     <ul class="space-y-4 px-2 flex-1">
       @for (adminMenuOption of adminMenuOptions; track $index) {
         <li>
-          <a [routerLink]="adminMenuOption.url" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }" class="text-black dark:text-white text-sm flex items-center hover:text-blue-600 dark:hover:text-blue-600 transition-all">
+          <a [routerLink]="adminMenuOption.url" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }" (click)="emitEvent()" class="text-black dark:text-white text-sm flex items-center hover:text-blue-600 dark:hover:text-blue-600 transition-all">
             <span class="material-icons-outlined mr-2">{{ adminMenuOption.icon }}</span> {{ adminMenuOption.label }}
           </a>
         </li>
@@ -38,12 +38,12 @@
     <div class="my-4">
       <ul class="space-y-4 px-2">
         <li>
-          <a routerLink="/account/settings" routerLinkActive="active" class="text-black dark:text-white text-sm flex items-center hover:text-blue-600 dark:hover:text-blue-600 transition-all">
+          <a routerLink="/account/settings" (click)="emitEvent()" routerLinkActive="active" class="text-black dark:text-white text-sm flex items-center hover:text-blue-600 dark:hover:text-blue-600 transition-all">
             <span class="material-icons-outlined mr-2 text-primary">settings</span> Configuración
           </a>
         </li>
         <li>
-          <a routerLink="/account/profile" routerLinkActive="active" class="text-black dark:text-white text-sm flex items-center hover:text-blue-600 dark:hover:text-blue-600 transition-all">
+          <a routerLink="/account/profile" (click)="emitEvent()" routerLinkActive="active" class="text-black dark:text-white text-sm flex items-center hover:text-blue-600 dark:hover:text-blue-600 transition-all">
             <span class="material-icons-outlined mr-2 text-primary">person</span> Perfil
           </a>
         </li>

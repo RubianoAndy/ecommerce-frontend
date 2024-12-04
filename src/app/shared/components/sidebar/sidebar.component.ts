@@ -1,4 +1,4 @@
-import { ChangeDetectorRef, Component, Input, OnDestroy, OnInit } from '@angular/core';
+import { ChangeDetectorRef, Component, EventEmitter, Input, OnDestroy, OnInit, Output } from '@angular/core';
 import { RouterLink, RouterLinkActive } from '@angular/router';
 import { environment } from '../../../../environments/environment.development';
 import { Subject } from 'rxjs';
@@ -14,9 +14,10 @@ import { DarkModeService } from '../../services/dark-mode/dark-mode.service';
   styleUrl: './sidebar.component.scss'
 })
 export class SidebarComponent implements OnInit, OnDestroy {
-  logo = environment.darkLogo;
-
   @Input() showLogo: boolean = false;
+  @Output() sidebarEmitter = new EventEmitter<void>();
+  
+  logo = environment.darkLogo;
 
   adminMenuOptions = [
     { label: 'Roles', url: '/account/roles', icon: 'person' },
@@ -40,5 +41,9 @@ export class SidebarComponent implements OnInit, OnDestroy {
   ngOnDestroy(): void {
     this.unsubscribe$.next();
     this.unsubscribe$.complete();
+  }
+
+  emitEvent(): void {
+    this.sidebarEmitter.emit();
   }
 }
