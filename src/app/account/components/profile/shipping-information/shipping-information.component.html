@@ -34,7 +34,7 @@
     <div class="flex flex-col md:flex-row md:space-x-4 space-y-4 md:space-y-0">
         <div class="w-full">
             <label for="city" class="block font-semibold text-primary dark:text-secondary mb-2"> Ciudad <span class="text-red-500">*</span></label>
-            <input id="city" autocomplete="off"
+            <input id="city" autocomplete="address-level2"
                 type="text" 
                 formControlName="city"
                 placeholder="Ciudad"
@@ -47,8 +47,8 @@
 
         <div class="w-full">
             <label for="zipCode" class="block font-semibold text-primary dark:text-secondary mb-2"> Zip / Código postal </label>
-            <input id="zipCode" autocomplete="off"
-                type="number" 
+            <input id="zipCode" autocomplete="postal-code" maxlength="8"
+                type="text" 
                 formControlName="zipCode"
                 placeholder="Zip / Código postal"
                 [ngClass]="{
@@ -62,7 +62,7 @@
     <div class="flex flex-col md:flex-row md:space-x-4 space-y-4 md:space-y-0">
         <div class="w-full">
             <label for="address" class="block font-semibold text-primary dark:text-secondary mb-2"> Dirección <span class="text-red-500">*</span></label>
-            <input id="address" autocomplete="off"
+            <input id="address" autocomplete="street-address"
                 type="text" 
                 formControlName="address"
                 placeholder="Dirección"
