@@ -169,7 +169,7 @@ export class PersonalInformationComponent implements OnInit {
     });
   }
 
-  editProfile(body: any) {
+  editProfile(body: Profile) {
     var alertBody = null;
 
     this.profileService.edit(body).subscribe({

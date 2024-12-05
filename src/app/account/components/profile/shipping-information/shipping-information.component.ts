@@ -1,8 +1,20 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, input, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
+import { NgClass } from '@angular/common';
+import { CorrespondenceService } from '../../../services/correspondence/correspondence.service';
 import { CountriesService } from '../../../../shared/services/countries/countries.service';
 import { DepartmentsService } from '../../../../shared/services/departments/departments.service';
-import { NgClass } from '@angular/common';
+import { AlertService } from '../../../../shared/services/alert/alert.service';
+
+interface Correspondence {
+  id: number,
+  countryId: string,
+  departmentId: string,
+  city: string,
+  zipCode: string,
+  address: string,
+  observations: string,
+}
 
 @Component({
   selector: 'app-shipping-information',
@@ -15,6 +27,10 @@ import { NgClass } from '@angular/common';
   styleUrl: './shipping-information.component.scss'
 })
 export class ShippingInformationComponent implements OnInit {
+  userId = input<any>();
+
+  edit!: Correspondence;
+
   form!: FormGroup;
 
   loading: boolean = false;
@@ -24,14 +40,19 @@ export class ShippingInformationComponent implements OnInit {
 
   constructor (
     private formBuilder: FormBuilder,
+    private correspondenceService: CorrespondenceService,
     private countriesService: CountriesService,
     private departmentsService: DepartmentsService,
+    private alertService: AlertService,
   ) {
     this.getCountries();
   }
 
   ngOnInit(): void {
     this.createForm();
+
+    if (this.userId())
+      this.getCorrespondence();
   }
 
   createForm(data: any = null) {
@@ -47,6 +68,46 @@ export class ShippingInformationComponent implements OnInit {
 
   onSubmitForm() {
 
+  }
+
+  getCorrespondence() {
+    this.correspondenceService.getCorrespondence().subscribe({
+      next: (response: Correspondence) => {
+        this.edit = {
+          ...response,
+          countryId: response.countryId === null ? '' : response.countryId,
+          departmentId: response.departmentId === null ? '' : response.departmentId,
+        };
+        this.form.patchValue(this.edit);
+      }
+    })
+  }
+  
+  editOrCreateCorrespondence(body: Correspondence) {
+    var alertBody = null;
+
+    this.correspondenceService.editOrCreate(body).subscribe({
+      next: (response) => {
+        this.getCorrespondence();
+
+        alertBody = {
+          type: 'okay',
+          title: '¡Felicidades!',
+          message: response.message,
+        };
+
+        this.alertService.showAlert(alertBody);
+      },
+      error: response => {
+        alertBody = {
+          type: 'error',
+          title: '¡Error!',
+          message: response.message,
+        };
+
+        this.alertService.showAlert(alertBody);
+      }
+    })
   }
 
   getCountries() {
