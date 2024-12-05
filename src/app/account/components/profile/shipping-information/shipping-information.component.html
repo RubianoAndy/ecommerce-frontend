@@ -76,13 +76,13 @@
 
     <div class="flex flex-col md:flex-row md:space-x-4 space-y-4 md:space-y-0">
         <div class="w-full">
-            <label for="addressObservations" class="block font-semibold text-primary dark:text-secondary mb-2"> Información adicional <span class="text-red-500">*</span></label>
-            <textarea id="addressObservations" autocomplete="off" maxlength="500" rows="4" 
-                formControlName="addressObservations" 
+            <label for="observations" class="block font-semibold text-primary dark:text-secondary mb-2"> Información adicional <span class="text-red-500">*</span></label>
+            <textarea id="observations" autocomplete="off" maxlength="500" rows="4" 
+                formControlName="observations" 
                 placeholder="Información adicional"
                 [ngClass]="{
-                    'border-red-500 dark:border-red-500': !form.controls['addressObservations'].valid,
-                    'border-green-500 dark:border-green-500': form.controls['addressObservations'].valid && form.controls['addressObservations'].touched
+                    'border-red-500 dark:border-red-500': !form.controls['observations'].valid,
+                    'border-green-500 dark:border-green-500': form.controls['observations'].valid && form.controls['observations'].touched
                 }" 
                 class="block w-full p-2 bg-white border border-gray-200 text-black text-sm dark:bg-gray-900 dark:border-gray-700 dark:text-white shadow-lg focus:outline-none resize-none"
             ></textarea>

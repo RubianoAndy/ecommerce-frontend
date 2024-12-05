@@ -41,7 +41,7 @@ export class ShippingInformationComponent implements OnInit {
       city: [data?.city || '', [ Validators.required, Validators.minLength(2), Validators.maxLength(50) ]],
       zipCode: [data?.zipCode || '', [ Validators.required, Validators.minLength(5), Validators.maxLength(8), Validators.pattern('^[0-9]*$') ]],
       address: [data?.address || '', [ Validators.required, Validators.minLength(5), Validators.maxLength(80) ]],
-      addressObservations: [data?.addressObservations || '', [ Validators.minLength(5), Validators.maxLength(500) ]],
+      observations: [data?.observations || '', [ Validators.minLength(5), Validators.maxLength(500) ]],
     });
   }
 
