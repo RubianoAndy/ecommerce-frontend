@@ -170,10 +170,12 @@ export class PersonalInformationComponent implements OnInit {
   }
 
   editProfile(body: Profile) {
+    this.loading = true;
     var alertBody = null;
 
     this.profileService.edit(body).subscribe({
       next: (response) => {
+        this.loading = false;
         this.getProfile();
 
         alertBody = {
@@ -185,6 +187,8 @@ export class PersonalInformationComponent implements OnInit {
         this.alertService.showAlert(alertBody);
       },
       error: response => {
+        this.loading = false;
+
         alertBody = {
           type: 'error',
           title: '¡Error!',
@@ -244,6 +248,7 @@ export class PersonalInformationComponent implements OnInit {
   }
 
   editProfileFromSuperAdmin(body: any) {
+    this.loading = true;
     var alertBody = null;
 
     body.password = (body.password == '') ? null : body.password;   // Si no se llena la contraseña, que vaya un null
@@ -251,6 +256,7 @@ export class PersonalInformationComponent implements OnInit {
 
     this.usersService.edit(this.userId(), body).subscribe({
       next: (response) => {
+        this.loading = false;
         this.getProfileFromSuperAdmin();
 
         alertBody = {
@@ -262,6 +268,7 @@ export class PersonalInformationComponent implements OnInit {
         this.alertService.showAlert(alertBody);
       },
       error: response => {
+        this.loading = false;
         alertBody = {
           type: 'error',
           title: '¡Error!',

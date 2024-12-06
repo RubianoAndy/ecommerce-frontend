@@ -51,7 +51,7 @@ export class ShippingInformationComponent implements OnInit {
   ngOnInit(): void {
     this.createForm();
 
-    if (this.userId())
+    if (!this.userId())
       this.getCorrespondence();
   }
 
@@ -67,12 +67,18 @@ export class ShippingInformationComponent implements OnInit {
   }
 
   onSubmitForm() {
+    var body = this.form.value;
+    body.city = this.toCapitalizeCase(body.city);
 
+    if (this.form.valid && body)
+      if(!this.userId())
+        this.editOrCreateCorrespondence(body);
   }
 
   getCorrespondence() {
     this.correspondenceService.getCorrespondence().subscribe({
       next: (response: Correspondence) => {
+        this.getDepartments(response.countryId);
         this.edit = {
           ...response,
           countryId: response.countryId === null ? '' : response.countryId,
@@ -84,10 +90,12 @@ export class ShippingInformationComponent implements OnInit {
   }
   
   editOrCreateCorrespondence(body: Correspondence) {
+    this.loading = true;
     var alertBody = null;
 
     this.correspondenceService.editOrCreate(body).subscribe({
       next: (response) => {
+        this.loading = false;
         this.getCorrespondence();
 
         alertBody = {
@@ -99,6 +107,7 @@ export class ShippingInformationComponent implements OnInit {
         this.alertService.showAlert(alertBody);
       },
       error: response => {
+        this.loading = false;
         alertBody = {
           type: 'error',
           title: '¡Error!',
@@ -126,5 +135,16 @@ export class ShippingInformationComponent implements OnInit {
     const countryIdSelected = this.form.get('countryId')?.value;
     this.getDepartments(countryIdSelected);
     this.form.get('departmentId')?.setValue('');
+  }
+
+  private toCapitalizeCase (text:string): string {
+    if (!text)
+      return text;
+
+    return text
+      .trim()
+      .split(' ')
+      .map(word => word.charAt(0).toUpperCase() + word.slice(1).toLowerCase())
+      .join(' ');
   }
 }
