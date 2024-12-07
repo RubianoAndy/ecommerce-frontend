@@ -109,6 +109,10 @@
                                                     {{ user.Profile.dniType }}: {{ user.Profile.dni }}
                                                 </div>
                                             }
+
+                                            @if (user.Profile.Correspondence && user.Profile.Correspondence.Country && user.Profile.Correspondence.Department) {
+                                                {{ user.Profile.Correspondence.city }}, {{ user.Profile.Correspondence.Department.name }}, {{ user.Profile.Correspondence.Country.name }}
+                                            }
                                         </div>
                                     </td>
 

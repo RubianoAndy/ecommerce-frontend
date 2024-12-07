@@ -12,8 +12,6 @@ import { UsersService } from '../../services/users/users.service';
 import { AlertService } from '../../../shared/services/alert/alert.service';
 import { RolesService } from '../../services/roles/roles.service';
 
-import { environment } from '../../../../environments/environment.development';
-
 @Component({
   selector: 'app-users',
   imports: [
