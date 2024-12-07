@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { environment } from '../../../../environments/environment.development';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Router } from '@angular/router';
 import { catchError, finalize, map, Observable, of, tap } from 'rxjs';
 import { LoadingService } from '../../../shared/services/loading/loading.service';
@@ -32,12 +32,15 @@ export class AuthService {
 
   signOut(): Observable<any> {
     this.loadingService.show();
-    const body = {
-      accessToken: this.getAccessToken(),
-      refreshToken: this.getRefreshToken(),
-    };
 
-    return this.http.post(`${this.apiUrl}/sign-out`, body).pipe(
+    const refreshToken = this.getRefreshToken();
+    
+    const headers = new HttpHeaders({
+      'Authorization': `Bearer ${refreshToken}`,
+      'Content-Type': 'application/json'
+    });
+
+    return this.http.post(`${this.apiUrl}/sign-out`, {}, { headers }).pipe(
       tap(() => {
         this.deleteTokens();
         this.router.navigate(['/']);
