@@ -162,23 +162,22 @@
             </select> -->
 
             <ul class="flex space-x-1 ml-2">
-                <li class="flex items-center justify-center cursor-pointer bg-primary text-secondary w-7 h-7" (click)="previousPage()" [class.disabled]="page <= 1">
+                <li (click)="previousPage()" [class.disabled]="page <= 1" class="flex items-center justify-center cursor-pointer bg-primary text-secondary w-7 h-7 hover:bg-green-800 hover:text-white transition duration-200">
                     <span class="material-icons">keyboard_arrow_left</span>
                 </li>
 
                 @for (i of [].constructor(endPage - startPage + 1); track $index) {
                     <li class="flex items-center justify-center cursor-pointer text-sm w-7 h-7"
                         [ngClass]="{
-                            'bg-primary': page === (startPage + $index),
-                            'text-white': page === (startPage + $index),
-                            'text-black dark:text-white': page !== (startPage + $index),
+                            'bg-primary text-white hover:bg-green-800 transition duration-200': page === (startPage + $index),
+                            'text-black dark:text-white hover:bg-gray-200 transition duration-200': page !== (startPage + $index),
                         }" (click)="changePage(startPage + $index)"
                     >
                         {{ startPage + $index }}
                     </li>
                 }
                 
-                <li class="flex items-center justify-center cursor-pointer bg-primary text-secondary w-7 h-7" (click)="nextPage()" [class.disabled]="page >= totalPages">
+                <li (click)="nextPage()" [class.disabled]="page >= totalPages" class="flex items-center justify-center cursor-pointer bg-primary text-secondary w-7 h-7 hover:bg-green-800 hover:text-white transition duration-200">
                     <span class="material-icons">keyboard_arrow_right</span>
                 </li>
             </ul>
