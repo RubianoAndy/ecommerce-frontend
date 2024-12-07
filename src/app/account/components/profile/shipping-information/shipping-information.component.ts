@@ -53,6 +53,8 @@ export class ShippingInformationComponent implements OnInit {
 
     if (!this.userId())
       this.getCorrespondence();
+    else if (this.userId() > 0)
+      this.getCorrespondenceFromSuperAdmin();
   }
 
   createForm(data: any = null) {
@@ -70,9 +72,12 @@ export class ShippingInformationComponent implements OnInit {
     var body = this.form.value;
     body.city = this.toCapitalizeCase(body.city);
 
-    if (this.form.valid && body)
-      if(!this.userId())
+    if (this.form.valid && body) {
+      if (!this.userId())
         this.editOrCreateCorrespondence(body);
+      else if (this.userId() > 0)
+        this.editOrCreateCorrespondenceFromSuperAdmin(body);
+    }
   }
 
   getCorrespondence() {
@@ -86,7 +91,7 @@ export class ShippingInformationComponent implements OnInit {
         };
         this.form.patchValue(this.edit);
       }
-    })
+    });
   }
   
   editOrCreateCorrespondence(body: Correspondence) {
@@ -116,7 +121,51 @@ export class ShippingInformationComponent implements OnInit {
 
         this.alertService.showAlert(alertBody);
       }
+    });
+  }
+
+  getCorrespondenceFromSuperAdmin() {
+    this.correspondenceService.getCorrespondenceFromSuperAdmin(this.userId()).subscribe({
+      next: (response: Correspondence) => {
+        this.getDepartments(response.countryId);
+        this.edit = {
+          ...response,
+          countryId: response.countryId === null ? '' : response.countryId,
+          departmentId: response.departmentId === null ? '' : response.departmentId,
+        };
+        this.form.patchValue(this.edit);
+      }
     })
+  }
+
+  editOrCreateCorrespondenceFromSuperAdmin(body: Correspondence) {
+    this.loading = true;
+    var alertBody = null;
+
+    this.correspondenceService.editOrCreateFromSuperAdmin(this.userId(), body).subscribe({
+      next: (response) => {
+        this.loading = false;
+        this.getCorrespondenceFromSuperAdmin();
+
+        alertBody = {
+          type: 'okay',
+          title: '¡Felicidades!',
+          message: response.message,
+        };
+
+        this.alertService.showAlert(alertBody);
+      },
+      error: response => {
+        this.loading = false;
+        alertBody = {
+          type: 'error',
+          title: '¡Error!',
+          message: response.message,
+        };
+
+        this.alertService.showAlert(alertBody);
+      }
+    });
   }
 
   getCountries() {

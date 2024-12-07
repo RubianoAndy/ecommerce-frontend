@@ -34,4 +34,24 @@ export class CorrespondenceService {
       })
     );
   }
+
+  getCorrespondenceFromSuperAdmin(userId: any): Observable<any> {
+    this.loadingService.show();
+
+    return this.http.get(`${this.apiUrl}/correspondence/${userId}`).pipe(
+      finalize(() => {
+        this.loadingService.hide(); // Ocultar loading después de la petición
+      })
+    );
+  }
+
+  editOrCreateFromSuperAdmin(userId: any, body: any): Observable<any> {
+    this.loadingService.show();
+
+    return this.http.post(`${this.apiUrl}/correspondence/${userId}`, body).pipe(
+      finalize(() => {
+        this.loadingService.hide(); // Ocultar loading después de la petición
+      })
+    );
+  }
 }
