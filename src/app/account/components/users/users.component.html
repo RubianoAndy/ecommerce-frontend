@@ -111,7 +111,9 @@
                                             }
 
                                             @if (user.Profile.Correspondence && user.Profile.Correspondence.Country && user.Profile.Correspondence.Department) {
-                                                {{ user.Profile.Correspondence.city }}, {{ user.Profile.Correspondence.Department.name }}, {{ user.Profile.Correspondence.Country.name }}
+                                                <div class="text-sm font-normal">
+                                                    {{ user.Profile.Correspondence.city }}, {{ user.Profile.Correspondence.Department.name }}, {{ user.Profile.Correspondence.Country.name }}
+                                                </div>
                                             }
                                         </div>
                                     </td>
