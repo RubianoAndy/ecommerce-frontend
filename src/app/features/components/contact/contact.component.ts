@@ -4,6 +4,14 @@ import { FormBuilder, FormGroup, FormsModule, ReactiveFormsModule, Validators } 
 import { AlertService } from '../../../shared/services/alert/alert.service';
 import { NgClass } from '@angular/common';
 import { environment } from '../../../../environments/environment.development';
+import { ContactService } from '../../services/contact/contact.service';
+
+interface Contact {
+  name: string,
+  email: string,
+  subject: string,
+  message: string,
+}
 
 @Component({
     selector: 'app-contact',
@@ -19,8 +27,11 @@ export default class ContactComponent implements OnInit {
   form!: FormGroup;
   email = environment.email;
 
+  loading: boolean = false;
+
   constructor (
     private formBuilder: FormBuilder,
+    private contactService: ContactService,
     private alertService: AlertService,
   ) { }
 
@@ -50,8 +61,47 @@ export default class ContactComponent implements OnInit {
 
   }
 
-  sendContactForm (body: any) {
+  sendContactForm (body: Contact) {
+    var body: Contact = {
+      name: this.toCapitalizeCase(this.form.value.name),
+      email: this.form.value.email.trim().toLowerCase(),
+      subject: this.form.value.subject,
+      message: this.form.value.message,
+    }
 
+    if (this.form.valid && body)
+      this.sendContact(body);
+  }
+
+  sendContact(body:Contact) {
+    this.loading =true;
+    var alertBody = null;
+
+    this.contactService.sendContact(body).subscribe({
+      next: (response) => {
+        this.loading = false;
+
+        alertBody = {
+          type: 'okay',
+          title: '¡Excelente!',
+          message: response.message,
+        };
+
+        this.alertService.showAlert(alertBody);
+        this.form.reset();
+      },
+      error: response => {
+        this.loading = false;
+
+        alertBody = {
+          type: 'warning',
+          title: '¡Algo pasó!',
+          message: response.message,
+        };
+
+        this.alertService.showAlert(alertBody);
+      }
+    });
   }
 
   private toCapitalizeCase (text:string): string {

@@ -14,6 +14,7 @@ export const authInterceptor: HttpInterceptorFn = (req, next) => {
     '/activate',
     '/generate-code',
     '/verify-code',
+    '/send-contact',
   ];
 
   // Deja pasar la petición sin interceptarla, para evitar un bucle infinito

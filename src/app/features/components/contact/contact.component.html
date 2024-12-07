@@ -18,40 +18,40 @@
             <form class="space-y-2 w-full max-md:my-4 md:px-4" [formGroup]="form" (ngSubmit)="onSubmit()">
                 <div>
                     <label for="name" class="block font-semibold text-black dark:text-white mb-2"> Nombre <span class="text-red-500">*</span></label>
-                    <input id="name" maxlength="80"
+                    <input id="name" maxlength="80" autocomplete="name"
                         type="text" 
                         formControlName="name" 
                         placeholder="Nombre"
                         [ngClass]="{
                             'border-red-500': !form.controls['name'].valid && form.controls['name'].touched,
                             'border-primary': form.controls['name'].valid && form.controls['name'].touched
-                        }" class="border w-full py-2 px-3 text-black leading-tight focus:outline-none focus:shadow-outline dark:bg-gray-700 dark:text-white"
+                        }" class="block w-full p-2 bg-white border border-gray-200 text-black text-sm dark:bg-gray-900 dark:border-gray-700 dark:text-white shadow-lg focus:outline-none"
                     />
                 </div>
     
                 <div>
                     <label for="email" class="block font-semibold text-black dark:text-white mb-2"> Email <span class="text-red-500">*</span></label>
-                    <input id="email" maxlength="50"
+                    <input id="email" maxlength="50" autocomplete="email"
                         type="email" 
                         formControlName="email" 
                         placeholder="correo@email.com"
                         [ngClass]="{
                             'border-red-500': !form.controls['email'].valid && form.controls['email'].touched,
                             'border-primary': form.controls['email'].valid && form.controls['email'].touched
-                        }" class="border w-full py-2 px-3 text-black leading-tight focus:outline-none focus:shadow-outline dark:bg-gray-700 dark:text-white"
+                        }" class="block w-full p-2 bg-white border border-gray-200 text-black text-sm dark:bg-gray-900 dark:border-gray-700 dark:text-white shadow-lg focus:outline-none"
                     />
                 </div>
     
                 <div>
                     <label for="subject" class="block font-semibold text-black dark:text-white mb-2"> Asunto <span class="text-red-500">*</span></label>
-                    <input id="subject" maxlength="50"
+                    <input id="subject" maxlength="50" autocomplete="off"
                         type="text" 
                         formControlName="subject" 
                         placeholder="Asunto"
                         [ngClass]="{
                             'border-red-500': !form.controls['subject'].valid && form.controls['subject'].touched,
                             'border-primary': form.controls['subject'].valid && form.controls['subject'].touched
-                        }" class="border w-full py-2 px-3 text-black leading-tight focus:outline-none focus:shadow-outline dark:bg-gray-700 dark:text-white"
+                        }" class="block w-full p-2 bg-white border border-gray-200 text-black text-sm dark:bg-gray-900 dark:border-gray-700 dark:text-white shadow-lg focus:outline-none"
                     />
                 </div>
     
@@ -64,7 +64,7 @@
                         [ngClass]="{
                             'border-red-500': !form.controls['message'].valid && form.controls['message'].touched,
                             'border-primary': form.controls['message'].valid && form.controls['message'].touched
-                        }" class="border w-full py-2 px-3 text-black leading-tight focus:outline-none focus:shadow-outline dark:bg-gray-700 dark:text-white"
+                        }" class="block w-full p-2 bg-white border border-gray-200 text-black text-sm dark:bg-gray-900 dark:border-gray-700 dark:text-white shadow-lg focus:outline-none resize-none"
                     ></textarea>
                 </div>
     
