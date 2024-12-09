@@ -176,7 +176,23 @@ export class PersonalInformationComponent implements OnInit {
     this.profileService.edit(body).subscribe({
       next: (response) => {
         this.loading = false;
-        this.getProfile();
+        
+        this.edit = {
+          ...response,
+          dniType: response.dniType === null ? '' : response.dniType,
+          prefix: response.prefix === null ? '' : response.prefix,
+        };
+        this.form.patchValue(this.edit);
+
+        this.disabledFields.forEach(field => {
+          const formField = this.form.get(field);
+          if (formField && formField.value)
+            formField.disable();
+        });
+
+        // Para evitar que queden habilitados los campos para el usuario
+        this.form.get('password')?.disable();
+        this.form.get('roleId')?.disable();
 
         alertBody = {
           type: 'okay',
@@ -257,7 +273,16 @@ export class PersonalInformationComponent implements OnInit {
     this.usersService.edit(this.userId(), body).subscribe({
       next: (response) => {
         this.loading = false;
-        this.getProfileFromSuperAdmin();
+        
+        this.edit = {
+          ...response,
+          dniType: response.dniType === null ? '' : response.dniType,
+          prefix: response.prefix === null ? '' : response.prefix,
+        };
+        this.form.patchValue(this.edit);
+
+        this.form.get('roleId')?.setValidators([ Validators.required, Validators.minLength(1) ]);
+        this.form.get('password')?.setValidators([ passwordValidator() ]);
 
         alertBody = {
           type: 'okay',
