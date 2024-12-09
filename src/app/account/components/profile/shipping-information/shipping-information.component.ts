@@ -51,7 +51,7 @@ export class ShippingInformationComponent implements OnInit {
   ngOnInit(): void {
     this.createForm();
 
-    if (!this.userId())
+    if (this.userId() == null)
       this.getCorrespondence();
     else if (this.userId() > 0)
       this.getCorrespondenceFromSuperAdmin();
@@ -73,7 +73,7 @@ export class ShippingInformationComponent implements OnInit {
     body.city = this.toCapitalizeCase(body.city);
 
     if (this.form.valid && body) {
-      if (!this.userId())
+      if (this.userId() == null)
         this.editOrCreateCorrespondence(body);
       else if (this.userId() > 0)
         this.editOrCreateCorrespondenceFromSuperAdmin(body);
@@ -101,7 +101,13 @@ export class ShippingInformationComponent implements OnInit {
     this.correspondenceService.editOrCreate(body).subscribe({
       next: (response) => {
         this.loading = false;
-        this.getCorrespondence();
+        // this.getDepartments(response.countryId);
+        this.edit = {
+          ...response,
+          countryId: response.countryId === null ? '' : response.countryId,
+          departmentId: response.departmentId === null ? '' : response.departmentId,
+        };
+        this.form.patchValue(this.edit);
 
         alertBody = {
           type: 'okay',
@@ -145,7 +151,13 @@ export class ShippingInformationComponent implements OnInit {
     this.correspondenceService.editOrCreateFromSuperAdmin(this.userId(), body).subscribe({
       next: (response) => {
         this.loading = false;
-        this.getCorrespondenceFromSuperAdmin();
+        // this.getDepartments(response.countryId);
+        this.edit = {
+          ...response,
+          countryId: response.countryId === null ? '' : response.countryId,
+          departmentId: response.departmentId === null ? '' : response.departmentId,
+        };
+        this.form.patchValue(this.edit);
 
         alertBody = {
           type: 'okay',
