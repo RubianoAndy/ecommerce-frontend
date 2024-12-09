@@ -92,7 +92,7 @@ export class PersonalInformationComponent implements OnInit {
   ngOnInit(): void {
     this.createForm();
 
-    if (!this.userId())
+    if (this.userId() == null)
       this.getProfile();
     else if (this.userId() > 0){
       this.getRoles();
@@ -137,7 +137,7 @@ export class PersonalInformationComponent implements OnInit {
     };
 
     if (this.form.valid && body) {
-      if (!this.userId())
+      if (this.userId() == null)
         this.editProfile(body);
       else if (this.userId() > 0)
         this.editProfileFromSuperAdmin(body);
