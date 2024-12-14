@@ -211,7 +211,7 @@ export default class RolesComponent implements OnInit {
         const url = window.URL.createObjectURL(response);
         const a = document.createElement('a');
         a.href = url;
-        a.download = 'Informe de usuarios.xlsx';
+        a.download = 'Informe de roles.xlsx';
         a.click();
         window.URL.revokeObjectURL(url); // Libera memoria
 
