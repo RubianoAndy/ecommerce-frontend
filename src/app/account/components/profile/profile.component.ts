@@ -16,6 +16,8 @@ import { NgClass } from '@angular/common';
   styleUrl: './profile.component.scss'
 })
 export default class ProfileComponent {
+  isUploadAvatar: boolean = false;
+  
   isAccordion1Open: boolean = false;
   isAccordion2Open: boolean = false;
   
@@ -29,5 +31,9 @@ export default class ProfileComponent {
 
     if (accordionSection[form])
       accordionSection[form]();
+  }
+
+  toggleProfilePhoto() {
+    this.isUploadAvatar = !this.isUploadAvatar;
   }
 }
