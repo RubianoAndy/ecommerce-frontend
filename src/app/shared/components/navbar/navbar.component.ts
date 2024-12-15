@@ -1,11 +1,9 @@
 import { NgClass } from '@angular/common';
-import { ChangeDetectorRef, Component, OnDestroy, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { RouterLink, RouterLinkActive } from '@angular/router';
-import { environment } from '../../../../environments/environment.development';
 import { DarkModeToggleComponent } from '../dark-mode-toggle/dark-mode-toggle.component';
-import { DarkModeService } from '../../services/dark-mode/dark-mode.service';
-import { Subject } from 'rxjs';
 import { SidebarComponent } from "../sidebar/sidebar.component";
+import { CategoriesService } from '../../../account/services/categories/categories.service';
 
 @Component({
     selector: 'app-navbar',
@@ -19,7 +17,9 @@ import { SidebarComponent } from "../sidebar/sidebar.component";
     templateUrl: './navbar.component.html',
     styleUrl: './navbar.component.scss'
 })
-export class NavbarComponent {
+export class NavbarComponent implements OnInit {
+  categories: any[] = [];
+
   isMenuOpen = false;
   isSubMenuOpen = false;
 
@@ -31,12 +31,23 @@ export class NavbarComponent {
     { label: 'Contacto', url: '/contact', icon: 'person' },
   ];
 
-  categories = [
-    { label: 'Plantas', url: '/#'},
-    { label: 'Sustratos', url: '/#'},
-    { label: 'Materas', url: '/#'},
-    { label: 'Recordatorios', url: '/#'},
-  ];
+  constructor (
+    private categoriesService: CategoriesService,
+  ) {
+    this.getCategories();
+  }
+
+  ngOnInit(): void {
+      
+  }
+
+  async getCategories() {
+    await this.categoriesService.getCategoriesSmall().subscribe(
+      (response) => {
+        this.categories = response;
+      }
+    )
+  }
 
   toggleMenu() {
     this.isMenuOpen = !this.isMenuOpen;
