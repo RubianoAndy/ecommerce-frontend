@@ -20,6 +20,10 @@ export class SidebarComponent implements OnInit, OnDestroy {
   logo = environment.darkLogo;
 
   adminMenuOptions = [
+    { label: 'Categorías', url: '/account/categories', icon: 'apps' },
+  ];
+
+  superAdminMenuOptions = [
     { label: 'Roles', url: '/account/roles', icon: 'person' },
     { label: 'Usuarios', url: '/account/users', icon: 'person' },
   ];

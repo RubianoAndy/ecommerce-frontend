@@ -14,6 +14,10 @@ const routes: Routes = [{
       data: { breadcrumb: 'Perfil' }
     },
     {
+      path: 'categories', loadComponent: () => import('./components/categories/categories.component'),
+      data: { breadcrumb: 'Categorías' }
+    },
+    {
       path: 'roles', loadComponent: () => import('./components/roles/roles.component'),
       data: { breadcrumb: 'Roles' }
     },
