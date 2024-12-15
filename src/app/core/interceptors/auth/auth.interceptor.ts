@@ -7,7 +7,7 @@ export const authInterceptor: HttpInterceptorFn = (req, next) => {
   const authService = inject(AuthService);
 
   var ignoreRoutes = [
-    '/refresh-token',
+    '/refresh-token',     // Deja pasar la petición sin interceptarla, para evitar un bucle infinito
     '/sign-in',
     '/sign-out',
     '/register',
@@ -19,7 +19,6 @@ export const authInterceptor: HttpInterceptorFn = (req, next) => {
     '/categories-small',
   ];
 
-  // Deja pasar la petición sin interceptarla, para evitar un bucle infinito
   if (ignoreRoutes.some(route => req.url.includes(route)))
     return next(req);
 
