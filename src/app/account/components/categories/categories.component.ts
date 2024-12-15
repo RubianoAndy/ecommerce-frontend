@@ -156,11 +156,11 @@ export default class CategoriesComponent {
     this.getCategories();
   }
 
-  onRole() {
+  onCategory() {
     this.closeCategoryInformation();
   }
 
-  openDeleteRole(categoryId: any) {
+  openDeleteCategory(categoryId: any) {
     this.categorySelected = categoryId;
     this.isDeleteModalOpen = true;
   }
