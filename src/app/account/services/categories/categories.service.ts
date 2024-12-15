@@ -15,7 +15,7 @@ export class CategoriesService {
     private loadingService: LoadingService,
   ) { }
 
-  getRoles(page?: number, pageSize?: number, filters?: any[]): Observable<any> {
+  getCategories(page?: number, pageSize?: number, filters?: any[]): Observable<any> {
     this.loadingService.show();
 
     let params = new HttpParams();
@@ -85,7 +85,7 @@ export class CategoriesService {
     );
   }
 
-  getRolesSmall(): Observable<any> {
+  getCategoriesSmall(): Observable<any> {
     this.loadingService.show();
 
     return this.http.get(`${this.apiUrl}/categories-small`).pipe(
