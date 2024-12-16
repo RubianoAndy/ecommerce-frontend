@@ -4,6 +4,11 @@ import { HttpClient } from '@angular/common/http';
 import { finalize, Observable } from 'rxjs';
 import { LoadingService } from '../../../shared/services/loading/loading.service';
 
+interface FileData {
+  message: string,
+  filename: string
+}
+
 @Injectable({
   providedIn: 'root'
 })
@@ -35,10 +40,10 @@ export class ProfileService {
     );
   }
 
-  uploadAvatar(body: any): Observable<any> {
+  uploadAvatar(body: any): Observable<FileData> {
     this.loadingService.show();
     
-    return this.http.post(`${this.apiUrl}/upload-avatar`, body).pipe(
+    return this.http.post<FileData>(`${this.apiUrl}/upload-avatar`, body).pipe(
       finalize(() => {
         this.loadingService.hide(); // Ocultar loading después de la petición
       })
