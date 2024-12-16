@@ -34,4 +34,14 @@ export class ProfileService {
       })
     );
   }
+
+  uploadAvatar(body: any): Observable<any> {
+    this.loadingService.show();
+    
+    return this.http.post(`${this.apiUrl}/upload-avatar`, body).pipe(
+      finalize(() => {
+        this.loadingService.hide(); // Ocultar loading después de la petición
+      })
+    );
+  }
 }
