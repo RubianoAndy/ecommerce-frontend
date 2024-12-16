@@ -18,6 +18,8 @@ import { AlertService } from '../../../shared/services/alert/alert.service';
   styleUrl: './profile.component.scss'
 })
 export default class ProfileComponent {
+  avatar: any = 'assets/images/avatar/Avatar.png';
+
   isUploadAvatar: boolean = false;
   isDragOver: boolean = false;
   selectedFile: File | null = null;
@@ -31,7 +33,9 @@ export default class ProfileComponent {
   constructor (
     private profileService: ProfileService,
     private alertService: AlertService,
-  ) { }
+  ) {
+    this.getAvatar();
+  }
 
   toggleAccordion(form: string): void {
     const accordionSection: any = {
@@ -72,6 +76,17 @@ export default class ProfileComponent {
       this.processFile(file);
   }
 
+  getAvatar() {
+    this.profileService.getAvatar().subscribe({
+      next: (blob) => {
+        this.avatar = URL.createObjectURL(blob);
+      },
+      error: () => {
+        this.avatar = 'assets/images/avatar/Avatar.png';
+      }
+    })
+  }
+
   uploadFile() {
     var alertBody = null;
 
@@ -83,7 +98,7 @@ export default class ProfileComponent {
         next: (response) => {
           console.log('Imagen de perfil cargada exitosamente', response);
 
-          // Actualizar la imagen de perfil en la interfaz
+          this.getAvatar();
           this.toggleProfilePhoto();
 
           alertBody = {

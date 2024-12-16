@@ -39,8 +39,17 @@ export class ProfileService {
     this.loadingService.show();
     const time = 2 * 1000;  // Simula 2 segundos de delay
     
-    return this.http.post(`${this.apiUrl}/upload-avatar`, body).pipe(
+    return this.http.post(`${this.apiUrl}/avatar`, body).pipe(
       delay(time),
+      finalize(() => {
+        this.loadingService.hide(); // Ocultar loading después de la petición
+      })
+    );
+  }
+
+  getAvatar(): Observable<Blob> {
+    this.loadingService.show();
+    return this.http.get(`${this.apiUrl}/avatar`, { responseType: 'blob' }).pipe(
       finalize(() => {
         this.loadingService.hide(); // Ocultar loading después de la petición
       })
