@@ -4,11 +4,6 @@ import { HttpClient } from '@angular/common/http';
 import { delay, finalize, Observable } from 'rxjs';
 import { LoadingService } from '../../../shared/services/loading/loading.service';
 
-interface FileData {
-  message: string,
-  filename: string
-}
-
 @Injectable({
   providedIn: 'root'
 })
@@ -40,11 +35,11 @@ export class ProfileService {
     );
   }
 
-  uploadAvatar(body: any): Observable<FileData> {
+  uploadAvatar(body: any): Observable<any> {
     this.loadingService.show();
     const time = 2 * 1000;  // Simula 2 segundos de delay
     
-    return this.http.post<FileData>(`${this.apiUrl}/upload-avatar`, body).pipe(
+    return this.http.post(`${this.apiUrl}/upload-avatar`, body).pipe(
       delay(time),
       finalize(() => {
         this.loadingService.hide(); // Ocultar loading después de la petición
