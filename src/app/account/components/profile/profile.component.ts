@@ -19,6 +19,7 @@ import { AlertService } from '../../../shared/services/alert/alert.service';
 })
 export default class ProfileComponent {
   isUploadAvatar: boolean = false;
+  isDragOver: boolean = false;
   selectedFile: File | null = null;
   errorFileMessage: string = '';
   allowedTypes = ['image/png', 'image/jpeg', 'image/jpg', 'image/webp'];
@@ -100,5 +101,15 @@ export default class ProfileComponent {
         }
       })
     }
+  }
+
+  onDragOver(event: DragEvent) {
+    event.preventDefault();
+    this.isDragOver = true;
+  }
+
+  onDragLeave(event: DragEvent) {
+    event.preventDefault();
+    this. isDragOver = false;
   }
 }
