@@ -48,24 +48,28 @@ export default class ProfileComponent {
     this.errorFileMessage = '';
   }
 
+  processFile(file: File) {
+    this.errorFileMessage = '';
+    
+    if (!this.allowedTypes.includes(file.type)) {
+      this.errorFileMessage = 'Solo se permiten archivos de imagen (PNG, JPEG, JPG, WEBP)';
+      return;
+    }
+
+    if (file.size > this.maxSizeFile) {
+      this.errorFileMessage = 'El archivo no debe superar los 3MB';
+      return;
+    }
+
+    this.selectedFile = file;
+    this.uploadFile();
+  }
+
   onFileSelected(event: any) {
     const file: File = event.target.files[0];
-    this.errorFileMessage = '';
 
-    if (file) {
-      if (!this.allowedTypes.includes(file.type)) {
-        this.errorFileMessage = 'Solo se permiten archivos de imagen (PNG, JPEG, JPG, WEBP)';
-        return;
-      }
-
-      if (file.size > this.maxSizeFile) {
-        this.errorFileMessage = 'El archivo no debe superar los 3MB';
-        return;
-      }
-
-      this.selectedFile = file;
-      this.uploadFile();
-    }
+    if (file)
+      this.processFile(file);
   }
 
   uploadFile() {
@@ -103,6 +107,24 @@ export default class ProfileComponent {
     }
   }
 
+  onDrop(event: DragEvent) {
+    event.preventDefault();
+    event.stopPropagation();
+    this.isDragOver = false;
+
+    const files = event.dataTransfer?.files;
+    
+    let file = null;
+    if (files && files?.length == 1) {
+      file = files[0];
+      if (file)
+        this.processFile(file);
+    } else if (files && files.length > 1) {
+      this.errorFileMessage = 'Solo se permite subir un archivo';
+      return;
+    }
+  }
+
   onDragOver(event: DragEvent) {
     event.preventDefault();
     event.stopPropagation();
@@ -113,31 +135,5 @@ export default class ProfileComponent {
     event.preventDefault();
     event.stopPropagation();
     this.isDragOver = false;
-  }
-
-  onDrop(event: DragEvent) {
-    event.preventDefault();
-    event.stopPropagation();
-    this.isDragOver = false;
-
-    const files = event.dataTransfer?.files;
-
-    if (files && files.length >0) {
-      const file: File = files[0];
-      this.errorFileMessage = '';
-
-      if (!this.allowedTypes.includes(file.type)) {
-        this.errorFileMessage = 'Solo se permiten archivos de imagen (PNG, JPEG, JPG, WEBP)';
-        return;
-      }
-
-      if (file.size > this.maxSizeFile) {
-        this.errorFileMessage = 'El archivo no debe superar los 3MB';
-        return;
-      }
-
-      this.selectedFile = file;
-      this.uploadFile();
-    }
   }
 }

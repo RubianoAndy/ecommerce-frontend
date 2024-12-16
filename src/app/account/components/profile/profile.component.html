@@ -74,13 +74,12 @@
                     <input type="file" id="fileInput" class="hidden" (change)="onFileSelected($event)" accept="image/png, image/jpeg, image/jpg, image/webp"> <!--multiple-->
                 </div>
                 <!-- <div class="mt-6 text-center" id="fileList"></div> -->
+                @if(errorFileMessage) {
+                    <div class="mt-4 text-center text-red-500">
+                        {{ errorFileMessage }}
+                    </div>
+                }
             </div>
-
-            @if(errorFileMessage) {
-                <div class="mt-4 text-center text-red-500">
-                    {{ errorFileMessage }}
-                </div>
-            }
         </div>
     }
 </div>
