@@ -105,11 +105,39 @@ export default class ProfileComponent {
 
   onDragOver(event: DragEvent) {
     event.preventDefault();
+    event.stopPropagation();
     this.isDragOver = true;
   }
 
   onDragLeave(event: DragEvent) {
     event.preventDefault();
-    this. isDragOver = false;
+    event.stopPropagation();
+    this.isDragOver = false;
+  }
+
+  onDrop(event: DragEvent) {
+    event.preventDefault();
+    event.stopPropagation();
+    this.isDragOver = false;
+
+    const files = event.dataTransfer?.files;
+
+    if (files && files.length >0) {
+      const file: File = files[0];
+      this.errorFileMessage = '';
+
+      if (!this.allowedTypes.includes(file.type)) {
+        this.errorFileMessage = 'Solo se permiten archivos de imagen (PNG, JPEG, JPG, WEBP)';
+        return;
+      }
+
+      if (file.size > this.maxSizeFile) {
+        this.errorFileMessage = 'El archivo no debe superar los 3MB';
+        return;
+      }
+
+      this.selectedFile = file;
+      this.uploadFile();
+    }
   }
 }
