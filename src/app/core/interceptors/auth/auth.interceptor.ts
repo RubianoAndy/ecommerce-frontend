@@ -17,7 +17,6 @@ export const authInterceptor: HttpInterceptorFn = (req, next) => {
     '/send-contact',
 
     '/categories-small',
-    '/avatar',
   ];
 
   if (ignoreRoutes.some(route => req.url.includes(route)))

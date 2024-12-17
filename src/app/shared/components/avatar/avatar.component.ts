@@ -83,14 +83,14 @@ export class AvatarComponent {
   
           this.alertService.showAlert(alertBody);
         },
-        error: (response) => {
-          alertBody = {
-            type: 'error',
-            title: '¡Error!',
-            message: response.message,
-          };
+        error: () => {
+          // alertBody = {
+          //   type: 'error',
+          //   title: '¡Error!',
+          //   message: response.message,
+          // };
   
-          this.alertService.showAlert(alertBody);
+          // this.alertService.showAlert(alertBody);
         }
       })
     }

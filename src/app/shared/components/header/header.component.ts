@@ -42,23 +42,22 @@ export class HeaderComponent implements OnInit, OnDestroy {
     this.authService.isAuthenticated().subscribe(isAuthenticated => {
       if (isAuthenticated)
         this.getProfile();
-    });
-    if (this.profile) {
-      this.avatarSubscription = this.avatarService.avatar$.subscribe(url =>{
-        if(url)
-          this.avatar = url;
-      });
 
-      this.avatarService.getAvatar().subscribe({
-        next: blob => {
-          const url = URL.createObjectURL(blob);
-          this.avatar = url; // Establecer la URL inicial
-        },
-        error: (response) => {
-          console.error('Error al cargar el avatar: ', response);
-        }
-      });
-    }
+        this.avatarSubscription = this.avatarService.avatar$.subscribe(url =>{
+          if(url)
+            this.avatar = url;
+        });
+  
+        this.avatarService.getAvatar().subscribe({
+          next: blob => {
+            const url = URL.createObjectURL(blob);
+            this.avatar = url; // Establecer la URL inicial
+          },
+          error: (response) => {
+            console.error('Error al cargar el avatar: ', response);
+          }
+        });
+    });
 
     this.darkModeService.darkMode$.subscribe(darkMode => {
       this.logo = darkMode ? environment.lightLogo : environment.darkLogo;
@@ -68,7 +67,7 @@ export class HeaderComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy(): void {
-    if (this.avatarSubscription && this.profile)
+    if (this.avatarSubscription)
       this.avatarSubscription.unsubscribe();
 
     this.unsubscribe$.next();
