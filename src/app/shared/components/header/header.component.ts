@@ -39,34 +39,36 @@ export class HeaderComponent implements OnInit, OnDestroy {
   ) { }
 
   ngOnInit(): void {
-    this.avatarSubscription = this.avatarService.avatar$.subscribe(url =>{
-      if(url)
-        this.avatar = url;
+    this.authService.isAuthenticated().subscribe(isAuthenticated => {
+      if (isAuthenticated)
+        this.getProfile();
     });
+    if (this.profile) {
+      this.avatarSubscription = this.avatarService.avatar$.subscribe(url =>{
+        if(url)
+          this.avatar = url;
+      });
 
-    this.avatarService.getAvatar().subscribe({
-      next: blob => {
-        const url = URL.createObjectURL(blob);
-        this.avatar = url; // Establecer la URL inicial
-      },
-      error: (response) => {
-        console.error('Error al cargar el avatar: ', response);
-      }
-    });
+      this.avatarService.getAvatar().subscribe({
+        next: blob => {
+          const url = URL.createObjectURL(blob);
+          this.avatar = url; // Establecer la URL inicial
+        },
+        error: (response) => {
+          console.error('Error al cargar el avatar: ', response);
+        }
+      });
+    }
 
     this.darkModeService.darkMode$.subscribe(darkMode => {
       this.logo = darkMode ? environment.lightLogo : environment.darkLogo;
       this.changeDetectorRef.detectChanges();   // Forzar a la detención del cambio del logo en el ciclo de vida
     });
 
-    this.authService.isAuthenticated().subscribe(isAuthenticated => {
-      if (isAuthenticated)
-        this.getProfile();
-    });
   }
 
   ngOnDestroy(): void {
-    if (this.avatarSubscription)
+    if (this.avatarSubscription && this.profile)
       this.avatarSubscription.unsubscribe();
 
     this.unsubscribe$.next();
