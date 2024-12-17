@@ -72,8 +72,6 @@ export class AvatarComponent {
 
       this.avatarService.uploadAvatar(formData).subscribe({
         next: (response) => {
-          console.log('Imagen de perfil cargada exitosamente', response);
-
           this.getAvatar();
           this.toggleProfilePhoto();
 
