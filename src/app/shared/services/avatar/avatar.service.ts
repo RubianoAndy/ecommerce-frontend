@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { delay, finalize, Observable } from 'rxjs';
+import { BehaviorSubject, delay, finalize, Observable } from 'rxjs';
 import { LoadingService } from '../loading/loading.service';
 import { environment } from '../../../../environments/environment.development';
 
@@ -8,6 +8,9 @@ import { environment } from '../../../../environments/environment.development';
   providedIn: 'root'
 })
 export class AvatarService {
+  private avatarSubject = new BehaviorSubject<string>('');
+  avatar$ = this.avatarSubject.asObservable();
+  
   apiUrl = environment.apiUrl;
 
   constructor(
@@ -17,11 +20,15 @@ export class AvatarService {
 
   uploadAvatar(body: any): Observable<any> {
     this.loadingService.show();
-    const time = 2 * 1000;  // Simula 2 segundos de delay
+    const time = 1 * 1000;  // Simula 2 segundos de delay
     
     return this.http.post(`${this.apiUrl}/avatar`, body).pipe(
       delay(time),
       finalize(() => {
+        this.getAvatar().subscribe(blob => {
+          const url = URL.createObjectURL(blob);
+          this.avatarSubject.next(url);
+        })
         this.loadingService.hide(); // Ocultar loading después de la petición
       })
     );

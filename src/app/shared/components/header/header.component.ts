@@ -6,7 +6,8 @@ import { AuthService } from '../../../core/services/auth/auth.service';
 import { AlertService } from '../../services/alert/alert.service';
 import { ProfileService } from '../../../account/services/profile/profile.service';
 import { DarkModeService } from '../../services/dark-mode/dark-mode.service';
-import { Subject } from 'rxjs';
+import { Subject, Subscription } from 'rxjs';
+import { AvatarService } from '../../services/avatar/avatar.service';
 
 @Component({
     selector: 'app-header',
@@ -19,7 +20,9 @@ import { Subject } from 'rxjs';
 })
 export class HeaderComponent implements OnInit, OnDestroy {
   logo = environment.darkLogo;
-  avatar = 'assets/images/avatar/Avatar.png';
+  avatar: string = 'assets/images/avatar/Avatar.png';
+
+  private avatarSubscription: Subscription | undefined;
 
   private unsubscribe$ = new Subject<void>();
   
@@ -31,10 +34,26 @@ export class HeaderComponent implements OnInit, OnDestroy {
     private profileService: ProfileService,
     private alertService: AlertService,
     private darkModeService: DarkModeService,
+    private avatarService: AvatarService,
     private changeDetectorRef: ChangeDetectorRef,
   ) { }
 
   ngOnInit(): void {
+    this.avatarSubscription = this.avatarService.avatar$.subscribe(url =>{
+      if(url)
+        this.avatar = url;
+    });
+
+    this.avatarService.getAvatar().subscribe({
+      next: blob => {
+        const url = URL.createObjectURL(blob);
+        this.avatar = url; // Establecer la URL inicial
+      },
+      error: (response) => {
+        console.error('Error al cargar el avatar: ', response);
+      }
+    });
+
     this.darkModeService.darkMode$.subscribe(darkMode => {
       this.logo = darkMode ? environment.lightLogo : environment.darkLogo;
       this.changeDetectorRef.detectChanges();   // Forzar a la detención del cambio del logo en el ciclo de vida
@@ -47,6 +66,9 @@ export class HeaderComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy(): void {
+    if (this.avatarSubscription)
+      this.avatarSubscription.unsubscribe();
+
     this.unsubscribe$.next();
     this.unsubscribe$.complete();
   }
