@@ -1,14 +1,16 @@
 import { Component } from '@angular/core';
+import { NgClass } from '@angular/common';
+
 import { PersonalInformationComponent } from './personal-information/personal-information.component';
 import { ChangePasswordComponent } from './change-password/change-password.component';
 import { ShippingInformationComponent } from './shipping-information/shipping-information.component';
-import { NgClass } from '@angular/common';
-import { ProfileService } from '../../services/profile/profile.service';
-import { AlertService } from '../../../shared/services/alert/alert.service';
+
+import { AvatarComponent } from '../../../shared/components/avatar/avatar.component';
 
 @Component({
   selector: 'app-profile',
   imports: [
+    AvatarComponent,
     PersonalInformationComponent,
     ChangePasswordComponent,
     ShippingInformationComponent,
@@ -18,24 +20,10 @@ import { AlertService } from '../../../shared/services/alert/alert.service';
   styleUrl: './profile.component.scss'
 })
 export default class ProfileComponent {
-  avatar: any = 'assets/images/avatar/Avatar.png';
-
-  isUploadAvatar: boolean = false;
-  isDragOver: boolean = false;
-  selectedFile: File | null = null;
-  errorFileMessage: string = '';
-  allowedTypes = ['image/png', 'image/jpeg', 'image/jpg', 'image/webp'];
-  maxSizeFile = 3 * 1024 * 1024;
-  
   isAccordion1Open: boolean = false;
   isAccordion2Open: boolean = false;
   
-  constructor (
-    private profileService: ProfileService,
-    private alertService: AlertService,
-  ) {
-    this.getAvatar();
-  }
+  constructor () { }
 
   toggleAccordion(form: string): void {
     const accordionSection: any = {
@@ -45,110 +33,5 @@ export default class ProfileComponent {
 
     if (accordionSection[form])
       accordionSection[form]();
-  }
-
-  toggleProfilePhoto() {
-    this.isUploadAvatar = !this.isUploadAvatar;
-    this.errorFileMessage = '';
-  }
-
-  processFile(file: File) {
-    this.errorFileMessage = '';
-    
-    if (!this.allowedTypes.includes(file.type)) {
-      this.errorFileMessage = 'Solo se permiten archivos de imagen (PNG, JPEG, JPG, WEBP)';
-      return;
-    }
-
-    if (file.size > this.maxSizeFile) {
-      this.errorFileMessage = 'El archivo no debe superar los 3MB';
-      return;
-    }
-
-    this.selectedFile = file;
-    this.uploadFile();
-  }
-
-  onFileSelected(event: any) {
-    const file: File = event.target.files[0];
-
-    if (file)
-      this.processFile(file);
-  }
-
-  getAvatar() {
-    this.profileService.getAvatar().subscribe({
-      next: (blob) => {
-        this.avatar = URL.createObjectURL(blob);
-      },
-      error: () => {
-        this.avatar = 'assets/images/avatar/Avatar.png';
-      }
-    })
-  }
-
-  uploadFile() {
-    var alertBody = null;
-
-    if (this.selectedFile) {
-      const formData = new FormData();
-      formData.append('profileImage', this.selectedFile, this.selectedFile.name);
-
-      this.profileService.uploadAvatar(formData).subscribe({
-        next: (response) => {
-          console.log('Imagen de perfil cargada exitosamente', response);
-
-          this.getAvatar();
-          this.toggleProfilePhoto();
-
-          alertBody = {
-            type: 'okay',
-            title: '¡Felicidades!',
-            message: response.message,
-          };
-  
-          this.alertService.showAlert(alertBody);
-        },
-        error: (response) => {
-          alertBody = {
-            type: 'error',
-            title: '¡Error!',
-            message: response.message,
-          };
-  
-          this.alertService.showAlert(alertBody);
-        }
-      })
-    }
-  }
-
-  onDrop(event: DragEvent) {
-    event.preventDefault();
-    event.stopPropagation();
-    this.isDragOver = false;
-
-    const files = event.dataTransfer?.files;
-    
-    let file = null;
-    if (files && files?.length == 1) {
-      file = files[0];
-      if (file)
-        this.processFile(file);
-    } else if (files && files.length > 1) {
-      this.errorFileMessage = 'Solo se permite subir un archivo';
-      return;
-    }
-  }
-
-  onDragOver(event: DragEvent) {
-    event.preventDefault();
-    event.stopPropagation();
-    this.isDragOver = true;
-  }
-
-  onDragLeave(event: DragEvent) {
-    event.preventDefault();
-    event.stopPropagation();
-    this.isDragOver = false;
   }
 }

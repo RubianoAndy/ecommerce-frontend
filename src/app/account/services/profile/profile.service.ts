@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { environment } from '../../../../environments/environment.development';
 import { HttpClient } from '@angular/common/http';
-import { delay, finalize, Observable } from 'rxjs';
+import { finalize, Observable } from 'rxjs';
 import { LoadingService } from '../../../shared/services/loading/loading.service';
 
 @Injectable({
@@ -29,27 +29,6 @@ export class ProfileService {
     this.loadingService.show();
 
     return this.http.put(`${this.apiUrl}/profile`, body).pipe(
-      finalize(() => {
-        this.loadingService.hide(); // Ocultar loading después de la petición
-      })
-    );
-  }
-
-  uploadAvatar(body: any): Observable<any> {
-    this.loadingService.show();
-    const time = 2 * 1000;  // Simula 2 segundos de delay
-    
-    return this.http.post(`${this.apiUrl}/avatar`, body).pipe(
-      delay(time),
-      finalize(() => {
-        this.loadingService.hide(); // Ocultar loading después de la petición
-      })
-    );
-  }
-
-  getAvatar(): Observable<Blob> {
-    this.loadingService.show();
-    return this.http.get(`${this.apiUrl}/avatar`, { responseType: 'blob' }).pipe(
       finalize(() => {
         this.loadingService.hide(); // Ocultar loading después de la petición
       })
