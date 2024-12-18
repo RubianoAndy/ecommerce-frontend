@@ -126,7 +126,10 @@ export class AvatarComponent {
     this.isDragOver = false;
   }
 
-  toggleProfilePhoto() {
+  toggleProfilePhoto(event?: Event) {
+    if (event) 
+      event.stopPropagation();
+    
     this.isUploadAvatar = !this.isUploadAvatar;
   }
 }
