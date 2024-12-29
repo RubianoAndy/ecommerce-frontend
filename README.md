@@ -94,6 +94,7 @@ For documentation purposes, this repository was created as follows:
 | 6-  | Select no to enable SSR and SSG/Prerendering  |                                               |
 | 7-  | Install Tailwind (only steps 1, 2 y 3)        | https://tailwindcss.com/docs/installation     |
 | 8-  | Replace in tailwind.config.js                 | Put `content: ["./src/**/*.{html,ts,scss}"],` |
+| 9-  | Intall angular/cdk to obtain the screen size  | `npm install @angular/cdk`                    |
 
 ### How to update a project in Angular to the latest version?
 
