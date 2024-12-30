@@ -4,6 +4,7 @@ import { RouterLink, RouterLinkActive } from '@angular/router';
 import { DarkModeToggleComponent } from '../dark-mode-toggle/dark-mode-toggle.component';
 import { SidebarComponent } from "../sidebar/sidebar.component";
 import { CategoriesService } from '../../../account/services/categories/categories.service';
+import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
 
 @Component({
     selector: 'app-navbar',
@@ -18,6 +19,8 @@ import { CategoriesService } from '../../../account/services/categories/categori
     styleUrl: './navbar.component.scss'
 })
 export class NavbarComponent implements OnInit {
+  isMobile: boolean = false;
+
   categories: any[] = [];
 
   isMenuOpen = false;
@@ -33,12 +36,20 @@ export class NavbarComponent implements OnInit {
 
   constructor (
     private categoriesService: CategoriesService,
+    private breakpointObserver: BreakpointObserver,
   ) {
     this.getCategories();
   }
 
   ngOnInit(): void {
-      
+    const customBreakpoints = [
+      '(max-width: 1023px)',    // md o inferiores
+    ];
+    
+    this.breakpointObserver.observe(customBreakpoints)
+      .subscribe(result => {
+        this.isMobile = result.matches;
+    });
   }
 
   async getCategories() {

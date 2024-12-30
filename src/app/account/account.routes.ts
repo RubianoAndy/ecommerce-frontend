@@ -7,7 +7,7 @@ const routes: Routes = [{
   loadComponent: () => import('./account.component'),
   children: [
     {
-      path: '', redirectTo: 'users', pathMatch: 'full'
+      path: '', redirectTo: 'profile', pathMatch: 'full'
     },
     {
       path: 'profile', loadComponent: () => import('./components/profile/profile.component'),
@@ -30,7 +30,7 @@ const routes: Routes = [{
       data: { breadcrumb: 'Configuración' }
     },
     { 
-      path: '**', redirectTo: 'users', pathMatch: 'full'
+      path: '**', redirectTo: 'profile', pathMatch: 'full'
     },
   ]
 }];
@@ -40,7 +40,7 @@ const routes: Routes = [{
     RouterModule.forChild(routes),
   ],
   providers: [
-    provideHttpClient(withInterceptorsFromDi()),
+    // provideHttpClient(withInterceptorsFromDi()),
   ],
   exports: [
     RouterModule,

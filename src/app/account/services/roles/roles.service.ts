@@ -36,6 +36,16 @@ export class RolesService {
     );
   }
 
+  getRole(): Observable<any> {
+    this.loadingService.show();
+
+    return this.http.get(`${this.apiUrl}/role`).pipe(
+      finalize(() => {
+        this.loadingService.hide();
+      })
+    );
+  }
+
   get(roleId: any): Observable<any> {
     this.loadingService.show();
 

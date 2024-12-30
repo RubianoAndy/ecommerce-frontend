@@ -60,7 +60,9 @@
         </div>
     </div>
 
-    <div [ngClass]="{'translate-x-0': isMenuOpen, '-translate-x-full': !isMenuOpen}" class="lg:hidden fixed left-0 top-0 bottom-0 z-10 transition-transform duration-500">
-        <app-sidebar [showLogo]="true" (sidebarEmitter)="toggleMenu()" />
-    </div>
+    @if(isMobile) {
+        <div [ngClass]="{'translate-x-0': isMenuOpen, '-translate-x-full': !isMenuOpen}" class="lg:hidden fixed left-0 top-0 bottom-0 z-10 transition-transform duration-500">
+            <app-sidebar [showLogo]="true" (sidebarEmitter)="toggleMenu()" />
+        </div>
+    }
 </nav>
