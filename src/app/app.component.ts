@@ -38,7 +38,10 @@ export class AppComponent implements OnInit{
     '/activate'
   ];
 
-  footerExcludedRoutes = [...this.headerExcludedRoutes, '/account'];
+  footerExcludedRoutes = [
+    ...this.headerExcludedRoutes,
+    '/account'
+  ];
 
   constructor (
     private router: Router,
