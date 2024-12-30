@@ -11,6 +11,7 @@ import { ShippingInformationComponent } from '../profile/shipping-information/sh
 import { UsersService } from '../../services/users/users.service';
 import { AlertService } from '../../../shared/services/alert/alert.service';
 import { RolesService } from '../../services/roles/roles.service';
+import { AvatarService } from '../../../shared/services/avatar/avatar.service';
 
 @Component({
   selector: 'app-users',
@@ -25,7 +26,7 @@ import { RolesService } from '../../services/roles/roles.service';
   styleUrl: './users.component.scss'
 })
 export default class UsersComponent implements OnInit {
-  avatar: string = 'assets/images/avatar/Avatar.png';
+  avatars: Map<number, string> = new Map();
 
   roles: any[] = [];
 
@@ -65,6 +66,7 @@ export default class UsersComponent implements OnInit {
     private usersService: UsersService,
     private alertService: AlertService,
     private rolesService: RolesService,
+    private avatarService: AvatarService,
   ) {
     this.subjectsFilters = [
       { subject: this.userDniSubject, field: 'dni' },
@@ -122,10 +124,34 @@ export default class UsersComponent implements OnInit {
         this.endRecord = Math.min(this.page * this.pageSize, this.totalRecords);
 
         this.calculatePageRange();
+        this.loadAvatars();
       },
       error: () => {
       }
     });
+  }
+
+  loadAvatars() {
+    this.usersRecords.forEach(user => {
+      if (!this.avatars.has(user.id))
+        this.getUserAvatar(user.id);
+    });
+  }
+
+  getUserAvatar(userId: number) {
+    this.avatarService.getUserAvatar(userId).subscribe({
+      next: (blob) => {
+        const avatarUrl = URL.createObjectURL(blob);
+        this.avatars.set(userId, avatarUrl);
+      },
+      error: () => {
+        this.avatars.set(userId, 'assets/images/avatar/Avatar.png');
+      }
+    });
+  }
+
+  loadUserAvatar(userId: number): string {
+    return this.avatars.get(userId) || 'assets/images/avatar/Avatar.png';
   }
 
   changePage(pageNumber: number) {

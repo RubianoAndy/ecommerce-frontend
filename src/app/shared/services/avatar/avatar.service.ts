@@ -42,4 +42,13 @@ export class AvatarService {
       })
     );
   }
+
+  getUserAvatar(userId: any): Observable<Blob> {
+    this.loadingService.show();
+    return this.http.get(`${this.apiUrl}/avatar/${userId}`, { responseType: 'blob' }).pipe(
+      finalize(() => {
+        this.loadingService.hide(); // Ocultar loading después de la petición
+      })
+    );
+  }
 }
