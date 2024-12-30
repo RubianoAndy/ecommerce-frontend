@@ -10,18 +10,22 @@ import { HeaderComponent } from './shared/components/header/header.component';
 import { NavbarComponent } from './shared/components/navbar/navbar.component';
 import { FooterComponent } from "./shared/components/footer/footer.component";
 
+import { TitleService } from './shared/services/title/title.service';
+
+import { environment } from '../environments/environment.development';
+
 @Component({
-    selector: 'app-root',
-    imports: [
-        RouterOutlet,
-        AlertComponent,
-        LoadingComponent,
-        HeaderComponent,
-        NavbarComponent,
-        FooterComponent,
-    ],
-    templateUrl: './app.component.html',
-    styleUrl: './app.component.scss'
+  selector: 'app-root',
+  imports: [
+    RouterOutlet,
+    AlertComponent,
+    LoadingComponent,
+    HeaderComponent,
+    NavbarComponent,
+    FooterComponent,
+  ],
+  templateUrl: './app.component.html',
+  styleUrl: './app.component.scss'
 })
 export class AppComponent implements OnInit{
   isHeaderVisible = true;
@@ -38,6 +42,7 @@ export class AppComponent implements OnInit{
 
   constructor (
     private router: Router,
+    private titleService: TitleService,
   ) {
     this.router.events.pipe(
       filter(event => event instanceof NavigationEnd)
@@ -48,7 +53,10 @@ export class AppComponent implements OnInit{
   }
 
   ngOnInit(): void {
+    const siteName = environment.siteName;
     const theme = localStorage.getItem('theme');
+
+    this.titleService.setTitle(siteName);
 
     if (theme) {
       if (theme === 'dark')

@@ -4,19 +4,19 @@ import { RouterLink, RouterLinkActive } from '@angular/router';
 import { DarkModeToggleComponent } from '../dark-mode-toggle/dark-mode-toggle.component';
 import { SidebarComponent } from "../sidebar/sidebar.component";
 import { CategoriesService } from '../../../account/services/categories/categories.service';
-import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
+import { BreakpointObserver } from '@angular/cdk/layout';
 
 @Component({
-    selector: 'app-navbar',
-    imports: [
+  selector: 'app-navbar',
+  imports: [
     NgClass,
     RouterLink,
     RouterLinkActive,
     DarkModeToggleComponent,
     SidebarComponent,
-],
-    templateUrl: './navbar.component.html',
-    styleUrl: './navbar.component.scss'
+  ],
+  templateUrl: './navbar.component.html',
+  styleUrl: './navbar.component.scss'
 })
 export class NavbarComponent implements OnInit {
   isMobile: boolean = false;
