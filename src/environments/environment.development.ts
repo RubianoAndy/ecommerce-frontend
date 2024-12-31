@@ -9,4 +9,7 @@ export const environment = {
     
     darkLogo: 'assets/images/logos/Logo carnivorous plants division black.png',
     lightLogo: 'assets/images/logos/Logo carnivorous plants division white.png',
+
+    superAdminRole: 1,
+    adminRole: 2,
 };
