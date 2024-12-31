@@ -1,7 +1,8 @@
-import { Component } from '@angular/core';
-import { RouterLink, RouterLinkActive, RouterOutlet } from '@angular/router';
+import { Component, OnInit } from '@angular/core';
+import { RouterOutlet } from '@angular/router';
 import { BreadcrumbComponent } from '../shared/components/breadcrumb/breadcrumb.component';
 import { SidebarComponent } from '../shared/components/sidebar/sidebar.component';
+import { BreakpointObserver } from '@angular/cdk/layout';
 
 @Component({
     selector: 'app-account',
@@ -13,6 +14,21 @@ import { SidebarComponent } from '../shared/components/sidebar/sidebar.component
     templateUrl: './account.component.html',
     styleUrl: './account.component.scss'
 })
-export default class AccountComponent {
+export default class AccountComponent implements OnInit {
+  isNotMobile: boolean = false;
 
+  constructor(
+    private breakpointObserver: BreakpointObserver,
+  ) {}
+
+  ngOnInit(): void {
+    const customBreakpoints = [
+      '(min-width: 1024px)',    // lg o superiores
+    ];
+
+    this.breakpointObserver.observe(customBreakpoints)
+      .subscribe(result => {
+        this.isNotMobile = result.matches;
+    });
+  }
 }
