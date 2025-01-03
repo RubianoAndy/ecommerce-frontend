@@ -40,30 +40,21 @@ export class HeaderComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
     this.authService.isAuthenticated().subscribe(isAuthenticated => {
-      if (isAuthenticated)
+      if (isAuthenticated) {
         this.getProfile();
 
         this.avatarSubscription = this.avatarService.avatar$.subscribe(url =>{
           if(url)
             this.avatar = url;
         });
-  
-        this.avatarService.getAvatar().subscribe({
-          next: blob => {
-            const url = URL.createObjectURL(blob);
-            this.avatar = url; // Establecer la URL inicial
-          },
-          error: (response) => {
-            console.error('Error al cargar el avatar: ', response);
-          }
-        });
+        this.getAvatar();
+      }
     });
 
     this.darkModeService.darkMode$.subscribe(darkMode => {
       this.logo = darkMode ? environment.lightLogo : environment.darkLogo;
       this.changeDetectorRef.detectChanges();   // Forzar a la detención del cambio del logo en el ciclo de vida
     });
-
   }
 
   ngOnDestroy(): void {
@@ -102,6 +93,18 @@ export class HeaderComponent implements OnInit, OnDestroy {
           message: response.error.message,
         }
         this.alertService.showAlert(alertBody);
+      }
+    });
+  }
+
+  getAvatar() {
+    this.avatarService.getAvatar().subscribe({
+      next: blob => {
+        const url = URL.createObjectURL(blob);
+        this.avatar = url; // Establecer la URL inicial
+      },
+      error: (response) => {
+        console.error('Error al cargar el avatar: ', response);
       }
     });
   }
