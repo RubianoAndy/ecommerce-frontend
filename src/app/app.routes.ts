@@ -37,6 +37,9 @@ export const routes: Routes = [
     {
         path: 'contact', loadComponent: () => import('./features/components/contact/contact.component')
     },
+    {
+        path: 'no-connection', loadComponent: () => import('./shared/components/no-connection/no-connection.component')
+    },
     { 
         path: '**', redirectTo: '', pathMatch: 'full' 
     },

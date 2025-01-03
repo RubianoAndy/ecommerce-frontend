@@ -1,18 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { NotConnectionComponent } from './not-connection.component';
+import { NoConnectionComponent } from './no-connection.component';
 
-describe('NotConnectionComponent', () => {
-  let component: NotConnectionComponent;
-  let fixture: ComponentFixture<NotConnectionComponent>;
+describe('NoConnectionComponent', () => {
+  let component: NoConnectionComponent;
+  let fixture: ComponentFixture<NoConnectionComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [NotConnectionComponent]
+      imports: [NoConnectionComponent]
     })
     .compileComponents();
 
-    fixture = TestBed.createComponent(NotConnectionComponent);
+    fixture = TestBed.createComponent(NoConnectionComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

@@ -3,6 +3,8 @@ import { NavigationEnd, Router, RouterOutlet } from '@angular/router';
 
 import { filter } from 'rxjs';
 
+import { environment } from '../environments/environment.development';
+
 import { AlertComponent } from './shared/components/alert/alert.component';
 import { LoadingComponent } from './shared/components/loading/loading.component';
 
@@ -11,8 +13,7 @@ import { NavbarComponent } from './shared/components/navbar/navbar.component';
 import { FooterComponent } from "./shared/components/footer/footer.component";
 
 import { TitleService } from './shared/services/title/title.service';
-
-import { environment } from '../environments/environment.development';
+import { NetworkService } from './shared/services/network/network.service';
 
 @Component({
   selector: 'app-root',
@@ -35,7 +36,8 @@ export class AppComponent implements OnInit{
     '/sign-in',
     '/sign-up',
     '/recovery-password',
-    '/activate'
+    '/activate',
+    '/no-connection',
   ];
 
   footerExcludedRoutes = [
@@ -46,6 +48,7 @@ export class AppComponent implements OnInit{
   constructor (
     private router: Router,
     private titleService: TitleService,
+    private networkService: NetworkService,
   ) {
     this.router.events.pipe(
       filter(event => event instanceof NavigationEnd)
@@ -77,5 +80,12 @@ export class AppComponent implements OnInit{
       .subscribe(() => {
         window.scrollTo(0, 0);
       });
+
+    this.networkService.isOnline$.subscribe(isOnline => {
+      if (!isOnline)
+        this.router.navigate(['/no-connection']);
+      else
+        this.router.navigate(['/']);
+    });
   }
 }
