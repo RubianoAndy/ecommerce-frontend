@@ -41,7 +41,7 @@
 # EcommerceFrontend
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 18.2.7 and updated to [Angular CLI](https://github.com/angular/angular-cli) 
-version 19.0.2, [NodeJS](https://nodejs.org/en) version 22.11.0, [NPM](https://nodejs.org/en) version 10.9.0 and [Tailwind CSS](https://tailwindcss.com/) version 3.4.13.
+version 19.0.6, [NodeJS](https://nodejs.org/en) version 22.11.0, [NPM](https://nodejs.org/en) version 10.9.0 and [Tailwind CSS](https://tailwindcss.com/) version 3.4.13.
 
 ### Initial install
 
