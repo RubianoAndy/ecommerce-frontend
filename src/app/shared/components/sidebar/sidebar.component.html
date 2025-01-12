@@ -2,7 +2,7 @@
   @if(showLogo){
     <div class="flex items-center justify-center cursor-pointer mt-4">
       <a routerLink='/'>
-        <img [src]='logo' class="w-32" />
+        <img [src]="logo" alt="Logo" loading="lazy" class="w-32" />
       </a>
     </div>
   }
@@ -54,7 +54,7 @@
     </ul>
 
     <!-- <div class="flex flex-wrap items-center cursor-pointer border-t py-2 mt-6">
-      <img src='https://readymadeui.com/team-2.webp' class="w-10 h-10 rounded-md border-2 border-white" />
+      <img src='https://readymadeui.com/team-2.webp' loading="lazy" class="w-10 h-10 rounded-md border-2 border-white" />
       <div class="ml-4">
         <p class="text-sm text-[#333] font-semibold">John Doe</p>
         <p class="text-xs text-gray-400 mt-0.5">Active free account</p>

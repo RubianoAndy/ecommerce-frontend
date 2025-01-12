@@ -98,7 +98,7 @@
                             @for (user of usersRecords; track $index) {
                                 <tr class="hover:bg-gray-100 dark:hover:bg-gray-700">
                                     <td class="flex items-center space-x-6 p-4 mr-12 text-sm text-black dark:text-white whitespace-nowrap">
-                                        <img class="w-10 h-10" [src]="loadUserAvatar(user.id)" alt="avatar">
+                                        <img class="w-10 h-10" [src]="loadUserAvatar(user.id)" alt="avatar" loading="lazy">
                                         <div class="text-sm font-normal">
                                             <div class="text-base font-semibold text-primary dark:text-secondary">
                                                 {{ user.Profile.name_1 }} {{ user.Profile.name_2 }} {{ user.Profile.lastname_1 }} {{ user.Profile.lastname_2 }}
