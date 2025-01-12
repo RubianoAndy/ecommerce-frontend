@@ -6,6 +6,7 @@ import { map } from 'rxjs';
 export const roleGuard: CanActivateFn = (route, state) => {
   const roleService = inject(RolesService);
   const router = inject(Router);
+  
   const roles = route.data['roles'] as Array<any>;
 
   return roleService.getRole().pipe(

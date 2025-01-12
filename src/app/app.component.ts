@@ -74,7 +74,7 @@ export class AppComponent implements OnInit{
       document.documentElement.classList.add('dark');
     }
 
-    // Esta parte permite que los links del footer redirigan mostrando la parte alta de la página
+    // Esta parte permite que los links del footer redirijan mostrando la parte alta de la página
     this.router.events
       .pipe(filter(event => event instanceof NavigationEnd))
       .subscribe(() => {
