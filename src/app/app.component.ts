@@ -49,20 +49,30 @@ export class AppComponent implements OnInit{
     private router: Router,
     private titleService: TitleService,
     private networkService: NetworkService,
-  ) {
-    this.router.events.pipe(
-      filter(event => event instanceof NavigationEnd)
-    ).subscribe((event: NavigationEnd) => {
-      this.isHeaderVisible = !this.headerExcludedRoutes.some(route => event.url.includes(route));
-      this.isFooterVisible = !this.footerExcludedRoutes.some(route => event.url.includes(route));
-    });
-  }
+  ) { }
 
   ngOnInit(): void {
-    const siteName = environment.siteName;
-    const theme = localStorage.getItem('theme');
+    this.setupTitle();
+    this.setupTheme();
 
+    this.router.events
+      .pipe(filter(event => event instanceof NavigationEnd))
+      .subscribe((event: NavigationEnd) => {
+        this.isHeaderVisible = !this.headerExcludedRoutes.some(route => event.url.includes(route));
+        this.isFooterVisible = !this.footerExcludedRoutes.some(route => event.url.includes(route));
+        window.scrollTo(0, 0);  // Esta parte permite que los links del footer redirijan mostrando la parte alta de la página
+      });
+      
+    // this.setupNetwork();
+  }
+
+  setupTitle() {
+    const siteName = environment.siteName;
     this.titleService.setTitle(siteName);
+  }
+
+  setupTheme() {
+    const theme = localStorage.getItem('theme');
 
     if (theme) {
       if (theme === 'dark')
@@ -73,14 +83,9 @@ export class AppComponent implements OnInit{
       localStorage.setItem('theme', 'dark');
       document.documentElement.classList.add('dark');
     }
+  }
 
-    // Esta parte permite que los links del footer redirijan mostrando la parte alta de la página
-    this.router.events
-      .pipe(filter(event => event instanceof NavigationEnd))
-      .subscribe(() => {
-        window.scrollTo(0, 0);
-      });
-
+  setupNetwork() {
     this.networkService.isOnline$.subscribe(isOnline => {
       if (!isOnline)
         this.router.navigate(['/no-connection']);
