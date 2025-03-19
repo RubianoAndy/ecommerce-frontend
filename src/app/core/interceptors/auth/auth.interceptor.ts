@@ -7,7 +7,7 @@ export const authInterceptor: HttpInterceptorFn = (req, next) => {
   const authService = inject(AuthService);
 
   var ignoreRoutes = [
-    '/refresh-token',     // Deja pasar la petición sin interceptarla, para evitar un bucle infinito
+    // '/refresh-token',     // Deja pasar la petición sin interceptarla, para evitar un bucle infinito
     '/sign-in',
     '/sign-out',
     '/register',
@@ -18,6 +18,23 @@ export const authInterceptor: HttpInterceptorFn = (req, next) => {
 
     '/categories-small',
   ];
+
+  if (req.url.includes('/refresh-token')) {
+    return next(req).pipe(
+      catchError((err: any) => {
+        if (err.status === 401) {
+          // authService.signOut();
+          authService.deleteTokens();
+        }
+
+        return throwError(() => ({
+          status: err.status,
+          message: err.error?.message || 'Error al refrescar el token',
+          error: err.error || null,
+        }));
+      })
+    );
+  }
 
   if (ignoreRoutes.some(route => req.url.includes(route)))
     return next(req);
@@ -45,6 +62,7 @@ export const authInterceptor: HttpInterceptorFn = (req, next) => {
           }),
           catchError(error => {
             authService.signOut();
+            // authService.deleteTokens();
             // return throwError(() => new Error(error)); // Propaga el error
 
             return throwError(() => ({
