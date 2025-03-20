@@ -130,6 +130,7 @@ export class AvatarComponent {
     if (event) 
       event.stopPropagation();
     
+    this.errorFileMessage = '';
     this.isUploadAvatar = !this.isUploadAvatar;
   }
 }
